@@ -1,0 +1,10 @@
+import { chromium } from 'playwright'
+const browser = await chromium.launch()
+const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
+const page = await ctx.newPage()
+await page.goto('http://localhost:4321/products/', { waitUntil: 'load' })
+await page.evaluate(() => document.fonts && document.fonts.ready)
+await page.waitForTimeout(500)
+await page.screenshot({ path: 'screenshots/products-new.png', fullPage: true })
+console.log('saved')
+await browser.close()

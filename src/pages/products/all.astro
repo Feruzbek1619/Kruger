@@ -1,0 +1,61 @@
+---
+/**
+ * Полный листинг с фильтрами (sidebar + grid + pagination + URL state).
+ * Вынесено из /products/, чтобы /products/ был категорийным хабом
+ * (как tomoil.de), а пользователь, которому нужны фильтры — приходил сюда.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import ProductCatalog from '@/components/sections/ProductCatalog.vue'
+import { t } from '@/lib/i18n'
+import allProducts from '@/mocks/all-products.json'
+import segments from '@/mocks/segments.json'
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const applicationOptions = (segments as { id: string; title: string }[]).map((s) => ({
+  id: s.id,
+  label: s.title,
+}))
+
+const labels = {
+  filters:             t(lang, 'products.filters'),
+  filterByApplication: t(lang, 'products.filterByApplication'),
+  filterByType:        t(lang, 'products.filterByType'),
+  filterByViscosity:   t(lang, 'products.filterByViscosity'),
+  filterBySpec:        t(lang, 'products.filterBySpec'),
+  filterByVolume:      t(lang, 'products.filterByVolume'),
+  resetFilters:        t(lang, 'products.resetFilters'),
+  sortLabel:           t(lang, 'products.sortLabel'),
+  sortPopular:         t(lang, 'products.sortPopular'),
+  sortNew:             t(lang, 'products.sortNew'),
+  sortAZ:              t(lang, 'products.sortAZ'),
+  found:               t(lang, 'products.found'),
+  productsWord:        t(lang, 'products.products'),
+  showFilters:         t(lang, 'products.showFilters'),
+  emptyTitle:          t(lang, 'products.emptyTitle'),
+  emptyText:           t(lang, 'products.emptyText'),
+  moreDetails:         t(lang, 'products.moreDetails'),
+}
+---
+<BaseLayout
+  title="Все продукты Krüger — фильтр по применению, вязкости, API/ACEA"
+  description="150+ премиальных смазочных материалов Krüger с фильтрами по применению, вязкости, API/ACEA, объёму. Скачать PDS/SDS."
+>
+  <PageHero
+    title="Все продукты"
+    lead="150+ позиций. Фильтруйте по применению, вязкости и спецификации, чтобы найти подходящий продукт."
+    breadcrumbs={[
+      { label: t(lang, 'common.breadcrumbHome'), href: '/' },
+      { label: 'Каталог', href: '/products/' },
+      { label: 'Все продукты' },
+    ]}
+  />
+
+  <ProductCatalog
+    client:load
+    products={allProducts as any}
+    labels={labels}
+    applicationOptions={applicationOptions}
+  />
+</BaseLayout>

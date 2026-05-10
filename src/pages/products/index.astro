@@ -1,55 +1,233 @@
 ---
+/**
+ * /products/ — категорийный хаб (как tomoil.de):
+ *   1) Hero
+ *   2) Browse by Application — 6 рыночных сегментов с иконками
+ *   3) All Categories — 22 категории сеткой
+ *   4) Bestsellers — карусель популярных продуктов
+ *   5) CTA на /products/all/ для фильтров
+ *
+ * Полный фильтр-листинг лежит на /products/all/.
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
-import ProductCatalog from '@/components/sections/ProductCatalog.vue'
+import SegmentIcon from '@/components/ui/SegmentIcon.astro'
+import Icon from '@/components/ui/Icon.astro'
+import ProductCard from '@/components/cards/ProductCard.vue'
 import { t } from '@/lib/i18n'
-import allProducts from '@/mocks/all-products.json'
 import segments from '@/mocks/segments.json'
+import categories from '@/mocks/categories.json'
+import popular from '@/mocks/popular.json'
+import type { MarketSegment, ProductCategory } from '@/types'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-
-const applicationOptions = (segments as { id: string; title: string }[]).map((s) => ({
-  id: s.id,
-  label: s.title,
-}))
-
-const labels = {
-  filters:             t(lang, 'products.filters'),
-  filterByApplication: t(lang, 'products.filterByApplication'),
-  filterByType:        t(lang, 'products.filterByType'),
-  filterByViscosity:   t(lang, 'products.filterByViscosity'),
-  filterBySpec:        t(lang, 'products.filterBySpec'),
-  filterByVolume:      t(lang, 'products.filterByVolume'),
-  resetFilters:        t(lang, 'products.resetFilters'),
-  sortLabel:           t(lang, 'products.sortLabel'),
-  sortPopular:         t(lang, 'products.sortPopular'),
-  sortNew:             t(lang, 'products.sortNew'),
-  sortAZ:              t(lang, 'products.sortAZ'),
-  found:               t(lang, 'products.found'),
-  productsWord:        t(lang, 'products.products'),
-  showFilters:         t(lang, 'products.showFilters'),
-  emptyTitle:          t(lang, 'products.emptyTitle'),
-  emptyText:           t(lang, 'products.emptyText'),
-  moreDetails:         t(lang, 'products.moreDetails'),
-}
+const segItems = segments as MarketSegment[]
+const catItems = categories as ProductCategory[]
 ---
 <BaseLayout
-  title="Каталог продукции Krüger — моторные, гидравлические, трансмиссионные масла"
-  description="150+ премиальных смазочных материалов Krüger. Фильтры по применению, вязкости, API/ACEA. Скачать PDS/SDS."
+  title="Каталог продукции Krüger — категории, применения, бестселлеры"
+  description="Все категории смазочных материалов Krüger: моторные, гидравлические, ATF, EV Fluids, индустриальные. Подбор по применению или прямо по типу."
 >
   <PageHero
     title={t(lang, 'products.listingTitle')}
     lead={t(lang, 'products.listingLead')}
     breadcrumbs={[
       { label: t(lang, 'common.breadcrumbHome'), href: '/' },
-      { label: t(lang, 'nav.home').replace('Главная', 'Продукты') },
+      { label: 'Каталог' },
     ]}
   />
 
-  <ProductCatalog
-    client:load
-    products={allProducts as any}
-    labels={labels}
-    applicationOptions={applicationOptions}
-  />
+  <!-- 1) Browse by Application — большие сегмент-карточки -->
+  <section class="bg-bg py-14 md:py-20">
+    <div class="container-page">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-10 md:mb-12">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">
+              Browse by Application
+            </p>
+          </div>
+          <h2 class="font-display text-2xl md:text-4xl font-extrabold tracking-tight leading-[1.1]">
+            Подберите продукт под технику
+          </h2>
+          <p class="mt-3 text-sm md:text-base text-text-muted">
+            Шесть рыночных сегментов — выбирайте по применению, чтобы перейти к подходящим продуктам.
+          </p>
+        </div>
+        <a
+          href="/products/all/"
+          class="hidden md:inline-flex items-center gap-2 h-11 px-5 rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors text-sm"
+        >
+          Все продукты с фильтрами
+          <Icon name="arrowRight" class="h-4 w-4" />
+        </a>
+      </div>
+
+      <ul class="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {segItems.map((s, i) => (
+          <li>
+            <a
+              href={s.href}
+              class="group relative flex flex-col h-full p-6 md:p-7 bg-bg rounded-xl border border-border-soft overflow-hidden hover:bg-[#0a0a0e] hover:text-text-inverse hover:border-[#0a0a0e] hover:shadow-xl transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <span
+                class="absolute top-0 right-0 w-16 h-16 bg-[#F8CC0F] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
+                aria-hidden="true"
+              />
+              <span class="absolute top-6 right-6 font-mono text-xs tracking-wider text-text-subtle group-hover:text-[#F8CC0F]/80 transition-colors">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <span
+                class="inline-flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-text-inverse mb-6 transition-all duration-300 group-hover:bg-[#F8CC0F] group-hover:text-text group-hover:scale-110 group-hover:rotate-[-4deg]"
+                aria-hidden="true"
+              >
+                <SegmentIcon segment={s.id as any} class="h-8 w-8" />
+              </span>
+
+              <h3 class="font-display font-bold text-lg md:text-xl leading-snug">{s.title}</h3>
+              <p class="mt-2 text-sm text-text-muted group-hover:text-text-inverse/70 transition-colors flex-1">
+                {s.subtitle}
+              </p>
+
+              <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-[#F8CC0F] transition-colors">
+                <span>Перейти</span>
+                <Icon name="arrowRight" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2) All categories — 22 типа продуктов сеткой -->
+  <section class="relative bg-bg-soft py-14 md:py-20 overflow-hidden">
+    <span
+      class="absolute -left-20 top-1/2 -translate-y-1/2 font-display text-[24rem] font-extrabold text-text/[0.02] leading-none select-none pointer-events-none hidden xl:block"
+      aria-hidden="true"
+    >K</span>
+
+    <div class="relative container-page">
+      <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">All Categories</p>
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+        </div>
+        <h2 class="font-display text-2xl md:text-4xl font-extrabold tracking-tight leading-[1.1]">
+          22 категории продукции
+        </h2>
+        <p class="mt-3 text-sm md:text-base text-text-muted">
+          От моторных масел до закалочных и опалубочных — полный портфель Krüger в одном месте.
+        </p>
+      </div>
+
+      <ul class="grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {catItems.map((c, i) => (
+          <li>
+            <a
+              href={c.href}
+              class="group relative flex items-start gap-4 h-full p-5 bg-bg rounded-xl border border-border-soft hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 overflow-hidden"
+            >
+              <span
+                class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F8CC0F] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                aria-hidden="true"
+              />
+
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-bg-soft text-primary shrink-0 group-hover:bg-primary group-hover:text-text-inverse transition-colors">
+                <Icon name={c.icon} class="h-5 w-5" />
+              </span>
+
+              <span class="min-w-0 flex-1">
+                <span class="font-mono text-[10px] tracking-widest text-text-subtle block mb-1">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="block font-display font-bold text-sm md:text-base text-text leading-snug">{c.title}</span>
+                <span class="block text-xs text-text-muted mt-1.5 line-clamp-2 leading-relaxed">{c.slogan}</span>
+              </span>
+
+              <Icon name="arrowRight" class="h-4 w-4 text-text-subtle shrink-0 mt-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3) Bestsellers — популярные продукты -->
+  <section class="bg-bg py-14 md:py-20">
+    <div class="container-page">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-10 md:mb-12">
+        <div class="max-w-xl">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">Bestsellers</p>
+          </div>
+          <h2 class="font-display text-2xl md:text-4xl font-extrabold tracking-tight leading-[1.1]">
+            Самые востребованные позиции
+          </h2>
+          <p class="mt-3 text-sm md:text-base text-text-muted">
+            8 продуктов, которые чаще других заказывают наши партнёры.
+          </p>
+        </div>
+        <a
+          href="/products/all/"
+          class="hidden md:inline-flex items-center gap-2 h-11 px-5 rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors text-sm"
+        >
+          {t(lang, 'popular.showMore')}
+          <Icon name="arrowRight" class="h-4 w-4" />
+        </a>
+      </div>
+
+      <ul class="grid gap-4 md:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {(popular as any[]).map((p) => (
+          <li>
+            <ProductCard product={p} ctaLabel={t(lang, 'popular.more')} client:visible />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4) CTA -block — переход на полный листинг с фильтрами -->
+  <section class="bg-bg-soft pb-14 md:pb-20">
+    <div class="container-page">
+      <div class="relative bg-[#0a0a0e] text-text-inverse rounded-2xl overflow-hidden p-8 md:p-12 lg:p-16 grid gap-8 md:grid-cols-[1.4fr_1fr] items-center">
+        <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F]" aria-hidden="true" />
+        <div
+          class="absolute -right-32 -top-32 w-72 h-72 rotate-[18deg] bg-[#F8CC0F]/[0.06] pointer-events-none"
+          aria-hidden="true"
+        />
+
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
+            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">Need to filter?</p>
+          </div>
+          <h2 class="font-display text-2xl md:text-4xl font-extrabold tracking-tight leading-[1.1]">
+            150+ продуктов — найдите свой за 30 секунд
+          </h2>
+          <p class="mt-4 text-sm md:text-base text-text-inverse/75 leading-relaxed max-w-xl">
+            Полный листинг с sidebar-фильтрами по применению, вязкости, API/ACEA-спецификации и объёму упаковки.
+            URL-параметры сохраняют выбор — ссылку можно отправить коллеге.
+          </p>
+        </div>
+
+        <div class="flex md:justify-end">
+          <a
+            href="/products/all/"
+            class="group inline-flex items-center gap-3 h-13 md:h-14 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
+          >
+            <span>Открыть фильтры</span>
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F8CC0F] text-text transition-transform group-hover:translate-x-1">
+              <Icon name="arrowRight" class="h-4 w-4" />
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
