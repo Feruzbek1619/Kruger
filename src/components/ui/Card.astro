@@ -19,7 +19,14 @@ const {
   class: extraClass = '',
 } = Astro.props
 
-const padMap = { none: 'p-0', sm: 'p-4', md: 'p-6', lg: 'p-8' } as const
+// Padding on CardContent — explicit px/py to defeat CardContent default `pt-0`.
+// lg: 32px mobile → 40px tablet+ — premium spacing for content-heavy cards.
+const padMap = {
+  none: 'px-0 py-0',
+  sm:   'px-4 py-4',
+  md:   'px-6 py-6',
+  lg:   'px-8 py-8 md:px-10 md:py-10',
+} as const
 
 const variantMap = {
   default: 'bg-card border border-border',
@@ -33,15 +40,15 @@ const interactive = 'hover:-translate-y-0.5 hover:shadow-lg focus-visible:-trans
 
 {href ? (
   <a href={href} class={`${cls} ${interactive}`}>
-    <ShadcnCard class={`${padMap[padding]} border-0 shadow-none bg-transparent gap-0 py-0`}>
-      <CardContent class="p-0">
+    <ShadcnCard class="border-0 shadow-none bg-transparent gap-0 py-0">
+      <CardContent class={padMap[padding]}>
         <slot />
       </CardContent>
     </ShadcnCard>
   </a>
 ) : (
-  <ShadcnCard class={`${cls} ${padMap[padding]} gap-0 py-0`}>
-    <CardContent class="p-0">
+  <ShadcnCard class={`${cls} gap-0 py-0`}>
+    <CardContent class={padMap[padding]}>
       <slot />
     </CardContent>
   </ShadcnCard>
