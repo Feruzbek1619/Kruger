@@ -16,8 +16,9 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
   <div class="relative container-page py-16 md:py-20 grid gap-10 md:grid-cols-12">
     <!-- Brand column -->
     <div class="md:col-span-4">
-      <Logo variant="white" class="h-11" />
-      <p class="mt-6 text-sm leading-relaxed opacity-75 max-w-xs">
+      <!-- Гигантский лого как в Figma — занимает всю ширину brand-колонки -->
+      <Logo variant="white" class="h-20 md:h-28 w-auto" />
+      <p class="mt-7 text-sm leading-relaxed opacity-75 max-w-xs">
         {t(lang, 'footer.brandDescription')}
       </p>
       <div class="mt-8">

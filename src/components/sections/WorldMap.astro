@@ -3,21 +3,30 @@ import { t } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
-// 12 representative geo points (lat-rough proxy via x/y on the SVG canvas).
-// SVG is 1000x500, equirectangular projection.
+// Geo points (equirectangular projection on 1000x500 canvas)
 const dots = [
-  { x: 510, y: 150, name: 'Stuttgart' },
-  { x: 540, y: 175, name: 'Vienna' },
-  { x: 580, y: 165, name: 'Warsaw' },
-  { x: 620, y: 155, name: 'Moscow' },
-  { x: 670, y: 215, name: 'Tashkent' },
-  { x: 730, y: 235, name: 'Almaty' },
-  { x: 470, y: 200, name: 'Madrid' },
-  { x: 525, y: 215, name: 'Rome' },
-  { x: 580, y: 245, name: 'Istanbul' },
-  { x: 620, y: 255, name: 'Tehran' },
-  { x: 870, y: 245, name: 'Tokyo' },
-  { x: 240, y: 230, name: 'New York' },
+  { x: 500, y: 145, name: 'Stuttgart',   highlight: true },
+  { x: 525, y: 160, name: 'Vienna' },
+  { x: 545, y: 150, name: 'Warsaw' },
+  { x: 580, y: 145, name: 'Moscow' },
+  { x: 530, y: 175, name: 'Rome' },
+  { x: 480, y: 175, name: 'Madrid' },
+  { x: 555, y: 195, name: 'Istanbul' },
+  { x: 605, y: 200, name: 'Tehran' },
+  { x: 670, y: 200, name: 'Tashkent',    highlight: true },
+  { x: 700, y: 215, name: 'Almaty' },
+  { x: 720, y: 235, name: 'Delhi' },
+  { x: 880, y: 195, name: 'Tokyo' },
+  { x: 855, y: 215, name: 'Shanghai' },
+  { x: 545, y: 285, name: 'Lagos' },
+  { x: 595, y: 305, name: 'Nairobi' },
+  { x: 575, y: 365, name: 'Cape Town' },
+  { x: 215, y: 165, name: 'Vancouver' },
+  { x: 270, y: 195, name: 'New York' },
+  { x: 235, y: 220, name: 'Mexico City' },
+  { x: 305, y: 350, name: 'São Paulo' },
+  { x: 290, y: 400, name: 'Buenos Aires' },
+  { x: 870, y: 365, name: 'Sydney' },
 ]
 ---
 <section class="relative bg-bg-soft pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
@@ -55,20 +64,48 @@ const dots = [
 
       <svg viewBox="0 0 1000 500" class="w-full h-auto" role="img" aria-label="Карта мира с точками присутствия Krüger">
         <rect width="1000" height="500" fill="var(--color-illus-bg)" rx="12" />
+
+        <!-- Continents (упрощённые, но узнаваемые силуэты) -->
         <g fill="var(--color-illus-land)">
-          <path d="M150 120c30-30 70-30 110-15 35 15 60 15 100 0 30-10 70-5 90 25 20 30-5 60-30 75-40 25-90 35-130 25-40-10-70-25-100-25s-50-15-50-40 0-35 10-45Z"/>
-          <path d="M450 110c40-25 90-25 140-10 50 15 90 30 130 25 40-5 90-15 130 5 30 15 50 35 65 60 10 20-5 40-30 50-40 15-90 15-140 25-50 10-100 30-150 30-50 0-90-15-130-30-40-15-80-30-105-55-25-25-25-65 0-90 30-30 60-30 90-10Z"/>
-          <path d="M780 220c30-15 70-10 100 5 30 15 50 35 50 60 0 20-15 35-40 40-30 5-70 0-100-15-30-15-45-30-45-45 0-15 10-30 35-45Z"/>
-          <path d="M180 240c40-15 80-10 110 5 30 15 50 35 50 65 0 30-25 50-65 60-40 10-90 5-110-15-20-20-25-50-15-75 10-25 20-30 30-40Z"/>
-          <path d="M260 380c30-10 70-5 100 10 30 15 50 25 60 20 10-5 5-25 25-30 15-5 40 0 50 15 10 15 5 35-10 45-15 10-45 10-75 5-30-5-70-5-100 5-30 10-60 0-65-25-5-25 5-35 15-45Z"/>
+          <!-- North America -->
+          <path d="M85 100 Q105 85 145 88 L195 95 Q230 100 265 115 L290 130 Q300 150 295 175 L285 200 Q265 225 235 235 L205 240 Q175 245 150 240 L125 235 Q100 230 85 215 L75 195 Q70 165 75 130 Q78 110 85 100 Z M50 85 L75 80 L80 95 L60 100 Z" />
+          <!-- Greenland -->
+          <path d="M340 85 Q360 80 380 90 L385 110 Q380 130 365 135 L345 130 Q335 110 340 85 Z" />
+          <!-- South America -->
+          <path d="M255 260 Q275 250 295 265 L315 280 Q325 305 320 335 L310 365 Q300 395 285 415 L270 435 Q260 445 250 440 L240 420 Q235 395 240 370 L245 340 Q248 305 250 280 Q252 265 255 260 Z" />
+          <!-- Europe -->
+          <path d="M450 110 Q465 100 485 105 L510 110 Q535 115 555 125 L575 140 Q585 155 580 170 L570 185 Q555 195 535 195 L510 198 Q485 200 465 195 L445 185 Q430 170 432 150 Q435 125 450 110 Z M455 90 L475 85 L475 100 L460 102 Z" />
+          <!-- Africa -->
+          <path d="M475 215 L515 210 Q545 215 570 230 L590 250 Q600 275 595 305 L585 340 Q575 370 560 395 L540 410 Q520 415 510 405 L495 385 Q485 360 480 335 L475 305 Q472 275 472 250 Q472 230 475 215 Z" />
+          <!-- Madagascar -->
+          <path d="M615 360 Q625 355 628 370 L625 390 Q620 400 615 395 Q612 380 615 360 Z" />
+          <!-- Asia (большой массив) -->
+          <path d="M580 95 Q620 85 670 88 L730 95 Q790 105 840 120 L880 135 Q905 150 910 175 L905 200 Q890 225 855 235 L815 240 Q780 240 745 230 L705 220 Q670 210 640 215 L605 215 Q580 210 575 195 Q570 175 570 150 Q572 120 580 95 Z" />
+          <!-- India peninsula -->
+          <path d="M695 220 Q720 225 730 245 L725 270 Q715 285 700 280 Q685 270 690 245 Q692 225 695 220 Z" />
+          <!-- Southeast Asia / Indonesia -->
+          <path d="M800 270 Q820 265 845 275 L865 285 Q870 295 860 300 L840 298 Q815 295 800 285 Q795 275 800 270 Z" />
+          <!-- Japan -->
+          <path d="M885 175 Q895 175 895 195 L890 215 Q882 220 880 205 Q878 185 885 175 Z" />
+          <!-- UK / Ireland -->
+          <path d="M448 130 Q455 128 458 140 L455 155 Q448 158 446 148 Q444 135 448 130 Z" />
+          <!-- Australia -->
+          <path d="M820 350 Q855 345 885 355 L900 370 Q905 385 895 395 L870 400 Q840 400 820 390 L808 378 Q805 360 820 350 Z" />
+          <!-- New Zealand -->
+          <path d="M925 405 L935 410 L933 425 L925 425 Z" />
         </g>
+
+        <!-- Highlight Kazakhstan / EU region (как в Figma) -->
+        <ellipse cx="660" cy="170" rx="40" ry="22" fill="var(--primary)" opacity="0.15" />
+
+        <!-- Dots -->
         {dots.map((d, i) => (
-          <g class="map-dot" style={`animation-delay: ${i * 0.15}s`}>
-            <circle cx={d.x} cy={d.y} r="14" fill="var(--primary)" opacity="0.15">
-              <animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
-              <animate attributeName="opacity" values="0.3;0.05;0.3" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
+          <g>
+            <circle cx={d.x} cy={d.y} r={d.highlight ? 16 : 12} fill="var(--primary)" opacity="0.18">
+              <animate attributeName="r" values={d.highlight ? '12;20;12' : '8;14;8'} dur="3s" repeatCount="indefinite" begin={`${(i * 0.18) % 2.5}s`} />
+              <animate attributeName="opacity" values="0.3;0.08;0.3" dur="3s" repeatCount="indefinite" begin={`${(i * 0.18) % 2.5}s`} />
             </circle>
-            <circle cx={d.x} cy={d.y} r="5" fill="var(--primary)" stroke="white" stroke-width="2">
+            <circle cx={d.x} cy={d.y} r={d.highlight ? 5.5 : 4} fill="var(--primary)" stroke="white" stroke-width="1.5">
               <title>{d.name}</title>
             </circle>
           </g>
