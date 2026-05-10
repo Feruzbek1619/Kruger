@@ -1,0 +1,13 @@
+import { chromium } from 'playwright'
+const browser = await chromium.launch()
+const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
+const page = await ctx.newPage()
+await page.goto('http://localhost:4321/', { waitUntil: 'load' })
+await page.evaluate(() => document.fonts && document.fonts.ready)
+await page.waitForTimeout(500)
+const footer = page.locator('footer').first()
+await footer.scrollIntoViewIfNeeded()
+await page.waitForTimeout(400)
+await footer.screenshot({ path: 'screenshots/footer-current.png' })
+console.log('saved')
+await browser.close()
