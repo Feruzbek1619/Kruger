@@ -1,5 +1,6 @@
 ---
 import { t } from '@/lib/i18n'
+import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
 // 12 representative geo points (lat-rough proxy via x/y on the SVG canvas).
@@ -19,19 +20,41 @@ const dots = [
   { x: 240, y: 230, name: 'New York' },
 ]
 ---
-<section class="bg-bg-soft pt-16 md:pt-20">
-  <div class="bg-primary text-text-inverse">
-    <div class="container-page py-12 md:py-16 text-center">
-      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{t(lang, 'map.title')}</h2>
-      <p class="mt-3 max-w-2xl mx-auto opacity-90">{t(lang, 'map.subtitle')}</p>
+<section class="relative bg-bg-soft pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
+  <!-- Hero header (red bar with copy) -->
+  <div class="relative bg-primary text-text-inverse overflow-hidden">
+    <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F]" aria-hidden="true" />
+    <div
+      class="absolute -right-24 -top-16 w-72 h-72 rotate-[18deg] bg-[#F8CC0F]/10 pointer-events-none"
+      aria-hidden="true"
+    />
+    <div class="relative container-page py-12 md:py-16 text-center">
+      <div class="inline-flex items-center gap-3 mb-3">
+        <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
+        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">Global Reach</p>
+        <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
+      </div>
+      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">
+        {t(lang, 'map.title')}
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-sm md:text-base opacity-90 leading-relaxed">
+        {t(lang, 'map.subtitle')}
+      </p>
     </div>
   </div>
 
+  <!-- Map card with stats badges -->
   <div class="container-page py-10 md:py-16">
-    <div class="bg-bg rounded-xl p-4 md:p-8 shadow-md">
+    <div class="relative bg-bg rounded-2xl p-4 md:p-8 shadow-lg overflow-hidden">
+      <!-- Yellow corner accent -->
+      <span
+        class="absolute top-0 right-0 w-24 h-24 bg-[#F8CC0F]/15 pointer-events-none"
+        style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
+        aria-hidden="true"
+      />
+
       <svg viewBox="0 0 1000 500" class="w-full h-auto" role="img" aria-label="Карта мира с точками присутствия Krüger">
-        <rect width="1000" height="500" fill="var(--color-illus-bg)" rx="8" />
-        <!-- simplified continents (very approximate silhouettes) -->
+        <rect width="1000" height="500" fill="var(--color-illus-bg)" rx="12" />
         <g fill="var(--color-illus-land)">
           <path d="M150 120c30-30 70-30 110-15 35 15 60 15 100 0 30-10 70-5 90 25 20 30-5 60-30 75-40 25-90 35-130 25-40-10-70-25-100-25s-50-15-50-40 0-35 10-45Z"/>
           <path d="M450 110c40-25 90-25 140-10 50 15 90 30 130 25 40-5 90-15 130 5 30 15 50 35 65 60 10 20-5 40-30 50-40 15-90 15-140 25-50 10-100 30-150 30-50 0-90-15-130-30-40-15-80-30-105-55-25-25-25-65 0-90 30-30 60-30 90-10Z"/>
@@ -39,21 +62,46 @@ const dots = [
           <path d="M180 240c40-15 80-10 110 5 30 15 50 35 50 65 0 30-25 50-65 60-40 10-90 5-110-15-20-20-25-50-15-75 10-25 20-30 30-40Z"/>
           <path d="M260 380c30-10 70-5 100 10 30 15 50 25 60 20 10-5 5-25 25-30 15-5 40 0 50 15 10 15 5 35-10 45-15 10-45 10-75 5-30-5-70-5-100 5-30 10-60 0-65-25-5-25 5-35 15-45Z"/>
         </g>
-        {dots.map((d) => (
-          <g>
-            <circle cx={d.x} cy={d.y} r="10" fill="var(--primary)" opacity="0.25" />
-            <circle cx={d.x} cy={d.y} r="5" fill="var(--primary)">
+        {dots.map((d, i) => (
+          <g class="map-dot" style={`animation-delay: ${i * 0.15}s`}>
+            <circle cx={d.x} cy={d.y} r="14" fill="var(--primary)" opacity="0.15">
+              <animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
+              <animate attributeName="opacity" values="0.3;0.05;0.3" dur="3s" repeatCount="indefinite" begin={`${i * 0.2}s`} />
+            </circle>
+            <circle cx={d.x} cy={d.y} r="5" fill="var(--primary)" stroke="white" stroke-width="2">
               <title>{d.name}</title>
             </circle>
           </g>
         ))}
       </svg>
+
+      <!-- Mini-stats below map -->
+      <div class="mt-6 grid grid-cols-3 gap-4 pt-6 border-t border-border-soft">
+        <div class="text-center">
+          <p class="font-display text-xl md:text-2xl font-extrabold text-primary">50+</p>
+          <p class="text-[10px] md:text-xs uppercase tracking-wider text-text-muted mt-1">стран</p>
+        </div>
+        <div class="text-center border-x border-border-soft">
+          <p class="font-display text-xl md:text-2xl font-extrabold text-primary">5</p>
+          <p class="text-[10px] md:text-xs uppercase tracking-wider text-text-muted mt-1">континентов</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display text-xl md:text-2xl font-extrabold text-primary">1.5k+</p>
+          <p class="text-[10px] md:text-xs uppercase tracking-wider text-text-muted mt-1">партнёров</p>
+        </div>
+      </div>
     </div>
 
     <div class="mt-8 md:mt-10 text-center">
-      <p class="text-text-muted mb-4">{t(lang, 'map.ctaText')}</p>
-      <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">
-        {t(lang, 'map.ctaBtn')}
+      <p class="text-text-muted mb-4 text-sm md:text-base">{t(lang, 'map.ctaText')}</p>
+      <a
+        href="/contact/"
+        class="group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
+      >
+        <span>{t(lang, 'map.ctaBtn')}</span>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F8CC0F] text-text transition-transform group-hover:translate-x-1">
+          <Icon name="arrowRight" class="h-4 w-4" />
+        </span>
       </a>
     </div>
   </div>

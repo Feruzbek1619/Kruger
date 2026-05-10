@@ -37,16 +37,24 @@ function prev() { idx.value = Math.max(0, idx.value - 1) }
     <div class="container-page">
       <div class="flex items-end justify-between gap-6 mb-8 md:mb-12 flex-wrap">
         <div>
-          <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{{ title }}</h2>
-          <p class="mt-2 text-text-muted">{{ subtitle }}</p>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">Bestsellers</p>
+          </div>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">{{ title }}</h2>
+          <p class="mt-3 text-sm md:text-base text-text-muted">{{ subtitle }}</p>
         </div>
-        <div class="flex items-center gap-3">
-          <a href="/products/" class="hidden md:inline-flex h-11 px-6 items-center rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors">
+        <div class="flex items-center gap-2">
+          <a
+            href="/products/"
+            class="hidden md:inline-flex h-11 px-5 items-center gap-2 rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors text-sm"
+          >
             {{ showMore }}
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <button
             type="button"
-            class="h-11 w-11 inline-flex items-center justify-center rounded-pill border border-border text-text disabled:opacity-30 hover:bg-bg-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            class="h-11 w-11 inline-flex items-center justify-center rounded-full border border-border text-text disabled:opacity-30 hover:bg-bg-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             :disabled="idx === 0"
             :aria-label="prevLabel"
             @click="prev"
@@ -55,7 +63,7 @@ function prev() { idx.value = Math.max(0, idx.value - 1) }
           </button>
           <button
             type="button"
-            class="h-11 w-11 inline-flex items-center justify-center rounded-pill bg-primary text-text-inverse hover:bg-primary-hover transition-colors disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            class="h-11 w-11 inline-flex items-center justify-center rounded-full bg-primary text-text-inverse hover:bg-primary-hover transition-colors disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             :disabled="idx >= maxIdx"
             :aria-label="nextLabel"
             @click="next"

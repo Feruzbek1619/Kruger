@@ -45,7 +45,7 @@ onUnmounted(stopAuto)
 
 <template>
   <section
-    class="hero-section relative min-h-[40rem] md:min-h-[44rem] lg:min-h-[48rem] overflow-hidden bg-[#0a0a0e] text-text-inverse"
+    class="hero-section relative min-h-[38rem] md:min-h-[44rem] lg:min-h-[48rem] overflow-hidden bg-[#0a0a0e] text-text-inverse"
     aria-roledescription="carousel"
     aria-label="Hero"
     @mouseenter="paused = true"
@@ -53,15 +53,14 @@ onUnmounted(stopAuto)
     @focusin="paused = true"
     @focusout="paused = false"
   >
-    <!-- Slides -->
+    <!-- Background layers (full-bleed, behind content) -->
     <div
       v-for="(slide, i) in slides"
-      :key="i"
+      :key="`bg-${i}`"
       class="absolute inset-0 transition-opacity duration-1000"
       :class="i === idx ? 'opacity-100' : 'opacity-0 pointer-events-none'"
       :aria-hidden="i !== idx"
     >
-      <!-- Background image with subtle Ken Burns -->
       <div
         class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] ease-out"
         :class="i === idx ? 'scale-105' : 'scale-100'"
@@ -69,14 +68,13 @@ onUnmounted(stopAuto)
           ? `background-image: url('${slide.bg}')`
           : 'background: radial-gradient(ellipse at right, var(--color-illus-mid) 0%, var(--color-illus-deep) 70%)'"
       />
-      <!-- Multi-layer overlay for legibility -->
       <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0e]/95 via-[#0a0a0e]/70 to-transparent" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0e]/60 via-transparent to-transparent" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0e]/65 via-transparent to-transparent" />
     </div>
 
-    <!-- Brand mark: yellow diagonal stripe (отсылка к лого-параллелограмму) -->
+    <!-- Brand mark: yellow diagonal stripe (отсылка к лого) -->
     <div
-      class="hero-mark absolute -left-20 -bottom-32 w-72 h-[42rem] -rotate-[18deg] bg-[#F8CC0F] pointer-events-none hidden md:block"
+      class="absolute -left-20 -bottom-32 w-72 h-[42rem] -rotate-[18deg] bg-[#F8CC0F] pointer-events-none hidden md:block"
       aria-hidden="true"
     />
     <div
@@ -84,40 +82,39 @@ onUnmounted(stopAuto)
       aria-hidden="true"
     />
 
-    <!-- Content -->
-    <div class="relative h-full">
-      <div class="container-page h-full flex items-center pt-20 pb-32 md:py-32">
+    <!-- Content (CSS Grid stack — слайды лежат друг на друге, padding наследуется -->
+    <div class="relative container-page min-h-[inherit] flex items-center py-24 md:py-32">
+      <div class="grid grid-cols-1 grid-rows-1 w-full">
         <div
           v-for="(slide, i) in slides"
-          :key="i"
-          class="absolute transition-all duration-700"
+          :key="`content-${i}`"
+          class="col-start-1 row-start-1 transition-all duration-700"
           :class="i === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'"
           :aria-hidden="i !== idx"
         >
           <div class="max-w-2xl">
-            <!-- Eyebrow with side bar -->
             <div class="flex items-center gap-3 mb-5">
-              <span class="inline-block h-0.5 w-10 bg-[#F8CC0F]" aria-hidden="true" />
-              <p class="text-xs md:text-sm font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">
+              <span class="inline-block h-0.5 w-8 md:w-10 bg-[#F8CC0F]" aria-hidden="true" />
+              <p class="text-[10px] md:text-sm font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">
                 {{ slide.eyebrow }}
               </p>
             </div>
 
-            <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">
+            <h1 class="font-display text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
               {{ slide.title }}
             </h1>
 
-            <p class="mt-6 text-lg md:text-xl text-text-inverse/80 max-w-xl leading-relaxed">
+            <p class="mt-5 md:mt-6 text-base md:text-xl text-text-inverse/80 max-w-xl leading-relaxed">
               {{ slide.subtitle }}
             </p>
 
             <a
               :href="slide.href"
-              class="hero-cta group mt-9 inline-flex items-center gap-3 h-13 md:h-14 pl-7 pr-2 py-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F8CC0F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0e]"
+              class="hero-cta group mt-7 md:mt-9 inline-flex items-center gap-3 h-12 md:h-14 pl-6 md:pl-7 pr-2 py-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F8CC0F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0e]"
             >
-              <span>{{ slide.cta }}</span>
-              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F8CC0F] text-black transition-transform group-hover:translate-x-1">
-                <ArrowRight :size="18" :stroke-width="2.5" aria-hidden="true" />
+              <span class="text-sm md:text-base">{{ slide.cta }}</span>
+              <span class="inline-flex h-9 md:h-10 w-9 md:w-10 items-center justify-center rounded-full bg-[#F8CC0F] text-black transition-transform group-hover:translate-x-1">
+                <ArrowRight :size="16" :stroke-width="2.5" aria-hidden="true" />
               </span>
             </a>
           </div>
@@ -125,48 +122,53 @@ onUnmounted(stopAuto)
       </div>
     </div>
 
-    <!-- Slide counter (bottom-left, premium feel) -->
-    <div class="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex items-center gap-3 font-mono text-sm md:text-base">
-      <span class="font-bold text-[#F8CC0F]">
-        {{ String(idx + 1).padStart(2, '0') }}
-      </span>
-      <span class="h-px w-8 bg-text-inverse/30" aria-hidden="true" />
-      <span class="text-text-inverse/60">
-        {{ String(slides.length).padStart(2, '0') }}
-      </span>
-    </div>
+    <!-- Bottom bar (counter + controls в одной строке, не пересекается с FloatingButtons) -->
+    <div class="absolute bottom-5 md:bottom-10 left-0 right-0 z-10 pointer-events-none">
+      <div class="container-page flex items-center justify-between gap-4">
+        <!-- Counter -->
+        <div class="flex items-center gap-3 font-mono text-xs md:text-sm pointer-events-auto">
+          <span class="font-bold text-[#F8CC0F]">
+            {{ String(idx + 1).padStart(2, '0') }}
+          </span>
+          <span class="h-px w-6 md:w-8 bg-text-inverse/30" aria-hidden="true" />
+          <span class="text-text-inverse/60">
+            {{ String(slides.length).padStart(2, '0') }}
+          </span>
+        </div>
 
-    <!-- Controls (bottom-right) -->
-    <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 flex items-center gap-2">
-      <button
-        type="button"
-        class="h-12 w-12 inline-flex items-center justify-center rounded-full border border-text-inverse/25 bg-text-inverse/5 hover:bg-text-inverse/15 hover:border-text-inverse/50 text-text-inverse transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
-        :aria-label="prevLabel"
-        @click="prev"
-      >
-        <ArrowLeft :size="18" :stroke-width="2" aria-hidden="true" />
-      </button>
-      <ul class="flex items-center gap-2 mx-2" role="tablist">
-        <li v-for="(_, i) in slides" :key="i">
+        <!-- Controls (отступ справа от FloatingButtons на мобиле) -->
+        <div class="flex items-center gap-1.5 md:gap-2 pointer-events-auto pr-16 md:pr-0">
           <button
             type="button"
-            class="h-1.5 rounded-pill transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
-            :class="i === idx ? 'w-10 bg-[#F8CC0F]' : 'w-2 bg-text-inverse/30 hover:bg-text-inverse/50'"
-            :aria-label="`Слайд ${i + 1}`"
-            :aria-selected="i === idx"
-            role="tab"
-            @click="go(i)"
-          />
-        </li>
-      </ul>
-      <button
-        type="button"
-        class="h-12 w-12 inline-flex items-center justify-center rounded-full bg-primary text-text-inverse hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
-        :aria-label="nextLabel"
-        @click="next"
-      >
-        <ArrowRight :size="18" :stroke-width="2" aria-hidden="true" />
-      </button>
+            class="h-10 w-10 md:h-12 md:w-12 inline-flex items-center justify-center rounded-full border border-text-inverse/25 bg-text-inverse/5 hover:bg-text-inverse/15 hover:border-text-inverse/50 text-text-inverse transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
+            :aria-label="prevLabel"
+            @click="prev"
+          >
+            <ArrowLeft :size="16" :stroke-width="2" aria-hidden="true" />
+          </button>
+          <ul class="hidden sm:flex items-center gap-2 mx-2" role="tablist">
+            <li v-for="(_, i) in slides" :key="i">
+              <button
+                type="button"
+                class="h-1.5 rounded-pill transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
+                :class="i === idx ? 'w-10 bg-[#F8CC0F]' : 'w-2 bg-text-inverse/30 hover:bg-text-inverse/50'"
+                :aria-label="`Слайд ${i + 1}`"
+                :aria-selected="i === idx"
+                role="tab"
+                @click="go(i)"
+              />
+            </li>
+          </ul>
+          <button
+            type="button"
+            class="h-10 w-10 md:h-12 md:w-12 inline-flex items-center justify-center rounded-full bg-primary text-text-inverse hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
+            :aria-label="nextLabel"
+            @click="next"
+          >
+            <ArrowRight :size="16" :stroke-width="2" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
