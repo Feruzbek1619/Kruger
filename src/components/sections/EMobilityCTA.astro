@@ -1,33 +1,60 @@
 ---
 import { t } from '@/lib/i18n'
+import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
-<section class="relative bg-bg-dark text-text-inverse overflow-hidden">
+<section class="relative bg-[#0a0a0e] text-text-inverse overflow-hidden">
+  <!-- Real EV photo background -->
   <div class="absolute inset-0" aria-hidden="true">
-    <svg viewBox="0 0 1200 500" class="w-full h-full" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <radialGradient id="ev-g" cx="70%" cy="50%" r="60%">
-          <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.4"/>
-          <stop offset="100%" stop-color="var(--color-illus-deep)" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <rect width="1200" height="500" fill="var(--color-illus-deep)"/>
-      <rect width="1200" height="500" fill="url(#ev-g)"/>
-      <g opacity="0.5" fill="var(--color-illus-mid)">
-        <circle cx="900" cy="280" r="160"/>
-        <circle cx="900" cy="280" r="80" fill="var(--color-illus-deep)"/>
-      </g>
-      <g stroke="var(--primary)" stroke-width="2" fill="none" opacity=".7">
-        <path d="M880 260l20-30 10 20 20-25" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
-    </svg>
+    <img
+      src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1920&q=85"
+      alt=""
+      loading="lazy"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <!-- Heavy gradient for legibility -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0e]/95 via-[#0a0a0e]/80 to-[#0a0a0e]/40" />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0e]/80 via-transparent to-[#0a0a0e]/40" />
   </div>
+
+  <!-- Yellow brand stripe + diagonal accent -->
+  <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F] z-10" aria-hidden="true" />
+  <div
+    class="absolute -right-32 -top-16 w-72 h-[36rem] rotate-[18deg] bg-[#F8CC0F]/[0.05] pointer-events-none"
+    aria-hidden="true"
+  />
+
+  <!-- EV bolt icon mark in corner -->
+  <div class="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none" aria-hidden="true">
+    <div class="relative h-48 w-48 rounded-full border-2 border-[#F8CC0F]/30 flex items-center justify-center">
+      <div class="absolute inset-4 rounded-full border-2 border-[#F8CC0F]/20" />
+      <div class="absolute inset-8 rounded-full bg-[#F8CC0F]/10 flex items-center justify-center">
+        <Icon name="bolt" class="h-16 w-16 text-[#F8CC0F]" />
+      </div>
+    </div>
+  </div>
+
   <div class="relative container-page py-20 md:py-28 max-w-3xl">
-    <p class="text-xs md:text-sm font-semibold tracking-[0.18em] text-primary uppercase">{t(lang, 'ev.eyebrow')}</p>
-    <h2 class="mt-4 font-display text-3xl md:text-5xl font-extrabold tracking-tight">{t(lang, 'ev.title')}</h2>
-    <p class="mt-5 text-text-inverse/85 max-w-xl leading-relaxed">{t(lang, 'ev.text')}</p>
-    <a href="/products/category/ev-fluids/" class="mt-8 inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">
-      {t(lang, 'ev.cta')}
+    <div class="flex items-center gap-3 mb-5">
+      <span class="inline-block h-0.5 w-10 bg-[#F8CC0F]" aria-hidden="true" />
+      <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">
+        {t(lang, 'ev.eyebrow')}
+      </p>
+    </div>
+    <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]">
+      {t(lang, 'ev.title')}
+    </h2>
+    <p class="mt-6 text-base md:text-lg text-text-inverse/80 max-w-xl leading-relaxed">
+      {t(lang, 'ev.text')}
+    </p>
+    <a
+      href="/products/category/ev-fluids/"
+      class="group mt-8 inline-flex items-center gap-3 h-13 md:h-14 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-all"
+    >
+      <span class="text-sm md:text-base">{t(lang, 'ev.cta')}</span>
+      <span class="inline-flex h-9 md:h-10 w-9 md:w-10 items-center justify-center rounded-full bg-[#F8CC0F] text-text transition-transform group-hover:translate-x-1">
+        <Icon name="arrowRight" class="h-4 w-4" />
+      </span>
     </a>
   </div>
 </section>

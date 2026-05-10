@@ -1,5 +1,6 @@
 ---
 import { t } from '@/lib/i18n'
+import Icon from '@/components/ui/Icon.astro'
 import NewsCard from '@/components/cards/NewsCard.astro'
 import news from '@/mocks/news.json'
 import type { NewsItem } from '@/types'
@@ -8,19 +9,38 @@ const items = news as NewsItem[]
 ---
 <section class="bg-bg py-16 md:py-24">
   <div class="container-page">
-    <div class="flex items-end justify-between gap-6 mb-8 md:mb-12 flex-wrap">
-      <div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{t(lang, 'news.title')}</h2>
-        <p class="mt-2 text-text-muted">{t(lang, 'news.subtitle')}</p>
+    <div class="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">News &amp; Insights</p>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">
+          {t(lang, 'news.title')}
+        </h2>
+        <p class="mt-3 text-sm md:text-base text-text-muted">{t(lang, 'news.subtitle')}</p>
       </div>
-      <a href="/news/" class="inline-flex h-11 px-6 items-center rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors">
+      <a
+        href="/news/"
+        class="hidden md:inline-flex h-11 px-5 items-center gap-2 rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors text-sm"
+      >
         {t(lang, 'news.all')}
+        <Icon name="arrowRight" class="h-4 w-4" />
       </a>
     </div>
+
     <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {items.map((n) => (
         <li><NewsCard item={n} /></li>
       ))}
     </ul>
+
+    <a
+      href="/news/"
+      class="md:hidden mt-8 inline-flex w-full h-12 items-center justify-center gap-2 rounded-pill bg-bg-soft text-text font-semibold text-sm"
+    >
+      {t(lang, 'news.all')}
+      <Icon name="arrowRight" class="h-4 w-4" />
+    </a>
   </div>
 </section>
