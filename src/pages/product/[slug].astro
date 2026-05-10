@@ -1,0 +1,333 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import ProductGallery from '@/components/products/ProductGallery.vue'
+import RequestPriceForm from '@/components/products/RequestPriceForm.vue'
+import ProductCard from '@/components/cards/ProductCard.vue'
+import Tabs from '@/components/ui/Tabs.vue'
+import Icon from '@/components/ui/Icon.astro'
+import allProducts from '@/mocks/all-products.json'
+import productDetails from '@/mocks/product-details.json'
+import categories from '@/mocks/categories.json'
+import segments from '@/mocks/segments.json'
+import { t } from '@/lib/i18n'
+import type { Product } from '@/types'
+
+export async function getStaticPaths() {
+  const list = allProducts as Product[]
+  return list.map((p) => ({ params: { slug: p.slug }, props: { product: p } }))
+}
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const { product } = Astro.props as { product: Product }
+
+const details = (productDetails as Record<string, any>)[product.slug] ?? (productDetails as any)._default
+const fallback = (productDetails as any)._default
+
+// Merge with fallback so missing arrays come from default
+const d = {
+  description:        details.description       || fallback.description,
+  engineTypes:        details.engineTypes?.length      ? details.engineTypes      : fallback.engineTypes,
+  notRecommendedFor:  details.notRecommendedFor?.length ? details.notRecommendedFor : fallback.notRecommendedFor,
+  intervals:          details.intervals?.length        ? details.intervals        : fallback.intervals,
+  compatible:         details.compatible       || fallback.compatible,
+  oemApprovals:       details.oemApprovals?.length     ? details.oemApprovals     : fallback.oemApprovals,
+  recommendedFor:     details.recommendedFor?.length   ? details.recommendedFor   : fallback.recommendedFor,
+  physicalProps:      details.physicalProps?.length    ? details.physicalProps    : fallback.physicalProps,
+  benefits:           details.benefits?.length         ? details.benefits         : fallback.benefits,
+}
+
+// Find category for breadcrumbs
+const category = (categories as any[]).find((c) => c.id === product.category)
+const categoryTitle = category?.title ?? 'Продукция'
+
+// Related: same category, exclude current, max 4
+const allList = allProducts as Product[]
+const related = allList
+  .filter((p) => p.category === product.category && p.slug !== product.slug)
+  .slice(0, 4)
+
+// Specs combined for tab 3
+const apiSpecs  = (product as any).apiSpec ?? []
+const aceaSpecs = (product as any).aceaSpec ?? []
+const compliesWith = [...apiSpecs, ...aceaSpecs]
+
+const tabs = [
+  { id: 'description',    label: t(lang, 'products.detail.tabDescription') },
+  { id: 'application',    label: t(lang, 'products.detail.tabApplication') },
+  { id: 'specifications', label: t(lang, 'products.detail.tabSpecifications') },
+  { id: 'properties',     label: t(lang, 'products.detail.tabProperties') },
+  { id: 'benefits',       label: t(lang, 'products.detail.tabBenefits') },
+]
+
+const formLabels = {
+  name:       t(lang, 'questionForm.nameLabel'),
+  namePh:     t(lang, 'questionForm.namePh'),
+  email:      t(lang, 'questionForm.emailLabel'),
+  emailPh:    t(lang, 'questionForm.emailPh'),
+  phone:      t(lang, 'questionForm.phoneLabel'),
+  phonePh:    t(lang, 'questionForm.phonePh'),
+  qty:        t(lang, 'products.detail.qtyLabel'),
+  qtyPh:      t(lang, 'products.detail.qtyPh'),
+  consent:    t(lang, 'questionForm.consent'),
+  submit:     t(lang, 'questionForm.submit'),
+  sending:    t(lang, 'questionForm.sending'),
+  successToast: t(lang, 'questionForm.successToast'),
+  errorToast:   t(lang, 'questionForm.errorToast'),
+}
+const formErrors = {
+  name:           t(lang, 'questionForm.errors.name'),
+  emailRequired:  t(lang, 'questionForm.errors.emailRequired'),
+  emailInvalid:   t(lang, 'questionForm.errors.emailInvalid'),
+  consent:        t(lang, 'questionForm.errors.consent'),
+}
+---
+<BaseLayout
+  title={`${product.name} — ${product.shortDescription.substring(0, 60)}... | Krüger`}
+  description={product.shortDescription}
+>
+  <PageHero
+    title={product.name}
+    breadcrumbs={[
+      { label: t(lang, 'common.breadcrumbHome'), href: '/' },
+      { label: 'Продукты',                       href: '/products/' },
+      { label: categoryTitle,                    href: category ? category.href : '/products/' },
+      { label: product.name },
+    ]}
+  />
+
+  <!-- Hero block: gallery + info -->
+  <section class="bg-bg pt-4 pb-12 md:pb-16">
+    <div class="container-page grid gap-10 lg:grid-cols-[1fr_1.1fr]">
+      <ProductGallery
+        client:visible
+        images={product.image ? [product.image] : []}
+        alt={product.name}
+        transition:name={`product-img-${product.slug}`}
+      />
+
+      <div>
+        <p class="text-xs uppercase tracking-wider text-text-muted mb-2">{categoryTitle}</p>
+        <h1 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight mb-3" transition:name={`product-title-${product.slug}`}>
+          {product.name}
+        </h1>
+        <p class="text-sm text-text-muted mb-5">
+          <span class="font-medium">{t(lang, 'products.detail.sku')}:</span> {product.sku}
+        </p>
+        <p class="text-base md:text-lg text-text leading-relaxed mb-6">
+          {product.shortDescription}
+        </p>
+
+        {product.volumes && product.volumes.length > 0 && (
+          <div class="mb-7">
+            <p class="text-xs uppercase tracking-wider text-text-muted mb-2.5">
+              {t(lang, 'products.detail.availableVolumes')}
+            </p>
+            <ul class="flex flex-wrap gap-2">
+              {product.volumes.map((v) => (
+                <li>
+                  <span class="inline-flex h-9 px-4 items-center rounded-pill border border-border bg-bg-soft text-sm font-medium text-text font-mono">{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div class="flex flex-wrap gap-3">
+          <RequestPriceForm
+            client:load
+            productName={product.name}
+            productSku={product.sku}
+            triggerLabel={t(lang, 'products.detail.requestPrice')}
+            title={t(lang, 'products.detail.requestPriceTitle')}
+            labels={formLabels}
+            errors={formErrors}
+          />
+          <a
+            href={`/pds-sds/?product=${product.slug}#pds`}
+            class="inline-flex items-center gap-2 h-11 px-5 rounded-md border border-border bg-bg text-text font-medium text-sm hover:bg-bg-soft transition-colors"
+          >
+            <Icon name="download" class="h-4 w-4" />
+            {t(lang, 'products.detail.downloadPDS')}
+          </a>
+          <a
+            href={`/pds-sds/?product=${product.slug}#sds`}
+            class="inline-flex items-center gap-2 h-11 px-5 rounded-md border border-border bg-bg text-text font-medium text-sm hover:bg-bg-soft transition-colors"
+          >
+            <Icon name="download" class="h-4 w-4" />
+            {t(lang, 'products.detail.downloadSDS')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="bg-bg-soft py-12 md:py-16">
+    <div class="container-page">
+      <Tabs client:visible tabs={tabs}>
+
+        <!-- Description -->
+        <div slot="description" class="max-w-3xl">
+          <p class="text-base md:text-lg text-text leading-relaxed whitespace-pre-line">
+            {d.description}
+          </p>
+        </div>
+
+        <!-- Application -->
+        <div slot="application" class="grid gap-8 md:grid-cols-2 max-w-4xl">
+          {d.engineTypes.length > 0 && (
+            <div>
+              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.engineTypes')}</h3>
+              <ul class="space-y-2">
+                {d.engineTypes.map((e: string) => (
+                  <li class="flex items-start gap-2 text-sm">
+                    <Icon name="check" class="h-4 w-4 text-success shrink-0 mt-0.5" />
+                    <span class="text-text">{e}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {d.notRecommendedFor.length > 0 && (
+            <div>
+              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.notRecommended')}</h3>
+              <ul class="space-y-2">
+                {d.notRecommendedFor.map((n: string) => (
+                  <li class="flex items-start gap-2 text-sm">
+                    <Icon name="close" class="h-4 w-4 text-error shrink-0 mt-0.5" />
+                    <span class="text-text">{n}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {d.intervals.length > 0 && (
+            <div class="md:col-span-2">
+              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.intervals')}</h3>
+              <ul class="space-y-1.5">
+                {d.intervals.map((iv: { label: string; value: string }) => (
+                  <li class="flex items-baseline justify-between gap-4 py-1.5 border-b border-border-soft text-sm">
+                    <span class="text-text-muted">{iv.label}</span>
+                    <span class="font-medium text-text">{iv.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {d.compatible && (
+            <div class="md:col-span-2">
+              <h3 class="font-display font-bold text-base mb-2">{t(lang, 'products.detail.compatible')}</h3>
+              <p class="text-sm text-text-muted leading-relaxed">{d.compatible}</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Specifications -->
+        <div slot="specifications" class="grid gap-8 md:grid-cols-2 max-w-4xl">
+          {compliesWith.length > 0 && (
+            <div>
+              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.compliesWith')}</h3>
+              <ul class="flex flex-wrap gap-2">
+                {compliesWith.map((s: string) => (
+                  <li>
+                    <span class="inline-flex h-8 px-3 items-center rounded-pill bg-bg text-text border border-border-soft text-xs font-mono">{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {d.oemApprovals.length > 0 && (
+            <div>
+              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.oemApprovals')}</h3>
+              <ul class="space-y-1.5 text-sm">
+                {d.oemApprovals.map((o: string) => (
+                  <li class="flex items-start gap-2">
+                    <span class="inline-block w-1 h-1 rounded-full bg-primary mt-2" aria-hidden="true" />
+                    <span class="text-text">{o}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {d.recommendedFor.length > 0 && (
+            <div class="md:col-span-2">
+              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.recommendedFor')}</h3>
+              <ul class="space-y-1.5 text-sm">
+                {d.recommendedFor.map((r: string) => (
+                  <li class="flex items-start gap-2">
+                    <span class="inline-block w-1 h-1 rounded-full bg-text-muted mt-2" aria-hidden="true" />
+                    <span class="text-text">{r}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <!-- Properties -->
+        <div slot="properties" class="max-w-4xl">
+          {d.physicalProps.length > 0 ? (
+            <div class="overflow-x-auto rounded-lg border border-border-soft bg-bg">
+              <table class="w-full text-sm">
+                <thead class="bg-bg-soft">
+                  <tr>
+                    <th class="text-left font-semibold px-4 py-3 text-text">{t(lang, 'products.detail.param')}</th>
+                    <th class="text-left font-semibold px-4 py-3 text-text">{t(lang, 'products.detail.value')}</th>
+                    <th class="text-left font-semibold px-4 py-3 text-text">{t(lang, 'products.detail.method')}</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-border-soft">
+                  {d.physicalProps.map((p: { param: string; value: string; method: string }) => (
+                    <tr>
+                      <td class="px-4 py-3 text-text">{p.param}</td>
+                      <td class="px-4 py-3 font-medium text-text font-mono">{p.value}</td>
+                      <td class="px-4 py-3 text-text-muted font-mono text-xs">{p.method}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p class="text-sm text-text-muted italic">Полные физико-химические свойства — в PDS на этот продукт.</p>
+          )}
+        </div>
+
+        <!-- Benefits -->
+        <div slot="benefits" class="max-w-3xl">
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {d.benefits.map((b: string) => (
+              <li class="flex items-start gap-3 p-4 bg-bg rounded-lg border border-border-soft">
+                <Icon name="check" class="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <span class="text-sm text-text leading-snug">{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </Tabs>
+    </div>
+  </section>
+
+  <!-- Related products -->
+  {related.length > 0 && (
+    <section class="bg-bg py-12 md:py-16">
+      <div class="container-page">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-8">
+          {t(lang, 'products.detail.relatedTitle')}
+        </h2>
+        <ul class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {related.map((p) => (
+            <li>
+              <ProductCard
+                client:visible
+                product={p}
+                ctaLabel={t(lang, 'products.detail.tabDescription').replace('Описание', 'Подробнее')}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
