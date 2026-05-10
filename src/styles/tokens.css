@@ -26,6 +26,9 @@
   --color-brand-telegram: oklch(0.64 0.14 230);   /* #229ED9 Telegram */
   --color-brand-whatsapp: oklch(0.6 0.18 145);    /* WhatsApp green */
 
+  /* ───── Krüger brand yellow (из официального logo.svg) ───── */
+  --color-brand-yellow: #F8CC0F;                  /* фирменный жёлтый из лого */
+
   /* ───── Illustration tokens (декоративные SVG-иллюстрации) ───── */
   --color-illus-deep: oklch(0.13 0.01 270);        /* #080810 — самый тёмный фон */
   --color-illus-mid:  oklch(0.17 0.01 270);        /* #1a1a1a — промежуточный тёмный */

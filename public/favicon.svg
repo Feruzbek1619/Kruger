@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#e51e25"/><path d="M9 7h3v8l6-8h4l-7 9 7 9h-4l-6-8v8H9V7Z" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Krüger brand mark: yellow parallelogram + black K -->
+  <path d="M22 30H0L7 2h22z" fill="#F8CC0F"/>
+  <path d="M5 8h4v8l6-8h5l-7 9 7 9h-5l-6-8v8H5V8Z" fill="#000"/>
+</svg>
