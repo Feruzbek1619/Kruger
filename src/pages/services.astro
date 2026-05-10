@@ -7,7 +7,8 @@ import ru from '@/i18n/ru.json'
 import { t } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 const items = ru.services.items
-const icons = ['drop','shield','spark','globe','factory','truck'] as const
+// Семантика: подбор, аудит, лаб-анализ, обучение, маркетинг, поставки
+const icons = ['sliders', 'clipboardCheck', 'flask', 'graduation', 'megaphone', 'truck'] as const
 ---
 <BaseLayout title="Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки">
   <PageHero
@@ -16,25 +17,97 @@ const icons = ['drop','shield','spark','globe','factory','truck'] as const
     lead={t(lang, 'services.lead')}
     breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.services') }]}
   />
-  <section class="bg-bg py-16 md:py-24">
+
+  <section class="bg-bg py-20 md:py-24">
     <div class="container-page">
+      <div class="text-center max-w-2xl mx-auto mb-12 md:mb-14">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">What we do</p>
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">Шесть направлений работы с дилерами и клиентами</h2>
+      </div>
+
       <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {items.map((it, i) => (
-          <li>
-            <Card variant="default" padding="lg">
-              <span class="inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary text-text-inverse mb-4">
-                <Icon name={icons[i] ?? 'spark'} class="h-6 w-6" />
+          <li class="kr-reveal">
+            <Card
+              variant={i === 0 ? 'elevated' : 'default'}
+              padding="lg"
+              class:list={[
+                'group relative h-full overflow-hidden hover:-translate-y-1 transition-all duration-200',
+                i === 0
+                  ? 'bg-bg-dark text-text-inverse hover:shadow-xl'
+                  : 'hover:border-primary/30 hover:shadow-lg',
+              ]}
+            >
+              <!-- Featured card (oil selection — primary service) -->
+              {i === 0 && (
+                <span
+                  class="absolute -right-16 -top-16 w-48 h-72 rotate-[18deg] bg-brand-yellow/[0.08] pointer-events-none"
+                  aria-hidden="true"
+                />
+              )}
+
+              <!-- Outline number watermark -->
+              <span
+                class="absolute -top-2 -right-2 font-display font-extrabold text-[6rem] leading-none select-none pointer-events-none"
+                style={i === 0
+                  ? '-webkit-text-stroke: 2px #F8CC0F; color: transparent; opacity: 0.22;'
+                  : '-webkit-text-stroke: 2px var(--color-primary); color: transparent; opacity: 0.14;'}
+                aria-hidden="true"
+              >{String(i + 1).padStart(2, '0')}</span>
+
+              <!-- Hover top stripe -->
+              {i !== 0 && (
+                <span
+                  class="absolute top-0 left-0 right-0 h-1 bg-primary scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300"
+                  aria-hidden="true"
+                />
+              )}
+
+              <span
+                class:list={[
+                  'relative inline-flex h-14 w-14 items-center justify-center rounded-xl mb-5 transition-transform group-hover:scale-110 group-hover:rotate-[-4deg]',
+                  i === 0 ? 'bg-brand-yellow text-black' : 'bg-primary text-text-inverse',
+                ]}
+              >
+                <Icon name={icons[i] ?? 'spark'} size={28} />
               </span>
-              <h3 class="font-display font-bold text-lg leading-snug mb-2">{it.title}</h3>
-              <p class="text-sm text-text-muted leading-relaxed">{it.text}</p>
+
+              <h3 class="relative font-display font-bold text-lg md:text-xl leading-snug mb-2">{it.title}</h3>
+              <p
+                class:list={[
+                  'relative text-sm md:text-[0.9375rem] leading-relaxed',
+                  i === 0 ? 'text-text-inverse/80' : 'text-text-muted',
+                ]}
+              >{it.text}</p>
             </Card>
           </li>
         ))}
       </ul>
-      <div class="mt-12 text-center">
-        <p class="text-text-muted mb-4">{t(lang, 'services.ctaText')}</p>
-        <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">{t(lang, 'services.ctaBtn')}</a>
-      </div>
+    </div>
+  </section>
+
+  <!-- CTA — отдельная секция с контрастным фоном -->
+  <section class="bg-bg-soft py-16 md:py-20 relative overflow-hidden">
+    <span
+      class="absolute -left-32 -top-32 w-72 h-[42rem] -rotate-[18deg] bg-brand-yellow/[0.04] pointer-events-none"
+      aria-hidden="true"
+    />
+    <div class="relative container-page text-center max-w-2xl mx-auto">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-4">Готовы обсудить сотрудничество?</h2>
+      <p class="text-text-muted mb-6 text-base md:text-lg leading-relaxed">{t(lang, 'services.ctaText')}</p>
+      <a
+        href="/contact/"
+        class="group inline-flex items-center gap-3 h-12 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
+      >
+        <span>{t(lang, 'services.ctaBtn')}</span>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-yellow text-black transition-transform group-hover:translate-x-1">
+          <Icon name="arrowRight" size={16} strokeWidth={2.5} />
+        </span>
+      </a>
     </div>
   </section>
 </BaseLayout>

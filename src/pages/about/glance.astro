@@ -2,15 +2,15 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import StatsBar from '@/components/sections/StatsBar.astro'
-import Card from '@/components/ui/Card.astro'
+import Icon from '@/components/ui/Icon.astro'
 import { t } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
 const blocks = [
-  { key: 'history',     paragraphs: [t(lang, 'about.glance.history.p1'),     t(lang, 'about.glance.history.p2'),     t(lang, 'about.glance.history.p3')], title: t(lang, 'about.glance.history.title') },
-  { key: 'production',  paragraphs: [t(lang, 'about.glance.production.p1'),  t(lang, 'about.glance.production.p2')], title: t(lang, 'about.glance.production.title') },
-  { key: 'rd',          paragraphs: [t(lang, 'about.glance.rd.p1'),          t(lang, 'about.glance.rd.p2')],          title: t(lang, 'about.glance.rd.title') },
-  { key: 'geo',         paragraphs: [t(lang, 'about.glance.geo.p1')],                                                  title: t(lang, 'about.glance.geo.title') },
+  { key: 'history',    icon: 'clock',      paragraphs: [t(lang, 'about.glance.history.p1'),    t(lang, 'about.glance.history.p2'), t(lang, 'about.glance.history.p3')], title: t(lang, 'about.glance.history.title') },
+  { key: 'production', icon: 'factory',    paragraphs: [t(lang, 'about.glance.production.p1'), t(lang, 'about.glance.production.p2')],                                  title: t(lang, 'about.glance.production.title') },
+  { key: 'rd',         icon: 'microscope', paragraphs: [t(lang, 'about.glance.rd.p1'),         t(lang, 'about.glance.rd.p2')],                                          title: t(lang, 'about.glance.rd.title'),         featured: true },
+  { key: 'geo',        icon: 'compass',    paragraphs: [t(lang, 'about.glance.geo.p1')],                                                                                title: t(lang, 'about.glance.geo.title') },
 ]
 ---
 <BaseLayout title="О компании Krüger — производство в Германии с 2017 года">
@@ -21,29 +21,89 @@ const blocks = [
     breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.about'), href: '/about/glance/' }, { label: t(lang, 'nav.aboutGlance') }]}
   />
 
-  <section class="bg-bg py-16 md:py-24">
-    <div class="container-page space-y-10 md:space-y-14">
-      {blocks.map((b) => (
-        <article class="grid gap-8 md:grid-cols-12 items-start">
-          <div class="md:col-span-4">
-            <h2 class="font-display text-2xl md:text-3xl font-bold text-text">{b.title}</h2>
-          </div>
-          <div class="md:col-span-8 space-y-4 text-text-muted leading-relaxed">
-            {b.paragraphs.map((p) => <p>{p}</p>)}
-          </div>
-        </article>
-      ))}
+  <section class="bg-bg py-20 md:py-24">
+    <div class="container-page">
+      <div class="max-w-2xl mb-12 md:mb-16">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">Our Story</p>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">
+          Четыре опоры Krüger
+        </h2>
+      </div>
+
+      <div class="space-y-16 md:space-y-24">
+        {blocks.map((b, i) => (
+          <article
+            class:list={[
+              'kr-reveal grid gap-8 md:gap-12 lg:gap-16 md:grid-cols-12 items-start',
+              b.featured && 'relative',
+            ]}
+          >
+            {b.featured && (
+              <span
+                class="absolute -left-4 md:-left-6 top-2 h-12 md:h-16 w-1 bg-primary rounded-full"
+                aria-hidden="true"
+              />
+            )}
+
+            <!-- Лева: иконка + заголовок + outline-номер watermark -->
+            <div class="md:col-span-4 relative">
+              <span
+                class="absolute -top-4 right-0 font-display font-extrabold text-[5rem] md:text-[6rem] leading-none select-none pointer-events-none hidden md:block"
+                style="-webkit-text-stroke: 2px var(--color-primary); color: transparent; opacity: 0.18;"
+                aria-hidden="true"
+              >{String(i + 1).padStart(2, '0')}</span>
+
+              <span class="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-text-inverse mb-5">
+                <Icon name={b.icon} size={28} />
+              </span>
+              <h3 class="font-display text-2xl md:text-3xl font-bold leading-tight text-text">{b.title}</h3>
+              <span class="mt-4 block h-1 w-12 bg-brand-yellow rounded-full" aria-hidden="true" />
+            </div>
+
+            <!-- Права: текст -->
+            <div class="md:col-span-8 space-y-4 text-text-muted leading-relaxed md:text-[1.0625rem]">
+              {b.paragraphs.map((p) => <p>{p}</p>)}
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
   <StatsBar />
 
-  <section class="bg-bg-soft py-16 md:py-20">
-    <div class="container-page text-center">
-      <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">{t(lang, 'about.glance.ctaTitle')}</h2>
+  <section class="bg-bg-soft py-20 md:py-24 relative overflow-hidden">
+    <!-- Brand decorative diagonal stripe -->
+    <span
+      class="absolute -right-32 -top-32 w-72 h-[42rem] rotate-[18deg] bg-brand-yellow/[0.04] pointer-events-none"
+      aria-hidden="true"
+    />
+    <div class="relative container-page text-center max-w-2xl mx-auto">
+      <div class="inline-flex items-center gap-3 mb-4">
+        <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">Discover more</p>
+        <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+      </div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight mb-8">{t(lang, 'about.glance.ctaTitle')}</h2>
       <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href="/about/vision-mission/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">{t(lang, 'about.glance.ctaVision')}</a>
-        <a href="/about/commitments/" class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'about.glance.ctaCommitments')}</a>
+        <a
+          href="/about/vision-mission/"
+          class="group inline-flex items-center gap-3 h-12 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
+        >
+          <span>{t(lang, 'about.glance.ctaVision')}</span>
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-yellow text-black transition-transform group-hover:translate-x-1">
+            <Icon name="arrowRight" size={16} strokeWidth={2.5} />
+          </span>
+        </a>
+        <a
+          href="/about/commitments/"
+          class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border-soft font-semibold hover:bg-bg-muted transition-colors"
+        >
+          {t(lang, 'about.glance.ctaCommitments')}
+        </a>
       </div>
     </div>
   </section>
