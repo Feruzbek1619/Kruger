@@ -1,0 +1,49 @@
+---
+/**
+ * RelatedProducts — 4 похожих продукта на /product/[slug]/.
+ * Логика: same category, exclude current, .slice(0, 4).
+ *
+ * На mobile — горизонтальный scroll (overflow-x-auto + min-w на карточках),
+ * на md+ — сетка из 4 карточек.
+ */
+import type { Product } from '@/types'
+import allProductsData from '@/mocks/all-products.json'
+import ProductCard from '@/components/cards/ProductCard.vue'
+
+interface Props {
+  currentSlug: string
+  currentCategory: string
+  title?: string
+  ctaLabel?: string
+  limit?: number
+}
+
+const {
+  currentSlug,
+  currentCategory,
+  title = 'Похожие продукты',
+  ctaLabel = 'Подробнее',
+  limit = 4,
+} = Astro.props
+
+const allProducts = allProductsData as Product[]
+const related = allProducts
+  .filter((p) => p.category === currentCategory && p.slug !== currentSlug)
+  .slice(0, limit)
+---
+{related.length > 0 && (
+  <section class="py-12 md:py-16 border-t border-border-soft">
+    <div class="container-page">
+      <h2 class="font-display text-2xl md:text-3xl font-bold mb-8 text-text">{title}</h2>
+
+      <!-- Mobile: horizontal scroll. md+: grid -->
+      <ul class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:overflow-visible md:mx-0 md:px-0 md:snap-none">
+        {related.map((p) => (
+          <li class="snap-start shrink-0 w-[18rem] md:w-auto">
+            <ProductCard client:visible product={p} ctaLabel={ctaLabel} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}

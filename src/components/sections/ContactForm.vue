@@ -80,10 +80,10 @@ async function submit(e: Event) {
 <template>
   <section class="relative bg-primary text-text-inverse overflow-hidden">
     <!-- Yellow brand stripe top -->
-    <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F]" aria-hidden="true" />
+    <span class="absolute top-0 left-0 right-0 h-1 bg-brand-yellow" aria-hidden="true" />
     <!-- Diagonal yellow accent -->
     <div
-      class="absolute -right-32 -bottom-40 w-72 h-[36rem] rotate-[18deg] bg-[#F8CC0F]/[0.08] pointer-events-none"
+      class="absolute -right-32 -bottom-40 w-72 h-[36rem] rotate-[18deg] bg-brand-yellow/[0.08] pointer-events-none"
       aria-hidden="true"
     />
 
@@ -91,8 +91,8 @@ async function submit(e: Event) {
       <!-- LEFT: title + form -->
       <div>
         <div class="flex items-center gap-3 mb-4">
-          <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">Get in Touch</p>
+          <span class="inline-block h-0.5 w-8 bg-brand-yellow" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">Get in Touch</p>
         </div>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 leading-[1.1]">
           {{ title }}
@@ -195,15 +195,15 @@ async function submit(e: Event) {
           <line x1="385" y1="240" x2="385" y2="288" stroke="white" stroke-opacity="0.25" />
 
           <!-- Yellow + red wiring lines (брендовые цвета на разрезе) -->
-          <path d="M165 215 Q200 200 220 235" stroke="#F8CC0F" stroke-opacity="0.85" stroke-width="2" />
-          <path d="M180 220 Q220 215 250 235" stroke="#F8CC0F" stroke-opacity="0.7" stroke-width="2" />
-          <circle cx="220" cy="235" r="3" fill="#F8CC0F" stroke="none" />
-          <circle cx="250" cy="235" r="3" fill="#F8CC0F" stroke="none" />
+          <path d="M165 215 Q200 200 220 235" style="stroke: var(--color-brand-yellow)" stroke-opacity="0.85" stroke-width="2" />
+          <path d="M180 220 Q220 215 250 235" style="stroke: var(--color-brand-yellow)" stroke-opacity="0.7" stroke-width="2" />
+          <circle cx="220" cy="235" r="3" style="fill: var(--color-brand-yellow)" stroke="none" />
+          <circle cx="250" cy="235" r="3" style="fill: var(--color-brand-yellow)" stroke="none" />
 
-          <path d="M415 215 Q450 200 460 175" stroke="#E51E25" stroke-opacity="0.9" stroke-width="2" />
-          <path d="M400 230 Q440 215 480 195" stroke="#E51E25" stroke-opacity="0.7" stroke-width="2" />
-          <circle cx="460" cy="175" r="3" fill="#E51E25" stroke="none" />
-          <circle cx="480" cy="195" r="3" fill="#E51E25" stroke="none" />
+          <path d="M415 215 Q450 200 460 175" style="stroke: var(--color-primary)" stroke-opacity="0.9" stroke-width="2" />
+          <path d="M400 230 Q440 215 480 195" style="stroke: var(--color-primary)" stroke-opacity="0.7" stroke-width="2" />
+          <circle cx="460" cy="175" r="3" style="fill: var(--color-primary)" stroke="none" />
+          <circle cx="480" cy="195" r="3" style="fill: var(--color-primary)" stroke="none" />
 
           <!-- Drivetrain shaft -->
           <line x1="180" y1="265" x2="190" y2="265" stroke="white" stroke-opacity="0.5" stroke-width="3" />

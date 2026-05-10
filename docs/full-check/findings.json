@@ -1,0 +1,3628 @@
+{
+  "findings": {
+    "/": {
+      "route": "/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [
+        {
+          "url": "https://images.unsplash.com/photo-1632823471565-1ecdf5c6da77?w=1200&q=80",
+          "method": "GET",
+          "failure": "net::ERR_BLOCKED_BY_ORB",
+          "resourceType": "image"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1518534942242-3b2d7d83a23a?w=1200&q=80",
+          "method": "GET",
+          "failure": "net::ERR_BLOCKED_BY_ORB",
+          "resourceType": "image"
+        }
+      ],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "multiple <h1> (3)"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Слайд 1\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Легковые автомобили\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[aria-hidden-focus] ARIA hidden element must not be focusable or contain focusable elements (2 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[aria-tooltip-name] ARIA tooltip nodes must have an accessible name (1 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (33 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "network",
+          "msg": "net::ERR_BLOCKED_BY_ORB image https://images.unsplash.com/photo-1632823471565-1ecdf5c6da77?w=1200&q=80"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "network",
+          "msg": "net::ERR_BLOCKED_BY_ORB image https://images.unsplash.com/photo-1518534942242-3b2d7d83a23a?w=1200&q=80"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 8,
+        "links": 107,
+        "linksInternal": 97,
+        "linksExternal": 6,
+        "buttons": 24,
+        "buttonsHoverFails": 2,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 12
+      },
+      "screenshot": "screenshots/home.png",
+      "meta": {
+        "title": "Krüger Motor Oil — премиальные моторные масла, разработанные в Германии",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Krüger Motor Oil — премиальные моторные масла, разработанные в Германии",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 3,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 3,
+        "critical": 0,
+        "serious": 3,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "aria-hidden-focus",
+            "impact": "serious",
+            "help": "ARIA hidden element must not be focusable or contain focusable elements",
+            "nodes": 2,
+            "sample": ".translate-y-4.col-start-1.row-start-1:nth-child(1)"
+          },
+          {
+            "id": "aria-tooltip-name",
+            "impact": "serious",
+            "help": "ARIA tooltip nodes must have an accessible name",
+            "nodes": 1,
+            "sample": "#kr-map-tooltip"
+          },
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 33,
+            "sample": ".md\\:inline-flex.truncate.hidden > .truncate"
+          }
+        ]
+      }
+    },
+    "/about/": {
+      "route": "/about/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (12 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 45,
+        "linksInternal": 35,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/about.png",
+      "meta": {
+        "title": "О компании Krüger — производство в Германии с 2017 года",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "О компании Krüger — производство в Германии с 2017 года",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 12,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/about/glance/": {
+      "route": "/about/glance/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (12 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 45,
+        "linksInternal": 35,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/about_glance.png",
+      "meta": {
+        "title": "О компании Krüger — производство в Германии с 2017 года",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "О компании Krüger — производство в Германии с 2017 года",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 12,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/about/vision-mission/": {
+      "route": "/about/vision-mission/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (11 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 43,
+        "linksInternal": 33,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/about_vision-mission.png",
+      "meta": {
+        "title": "Видение и миссия — Krüger Motor Oil",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Видение и миссия — Krüger Motor Oil",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 11,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/about/commitments/": {
+      "route": "/about/commitments/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "heading order skips: h1→h3 at index 1"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (11 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 43,
+        "linksInternal": 33,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/about_commitments.png",
+      "meta": {
+        "title": "Наши обязательства — Krüger Motor Oil",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Наши обязательства — Krüger Motor Oil",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": [
+          "h1→h3 at index 1"
+        ]
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 11,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/products/": {
+      "route": "/products/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"По применению\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Легковые автомобили\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Грузовики и автобусы\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Электротранспорт\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Промышленность\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Сельское и лесное хозяйство\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Строительная и землеройная техника\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"По типу продукта\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"По вязкости\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"По спецификации\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (10 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 72,
+        "linksInternal": 62,
+        "linksExternal": 6,
+        "buttons": 21,
+        "buttonsHoverFails": 10,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 12
+      },
+      "screenshot": "screenshots/products.png",
+      "meta": {
+        "title": "Каталог продукции Krüger — моторные, гидравлические, ATF, EV Fluids",
+        "desc": "150+ премиальных смазочных материалов Krüger с фильтрами по применению, вязкости, API/ACEA-спецификации и объёму упаковки. Скачать PDS/SDS.",
+        "ogTitle": "Каталог продукции Krüger — моторные, гидравлические, ATF, EV Fluids",
+        "ogDesc": "150+ премиальных смазочных материалов Krüger с фильтрами по применению, вязкости, API/ACEA-спецификации и объёму упаковки. Скачать PDS/SDS.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 10,
+            "sample": ".md\\:inline-flex.truncate.hidden > .truncate"
+          }
+        ]
+      }
+    },
+    "/product/engine-oil-5w-30-sp/": {
+      "route": "/product/engine-oil-5w-30-sp/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "multiple <h1> (2)"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Описание\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (11 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 50,
+        "linksInternal": 40,
+        "linksExternal": 6,
+        "buttons": 9,
+        "buttonsHoverFails": 1,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 9
+      },
+      "screenshot": "screenshots/product_engine-oil-5w-30-sp.png",
+      "meta": {
+        "title": "Krüger® Engine Oil 5W-30 SP — Полностью синтетическое масло для современных бензиновых дви... | Krüger",
+        "desc": "Полностью синтетическое масло для современных бензиновых двигателей с прямым впрыском.",
+        "ogTitle": "Krüger® Engine Oil 5W-30 SP — Полностью синтетическое масло для современных бензиновых дви... | Krüger",
+        "ogDesc": "Полностью синтетическое масло для современных бензиновых двигателей с прямым впрыском.",
+        "lang": "ru",
+        "h1Count": 2,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 11,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/product/ev-fluid-cool/": {
+      "route": "/product/ev-fluid-cool/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "multiple <h1> (2)"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Описание\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (11 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 49,
+        "linksInternal": 39,
+        "linksExternal": 6,
+        "buttons": 9,
+        "buttonsHoverFails": 1,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 9
+      },
+      "screenshot": "screenshots/product_ev-fluid-cool.png",
+      "meta": {
+        "title": "Krüger® EV Fluid Cool — Диэлектрическая охлаждающая жидкость для батарей и силовой э... | Krüger",
+        "desc": "Диэлектрическая охлаждающая жидкость для батарей и силовой электроники.",
+        "ogTitle": "Krüger® EV Fluid Cool — Диэлектрическая охлаждающая жидкость для батарей и силовой э... | Krüger",
+        "ogDesc": "Диэлектрическая охлаждающая жидкость для батарей и силовой электроники.",
+        "lang": "ru",
+        "h1Count": 2,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 11,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/news/": {
+      "route": "/news/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "heading order skips: h1→h3 at index 1"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (10 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 54,
+        "linksInternal": 44,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/news.png",
+      "meta": {
+        "title": "Новости Krüger Motor Oil",
+        "desc": "Новости компании, технические гиды и обновления каталога Krüger.",
+        "ogTitle": "Новости Krüger Motor Oil",
+        "ogDesc": "Новости компании, технические гиды и обновления каталога Krüger.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": [
+          "h1→h3 at index 1"
+        ]
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 10,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/news/how-to-choose-winter-oil/": {
+      "route": "/news/how-to-choose-winter-oil/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://www.facebook.com/sharer/sharer.php?u=https://kruger-oil.de/news/how-to-choose-winter-oil/ (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://www.linkedin.com/shareArticle?mini=true&url=https://kruger-oil.de/news/how-to-choose-winter-oil/&title=%D0%9A%D0%B0%D0%BA%20%D0%B2%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B0%D1%81%D0%BB%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B8%D0%BC%D1%8B%20%E2%80%94%20%D0%B3%D0%B8%D0%B4%20%D0%BE%D1%82%20%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%BE%D0%B2%20Kr%C3%BCger (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/share/url?url=https://kruger-oil.de/news/how-to-choose-winter-oil/&text=%D0%9A%D0%B0%D0%BA%20%D0%B2%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B0%D1%81%D0%BB%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B7%D0%B8%D0%BC%D1%8B%20%E2%80%94%20%D0%B3%D0%B8%D0%B4%20%D0%BE%D1%82%20%D0%B8%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80%D0%BE%D0%B2%20Kr%C3%BCger (rel=\"noopener\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (11 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 53,
+        "linksInternal": 40,
+        "linksExternal": 9,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/news_how-to-choose-winter-oil.png",
+      "meta": {
+        "title": "Как выбрать масло для зимы — гид от инженеров Krüger — Krüger",
+        "desc": "При −30°C обычное масло превращается в желе и не доходит до пар трения вовремя. Разбираемся, на что смотреть в маркировке, какие вязкости работают в морозы и почему холодный пуск — самый вредный момент для двигателя.",
+        "ogTitle": "Как выбрать масло для зимы — гид от инженеров Krüger — Krüger",
+        "ogDesc": "При −30°C обычное масло превращается в желе и не доходит до пар трения вовремя. Разбираемся, на что смотреть в маркировке, какие вязкости работают в морозы и почему холодный пуск — самый вредный момент для двигателя.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 11,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/services/": {
+      "route": "/services/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "heading order skips: h1→h3 at index 1"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (11 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 43,
+        "linksInternal": 33,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/services.png",
+      "meta": {
+        "title": "Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": [
+          "h1→h3 at index 1"
+        ]
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 11,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/faq/": {
+      "route": "/faq/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Какое масло выбрать для моего автомобиля?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"В чём разница между синтетикой, полусинтетикой и минеральным\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Что означают маркировки 5W-30, 0W-20, SAE и API?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Как часто менять моторное масло?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Можно ли смешивать масла разных производителей?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Какие OEM-одобрения имеет Krüger?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Где производится продукция Krüger?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Соответствует ли Krüger ГОСТ?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Есть ли у Krüger экологические сертификаты?\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"Где купить Krüger в моей стране?\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (10 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 42,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 21,
+        "buttonsHoverFails": 10,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 12
+      },
+      "screenshot": "screenshots/faq.png",
+      "meta": {
+        "title": "FAQ — частые вопросы о моторных маслах Krüger",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "FAQ — частые вопросы о моторных маслах Krüger",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 10,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/contact/": {
+      "route": "/contact/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x124001d6e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+497111234567878"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+497111234567878 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Отправляя этот запрос, вы соглашаетесь с условиями обработки данных *\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (8 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        },
+        {
+          "severity": "LOW",
+          "kind": "console-warn",
+          "msg": "[.WebGL-0x124001d6e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 46,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 5,
+        "buttonsHoverFails": 1,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 5
+      },
+      "screenshot": "screenshots/contact.png",
+      "meta": {
+        "title": "Контакты — Krüger Motor Oil",
+        "desc": "Главный офис в Stuttgart, региональные представительства в Центральной Азии и СНГ. Свяжитесь с нами через форму обратной связи.",
+        "ogTitle": "Контакты — Krüger Motor Oil",
+        "ogDesc": "Главный офис в Stuttgart, региональные представительства в Центральной Азии и СНГ. Свяжитесь с нами через форму обратной связи.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 8,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/pds-sds/": {
+      "route": "/pds-sds/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  RU \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  EN \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  DE \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (9 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 90,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/pds-sds.png",
+      "meta": {
+        "title": "PDS / SDS — технические документы Krüger",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "PDS / SDS — технические документы Krüger",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 9,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/brand/": {
+      "route": "/brand/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "heading order skips: h1→h3 at index 1"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  Скачать архив (12 MB)\n\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  Скачать (8 MB)\n\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  Скачать архив (240 MB)\n\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  Скачать архив (180 MB)\n\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  Скачать (—)\n\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  Скачать архив (1.2 GB)\n\""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (16 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 49,
+        "linksInternal": 33,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/brand.png",
+      "meta": {
+        "title": "Brand Portal — материалы Krüger для дилеров и партнёров",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Brand Portal — материалы Krüger для дилеров и партнёров",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": [
+          "h1→h3 at index 1"
+        ]
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 16,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/impressum/": {
+      "route": "/impressum/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (9 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 42,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/impressum.png",
+      "meta": {
+        "title": "Impressum — Krüger Motor Oil GmbH",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Impressum — Krüger Motor Oil GmbH",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 9,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/privacy/": {
+      "route": "/privacy/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (9 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 42,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/privacy.png",
+      "meta": {
+        "title": "Privacy Policy — Krüger Motor Oil",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Privacy Policy — Krüger Motor Oil",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 9,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/terms/": {
+      "route": "/terms/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (9 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 42,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/terms.png",
+      "meta": {
+        "title": "Terms & Conditions — Krüger Motor Oil",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Terms & Conditions — Krüger Motor Oil",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 9,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/cookies/": {
+      "route": "/cookies/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (9 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 42,
+        "linksInternal": 32,
+        "linksExternal": 6,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/cookies.png",
+      "meta": {
+        "title": "Cookie Policy — Krüger Motor Oil",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Cookie Policy — Krüger Motor Oil",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 9,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/search/": {
+      "route": "/search/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (16 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 48,
+        "linksInternal": 38,
+        "linksExternal": 6,
+        "buttons": 4,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 4
+      },
+      "screenshot": "screenshots/search.png",
+      "meta": {
+        "title": "Поиск по сайту — Krüger Motor Oil",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Поиск по сайту — Krüger Motor Oil",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 16,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/styleguide/": {
+      "route": "/styleguide/",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "multiple <h1> (2)"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \" Flat · clickable При hover поднимается. \""
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "state",
+          "msg": "button has no hover-state: \"(no-text)\" aria=\"Согласен с обработкой данных\""
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (12 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 40,
+        "linksInternal": 31,
+        "linksExternal": 4,
+        "buttons": 26,
+        "buttonsHoverFails": 1,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 12
+      },
+      "screenshot": "screenshots/styleguide.png",
+      "meta": {
+        "title": "Styleguide — Krüger Design System",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "Styleguide — Krüger Design System",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 2,
+        "hasSkipLink": false,
+        "headingJumps": []
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 12,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    },
+    "/404": {
+      "route": "/404",
+      "httpStatus": 200,
+      "pageErrors": [],
+      "consoleMsgs": [
+        {
+          "type": "error",
+          "text": "Hydration completed but contains mismatches."
+        }
+      ],
+      "failedRequests": [],
+      "issues": [
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "no skip-link to main"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "a11y",
+          "msg": "heading order skips: h1→h3 at index 1"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=facebook"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=instagram"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=youtube"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link",
+          "msg": "link with empty/# href: \"  \" aria=linkedin"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: tel:+4971112345678"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: tel:+4971112345678 (rel=\"null\")"
+        },
+        {
+          "severity": "LOW",
+          "kind": "link",
+          "msg": "external link without target=_blank: mailto:info@kruger-oil.de"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: mailto:info@kruger-oil.de (rel=\"null\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://wa.me/49711123456789 (rel=\"noopener\")"
+        },
+        {
+          "severity": "MEDIUM",
+          "kind": "link-security",
+          "msg": "external link missing rel=noopener noreferrer: https://t.me/kruger_oil (rel=\"noopener\")"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "a11y-axe",
+          "msg": "[color-contrast] Elements must meet minimum color contrast ratio thresholds (7 nodes)"
+        },
+        {
+          "severity": "HIGH",
+          "kind": "console",
+          "msg": "Hydration completed but contains mismatches."
+        }
+      ],
+      "counts": {
+        "images": 0,
+        "links": 42,
+        "linksInternal": 34,
+        "linksExternal": 4,
+        "buttons": 3,
+        "buttonsHoverFails": 0,
+        "buttonsFocusFails": 0,
+        "buttonsSampled": 3
+      },
+      "screenshot": "screenshots/404.png",
+      "meta": {
+        "title": "404 — Страница не найдена | Krüger",
+        "desc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "ogTitle": "404 — Страница не найдена | Krüger",
+        "ogDesc": "Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.",
+        "lang": "ru",
+        "h1Count": 1,
+        "hasSkipLink": false,
+        "headingJumps": [
+          "h1→h3 at index 1"
+        ]
+      },
+      "axe": {
+        "total": 1,
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0,
+        "details": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "nodes": 7,
+            "sample": ".md\\:inline-flex > .truncate"
+          }
+        ]
+      }
+    }
+  },
+  "linkSweep": {
+    "allInternal": [
+      "/products/",
+      "/",
+      "/about/glance/",
+      "/about/vision-mission/",
+      "/about/commitments/",
+      "/services/",
+      "/news/",
+      "/faq/",
+      "/contact/",
+      "/product/engine-oil-5w-30-sp/",
+      "/product/engine-oil-0w-20-c5/",
+      "/product/engine-oil-5w-40-sp/",
+      "/product/engine-oil-10w-40-sn-cf/",
+      "/product/atf-multi/",
+      "/product/hydraulic-hvlp-46/",
+      "/product/antifreeze-g12/",
+      "/product/brake-fluid-dot4/",
+      "/products/?application=car",
+      "/products/?application=truck",
+      "/products/?application=ev",
+      "/products/?application=industry",
+      "/products/?application=agro",
+      "/products/?application=construction",
+      "/products/?category=engine",
+      "/products/?category=hydraulic",
+      "/products/?category=industrial",
+      "/products/?category=atf",
+      "/products/?category=compressor",
+      "/products/?category=manual",
+      "/products/?category=tractor",
+      "/products/?category=marine",
+      "/products/?category=gas",
+      "/products/?category=turbine",
+      "/products/?category=circulating",
+      "/products/?category=moto",
+      "/products/?category=slideway",
+      "/products/?category=grease",
+      "/products/?category=adblue",
+      "/products/?category=brake",
+      "/products/?category=antifreeze",
+      "/products/?category=powershift",
+      "/products/?category=ev-fluids",
+      "/products/?category=gost",
+      "/products/?category=quench",
+      "/products/?category=mould",
+      "/news/krueger-precision-and-innovation/",
+      "/news/adhesive-wear-explained/",
+      "/news/new-distribution-center-eastern-europe/",
+      "/news/how-to-choose-winter-oil/",
+      "/news/ev-fluids-expansion/",
+      "/news/mb-approval-2295/",
+      "/pds-sds/",
+      "/impressum/",
+      "/privacy/",
+      "/terms/",
+      "/cookies/",
+      "/product/engine-oil-0w-30/",
+      "/product/engine-oil-10w-40-e7/",
+      "/product/engine-oil-15w-40-e7/",
+      "/product/engine-oil-10w-40-e9/",
+      "/product/engine-oil-15w-40-ci4/",
+      "/product/gear-oil-80w-90-gl5/",
+      "/product/hydraulic-hvlp-68/",
+      "/product/hydraulic-hvlp-46-zf/",
+      "/product/industrial-gear-iso-220/",
+      "/product/compressor-vdl-100/",
+      "/product/turbine-t-32/",
+      "/product/utto-10w-30/",
+      "/product/stou-15w-40/",
+      "/product/powershift-to4-30/",
+      "/product/wheel-bearing-grease/",
+      "/product/adblue/",
+      "/pds-sds/?product=engine-oil-5w-30-sp#pds",
+      "/pds-sds/?product=engine-oil-5w-30-sp#sds",
+      "/pds-sds/?product=ev-fluid-cool#pds",
+      "/pds-sds/?product=ev-fluid-cool#sds",
+      "/product/ev-reducer-oil-70w/",
+      "/product/ev-grease-hi-v/",
+      "/product/ev-brake-fluid/"
+    ],
+    "broken": []
+  },
+  "flows": {
+    "headerDropdown": {
+      "trigger": true,
+      "opens": true
+    },
+    "heroSlider": {
+      "hasNext": false,
+      "hasPrev": false,
+      "advances": false
+    },
+    "productsPage": {
+      "initialCards": 24,
+      "cardsAfter": 14,
+      "filterApplied": true,
+      "sortExists": false,
+      "viewExists": false,
+      "url": "http://localhost:4321/products/?application=car"
+    },
+    "productDetail": {
+      "tabCount": 5,
+      "tabsClickable": 5,
+      "formValidates": false
+    },
+    "faqAccordion": {
+      "tested": 3,
+      "opens": 1
+    },
+    "contactForm": {
+      "emptySubmitErrors": 4,
+      "invalidEmailError": false
+    },
+    "langSwitcher": {
+      "exists": true,
+      "opens": true
+    }
+  },
+  "timestamp": "2026-05-10T18:34:37.451Z"
+}

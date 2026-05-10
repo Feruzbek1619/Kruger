@@ -7,8 +7,8 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
 const quickLinks = [
   { href: '/products/',                       label: 'Каталог продукции' },
-  { href: '/products/category/engine/',       label: 'Моторные масла' },
-  { href: '/products/category/ev-fluids/',    label: 'EV Fluids' },
+  { href: '/products/?category=engine',       label: 'Моторные масла' },
+  { href: '/products/?category=ev-fluids',    label: 'EV Fluids' },
   { href: '/news/',                           label: 'Новости' },
   { href: '/faq/',                            label: 'FAQ' },
   { href: '/contact/',                        label: 'Контакты' },

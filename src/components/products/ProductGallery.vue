@@ -11,31 +11,23 @@ interface Props {
 const props = defineProps<Props>()
 const current = ref(0)
 
-// Цвет канистры по категории — как в ProductCard для визуальной консистентности
-const categoryColors: Record<string, string> = {
-  engine:      '#0a0a0e',
-  hydraulic:   '#1f3a8a',
-  atf:         '#7c2d12',
-  manual:      '#1f2937',
-  industrial:  '#3f3f46',
-  compressor:  '#4b5563',
-  turbine:     '#374151',
-  tractor:     '#15803d',
-  stou:        '#15803d',
-  'ev-fluids': '#2563eb',
-  ev:          '#2563eb',
-  brake:       '#991b1b',
-  antifreeze:  '#0e7490',
-  adblue:      '#155e75',
-  grease:      '#525252',
-  powershift:  '#854d0e',
-  circulating: '#404040',
-  moto:        '#7e22ce',
-  quench:      '#262626',
-  mould:       '#a16207',
-  gear:        '#1f2937',
-}
-const canColor = computed(() => categoryColors[props.category ?? ''] ?? '#0a0a0e')
+// Цвет канистры по категории — токены из tokens.css (--color-canister-*).
+// SVG fill="..." не читает CSS vars во всех браузерах, поэтому используем
+// inline style="fill: var(...)" через :style binding.
+const CANISTER_CATEGORIES = new Set([
+  'engine', 'hydraulic', 'atf', 'manual', 'gear', 'industrial', 'compressor',
+  'turbine', 'tractor', 'stou', 'ev', 'ev-fluids', 'brake', 'antifreeze',
+  'adblue', 'grease', 'powershift', 'circulating', 'moto', 'quench', 'mould',
+])
+const canColor = computed(() => {
+  const cat = props.category ?? ''
+  return CANISTER_CATEGORIES.has(cat)
+    ? `var(--color-canister-${cat})`
+    : 'var(--color-canister-default)'
+})
+const bodyFillStyle = computed(() => ({ fill: canColor.value }))
+const inkFillStyle = { fill: 'var(--color-bg-dark)' }
+const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
 </script>
 
 <template>
@@ -66,7 +58,7 @@ const canColor = computed(() => categoryColors[props.category ?? ''] ?? '#0a0a0e
         <!-- Body -->
         <path
           d="M18 36c0-2 1-3 3-3h58c2 0 3 1 3 3v82c0 4-2 6-6 6H24c-4 0-6-2-6-6V36Z"
-          :fill="canColor"
+          :style="bodyFillStyle"
         />
         <!-- Highlight on left edge -->
         <path
@@ -75,14 +67,14 @@ const canColor = computed(() => categoryColors[props.category ?? ''] ?? '#0a0a0e
           opacity="0.12"
         />
         <!-- Cap -->
-        <rect x="38" y="12" width="24" height="22" rx="2" :fill="canColor" />
+        <rect x="38" y="12" width="24" height="22" rx="2" :style="bodyFillStyle" />
         <rect x="38" y="12" width="24" height="6" rx="2" fill="white" opacity="0.18" />
         <!-- Neck -->
-        <path d="M44 32h12v6H44z" :fill="canColor" />
+        <path d="M44 32h12v6H44z" :style="bodyFillStyle" />
         <!-- Label -->
         <rect x="22" y="50" width="56" height="60" rx="2.5" fill="white" />
         <!-- Brand stripe on label (yellow) -->
-        <rect x="22" y="50" width="56" height="7" fill="#F8CC0F" />
+        <rect x="22" y="50" width="56" height="7" :style="yellowFillStyle" />
         <!-- K mark -->
         <text
           x="50"
@@ -91,7 +83,7 @@ const canColor = computed(() => categoryColors[props.category ?? ''] ?? '#0a0a0e
           font-family="Manrope Variable, system-ui, sans-serif"
           font-size="26"
           font-weight="800"
-          fill="#0a0a0e"
+          :style="inkFillStyle"
         >K</text>
         <!-- Viscosity / SKU lines -->
         <text
@@ -102,13 +94,13 @@ const canColor = computed(() => categoryColors[props.category ?? ''] ?? '#0a0a0e
           font-family="Inter Variable, system-ui, sans-serif"
           font-size="6"
           font-weight="700"
-          fill="#0a0a0e"
+          :style="inkFillStyle"
           opacity="0.85"
         >{{ viscosity }}</text>
-        <rect x="32" y="98" width="36" height="1.5" rx="0.5" fill="#0a0a0e" opacity="0.3" />
-        <rect x="36" y="102" width="28" height="1.5" rx="0.5" fill="#0a0a0e" opacity="0.2" />
+        <rect x="32" y="98" width="36" height="1.5" rx="0.5" :style="inkFillStyle" opacity="0.3" />
+        <rect x="36" y="102" width="28" height="1.5" rx="0.5" :style="inkFillStyle" opacity="0.2" />
         <!-- Volume badge -->
-        <rect x="38" y="113" width="24" height="9" rx="1" fill="#0a0a0e" />
+        <rect x="38" y="113" width="24" height="9" rx="1" :style="inkFillStyle" />
         <text
           x="50"
           y="120"
@@ -143,10 +135,10 @@ const canColor = computed(() => categoryColors[props.category ?? ''] ?? '#0a0a0e
       <li v-for="i in 4" :key="i">
         <div class="aspect-square w-full bg-bg-soft rounded-md border border-border-soft flex items-center justify-center overflow-hidden">
           <svg viewBox="0 0 100 130" class="h-[60%] w-auto opacity-40" aria-hidden="true">
-            <path d="M18 36c0-2 1-3 3-3h58c2 0 3 1 3 3v82c0 4-2 6-6 6H24c-4 0-6-2-6-6V36Z" :fill="canColor" />
-            <rect x="38" y="12" width="24" height="22" rx="2" :fill="canColor" />
+            <path d="M18 36c0-2 1-3 3-3h58c2 0 3 1 3 3v82c0 4-2 6-6 6H24c-4 0-6-2-6-6V36Z" :style="bodyFillStyle" />
+            <rect x="38" y="12" width="24" height="22" rx="2" :style="bodyFillStyle" />
             <rect x="22" y="50" width="56" height="60" rx="2.5" fill="white" />
-            <rect x="22" y="50" width="56" height="7" fill="#F8CC0F" />
+            <rect x="22" y="50" width="56" height="7" :style="yellowFillStyle" />
           </svg>
         </div>
       </li>

@@ -27,9 +27,12 @@ const items = [
   { label: t(lang, 'nav.contact'), href: '/contact/' },
 ]
 ---
-<header class="sticky top-0 z-sticky bg-bg/95 backdrop-blur-sm border-b-2 border-border-soft">
+<header
+  id="site-header"
+  class="sticky top-0 z-[65] bg-bg border-b border-border-soft transition-shadow duration-200"
+>
   <!-- Тонкая жёлтая полоска вверху — фирменный акцент -->
-  <div class="h-1 bg-[#F8CC0F]" aria-hidden="true"></div>
+  <div class="h-1 bg-brand-yellow" aria-hidden="true"></div>
 
   <div class="container-page flex items-center justify-between gap-4 lg:gap-6 h-18 md:h-22 lg:h-24">
     <a href="/" class="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-transform hover:scale-[1.02]" aria-label="Krüger Motor Oil — на главную">
@@ -51,9 +54,9 @@ const items = [
               <ChevronDown :size={14} class="transition-transform group-hover:rotate-180" aria-hidden="true" />
             </a>
             <!-- Дропдаун с фирменным жёлтым акцентом сверху -->
-            <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block min-w-[15rem]">
+            <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block min-w-[15rem] z-[70]">
               <ul class="bg-bg rounded-lg shadow-xl border border-border-soft overflow-hidden">
-                <li class="h-1 bg-[#F8CC0F]" aria-hidden="true"></li>
+                <li class="h-1 bg-brand-yellow" aria-hidden="true"></li>
                 {it.children.map((c) => (
                   <li>
                     <a
@@ -104,3 +107,23 @@ const items = [
     </div>
   </div>
 </header>
+
+<script>
+  // Тень под Header при скролле > 40px (премиум-полировка).
+  const init = () => {
+    const header = document.getElementById('site-header')
+    if (!header) return
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 40)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+  }
+  document.addEventListener('astro:page-load', init)
+</script>
+
+<style is:global>
+  #site-header.is-scrolled {
+    box-shadow: var(--shadow-md);
+  }
+</style>

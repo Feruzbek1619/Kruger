@@ -5,10 +5,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
 <section class="relative bg-primary text-text-inverse overflow-hidden">
   <!-- Yellow brand stripe -->
-  <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F]" aria-hidden="true" />
+  <span class="absolute top-0 left-0 right-0 h-1 bg-brand-yellow" aria-hidden="true" />
   <!-- Diagonal accent -->
   <div
-    class="absolute -right-32 -top-16 w-72 h-72 rotate-[18deg] bg-[#F8CC0F]/10 pointer-events-none"
+    class="absolute -right-32 -top-16 w-72 h-72 rotate-[18deg] bg-brand-yellow/10 pointer-events-none"
     aria-hidden="true"
   />
 
@@ -24,7 +24,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       href={`tel:${t(lang, 'topbar.phone').replace(/\s/g, '')}`}
       class="group flex items-center gap-4 rounded-xl bg-text-inverse/[0.08] hover:bg-text-inverse/[0.15] backdrop-blur-sm border border-text-inverse/15 px-5 py-3.5 transition-colors"
     >
-      <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#F8CC0F] text-text shrink-0 transition-transform group-hover:scale-110">
+      <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-yellow text-text shrink-0 transition-transform group-hover:scale-110">
         <Icon name="phone" class="h-5 w-5" />
       </span>
       <span>
@@ -39,7 +39,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       href={`mailto:${t(lang, 'topbar.email')}`}
       class="group flex items-center gap-4 rounded-xl bg-text-inverse/[0.08] hover:bg-text-inverse/[0.15] backdrop-blur-sm border border-text-inverse/15 px-5 py-3.5 transition-colors"
     >
-      <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#F8CC0F] text-text shrink-0 transition-transform group-hover:scale-110">
+      <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-yellow text-text shrink-0 transition-transform group-hover:scale-110">
         <Icon name="mail" class="h-5 w-5" />
       </span>
       <span>

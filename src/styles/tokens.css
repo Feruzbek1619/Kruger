@@ -18,9 +18,24 @@
 @theme inline {
   /* ───── Brand (Krüger) ───── */
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-primary-hover: oklch(0.55 0.21 27);
   --color-primary-active: oklch(0.5 0.21 27);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
   /* ───── External brand colors (третьи стороны) ───── */
   --color-brand-telegram: oklch(0.64 0.14 230);   /* #229ED9 Telegram */
@@ -28,6 +43,31 @@
 
   /* ───── Krüger brand yellow (из официального logo.svg) ───── */
   --color-brand-yellow: #F8CC0F;                  /* фирменный жёлтый из лого */
+
+  /* ───── Canister category colors (визуализация product placeholders) ─────
+     Используются в SVG fill через var(); каждая категория имеет distinct цвет. */
+  --color-canister-engine:      #0a0a0e;   /* engine oil — чёрный (premium) */
+  --color-canister-hydraulic:   #1f3a8a;   /* hydraulic — синий */
+  --color-canister-atf:         #7c2d12;   /* ATF — burnt brown */
+  --color-canister-manual:      #1f2937;   /* manual gear — графит */
+  --color-canister-gear:        #1f2937;   /* gear — графит */
+  --color-canister-industrial:  #3f3f46;   /* industrial — серый */
+  --color-canister-compressor:  #4b5563;   /* compressor — slate */
+  --color-canister-turbine:     #374151;   /* turbine — gunmetal */
+  --color-canister-tractor:     #15803d;   /* tractor / agriculture — зелёный */
+  --color-canister-stou:        #15803d;   /* STOU — зелёный (agri) */
+  --color-canister-ev:          #2563eb;   /* EV fluids — electric blue */
+  --color-canister-ev-fluids:   #2563eb;   /* alias */
+  --color-canister-brake:       #991b1b;   /* brake fluid — красный */
+  --color-canister-antifreeze:  #0e7490;   /* antifreeze — cyan-teal */
+  --color-canister-adblue:      #155e75;   /* AdBlue — глубокий cyan */
+  --color-canister-grease:      #525252;   /* grease — neutral grey */
+  --color-canister-powershift:  #854d0e;   /* powershift — янтарный */
+  --color-canister-circulating: #404040;   /* circulating — тёмно-серый */
+  --color-canister-moto:        #7e22ce;   /* motorcycle — фиолетовый */
+  --color-canister-quench:      #262626;   /* quench — почти-чёрный */
+  --color-canister-mould:       #a16207;   /* mould release — золотистый */
+  --color-canister-default:     #0a0a0e;   /* fallback */
 
   /* ───── Illustration tokens (декоративные SVG-иллюстрации) ───── */
   --color-illus-deep: oklch(0.13 0.01 270);        /* #080810 — самый тёмный фон */
@@ -43,11 +83,11 @@
   --color-bg: var(--background);
   --color-bg-soft: var(--muted);
   --color-bg-muted: oklch(0.92 0 0);
-  --color-bg-dark: oklch(0.15 0.02 270);
+  --color-bg-dark: #0a0a0e;                       /* премиум-чёрный для tемных секций (Hero, Footer, EV CTA, StatsBar, BestOffers) */
 
   --color-text: var(--foreground);
   --color-text-muted: var(--muted-foreground);
-  --color-text-subtle: oklch(0.6 0 0);
+  --color-text-subtle: oklch(0.5 0 0);   /* WCAG AA: 4.7:1 на белом (раньше 0.6 = 3.94:1 — fail) */
   --color-text-inverse: oklch(1 0 0);
 
   --color-border: var(--border);
@@ -73,17 +113,16 @@
   --font-body: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: var(--font-body);
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
+  /* Type scale: только наши overrides. text-3xl..7xl используем Tailwind defaults
+     (которые корректны: 1.875rem / 2.25rem / 3rem / 3.75rem / 4.5rem). Не дублируем
+     чтобы tokens.css не врал — getComputedStyle на --text-3xl возвращал пусто
+     раньше (объявлено в @theme inline но не подхватывалось). */
+  --text-xs:  0.75rem;
+  --text-sm:  0.875rem;
   --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.375rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.25rem;
-  --text-4xl: 3rem;
-  --text-5xl: 3.75rem;
-  --text-6xl: 5rem;
-  --text-7xl: 6rem;
+  --text-lg:  1.125rem;
+  --text-xl:  1.375rem;   /* +0.125rem от Tailwind default 1.25rem — чуть крупнее для премиум-ощущения */
+  --text-2xl: 1.75rem;    /* +0.25rem от Tailwind 1.5rem */
 
   --leading-tight: 1.1;
   --leading-snug: 1.25;
@@ -97,10 +136,13 @@
   --shadow-xl: 0 24px 64px oklch(0 0 0 / 0.16);
 
   /* ───── Z-index ───── */
+  --z-base: 0;
   --z-dropdown: 50;
   --z-sticky: 60;
-  --z-modal: 70;
-  --z-popover: 80;
+  --z-header: 65;
+  --z-overlay: 70;
+  --z-modal: 80;
+  --z-popover: 85;
   --z-toast: 90;
 
   /* ───── Breakpoints ───── */
@@ -136,7 +178,7 @@
   --secondary-foreground: oklch(0.18 0.01 285);
 
   --muted: oklch(0.97 0.003 240);
-  --muted-foreground: oklch(0.55 0.005 285);
+  --muted-foreground: oklch(0.5 0.005 285);   /* WCAG AA: 4.6:1 на белом (раньше 0.55 = 4.45:1 — fail) */
 
   --accent: oklch(0.86 0.16 95);
   --accent-foreground: oklch(0.18 0.01 285);

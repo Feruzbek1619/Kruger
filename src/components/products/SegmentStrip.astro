@@ -1,0 +1,72 @@
+---
+/**
+ * SegmentStrip — горизонтальная strip из 6 сегментов наверху /products/.
+ * Каждый chip кликабелен: применяет ?application=X фильтр.
+ *
+ * Astro pre-render статичен (build-time `Astro.url.searchParams` пустой),
+ * поэтому активный chip определяется client-side скриптом на основе
+ * window.location.search. Скрипт также реагирует на popstate (back/forward).
+ */
+import segmentsData from '@/mocks/segments.json'
+import { Car, Truck, Zap, Settings, Tractor, Construction } from 'lucide-vue-next'
+import type { MarketSegment } from '@/types'
+
+const segments = segmentsData as MarketSegment[]
+
+// Маппинг id → Lucide icon component
+const iconMap = {
+  car: Car,
+  truck: Truck,
+  ev: Zap,
+  industry: Settings,
+  agro: Tractor,
+  construction: Construction,
+} as const
+---
+<section class="bg-bg border-b border-border-soft py-5" aria-label="Сегменты применения">
+  <div class="container-page">
+    <ul class="kr-segments flex gap-2 md:gap-3 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap snap-x snap-mandatory md:snap-none">
+      {segments.map((s) => {
+        const Icon = iconMap[s.id as keyof typeof iconMap]
+        return (
+          <li class="snap-start shrink-0">
+            <a
+              href={s.href}
+              data-segment={s.id}
+              class="kr-segment-chip inline-flex items-center gap-2 h-11 px-4 rounded-pill border-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 bg-bg text-text border-border-soft hover:border-primary hover:text-primary data-[active=true]:bg-primary data-[active=true]:text-text-inverse data-[active=true]:border-primary data-[active=true]:shadow-md"
+            >
+              {Icon && <Icon size={18} stroke-width={2} aria-hidden="true" />}
+              <span>{s.title}</span>
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+</section>
+
+<script>
+  // Активный chip определяется client-side из window.location.search,
+  // потому что Astro SSG не имеет доступа к URL посетителя на build-time.
+  // Реагирует на popstate (back/forward) — следит за переключением фильтра.
+  function applyActive() {
+    const app = new URLSearchParams(window.location.search).get('application') ?? ''
+    document.querySelectorAll<HTMLAnchorElement>('.kr-segment-chip').forEach((el) => {
+      const isActive = el.dataset.segment === app
+      el.dataset.active = isActive ? 'true' : 'false'
+      if (isActive) el.setAttribute('aria-current', 'page')
+      else el.removeAttribute('aria-current')
+    })
+  }
+  applyActive()
+  window.addEventListener('popstate', applyActive)
+  // pushState от Vue island'а через useUrlSearchParams — слушаем вручную через
+  // periodic check, т.к. браузер не диспатчит событие на программный pushState.
+  let lastSearch = window.location.search
+  setInterval(() => {
+    if (window.location.search !== lastSearch) {
+      lastSearch = window.location.search
+      applyActive()
+    }
+  }, 500)
+</script>

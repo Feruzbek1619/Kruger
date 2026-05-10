@@ -17,6 +17,11 @@ function pick(code: string) {
   if (code === 'ru') window.location.href = '/'
   else window.location.href = `/${code}/`
 }
+
+function onBlur() {
+  // Закрываем дропдаун с задержкой — даём mousedown на пункт списка сработать раньше blur
+  window.setTimeout(() => { open.value = false }, 150)
+}
 </script>
 
 <template>
@@ -27,7 +32,7 @@ function pick(code: string) {
       :aria-expanded="open"
       aria-haspopup="listbox"
       @click="open = !open"
-      @blur="setTimeout(() => (open = false), 150)"
+      @blur="onBlur"
     >
       <Globe :size="16" :stroke-width="1.75" aria-hidden="true" />
       <span>{{ langs.find(l => l.code === props.current)?.short ?? 'RU' }}</span>
@@ -36,7 +41,7 @@ function pick(code: string) {
     <ul
       v-if="open"
       role="listbox"
-      class="absolute right-0 top-full mt-1 min-w-[10rem] bg-bg text-text rounded-md shadow-lg overflow-hidden z-dropdown"
+      class="absolute right-0 top-full mt-1 min-w-[10rem] bg-bg text-text rounded-md shadow-lg overflow-hidden z-[70]"
     >
       <li v-for="l in langs" :key="l.code" role="option" :aria-selected="l.code === props.current">
         <button

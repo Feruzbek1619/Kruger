@@ -1,169 +1,213 @@
 ---
+/**
+ * WorldMap — Global Reach section (tomoil.de-style).
+ *
+ * Структура:
+ *   ┌─────────────────────────────────────────────────┐
+ *   │  Title (left)        ●─────● CTA (right)        │
+ *   │                                                  │
+ *   │           [ DETAILED WORLD MAP ]                │
+ *   │  • 256 стран из @svg-maps/world                 │
+ *   │  • Highlight country (Kazakhstan) — red fill    │
+ *   │  • Маркеры: жёлтое кольцо + красная точка       │
+ *   │  • Hover: tooltip с флагом + name              │
+ *   │                                                  │
+ *   └─────────────────────────────────────────────────┘
+ *
+ * Источник стран: src/mocks/presence-countries.json (когда подключим
+ * Django admin — заменим на API endpoint /api/countries/, формат тот же).
+ */
 import { t } from '@/lib/i18n'
-import Icon from '@/components/ui/Icon.astro'
+import worldMap from '@svg-maps/world'
+import presence from '@/mocks/presence-countries.json'
+import { ArrowRight } from 'lucide-vue-next'
+import 'flag-icons/css/flag-icons.min.css'
+
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
-// Geo points — equirectangular projection on 1000×500 canvas
-// (lng+180)/360*1000 = x, (90-lat)/180*500 = y
-const dots = [
-  { x: 526, y: 147, name: 'Stuttgart',   highlight: true },   // 48.8N 9.2E
-  { x: 537, y: 152, name: 'Vienna' },                          // 48.2N 16.4E
-  { x: 558, y: 153, name: 'Warsaw' },                          // 52.2N 21.0E
-  { x: 605, y: 145, name: 'Moscow' },                          // 55.7N 37.6E
-  { x: 535, y: 169, name: 'Rome' },                            // 41.9N 12.5E
-  { x: 489, y: 139, name: 'Madrid' },                          // 40.4N -3.7E
-  { x: 580, y: 137, name: 'Istanbul' },                        // 41.0N 29.0E
-  { x: 642, y: 152, name: 'Tehran' },                          // 35.7N 51.4E
-  { x: 685, y: 132, name: 'Tashkent',    highlight: true },    // 41.3N 69.2E
-  { x: 715, y: 138, name: 'Almaty' },                          // 43.2N 76.9E
-  { x: 715, y: 170, name: 'Delhi' },                           // 28.6N 77.2E
-  { x: 889, y: 153, name: 'Tokyo' },                           // 35.7N 139.7E
-  { x: 837, y: 165, name: 'Shanghai' },                        // 31.2N 121.5E
-  { x: 510, y: 233, name: 'Lagos' },                           // 6.5N 3.4E
-  { x: 603, y: 253, name: 'Nairobi' },                         // 1.3S 36.8E
-  { x: 550, y: 343, name: 'Cape Town' },                       // 33.9S 18.4E
-  { x: 162, y: 113, name: 'Vancouver' },                       // 49.3N -123.1E
-  { x: 294, y: 136, name: 'New York' },                        // 40.7N -74.0E
-  { x: 226, y: 197, name: 'Mexico City' },                     // 19.4N -99.1E
-  { x: 370, y: 314, name: 'São Paulo' },                       // 23.5S -46.6E
-  { x: 337, y: 348, name: 'Buenos Aires' },                    // 34.6S -58.4E
-  { x: 920, y: 343, name: 'Sydney' },                          // 33.9S 151.2E
-]
+const map = (worldMap as any).default ?? worldMap
+const viewBox: string = map.viewBox
+const locations: { name: string; id: string; path: string }[] = map.locations
+
+const HIGHLIGHT_ID = presence.highlightId
+const markers = presence.markers
 ---
-<section class="relative bg-bg-soft pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
-  <!-- Hero header (red bar with copy) -->
-  <div class="relative bg-primary text-text-inverse overflow-hidden">
-    <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F]" aria-hidden="true" />
-    <div
-      class="absolute -right-24 -top-16 w-72 h-72 rotate-[18deg] bg-[#F8CC0F]/10 pointer-events-none"
-      aria-hidden="true"
-    />
-    <div class="relative container-page py-12 md:py-16 text-center">
-      <div class="inline-flex items-center gap-3 mb-3">
-        <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
-        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">Global Reach</p>
-        <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
-      </div>
-      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">
-        {t(lang, 'map.title')}
-      </h2>
-      <p class="mt-4 max-w-2xl mx-auto text-sm md:text-base opacity-90 leading-relaxed">
-        {t(lang, 'map.subtitle')}
-      </p>
-    </div>
-  </div>
+<section class="bg-bg-soft py-12 md:py-20">
+  <div class="container-page">
+    <article class="relative bg-bg rounded-2xl overflow-hidden">
 
-  <!-- Map card with stats badges -->
-  <div class="container-page py-10 md:py-16">
-    <div class="relative bg-bg rounded-2xl p-4 md:p-8 shadow-lg overflow-hidden">
-      <!-- Yellow corner accent -->
-      <span
-        class="absolute top-0 right-0 w-24 h-24 bg-[#F8CC0F]/15 pointer-events-none"
-        style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
-        aria-hidden="true"
-      />
+      <!-- ━━━━━━━━ Title + CTA top row (tomoil-style) ━━━━━━━━ -->
+      <header class="px-6 md:px-12 pt-8 md:pt-10 pb-2 flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-8">
+        <div class="flex-1">
+          <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-[1.1] text-text">
+            {t(lang, 'map.title')}
+          </h2>
+          <p class="mt-2 text-sm md:text-base text-text-muted max-w-2xl leading-relaxed">
+            {t(lang, 'map.subtitle')}
+          </p>
+        </div>
+        <a
+          href="/contact/"
+          class="kr-mapcta group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 self-start md:self-auto shrink-0"
+        >
+          <span>{t(lang, 'map.ctaBtn')}</span>
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-yellow text-text transition-transform group-hover:translate-x-1">
+            <ArrowRight :size="16" :stroke-width="2.5" aria-hidden="true" />
+          </span>
+        </a>
+      </header>
 
-      <svg viewBox="0 0 1000 500" class="w-full h-auto" role="img" aria-label="Карта мира с точками присутствия Krüger">
-        <rect width="1000" height="500" fill="var(--color-illus-bg)" rx="12" />
-
-        <!--
-          Continents — equirectangular projection (1000×500, equator y=250, Greenwich x=500).
-          Контрольные точки — реальные береговые координаты крупных городов:
-          Tangier 35°N -5° → 486,153 / Cairo 30°N 31°E → 586,167 / Cape Town 34°S 18°E → 550,344 /
-          Dakar 14°N -17° → 453,211 / Mumbai 19°N 73°E → 703,228 / Tokyo 35°N 140°E → 889,153 /
-          Sydney 34°S 151°E → 920,344 / NY 41°N -74° → 294,136 / Anchorage 61°N -149° → 86,80
-        -->
-        <g fill="var(--color-illus-land)">
-          <!-- North America: Alaska -> Canada arctic islands -> US east coast -> Florida -> Gulf -> Mexico -> Pacific coast -> Aleutians -->
-          <path d="M55 105 L95 80 L120 75 L155 78 L195 82 L230 88 L262 96 L290 105 L302 118 L296 138 L298 152 L286 170 L268 178 L256 196 L242 210 L222 220 L208 232 L188 234 L168 232 L142 224 L124 218 L108 222 L94 218 L82 208 L72 196 L66 180 L62 162 L60 142 L60 122 Z" />
-          <!-- Aleutian / Alaska peninsula tail -->
-          <path d="M30 120 L55 115 L62 128 L42 132 Z" />
-          <!-- Central America stem (Mexico → Panama) -->
-          <path d="M210 232 L222 240 L232 256 L240 270 L246 282 L240 290 L228 286 L218 274 L210 258 Z" />
-          <!-- Greenland -->
-          <path d="M348 65 L380 60 L398 70 L408 88 L406 108 L390 128 L370 134 L350 130 L340 116 L336 96 L340 78 Z" />
-          <!-- South America: Caribbean coast -> Atlantic east -> Tierra del Fuego -> Pacific west -->
-          <path d="M252 270 L280 268 L302 274 L320 286 L332 304 L336 322 L332 342 L322 360 L308 380 L292 400 L278 418 L266 432 L252 442 L242 432 L240 420 L240 402 L246 384 L252 364 L256 344 L256 322 L254 302 L252 286 Z" />
-          <!-- Europe: Iberia → Italy boot → Balkans → Scandinavia + UK + Ireland -->
-          <path d="M482 152 L478 168 L486 178 L498 180 L510 174 L516 164 L520 152 L526 138 L520 132 L508 130 L494 138 Z M520 130 L538 122 L548 112 L556 100 L560 84 L552 72 L544 76 L538 92 L532 108 L524 118 Z M540 132 L556 130 L568 122 L578 116 L592 122 L598 132 L594 144 L584 152 L570 154 L556 150 Z" />
-          <!-- British Isles -->
-          <path d="M462 130 L470 122 L476 130 L478 144 L472 156 L464 158 L458 150 L458 138 Z" />
-          <!-- Iceland -->
-          <path d="M450 100 L466 96 L470 105 L460 110 Z" />
-          <!-- Africa: Tangier → Mediterranean → Sinai → Red Sea → Horn → Mombasa → Cape Town → west coast → Dakar bulge → Tangier -->
-          <path d="M486 154 L502 156 L520 156 L540 158 L560 160 L582 164 L594 168 L600 178 L606 192 L612 204 L626 198 L640 196 L630 212 L618 222 L610 240 L600 258 L592 280 L584 300 L578 322 L568 340 L552 348 L538 342 L526 326 L520 308 L518 290 L510 274 L500 258 L490 244 L478 232 L466 220 L456 210 L450 200 L450 188 L456 178 L468 170 L478 160 Z" />
-          <!-- Madagascar -->
-          <path d="M624 322 L632 318 L636 332 L632 354 L626 364 L620 358 L618 342 Z" />
-          <!-- Eurasia: Western Russia → Siberia north coast → Bering → China east → Indochina → India peninsula → Iran → Caucasus → back to Eastern Europe -->
-          <path d="M598 132 L612 122 L640 116 L680 110 L720 108 L760 110 L800 114 L840 122 L876 134 L908 148 L928 168 L924 188 L908 196 L884 198 L872 210 L890 218 L902 230 L894 242 L878 248 L862 246 L848 256 L854 268 L840 274 L820 268 L800 266 L780 268 L760 266 L744 256 L730 244 L724 256 L730 272 L722 286 L708 290 L696 280 L692 264 L690 250 L676 238 L660 232 L648 224 L632 220 L616 214 L602 204 L592 192 L588 178 L590 162 L594 148 Z" />
-          <!-- Arabian peninsula -->
-          <path d="M598 196 L614 194 L626 200 L628 216 L622 230 L612 232 L602 222 L596 210 Z" />
-          <!-- South-East Asia: Indochina + Indonesia chain -->
-          <path d="M772 254 L786 256 L796 268 L808 274 L824 278 L840 282 L856 290 L862 298 L850 304 L832 302 L814 298 L796 290 L780 280 L770 268 Z" />
-          <!-- Sumatra/Java tail -->
-          <path d="M790 290 L808 296 L824 302 L820 312 L800 308 L788 300 Z" />
-          <!-- Borneo -->
-          <path d="M848 280 L862 282 L868 296 L860 304 L848 298 Z" />
-          <!-- Philippines -->
-          <path d="M876 260 L884 258 L886 274 L878 282 Z" />
-          <!-- Japan -->
-          <path d="M894 178 L908 180 L912 196 L906 214 L898 220 L892 210 L890 196 Z" />
-          <!-- Korea -->
-          <path d="M870 196 L880 198 L882 214 L876 222 L868 218 L866 208 Z" />
-          <!-- Australia -->
-          <path d="M846 332 L878 328 L902 332 L922 340 L928 354 L924 372 L908 384 L880 388 L856 384 L840 374 L832 360 L834 344 Z" />
-          <!-- Tasmania -->
-          <path d="M886 396 L898 398 L900 410 L890 414 L884 408 Z" />
-          <!-- New Zealand (north + south) -->
-          <path d="M952 388 L962 390 L962 402 L950 406 Z M958 410 L966 412 L968 426 L958 432 L954 422 Z" />
-        </g>
-
-        <!-- Highlight Krüger HQ region (Stuttgart + Tashkent corridor) -->
-        <ellipse cx="500" cy="155" rx="34" ry="18" fill="var(--primary)" opacity="0.18" />
-        <ellipse cx="670" cy="200" rx="38" ry="20" fill="var(--primary)" opacity="0.14" />
-
-        <!-- Dots -->
-        {dots.map((d, i) => (
-          <g>
-            <circle cx={d.x} cy={d.y} r={d.highlight ? 16 : 12} fill="var(--primary)" opacity="0.18">
-              <animate attributeName="r" values={d.highlight ? '12;20;12' : '8;14;8'} dur="3s" repeatCount="indefinite" begin={`${(i * 0.18) % 2.5}s`} />
-              <animate attributeName="opacity" values="0.3;0.08;0.3" dur="3s" repeatCount="indefinite" begin={`${(i * 0.18) % 2.5}s`} />
-            </circle>
-            <circle cx={d.x} cy={d.y} r={d.highlight ? 5.5 : 4} fill="var(--primary)" stroke="white" stroke-width="1.5">
-              <title>{d.name}</title>
-            </circle>
+      <!-- ━━━━━━━━ Detailed world map ━━━━━━━━ -->
+      <div class="kr-worldmap relative px-3 md:px-8 pt-4 pb-6 md:pb-10">
+        <svg
+          viewBox={viewBox}
+          class="w-full h-auto block"
+          role="img"
+          aria-label="Карта мира с точками присутствия Krüger"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Все страны -->
+          <g class="kr-countries">
+            {locations.map((loc) => {
+              const isHL = loc.id === HIGHLIGHT_ID
+              return (
+                <path
+                  d={loc.path}
+                  data-country-id={loc.id}
+                  data-country-name={loc.name}
+                  style={{
+                    fill: isHL ? 'var(--color-primary)' : 'var(--color-illus-land)',
+                    stroke: 'rgba(255,255,255,0.9)',
+                    strokeWidth: 0.4,
+                  }}
+                />
+              )
+            })}
           </g>
-        ))}
-      </svg>
 
-      <!-- Mini-stats below map -->
-      <div class="mt-6 grid grid-cols-3 gap-4 pt-6 border-t border-border-soft">
-        <div class="text-center">
-          <p class="font-display text-xl md:text-2xl font-extrabold text-primary">50+</p>
-          <p class="text-[10px] md:text-xs uppercase tracking-wider text-text-muted mt-1">стран</p>
-        </div>
-        <div class="text-center border-x border-border-soft">
-          <p class="font-display text-xl md:text-2xl font-extrabold text-primary">5</p>
-          <p class="text-[10px] md:text-xs uppercase tracking-wider text-text-muted mt-1">континентов</p>
-        </div>
-        <div class="text-center">
-          <p class="font-display text-xl md:text-2xl font-extrabold text-primary">1.5k+</p>
-          <p class="text-[10px] md:text-xs uppercase tracking-wider text-text-muted mt-1">партнёров</p>
+          <!-- Маркеры: жёлтое кольцо + красная точка (концентрические) -->
+          <g class="kr-markers">
+            {markers.map((m) => {
+              const ring = m.highlight ? 11 : 8
+              const dot  = m.highlight ? 5 : 3.5
+              return (
+                <g
+                  class="kr-marker"
+                  data-country-id={m.id}
+                  data-country-name={m.name}
+                  data-city={m.city}
+                  style="cursor: pointer;"
+                >
+                  <!-- yellow outer ring -->
+                  <circle cx={m.x} cy={m.y} r={ring} style="fill: var(--color-brand-yellow); stroke: white; stroke-width: 1;" />
+                  <!-- red inner dot -->
+                  <circle cx={m.x} cy={m.y} r={dot} style="fill: var(--color-primary);" />
+                </g>
+              )
+            })}
+          </g>
+        </svg>
+
+        <!-- Tooltip (single instance, JS-controlled) -->
+        <div
+          id="kr-map-tooltip"
+          role="tooltip"
+          class="absolute pointer-events-none opacity-0 transition-opacity duration-150 bg-bg shadow-xl rounded-lg border border-border-soft px-3 py-2 flex items-center gap-2.5 z-10"
+          style="transform: translate(-50%, calc(-100% - 14px));"
+        >
+          <span id="kr-map-flag" class="fi kr-flag w-6 h-4 rounded-sm shadow-sm" aria-hidden="true"></span>
+          <span id="kr-map-name" class="font-display font-semibold text-sm text-text whitespace-nowrap"></span>
         </div>
       </div>
-    </div>
-
-    <div class="mt-8 md:mt-10 text-center">
-      <p class="text-text-muted mb-4 text-sm md:text-base">{t(lang, 'map.ctaText')}</p>
-      <a
-        href="/contact/"
-        class="group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
-      >
-        <span>{t(lang, 'map.ctaBtn')}</span>
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F8CC0F] text-text transition-transform group-hover:translate-x-1">
-          <Icon name="arrowRight" class="h-4 w-4" />
-        </span>
-      </a>
-    </div>
+    </article>
   </div>
 </section>
+
+<script>
+  // Минимальный vanilla-JS hover-tooltip для маркеров.
+  // Не Vue island — экономит KB в bundle, тултип единственный для всей карты.
+  (function initWorldMapTooltip() {
+    const root = document.querySelector<HTMLElement>('.kr-worldmap')
+    if (!root) return
+    const tooltip = root.querySelector<HTMLElement>('#kr-map-tooltip')
+    const flagEl = root.querySelector<HTMLElement>('#kr-map-flag')
+    const nameEl = root.querySelector<HTMLElement>('#kr-map-name')
+    if (!tooltip || !flagEl || !nameEl) return
+
+    const markerEls = root.querySelectorAll<SVGGElement>('.kr-marker')
+
+    function show(target: SVGGElement, ev: MouseEvent) {
+      const id = target.getAttribute('data-country-id') ?? ''
+      const name = target.getAttribute('data-country-name') ?? ''
+      // обновить флаг через CSS-класс flag-icons
+      flagEl!.className = `fi fi-${id.toLowerCase()} kr-flag w-6 h-4 rounded-sm shadow-sm`
+      nameEl!.textContent = name
+      // позиционирование относительно root
+      const rootRect = root!.getBoundingClientRect()
+      tooltip!.style.left = `${ev.clientX - rootRect.left}px`
+      tooltip!.style.top = `${ev.clientY - rootRect.top}px`
+      tooltip!.style.opacity = '1'
+    }
+
+    function hide() {
+      tooltip!.style.opacity = '0'
+    }
+
+    markerEls.forEach((el) => {
+      el.addEventListener('mouseenter', (ev) => show(el, ev as MouseEvent))
+      el.addEventListener('mousemove', (ev) => {
+        const rootRect = root!.getBoundingClientRect()
+        tooltip!.style.left = `${(ev as MouseEvent).clientX - rootRect.left}px`
+        tooltip!.style.top = `${(ev as MouseEvent).clientY - rootRect.top}px`
+      })
+      el.addEventListener('mouseleave', hide)
+      // touch: tap → show, tap outside → hide handled below
+      el.addEventListener('touchstart', (ev) => {
+        const t = (ev as TouchEvent).touches[0]
+        show(el, { clientX: t.clientX, clientY: t.clientY } as MouseEvent)
+      }, { passive: true })
+    })
+
+    // Hide on outside click (mobile)
+    document.addEventListener('click', (ev) => {
+      const t = ev.target as Element | null
+      if (t && !t.closest('.kr-marker')) hide()
+    })
+  })()
+</script>
+
+<style>
+  /* Hover на маркер — увеличить кольцо */
+  .kr-marker:hover circle:first-child {
+    r: 14;
+    transition: r 200ms ease-out;
+  }
+  .kr-marker circle {
+    transition: r 200ms ease-out;
+  }
+  /* Hover на страну (любую) — лёгкое затемнение для подсветки */
+  .kr-countries path {
+    transition: fill 150ms ease-out;
+  }
+  .kr-countries path:hover {
+    fill: var(--color-illus-mid) !important;
+  }
+  /* Highlighted country (Kazakhstan) — насыщенный hover */
+  .kr-countries path[data-country-id="kz"]:hover {
+    fill: var(--color-primary-hover) !important;
+  }
+
+  /* flag-icons override: фиксированные размеры */
+  .kr-flag {
+    background-size: cover;
+    background-position: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kr-marker circle,
+    .kr-countries path,
+    #kr-map-tooltip {
+      transition: none !important;
+    }
+  }
+</style>

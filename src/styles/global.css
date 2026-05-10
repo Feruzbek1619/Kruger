@@ -45,7 +45,8 @@
     font-weight: 700;
     line-height: var(--leading-tight);
     margin: 0;
-    color: var(--color-text);
+    /* color: НЕ задаём — наследуется от родителя. Иначе на тёмных секциях
+       (Hero, Footer) h1 рендерится тёмным на тёмном фоне. */
   }
 
   p { margin: 0; }
@@ -88,6 +89,20 @@
 }
 @media (min-width: 80rem) {
   .container-page { padding-inline: 2.5rem; }
+}
+
+/* ============================================================
+ * Z-index scale — Tailwind 4 не автогенерит --z-* в утилиты,
+ * объявляем явно. Должно совпадать с tokens.css:--z-*.
+ * Без этих правил `class="z-sticky"` ничего не делает →
+ * sticky header пробивается элементами с transform (z auto).
+ * ============================================================ */
+@layer utilities {
+  .z-dropdown { z-index: 50; }
+  .z-sticky   { z-index: 60; }
+  .z-modal    { z-index: 70; }
+  .z-popover  { z-index: 80; }
+  .z-toast    { z-index: 90; }
 }
 
 /* visually hidden */

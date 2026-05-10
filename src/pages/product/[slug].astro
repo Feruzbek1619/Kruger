@@ -3,13 +3,13 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import ProductGallery from '@/components/products/ProductGallery.vue'
 import RequestPriceForm from '@/components/products/RequestPriceForm.vue'
-import ProductCard from '@/components/cards/ProductCard.vue'
+import ProductSpecsTable from '@/components/products/ProductSpecsTable.astro'
+import RelatedProducts from '@/components/products/RelatedProducts.astro'
 import Tabs from '@/components/ui/Tabs.vue'
 import Icon from '@/components/ui/Icon.astro'
 import allProducts from '@/mocks/all-products.json'
 import productDetails from '@/mocks/product-details.json'
 import categories from '@/mocks/categories.json'
-import segments from '@/mocks/segments.json'
 import { t } from '@/lib/i18n'
 import type { Product } from '@/types'
 
@@ -40,12 +40,6 @@ const d = {
 // Find category for breadcrumbs
 const category = (categories as any[]).find((c) => c.id === product.category)
 const categoryTitle = category?.title ?? 'Продукция'
-
-// Related: same category, exclude current, max 4
-const allList = allProducts as Product[]
-const related = allList
-  .filter((p) => p.category === product.category && p.slug !== product.slug)
-  .slice(0, 4)
 
 // Specs combined for tab 3
 const apiSpecs  = (product as any).apiSpec ?? []
@@ -268,32 +262,16 @@ const formErrors = {
           )}
         </div>
 
-        <!-- Properties -->
+        <!-- Properties — extracted to ProductSpecsTable component -->
         <div slot="properties" class="max-w-4xl">
-          {d.physicalProps.length > 0 ? (
-            <div class="overflow-x-auto rounded-lg border border-border-soft bg-bg">
-              <table class="w-full text-sm">
-                <thead class="bg-bg-soft">
-                  <tr>
-                    <th class="text-left font-semibold px-4 py-3 text-text">{t(lang, 'products.detail.param')}</th>
-                    <th class="text-left font-semibold px-4 py-3 text-text">{t(lang, 'products.detail.value')}</th>
-                    <th class="text-left font-semibold px-4 py-3 text-text">{t(lang, 'products.detail.method')}</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-border-soft">
-                  {d.physicalProps.map((p: { param: string; value: string; method: string }) => (
-                    <tr>
-                      <td class="px-4 py-3 text-text">{p.param}</td>
-                      <td class="px-4 py-3 font-medium text-text font-mono">{p.value}</td>
-                      <td class="px-4 py-3 text-text-muted font-mono text-xs">{p.method}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p class="text-sm text-text-muted italic">Полные физико-химические свойства — в PDS на этот продукт.</p>
-          )}
+          <ProductSpecsTable
+            rows={d.physicalProps}
+            labels={{
+              param:  t(lang, 'products.detail.param'),
+              value:  t(lang, 'products.detail.value'),
+              method: t(lang, 'products.detail.method'),
+            }}
+          />
         </div>
 
         <!-- Benefits -->
@@ -312,25 +290,11 @@ const formErrors = {
     </div>
   </section>
 
-  <!-- Related products -->
-  {related.length > 0 && (
-    <section class="bg-bg py-12 md:py-16">
-      <div class="container-page">
-        <h2 class="font-display text-2xl md:text-3xl font-bold mb-8">
-          {t(lang, 'products.detail.relatedTitle')}
-        </h2>
-        <ul class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {related.map((p) => (
-            <li>
-              <ProductCard
-                client:visible
-                product={p}
-                ctaLabel={t(lang, 'products.detail.tabDescription').replace('Описание', 'Подробнее')}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
+  <!-- Related products — extracted to RelatedProducts component -->
+  <RelatedProducts
+    currentSlug={product.slug}
+    currentCategory={product.category}
+    title={t(lang, 'products.detail.relatedTitle')}
+    ctaLabel={t(lang, 'products.moreDetails')}
+  />
 </BaseLayout>

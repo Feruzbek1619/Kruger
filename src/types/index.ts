@@ -10,6 +10,33 @@ export interface Product {
   volumes: string[]
   image: string
   badges?: ('NEW' | 'BESTSELLER')[]
+  apiSpec?: string[]
+  aceaSpec?: string[]
+}
+
+/**
+ * Расширенные данные продукта для страницы /product/[slug]/.
+ * Хранятся отдельно от Product (в product-details.json) и заполнены
+ * только для приоритетных продуктов; остальные используют _default.
+ */
+export interface PhysicalProp {
+  param: string
+  value: string
+  method?: string
+}
+
+export interface ProductDetail {
+  description: string
+  engineTypes?: string[]
+  notRecommendedFor?: string[]
+  intervals?: string[]
+  compatible?: string[]
+  apiSpec?: string[]
+  aceaSpec?: string[]
+  oemApprovals?: string[]
+  recommendedFor?: string[]
+  physicalProps?: PhysicalProp[]
+  benefits?: string[]
 }
 
 export interface NewsItem {

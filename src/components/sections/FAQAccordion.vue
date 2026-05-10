@@ -16,7 +16,7 @@ defineProps<Props>()
   <section class="relative bg-bg-soft py-16 md:py-24 overflow-hidden">
     <!-- Yellow corner -->
     <span
-      class="absolute top-0 right-0 w-24 h-24 bg-[#F8CC0F]/15 pointer-events-none"
+      class="absolute top-0 right-0 w-24 h-24 bg-brand-yellow/15 pointer-events-none"
       style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
       aria-hidden="true"
     />

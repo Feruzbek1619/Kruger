@@ -5,12 +5,12 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
 <section class="bg-bg py-12 md:py-20">
   <div class="container-page">
-    <div class="relative grid gap-8 lg:gap-12 lg:grid-cols-2 items-stretch rounded-2xl overflow-hidden bg-[#0a0a0e] text-text-inverse">
+    <div class="relative grid gap-8 lg:gap-12 lg:grid-cols-2 items-stretch rounded-2xl overflow-hidden bg-bg-dark text-text-inverse">
       <!-- Yellow brand stripe -->
-      <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F] z-10" aria-hidden="true" />
+      <span class="absolute top-0 left-0 right-0 h-1 bg-brand-yellow z-10" aria-hidden="true" />
       <!-- Diagonal accent -->
       <div
-        class="absolute -right-20 -bottom-32 w-72 h-[36rem] rotate-[18deg] bg-[#F8CC0F]/[0.05] pointer-events-none"
+        class="absolute -right-20 -bottom-32 w-72 h-[36rem] rotate-[18deg] bg-brand-yellow/[0.05] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -23,10 +23,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
           loading="lazy"
           class="absolute inset-0 w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0e] via-[#0a0a0e]/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-[#0a0a0e]/40 lg:to-[#0a0a0e]"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-bg-dark via-bg-dark/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-bg-dark/40 lg:to-bg-dark"></div>
         <!-- Brand mark in image corner -->
         <span
-          class="absolute -right-6 -bottom-6 font-display text-[14rem] font-extrabold leading-none text-[#F8CC0F]/20 select-none pointer-events-none hidden lg:block"
+          class="absolute -right-6 -bottom-6 font-display text-[14rem] font-extrabold leading-none text-brand-yellow/20 select-none pointer-events-none hidden lg:block"
           aria-hidden="true"
         >K</span>
       </div>
@@ -34,8 +34,8 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       <!-- Content -->
       <div class="relative px-6 pb-10 pt-2 md:px-10 md:pt-10 md:pb-14 lg:py-14 lg:pr-12 lg:pl-0">
         <div class="flex items-center gap-3 mb-4">
-          <span class="inline-block h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-[#F8CC0F] uppercase">For Dealers</p>
+          <span class="inline-block h-0.5 w-8 bg-brand-yellow" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">For Dealers</p>
         </div>
         <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.15]">
           {t(lang, 'offers.title')}
@@ -48,7 +48,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
           class="group mt-7 inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-primary text-text-inverse font-semibold text-sm md:text-base hover:bg-primary-hover transition-colors"
         >
           <span>{t(lang, 'offers.cta')}</span>
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F8CC0F] text-text transition-transform group-hover:translate-x-1">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-yellow text-text transition-transform group-hover:translate-x-1">
             <Icon name="arrowRight" class="h-4 w-4" />
           </span>
         </a>

@@ -9,9 +9,9 @@ import { playAudit } from 'playwright-lighthouse'
 const ROUTES = ['/', '/products/', '/about/glance/'] as const
 
 const THRESHOLDS = {
-  performance: 90,    // на dev/preview сложнее достичь 95 — допускаем 90
-  accessibility: 90,
-  'best-practices': 90,
+  performance: 95,    // CLAUDE.md §11 требует mobile perf 95+
+  accessibility: 95,
+  'best-practices': 95,
   seo: 95,
 }
 

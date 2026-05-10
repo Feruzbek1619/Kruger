@@ -15,6 +15,78 @@
       "Поддержка инженеров Krüger на всех этапах"
     ]
   },
+
+  "engine-oil-0w-8": {
+    "description": "Krüger® Engine Oil 0W-8 — ультранизковязкое полносинтетическое масло для гибридных силовых установок последнего поколения. Соответствует требованиям японских OEM на масла категории SP RC GF-7.",
+    "engineTypes": ["Гибридные силовые установки (HEV/PHEV)", "Бензиновые двигатели Toyota Hybrid", "Системы Atkinson cycle"],
+    "notRecommendedFor": ["Турбированные двигатели с высокими нагрузками", "Дизельные двигатели", "Старые конструкции (>10 лет)"],
+    "intervals": [{ "label": "Стандартные условия", "value": "10 000–15 000 км" }],
+    "compatible": "Toyota, Lexus, Honda, Mazda гибриды.",
+    "oemApprovals": ["API SP RC", "ILSAC GF-7", "JASO GLV-1"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "5.2",  "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "210",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-45",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "228",  "method": "ASTM D92"   },
+      { "param": "Плотность при 15°C, кг/м³",                  "value": "836",  "method": "ASTM D4052" }
+    ],
+    "benefits": ["Максимальная топливная экономичность для гибридов", "Снижение расхода до 4%", "Стабильность при пуске после долгого простоя", "Защита электрифицированных трансмиссий"]
+  },
+
+  "engine-oil-0w-16": {
+    "description": "Krüger® Engine Oil 0W-16 — энергосберегающая синтетика для современных бензиновых двигателей с системами Auto Start-Stop и гибридных установок, требующих ультранизкой вязкости.",
+    "engineTypes": ["Бензиновые двигатели с Start-Stop", "Гибриды HEV/PHEV", "Atkinson cycle"],
+    "notRecommendedFor": ["Спортивные двигатели с высокой нагрузкой", "Старые двигатели (>2018)"],
+    "intervals": [{ "label": "Стандартные условия", "value": "10 000–15 000 км" }],
+    "compatible": "Toyota, Honda, Lexus, Mazda — модели 2018+.",
+    "oemApprovals": ["API SP RC", "ILSAC GF-6B"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "6.8",  "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "195",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-43",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "230",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Экономия топлива до 3.5%", "Защита при частых пусках Start-Stop", "Совместимость с гибридными системами", "Низкая летучесть NOACK"]
+  },
+
+  "engine-oil-0w-20-c5": {
+    "description": "Krüger® Engine Oil 0W-20 C5 — энергосберегающее полносинтетическое масло категории C5 для современных бензиновых и гибридных моторов с прямым впрыском.",
+    "engineTypes": ["GDI и T-GDI бензиновые двигатели", "Гибриды HEV/PHEV", "Двигатели с Mild Hybrid 48V"],
+    "notRecommendedFor": ["Двигатели, требующие 5W-30 и выше", "Старые двигатели без VVT"],
+    "intervals": [
+      { "label": "Стандартные условия", "value": "10 000–15 000 км" },
+      { "label": "Тяжёлые условия",      "value": "5 000–10 000 км" }
+    ],
+    "compatible": "Mercedes-Benz, BMW, Volvo, Ford, Hyundai, Kia, Toyota.",
+    "oemApprovals": ["ACEA C5", "MB-Approval 229.71", "Volvo VCC RBS0-2AE", "Ford WSS-M2C947-A"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "44.2", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "8.4",  "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "172",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-42",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "230",  "method": "ASTM D92"   },
+      { "param": "Сульфатная зольность, % масс.",                "value": "0.7",  "method": "ASTM D874"  }
+    ],
+    "benefits": ["Экономия топлива до 3%", "Совместимость с DPF / GPF", "Защита турбокомпрессоров", "Стабильность плёнки при экстремальных нагрузках"]
+  },
+
+  "engine-oil-0w-30": {
+    "description": "Krüger® Engine Oil 0W-30 — премиальная полносинтетика для всесезонной эксплуатации в суровом климате. Excellent холодный пуск до −40°C.",
+    "engineTypes": ["Бензиновые и дизельные двигатели", "Турбированные моторы", "Двигатели с DPF"],
+    "intervals": [{ "label": "Стандартные условия", "value": "12 000–20 000 км" }],
+    "compatible": "Audi, BMW, Mercedes, VW, Volvo, Porsche.",
+    "oemApprovals": ["ACEA A5/B5", "MB 229.51", "BMW Longlife-04", "VW 504 00 / 507 00"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "59.1", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "10.6", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "175",  "method": "ASTM D2270" },
+      { "param": "Динамическая вязкость CCS при -35°C, мПа·с","value": "5900", "method": "ASTM D5293" },
+      { "param": "Температура застывания, °C",                  "value": "-46",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "234",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Холодный пуск до −40°C", "Long-life интервалы", "Защита от износа на всех режимах", "Поддержка систем DPF"]
+  },
+
   "engine-oil-5w-30-sp": {
     "description": "Krüger® Engine Oil 5W-30 SP — это современное полностью синтетическое моторное масло, разработанное для бензиновых и лёгких дизельных двигателей последних поколений, в том числе с системами прямого впрыска (GDI) и турбонаддувом.\n\nУникальная композиция базовых масел и присадок обеспечивает минимальный износ при холодном пуске, стабильную защиту при экстремальных нагрузках, высокий ресурс между заменами и совместимость с современными системами очистки выхлопа.",
     "engineTypes": [
@@ -68,47 +140,450 @@
       "Экономия топлива до 3%"
     ]
   },
+
+  "engine-oil-5w-30-c3": {
+    "description": "Krüger® Engine Oil 5W-30 C3 — Mid-SAPS синтетическое масло для современных дизельных двигателей с DPF и бензиновых GDI, требующих категории C3 ACEA.",
+    "engineTypes": ["Дизель с DPF", "Бензин с GPF", "Турбированные TDI / TFSI"],
+    "notRecommendedFor": ["Старые двигатели до 2005", "Двигатели без сажевого фильтра, требующие full-SAPS"],
+    "intervals": [{ "label": "Long-Life интервалы", "value": "до 30 000 км" }],
+    "compatible": "BMW, MB, Audi, VW, Porsche, Opel, Hyundai с DPF.",
+    "oemApprovals": ["ACEA C3", "MB 229.31 / 229.51", "BMW Longlife-04", "VW 504 00 / 507 00", "Porsche C30"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "12.1", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "168",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-39",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "228",  "method": "ASTM D92"   },
+      { "param": "Сульфатная зольность, % масс.",                "value": "0.78", "method": "ASTM D874"  },
+      { "param": "Щелочное число (TBN), мг KOH/г",              "value": "7.6",  "method": "ASTM D2896" }
+    ],
+    "benefits": ["Совместимость с DPF / GPF", "Long-Life до 30 000 км", "Снижение зольности и износа фильтров", "Стабильность при высоких нагрузках"]
+  },
+
   "engine-oil-5w-40-sp": {
     "description": "Krüger® Engine Oil 5W-40 SP — универсальное полносинтетическое масло для турбированных бензиновых и дизельных двигателей. Подходит для широкого диапазона современных моторов с высокими требованиями к защите.",
-    "engineTypes": [
-      "Турбированные бензиновые двигатели",
-      "Дизельные двигатели легковых автомобилей",
-      "Двигатели с прямым впрыском",
-      "Современные гибриды"
-    ],
+    "engineTypes": ["Турбированные бензиновые двигатели", "Дизельные двигатели легковых автомобилей", "Двигатели с прямым впрыском", "Современные гибриды"],
     "notRecommendedFor": ["Двигатели, требующие масла категории C5 / 0W-20"],
     "intervals": [
       { "label": "Стандартные условия", "value": "10 000–15 000 км" },
       { "label": "Тяжёлые условия",      "value": "5 000–10 000 км" }
     ],
     "compatible": "Mercedes-Benz, BMW, VW, Audi, Porsche, Volvo и др.",
-    "oemApprovals": [
-      "MB-Approval 229.5",
-      "VW 502 00 / 505 00",
-      "BMW Longlife-01",
-      "Porsche A40",
-      "Renault RN0700 / RN0710"
-    ],
+    "oemApprovals": ["MB-Approval 229.5", "VW 502 00 / 505 00", "BMW Longlife-01", "Porsche A40", "Renault RN0700 / RN0710"],
     "physicalProps": [
       { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "13.8", "method": "ASTM D445"  },
       { "param": "Индекс вязкости",                            "value": "172",  "method": "ASTM D2270" },
       { "param": "Температура застывания, °C",                 "value": "-39",  "method": "ASTM D97"   },
       { "param": "Температура вспышки, °C",                    "value": "230",  "method": "ASTM D92"   }
     ],
-    "benefits": [
-      "Универсальность для бензина и дизеля",
-      "Стабильность плёнки при высоких температурах",
-      "Защита турбокомпрессоров от закоксовывания",
-      "Совместимость с DPF и катализаторами"
-    ]
+    "benefits": ["Универсальность для бензина и дизеля", "Стабильность плёнки при высоких температурах", "Защита турбокомпрессоров от закоксовывания", "Совместимость с DPF и катализаторами"]
   },
+
+  "engine-oil-5w-40-c4": {
+    "description": "Krüger® Engine Oil 5W-40 C4 — Low-SAPS масло для современных дизельных двигателей с DPF, требующих ACEA C4. Особенно для Mercedes-Benz и Renault.",
+    "engineTypes": ["Дизель с DPF / SCR", "Турбированные дизельные легковые"],
+    "notRecommendedFor": ["Старые дизельные без DPF (использовать E7 / 15W-40)"],
+    "intervals": [{ "label": "Long-Life", "value": "до 30 000 км" }],
+    "compatible": "Mercedes-Benz, Renault, Nissan, Dacia.",
+    "oemApprovals": ["ACEA C4", "MB 226.51 / 229.51", "Renault RN 0720"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "13.5", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "170",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-39",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "232",  "method": "ASTM D92"   },
+      { "param": "Сульфатная зольность, % масс.",                "value": "0.5",  "method": "ASTM D874"  }
+    ],
+    "benefits": ["Совместимость с DPF / SCR", "Защита турбокомпрессоров", "Минимальная зольность Low-SAPS", "Long-Life интервалы"]
+  },
+
+  "engine-oil-10w-30-cf": {
+    "description": "Krüger® Engine Oil 10W-30 CF — полусинтетика для дизельных двигателей коммерческого транспорта с пробегом, обеспечивающая надёжную защиту при тяжёлой эксплуатации.",
+    "engineTypes": ["Дизельные двигатели грузовиков", "Двигатели спецтехники", "Старые легковые дизели"],
+    "intervals": [{ "label": "Стандартные условия", "value": "8 000–15 000 км" }],
+    "compatible": "MAN, Scania, IVECO, грузовики 1990-х–2010-х.",
+    "oemApprovals": ["API CF/CF-4", "ACEA E2"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "11.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "138",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-30",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "228",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Доступная цена для парка", "Надёжная защита при пробеге", "Совместимость с биодизелем B7", "Стабильная работа при холодном пуске"]
+  },
+
+  "engine-oil-10w-40-sn-cf": {
+    "description": "Krüger® Engine Oil 10W-40 SN/CF — полусинтетическое масло для двигателей со средним и большим пробегом. Универсально для бензина и дизеля без DPF.",
+    "engineTypes": ["Бензиновые двигатели", "Дизельные двигатели без DPF", "Двигатели с пробегом >100 000 км"],
+    "intervals": [{ "label": "Стандартные условия", "value": "7 500–10 000 км" }],
+    "compatible": "Toyota, Hyundai, Kia, Lada, ГАЗ, УАЗ.",
+    "oemApprovals": ["API SN/CF", "ACEA A3/B4", "MB 229.1", "VW 501 01 / 505 00"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.5", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "150",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-30",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "228",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Универсальность бензин/дизель", "Защита двигателей с пробегом", "Снижение угара масла", "Совместимость с GPL/CNG"]
+  },
+
+  "engine-oil-10w-40-e7": {
+    "description": "Krüger® Engine Oil 10W-40 E7 — UHPDO-масло для дизельных двигателей коммерческого транспорта Euro III–IV без DPF, по требованиям ACEA E7.",
+    "engineTypes": ["Дизели грузовиков Euro III/IV без DPF", "Двигатели MAN, IVECO, Scania, Volvo, DAF"],
+    "notRecommendedFor": ["Двигатели Euro V/VI с DPF — используйте E9"],
+    "intervals": [{ "label": "Long-Drain", "value": "до 80 000–120 000 км" }],
+    "compatible": "MAN, Scania, Volvo, DAF, IVECO Euro III/IV.",
+    "oemApprovals": ["ACEA E7", "MB 228.3", "MAN M3275", "Volvo VDS-3", "Renault RVI RXD/RLD-2"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.2", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "148",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-30",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "230",  "method": "ASTM D92"   },
+      { "param": "Щелочное число (TBN), мг KOH/г",              "value": "11.8", "method": "ASTM D2896" }
+    ],
+    "benefits": ["Long-Drain интервалы до 120 000 км", "Высокий TBN для дизельных грузовиков", "Защита от сажевых отложений", "Стабильность плёнки в турбодизелях"]
+  },
+
+  "engine-oil-15w-40-e7": {
+    "description": "Krüger® Engine Oil 15W-40 E7 — минеральное масло для дизельных двигателей коммерческого транспорта Euro III–IV без DPF.",
+    "engineTypes": ["Дизели грузовиков Euro III/IV", "Внедорожная техника", "Стационарные двигатели"],
+    "intervals": [{ "label": "Стандартные условия", "value": "до 60 000 км" }],
+    "compatible": "Грузовая техника MAN, Scania, Volvo, DAF, КамАЗ.",
+    "oemApprovals": ["ACEA E7", "API CI-4", "MAN M3275", "Volvo VDS-3"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "15.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "138",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-30",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "232",  "method": "ASTM D92"   },
+      { "param": "Щелочное число (TBN), мг KOH/г",              "value": "11.5", "method": "ASTM D2896" }
+    ],
+    "benefits": ["Доступная цена для парков", "Надёжная защита при тяжёлой эксплуатации", "Совместимость с биодизелем B7", "Совместимость с турбонаддувом"]
+  },
+
+  "engine-oil-10w-40-e9": {
+    "description": "Krüger® Engine Oil 10W-40 E9 — Low-SAPS масло для дизельных двигателей грузовиков Euro V/VI с DPF / SCR / EGR. Соответствует ACEA E9 и API CJ-4.",
+    "engineTypes": ["Дизели грузовиков Euro V/VI", "Двигатели с DPF / SCR / EGR"],
+    "intervals": [{ "label": "Long-Drain", "value": "до 100 000 км" }],
+    "compatible": "MAN, Scania, Volvo, DAF, MB Actros Euro V/VI.",
+    "oemApprovals": ["ACEA E9", "API CJ-4", "MB 228.31", "MAN M3477", "Volvo VDS-4"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.6", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "150",  "method": "ASTM D2270" },
+      { "param": "Температура вспышки, °C",                     "value": "230",  "method": "ASTM D92"   },
+      { "param": "Сульфатная зольность, % масс.",                "value": "0.95", "method": "ASTM D874"  },
+      { "param": "Щелочное число (TBN), мг KOH/г",              "value": "10.5", "method": "ASTM D2896" }
+    ],
+    "benefits": ["Совместимость с DPF / SCR Euro V/VI", "Long-Drain до 100 000 км", "Минимальная зольность Low-SAPS", "Защита турбокомпрессоров"]
+  },
+
+  "engine-oil-15w-40-ci4": {
+    "description": "Krüger® Engine Oil 15W-40 CI-4 — минеральное масло для дизельных двигателей грузовиков по API CI-4 и ACEA E7.",
+    "engineTypes": ["Дизели Euro III/IV без DPF", "Стационарные двигатели", "Спецтехника"],
+    "intervals": [{ "label": "Стандартные условия", "value": "до 50 000 км" }],
+    "compatible": "MAN, Volvo, DAF, IVECO, КамАЗ, МАЗ.",
+    "oemApprovals": ["API CI-4", "ACEA E7", "Volvo VDS-3", "Cummins CES 20078"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.8", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "135",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-30",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "230",  "method": "ASTM D92"   },
+      { "param": "Щелочное число (TBN), мг KOH/г",              "value": "11.0", "method": "ASTM D2896" }
+    ],
+    "benefits": ["Универсальность для парка", "Защита от полировки гильз", "Стабильность при пиковых температурах", "Низкая стоимость владения"]
+  },
+
+  "engine-oil-15w-40-sf-cf": {
+    "description": "Krüger® Engine Oil 15W-40 SF/CF — минеральное всесезонное масло для классических бензиновых и дизельных двигателей.",
+    "engineTypes": ["Классические бензиновые двигатели (1980-2000)", "Дизельные двигатели без турбонаддува", "Старая садовая техника"],
+    "intervals": [{ "label": "Стандартные условия", "value": "5 000–7 500 км" }],
+    "compatible": "ВАЗ, ГАЗ, классические Mercedes/BMW <1995, олдтаймеры.",
+    "oemApprovals": ["API SF/CF"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.5", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "125",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-27",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "228",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Доступная цена", "Защита олдтаймеров", "Совместимость с этилированным бензином", "Стабильность при простое"]
+  },
+
+  "atf-multi": {
+    "description": "Krüger® ATF Multi-Vehicle — синтетическая жидкость для автоматических трансмиссий, подходящая для большинства современных АКПП с 4-9 ступенями. Заменяет более 20 спецификаций.",
+    "engineTypes": ["АКПП Aisin (Toyota, Lexus, Volvo)", "ZF 5/6/8/9HP", "Mercedes 7G-Tronic / 9G-Tronic", "GM 6L/8L/10L", "Hyundai/Kia A6/A8"],
+    "notRecommendedFor": ["CVT (использовать CVT Fluid)", "DCT (использовать DCT Fluid)", "Mercedes 722.6 (использовать ATF MB 236.14)"],
+    "intervals": [
+      { "label": "Сервисная замена",   "value": "60 000–100 000 км" },
+      { "label": "Тяжёлые условия",   "value": "40 000–60 000 км" }
+    ],
+    "compatible": "Toyota WS, Dexron VI, Mercon LV, MB 236.41, ZF Lifeguard 6 — см. полный список в PDS.",
+    "oemApprovals": ["Dexron VI", "Mercon LV", "Toyota WS", "MB 236.14 / 236.41", "ZF TE-ML 11", "Aisin JWS 3324"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "6.2",  "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "32.5", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "182",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-50",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "210",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Покрывает 90% современных АКПП", "Плавное переключение при низких T", "Стабильный коэффициент трения", "Защита соленоидов и фрикционов"]
+  },
+
+  "gear-oil-80w-90-gl5": {
+    "description": "Krüger® Gear Oil 80W-90 GL-5 — минеральное трансмиссионное масло для механических коробок и гипоидных мостов с высокими нагрузками.",
+    "engineTypes": ["МКПП легковых и грузовых", "Гипоидные мосты", "Раздаточные коробки"],
+    "notRecommendedFor": ["МКПП с синхронизаторами Hypoid (использовать GL-4)", "АКПП", "CVT"],
+    "intervals": [{ "label": "Стандартные условия", "value": "60 000–100 000 км" }],
+    "compatible": "Грузовики, спецтехника, классические заднеприводные авто.",
+    "oemApprovals": ["API GL-5", "MIL-PRF-2105E", "MAN 342 Type M2", "ZF TE-ML 05A/16B/17B/19B/21A"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.5", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "98",   "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-27",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "210",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["EP-присадки для гипоидных пар", "Защита от задиров", "Стабильность при ударных нагрузках", "Совместимость с уплотнителями"]
+  },
+
+  "hydraulic-hvlp-32": {
+    "description": "Krüger® Hydraulic HVLP 32 — высокоиндексное гидравлическое масло для всесезонной эксплуатации в широком диапазоне температур (HVLP по DIN 51524-3).",
+    "engineTypes": ["Промышленные гидросистемы", "Мобильная гидравлика (экскаваторы, погрузчики)", "Гидростанции в холодных климатах"],
+    "intervals": [{ "label": "По часам наработки", "value": "2 000–4 000 ч" }],
+    "compatible": "Bosch Rexroth, Eaton, Vickers, Parker, Sauer-Danfoss.",
+    "oemApprovals": ["DIN 51524-3 HVLP", "ISO 11158 HV", "Eaton Vickers I-286-S / M-2950-S", "Bosch Rexroth RDE 90220"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "32.0", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "6.4",  "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "150",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-39",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "210",  "method": "ASTM D92"   },
+      { "param": "Деэмульсация при 54°C, мин",                  "value": "<15",  "method": "ASTM D1401" }
+    ],
+    "benefits": ["Всесезонная работа -35°C…+90°C", "Защита от износа Zn-AW / S-P", "Совместимость с многоконтурными системами", "Хорошая фильтруемость"]
+  },
+
+  "hydraulic-hvlp-46": {
+    "description": "Krüger® Hydraulic HVLP 46 — стандартное всесезонное гидравлическое масло ISO VG 46 с высоким индексом вязкости.",
+    "engineTypes": ["Промышленная гидравлика", "Прессы, литьё, станки", "Сельхоз- и спецтехника"],
+    "intervals": [{ "label": "По часам наработки", "value": "2 000–4 000 ч" }],
+    "compatible": "Стандартные гидросистемы.",
+    "oemApprovals": ["DIN 51524-3 HVLP", "ISO 11158 HV", "Eaton Vickers", "Bosch Rexroth"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "46.0", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "8.1",  "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "148",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-36",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "215",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Стандарт для большинства гидросистем", "Стабильность при +100°C", "Защита от ржавчины и окисления", "Хорошая фильтруемость"]
+  },
+
+  "hydraulic-hvlp-46-zf": {
+    "description": "Krüger® Hydraulic HVLP 46 ZF — премиальное гидравлическое масло с одобрением ZF для трансмиссий и гидросистем коммерческого транспорта.",
+    "engineTypes": ["ZF гидротрансмиссии", "Спецтехника с ZF", "Коммерческий транспорт"],
+    "intervals": [{ "label": "ZF интервалы", "value": "согласно сервис-плану" }],
+    "compatible": "ZF Astronic, Ecomid, ZF спецтехника.",
+    "oemApprovals": ["ZF TE-ML 02L / 03E / 04D / 17H", "DIN 51524-3", "ISO 11158 HV"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "46.0", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "8.2",  "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "152",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-39",  "method": "ASTM D97"   }
+    ],
+    "benefits": ["Официальное одобрение ZF", "Long-life в гидротрансмиссиях", "Стабильный коэффициент трения", "Совместимость с фрикционными материалами"]
+  },
+
+  "hydraulic-hvlp-68": {
+    "description": "Krüger® Hydraulic HVLP 68 — гидравлическое масло ISO VG 68 для тяжёлых нагрузок, стационарного оборудования и горячих климатов.",
+    "engineTypes": ["Прессовое оборудование", "Морская гидравлика", "Тяжёлая стационарная гидравлика"],
+    "intervals": [{ "label": "По часам наработки", "value": "3 000–6 000 ч" }],
+    "compatible": "Большие промышленные гидросистемы.",
+    "oemApprovals": ["DIN 51524-3 HVLP", "ISO 11158 HV"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "68.0", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "10.8", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "145",  "method": "ASTM D2270" },
+      { "param": "Температура вспышки, °C",                     "value": "220",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Защита при пиковых давлениях", "Long-Life в стационарных системах", "Стабильность плёнки при +100°C", "Хорошая антипенность"]
+  },
+
+  "industrial-gear-iso-220": {
+    "description": "Krüger® Industrial Gear ISO 220 — индустриальное редукторное масло для тяжёлых промышленных редукторов с EP-присадками.",
+    "engineTypes": ["Промышленные редукторы", "Цилиндрические и конические передачи", "Червячные редукторы"],
+    "intervals": [{ "label": "По часам наработки", "value": "5 000–10 000 ч" }],
+    "compatible": "Все типы промышленных редукторов с минеральным маслом.",
+    "oemApprovals": ["ISO 12925-1 CKD", "DIN 51517-3 CLP", "AGMA 9005-E02", "Flender T7300", "David Brown S1.53.101"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "220",  "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "19.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "100",  "method": "ASTM D2270" },
+      { "param": "Температура вспышки, °C",                     "value": "240",  "method": "ASTM D92"   },
+      { "param": "FZG Stage (A/8.3/90)",                         "value": "≥12",  "method": "DIN 51354-2" }
+    ],
+    "benefits": ["FZG Stage 12+ — защита зубчатых пар", "Стабильность при +100°C", "Защита от микропиттинга", "Совместимость с уплотнителями"]
+  },
+
+  "compressor-vdl-100": {
+    "description": "Krüger® Compressor VDL 100 — масло для воздушных поршневых компрессоров с конечной температурой выхода до 220°C (VDL по DIN 51506).",
+    "engineTypes": ["Поршневые воздушные компрессоры", "Стационарные компрессорные станции"],
+    "intervals": [{ "label": "По часам наработки", "value": "1 000–2 000 ч" }],
+    "compatible": "Atlas Copco, Kaeser, Compair поршневые компрессоры.",
+    "oemApprovals": ["DIN 51506 VDL", "ISO 6743-3 DAA"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "100",  "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "11.5", "method": "ASTM D445"  },
+      { "param": "Температура вспышки, °C",                     "value": "245",  "method": "ASTM D92"   },
+      { "param": "Коксуемость, %",                                "value": "0.05", "method": "ASTM D189"  }
+    ],
+    "benefits": ["Минимальное коксование при 220°C", "Защита клапанов от нагара", "Стабильность плёнки в горячих цилиндрах", "Совместимость с водо-маслоотделителями"]
+  },
+
+  "turbine-t-32": {
+    "description": "Krüger® Turbine T-32 — турбинное масло ISO VG 32 для паровых, газовых и гидравлических турбин с высокими требованиями к окислительной стабильности.",
+    "engineTypes": ["Паровые турбины", "Газовые турбины", "Гидравлические турбины"],
+    "intervals": [{ "label": "По часам наработки", "value": "30 000–50 000 ч" }],
+    "compatible": "Siemens, GE, Mitsubishi, Alstom турбины.",
+    "oemApprovals": ["ISO 8068 L-TSA / TGA", "DIN 51515-1 L-TD", "Siemens TLV 9013 04/05", "GE GEK 32568"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "32.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "108",  "method": "ASTM D2270" },
+      { "param": "Температура вспышки, °C",                     "value": "215",  "method": "ASTM D92"   },
+      { "param": "TOST окислительная стабильность, ч",          "value": ">10000", "method": "ASTM D943"  },
+      { "param": "Деэмульсация при 54°C, мин",                  "value": "<10",  "method": "ASTM D1401" }
+    ],
+    "benefits": ["Сверхвысокая окислительная стабильность TOST", "Срок службы до 50 000 ч", "Низкое пенообразование", "Совместимость с водо-маслоотделителями"]
+  },
+
+  "circulating-oil-iso-68": {
+    "description": "Krüger® Circulating Oil ISO 68 — циркуляционное масло для централизованных систем смазки промышленного оборудования.",
+    "engineTypes": ["Циркуляционные системы прокатных станов", "Бумагоделательные машины", "Универсальные циркуляционные системы"],
+    "intervals": [{ "label": "По часам наработки", "value": "5 000 ч" }],
+    "oemApprovals": ["DIN 51517-2 CL", "ISO 12925-1 CKB", "Morgan Construction"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "68.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "100",  "method": "ASTM D2270" },
+      { "param": "Температура вспышки, °C",                     "value": "220",  "method": "ASTM D92"   },
+      { "param": "Деэмульсация при 54°C, мин",                  "value": "<15",  "method": "ASTM D1401" }
+    ],
+    "benefits": ["Хорошая деэмульсация воды", "Стабильность плёнки в long-runs", "Защита подшипников", "Совместимость с современными фильтрами"]
+  },
+
+  "utto-10w-30": {
+    "description": "Krüger® UTTO 10W-30 — универсальное тракторное трансмиссионное-гидравлическое масло (Universal Tractor Transmission Oil) для всех систем трактора кроме двигателя.",
+    "engineTypes": ["МКПП тракторов", "Гидравлика тракторов", "Влажные тормоза тракторов", "Дифференциалы тракторов"],
+    "intervals": [{ "label": "По мото-часам", "value": "1 000–1 500 ч" }],
+    "compatible": "John Deere, Case IH, New Holland, Massey Ferguson, Claas — все универсальные трактора.",
+    "oemApprovals": ["John Deere J20C", "Case MS 1207/1209/1210", "New Holland 134D", "Massey Ferguson M1135/M1141/M1145", "Ford M2C-86A/B/C, M2C-134A/B/C/D"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "10.5", "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "62.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "150",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-36",  "method": "ASTM D97"   }
+    ],
+    "benefits": ["Универсальность — одно масло для всей трансмиссии", "Стабильный коэффициент трения для влажных тормозов", "Защита гидронасосов", "Хорошая фильтруемость"]
+  },
+
+  "stou-15w-40": {
+    "description": "Krüger® STOU 15W-40 — Super Tractor Oil Universal: одно масло для двигателя, трансмиссии, гидравлики и влажных тормозов трактора.",
+    "engineTypes": ["Дизельные двигатели тракторов", "МКПП тракторов", "Гидравлика тракторов", "Влажные тормоза"],
+    "intervals": [{ "label": "Двигатель",   "value": "250–500 ч" }, { "label": "Трансмиссия / гидравлика", "value": "до 1500 ч" }],
+    "compatible": "John Deere, Case IH, New Holland, Massey Ferguson — для парков с одним маслом.",
+    "oemApprovals": ["API CG-4 / SG", "ACEA E2 / E3", "John Deere J27", "Case MS 1207/1208/1209", "Massey Ferguson M1139"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.5", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "135",  "method": "ASTM D2270" },
+      { "param": "Температура вспышки, °C",                     "value": "228",  "method": "ASTM D92"   },
+      { "param": "Щелочное число (TBN), мг KOH/г",              "value": "10.0", "method": "ASTM D2896" }
+    ],
+    "benefits": ["Одно масло на всю технику", "Снижение складских запасов", "Защита влажных тормозов", "Стабильность в диапазоне нагрузок"]
+  },
+
+  "powershift-to4-30": {
+    "description": "Krüger® Powershift TO-4 SAE 30 — трансмиссионное масло для гидрокоробок (powershift) тяжёлой строительной техники по Caterpillar TO-4.",
+    "engineTypes": ["Powershift трансмиссии Caterpillar", "Гидротрансформаторы", "Влажные тормоза тяжёлой техники"],
+    "intervals": [{ "label": "По мото-часам", "value": "1 000 ч" }],
+    "compatible": "Caterpillar, Komatsu, Allison powershift трансмиссии.",
+    "oemApprovals": ["Caterpillar TO-4", "Komatsu Micro Clutch", "Allison C-4", "ZF TE-ML 03C / 17F"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "100",  "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "11.5", "method": "ASTM D445"  },
+      { "param": "Температура вспышки, °C",                     "value": "232",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Стабильный фрикцион для powershift", "Защита от задиров на тяжёлых нагрузках", "Совместимость с гидротрансформаторами", "Long-life в Caterpillar 980/990"]
+  },
+
+  "wheel-bearing-grease": {
+    "description": "Krüger® Wheel Bearing Grease — литиевая высокотемпературная смазка для ступичных подшипников легковых и грузовых автомобилей.",
+    "engineTypes": ["Ступичные подшипники", "Карданные крестовины", "ШРУСы"],
+    "intervals": [{ "label": "Срок службы подшипника", "value": "100 000–150 000 км" }],
+    "oemApprovals": ["DIN 51825 KP2N-30", "ISO 6743-9 L-XBDIB 2"],
+    "physicalProps": [
+      { "param": "Класс по NLGI",                                  "value": "2",    "method": "ASTM D217"  },
+      { "param": "Температура каплепадения, °C",                   "value": "190",  "method": "ASTM D2265" },
+      { "param": "Рабочий диапазон, °C",                            "value": "-30…+140", "method": "—" },
+      { "param": "Защита от ржавчины (EMCOR)",                     "value": "0/0",  "method": "ASTM D6138" }
+    ],
+    "benefits": ["Высокая водостойкость", "Защита подшипников при +140°C", "Долгий срок службы", "Совместимость с уплотнителями"]
+  },
+
+  "grease-lithium-ep2": {
+    "description": "Krüger® Grease Lithium EP2 — универсальная литиевая EP-смазка для подшипников и узлов с высокой нагрузкой.",
+    "engineTypes": ["Промышленные подшипники", "Сельхозтехника", "Спецтехника"],
+    "intervals": [{ "label": "По регламенту узла", "value": "регулярная замена" }],
+    "oemApprovals": ["DIN 51825 KP2K-20", "ISO 6743-9 L-XBCIB 2"],
+    "physicalProps": [
+      { "param": "Класс по NLGI",                          "value": "2",    "method": "ASTM D217"  },
+      { "param": "Температура каплепадения, °C",           "value": "180",  "method": "ASTM D2265" },
+      { "param": "Сваривающая нагрузка (4-Ball), Н",      "value": "2600", "method": "ASTM D2596" },
+      { "param": "Рабочий диапазон, °C",                    "value": "-20…+130", "method": "—" }
+    ],
+    "benefits": ["EP-присадки для ударных нагрузок", "Универсальное применение", "Стабильность при вибрации", "Защита от коррозии"]
+  },
+
+  "adblue": {
+    "description": "Krüger® AdBlue® — высокочистый раствор мочевины 32.5% для систем SCR грузовых автомобилей и легковых дизелей Euro IV+.",
+    "engineTypes": ["SCR-системы дизельных грузовиков Euro IV/V/VI", "SCR-системы легковых дизелей"],
+    "intervals": [{ "label": "Расход", "value": "≈5% от расхода ДТ" }],
+    "oemApprovals": ["ISO 22241-1", "VDA AdBlue®"],
+    "physicalProps": [
+      { "param": "Концентрация мочевины, %",        "value": "32.5",  "method": "ISO 22241-2" },
+      { "param": "Плотность при 20°C, кг/м³",     "value": "1087",  "method": "ISO 22241-2" },
+      { "param": "Температура замерзания, °C",      "value": "-11",   "method": "—" },
+      { "param": "Содержание примесей, ppm",        "value": "<0.5",  "method": "ISO 22241-2" }
+    ],
+    "benefits": ["Соответствие ISO 22241-1", "Защита SCR-катализаторов", "Снижение выбросов NOx до 95%", "Совместимость с сенсорами уровня"]
+  },
+
+  "antifreeze-g12": {
+    "description": "Krüger® Antifreeze G12 — карбоксилатный антифриз красного цвета (OAT) с защитой от коррозии до 5 лет / 250 000 км.",
+    "engineTypes": ["Системы охлаждения легковых VAG / BMW / MB после 1996", "Дизельные грузовики"],
+    "notRecommendedFor": ["Старые системы (G11 — синий/зелёный антифриз)", "Алюминиевые радиаторы из старых сплавов"],
+    "intervals": [{ "label": "Срок службы", "value": "5 лет / 250 000 км" }],
+    "compatible": "VW G12 / G12+, MB 325.3, BMW LC-87 — концентрат разводится 1:1.",
+    "oemApprovals": ["VW TL-774 D / G12", "MB 325.3", "BMW LC-87", "MAN 324 SNF", "Opel-GM 6277M"],
+    "physicalProps": [
+      { "param": "Плотность при 20°C, кг/м³",      "value": "1115",  "method": "ASTM D1122" },
+      { "param": "pH",                                "value": "8.3",   "method": "ASTM D1287" },
+      { "param": "Температура замерзания (50/50), °C", "value": "-37", "method": "ASTM D1177" },
+      { "param": "Температура кипения (50/50), °C", "value": "108",   "method": "ASTM D1120" }
+    ],
+    "benefits": ["Long-life до 5 лет / 250 000 км", "Карбоксилатная защита от коррозии", "Совместимость с алюминиевыми радиаторами", "Не образует осадка"]
+  },
+
+  "brake-fluid-dot4": {
+    "description": "Krüger® Brake Fluid DOT 4 — синтетическая тормозная жидкость на основе гликоля для современных гидравлических тормозных систем.",
+    "engineTypes": ["Гидравлические тормоза легковых и лёгких коммерческих", "ABS / ESP системы", "Гидравлические сцепления"],
+    "intervals": [{ "label": "Сервисная замена", "value": "2 года или 40 000 км" }],
+    "oemApprovals": ["FMVSS 116 DOT 4", "ISO 4925 Class 4", "SAE J1704", "MB 331.0", "VW TL 766-Z"],
+    "physicalProps": [
+      { "param": "Температура кипения сухая, °C",    "value": "260",   "method": "FMVSS 116" },
+      { "param": "Температура кипения влажная, °C", "value": "165",   "method": "FMVSS 116" },
+      { "param": "Кинематическая вязкость при -40°C, мм²/с", "value": "1300", "method": "ASTM D445" },
+      { "param": "pH (10/90 H₂O)",                    "value": "8.0",   "method": "ISO 4925" }
+    ],
+    "benefits": ["Высокая температура кипения 260°C", "Защита от коррозии стали и латуни", "Совместимость с EPDM-уплотнителями", "Стабильность при многократном торможении"]
+  },
+
   "ev-fluid-cool": {
     "description": "Krüger® EV Fluid Cool — диэлектрическая охлаждающая жидкость для аккумуляторов и силовой электроники электромобилей. Не проводит ток, эффективно отводит тепло, безопасна при контакте с электронными компонентами.",
-    "engineTypes": [
-      "Литий-ионные батареи EV / PHEV",
-      "Силовые инверторы и преобразователи",
-      "Электронные блоки управления BMS"
-    ],
+    "engineTypes": ["Литий-ионные батареи EV / PHEV", "Силовые инверторы и преобразователи", "Электронные блоки управления BMS"],
     "intervals": [{ "label": "Срок службы", "value": "5 лет / 100 000 км" }],
     "oemApprovals": ["Соответствует требованиям ведущих европейских EV-OEM (точные одобрения — в PDS)"],
     "physicalProps": [
@@ -117,11 +592,86 @@
       { "param": "Температура вспышки, °C",            "value": "150",    "method": "ASTM D92"   },
       { "param": "Температура застывания, °C",         "value": "-50",    "method": "ASTM D97"   }
     ],
-    "benefits": [
-      "Полная диэлектрическая безопасность",
-      "Эффективный отвод тепла от ячеек",
-      "Совместимость с медью и пластиками",
-      "Низкая летучесть, длительный ресурс"
-    ]
+    "benefits": ["Полная диэлектрическая безопасность", "Эффективный отвод тепла от ячеек", "Совместимость с медью и пластиками", "Низкая летучесть, длительный ресурс"]
+  },
+
+  "ev-reducer-oil-70w": {
+    "description": "Krüger® EV Reducer Oil 70W — низковязкое трансмиссионное масло для одноступенчатых редукторов электромобилей с защитой от микропиттинга и низким гидродинамическим сопротивлением.",
+    "engineTypes": ["Одноступенчатые редукторы EV", "E-axle с интегрированной электроникой", "Реверсивные редукторы PHEV"],
+    "intervals": [{ "label": "Срок службы", "value": "≈жизненный цикл / 200 000 км" }],
+    "oemApprovals": ["Соответствует требованиям ведущих европейских EV-OEM (точные одобрения — в PDS)"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "5.5",  "method": "ASTM D445"  },
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "26.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "165",  "method": "ASTM D2270" },
+      { "param": "Электропроводность, пСм/м",                  "value": "<400", "method": "ASTM D2624" },
+      { "param": "Температура застывания, °C",                  "value": "-48",  "method": "ASTM D97"   }
+    ],
+    "benefits": ["Низкое сопротивление вращения — увеличение запаса хода", "Защита от микропиттинга шестерён", "Совместимость с меди и медно-содержащими материалами", "Низкая электропроводность"]
+  },
+
+  "ev-grease-hi-v": {
+    "description": "Krüger® EV Grease Hi-V — высоковольтная электропроводящая (или диэлектрическая по версии) смазка для подшипников и контактов высоковольтных систем электромобилей.",
+    "engineTypes": ["Подшипники электромоторов EV", "Высоковольтные разъёмы", "Подшипники с EDM-токами"],
+    "intervals": [{ "label": "Срок службы", "value": "≈жизненный цикл узла" }],
+    "physicalProps": [
+      { "param": "Класс по NLGI",                              "value": "2",     "method": "ASTM D217"  },
+      { "param": "Температура каплепадения, °C",               "value": "230",   "method": "ASTM D2265" },
+      { "param": "Рабочий диапазон, °C",                        "value": "-40…+180", "method": "—" },
+      { "param": "Защита от EDM-токов",                         "value": "Да",    "method": "—" }
+    ],
+    "benefits": ["Защита подшипников моторов от EDM-флутинга", "Стабильность при -40…+180°C", "Совместимость с тяговой электроникой", "Длительный ресурс"]
+  },
+
+  "ev-brake-fluid": {
+    "description": "Krüger® EV Brake Fluid — тормозная жидкость с пониженной гигроскопичностью для регенеративных тормозных систем EV / PHEV, минимизирующая эффект «cold-blink» при холодном старте.",
+    "engineTypes": ["Регенеративные тормоза EV/PHEV", "Brake-by-wire системы", "ABS/ESP с интегрированными электронасосами"],
+    "intervals": [{ "label": "Сервисная замена", "value": "3 года" }],
+    "oemApprovals": ["FMVSS 116 DOT 4 LV (Low Viscosity)", "ISO 4925 Class 6"],
+    "physicalProps": [
+      { "param": "Температура кипения сухая, °C",    "value": "265",   "method": "FMVSS 116" },
+      { "param": "Температура кипения влажная, °C", "value": "175",   "method": "FMVSS 116" },
+      { "param": "Кинематическая вязкость при -40°C, мм²/с", "value": "750",  "method": "ASTM D445" },
+      { "param": "pH (10/90 H₂O)",                    "value": "8.5",   "method": "ISO 4925" }
+    ],
+    "benefits": ["Низкая вязкость для электронасосов", "Стабильность в регенеративных режимах", "Защита от внутренней коррозии", "Long-life ресурс 3 года"]
+  },
+
+  "moto-4t-10w-40": {
+    "description": "Krüger® Moto 4T 10W-40 — полусинтетическое масло для четырёхтактных мотоциклов с мокрым сцеплением (JASO MA2).",
+    "engineTypes": ["Четырёхтактные мотоциклы", "Двигатели с мокрым сцеплением", "Спортбайки и туреры"],
+    "notRecommendedFor": ["Двухтактные двигатели", "Скутеры с сухим сцеплением", "ATV с особыми требованиями"],
+    "intervals": [{ "label": "Стандартные условия", "value": "5 000–10 000 км" }],
+    "compatible": "Honda, Yamaha, Suzuki, Kawasaki, BMW Motorrad, Ducati.",
+    "oemApprovals": ["API SN", "JASO MA2"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 100°C, мм²/с", "value": "14.0", "method": "ASTM D445"  },
+      { "param": "Индекс вязкости",                            "value": "162",  "method": "ASTM D2270" },
+      { "param": "Температура застывания, °C",                  "value": "-36",  "method": "ASTM D97"   },
+      { "param": "Температура вспышки, °C",                     "value": "230",  "method": "ASTM D92"   }
+    ],
+    "benefits": ["Стабильный коэффициент трения для мокрого сцепления", "Защита коробки передач", "Стабильность при +130°C", "Совместимость с катализаторами"]
+  },
+
+  "quench-oil-k46": {
+    "description": "Krüger® Quench Oil K46 — закалочное масло для термообработки стальных деталей с быстрой и однородной скоростью охлаждения.",
+    "engineTypes": ["Закалочные ванны термообработки", "Печи газовой цементации", "Индустриальная закалка"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "20.0", "method": "ASTM D445"  },
+      { "param": "Температура вспышки, °C",                     "value": "180",  "method": "ASTM D92"   },
+      { "param": "Время охлаждения 800→400°C, сек",             "value": "5.0",  "method": "—" }
+    ],
+    "benefits": ["Быстрая закалка без коробления", "Однородная твёрдость", "Низкое нагарообразование", "Стабильность при многократном использовании"]
+  },
+
+  "mould-release-oil": {
+    "description": "Krüger® Mould Release Oil — опалубочное масло для строительства, обеспечивающее чистый отрыв бетона от форм без следов и пятен.",
+    "engineTypes": ["Бетонные опалубки", "Стальные и алюминиевые формы", "Сборные ЖБ-конструкции"],
+    "physicalProps": [
+      { "param": "Кинематическая вязкость при 40°C, мм²/с",  "value": "30.0", "method": "ASTM D445"  },
+      { "param": "Температура вспышки, °C",                     "value": "165",  "method": "ASTM D92"   },
+      { "param": "Расход, г/м²",                                  "value": "30–50", "method": "—" }
+    ],
+    "benefits": ["Чистый отрыв без пятен", "Защита формы от коррозии", "Низкий расход", "Безопасен для рабочих"]
   }
 }

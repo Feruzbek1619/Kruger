@@ -27,7 +27,7 @@ const items = categories as ProductCategory[]
     </div>
 
     <ul class="grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {items.map((c, i) => (
+      {items.map((c) => (
         <li>
           <a
             href={c.href}
@@ -35,7 +35,7 @@ const items = categories as ProductCategory[]
           >
             <!-- Hover yellow stripe at bottom -->
             <span
-              class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F8CC0F] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              class="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
               aria-hidden="true"
             />
 
@@ -44,9 +44,6 @@ const items = categories as ProductCategory[]
             </span>
 
             <span class="min-w-0 flex-1">
-              <span class="font-mono text-[10px] tracking-widest text-text-subtle block mb-1">
-                {String(i + 1).padStart(2, '0')}
-              </span>
               <span class="block font-display font-bold text-sm md:text-base text-text leading-snug">{c.title}</span>
               <span class="block text-xs text-text-muted mt-1.5 line-clamp-2 leading-relaxed">{c.slogan}</span>
             </span>

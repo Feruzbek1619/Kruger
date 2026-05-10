@@ -22,7 +22,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         <Icon name="mail" class="h-4 w-4" />
         <span>{t(lang, 'topbar.email')}</span>
       </a>
-      <a href="/catalog.pdf" class="inline-flex items-center gap-2 bg-bg text-text px-3 py-1.5 rounded-pill text-sm font-medium hover:bg-bg-soft transition-colors">
+      <a href="/products/" class="inline-flex items-center gap-2 bg-bg text-text px-3 py-1.5 rounded-pill text-sm font-medium hover:bg-bg-soft transition-colors">
         <Icon name="download" class="h-3.5 w-3.5" />
         <span>{t(lang, 'topbar.downloadCatalog')}</span>
       </a>

@@ -1,3 +1,23 @@
 ---
-return Astro.redirect('/about/glance/')
+/**
+ * /about/ — fallback redirect stub.
+ *
+ * В проде Cloudflare Pages применяет 301 из public/_redirects, и эта страница
+ * не отдаётся клиенту вовсе. Этот HTML — только страховка для локального preview
+ * и адаптеров без поддержки _redirects. delay=0 в meta-refresh — WCAG-compliant
+ * (Timing Adjustable не нарушается при немедленном редиректе).
+ */
 ---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/about/glance/" />
+    <title>Krüger Motor Oil — переход</title>
+    <link rel="canonical" href="https://kruger-oil.de/about/glance/" />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <a href="/about/glance/">Перейти на «О компании»</a>
+  </body>
+</html>

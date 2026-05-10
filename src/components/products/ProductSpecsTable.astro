@@ -1,0 +1,47 @@
+---
+/**
+ * ProductSpecsTable — таблица физико-химических свойств продукта.
+ * Используется в табе «Свойства» на /product/[slug]/.
+ *
+ * Колонки: Параметр / Значение / Метод (ASTM/ISO).
+ * Полосатые строки через even:bg-bg-soft.
+ */
+import type { PhysicalProp } from '@/types'
+
+interface Props {
+  rows: PhysicalProp[]
+  labels?: {
+    param?: string
+    value?: string
+    method?: string
+  }
+}
+const { rows, labels = {} } = Astro.props
+const lParam  = labels.param  ?? 'Параметр'
+const lValue  = labels.value  ?? 'Значение'
+const lMethod = labels.method ?? 'Метод испытания'
+---
+{rows && rows.length > 0 ? (
+  <div class="overflow-x-auto rounded-lg border border-border-soft">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="bg-bg-soft text-left">
+          <th scope="col" class="px-4 py-3 font-display font-semibold text-text">{lParam}</th>
+          <th scope="col" class="px-4 py-3 font-display font-semibold text-text whitespace-nowrap">{lValue}</th>
+          <th scope="col" class="px-4 py-3 font-display font-semibold text-text-muted whitespace-nowrap">{lMethod}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr class="border-t border-border-soft even:bg-bg-soft/40 hover:bg-bg-soft/70 transition-colors">
+            <td class="px-4 py-3 text-text">{r.param}</td>
+            <td class="px-4 py-3 font-mono font-semibold text-text whitespace-nowrap">{r.value}</td>
+            <td class="px-4 py-3 font-mono text-xs text-text-muted whitespace-nowrap">{r.method ?? '—'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+) : (
+  <p class="text-sm text-text-muted">Данные физико-химических свойств уточняются.</p>
+)}

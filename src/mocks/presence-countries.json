@@ -1,0 +1,31 @@
+{
+  "highlightId": "kz",
+  "markers": [
+    { "id": "de", "name": "Germany",      "city": "Stuttgart",     "x": 522, "y": 295, "highlight": true },
+    { "id": "uz", "name": "Uzbekistan",   "city": "Tashkent",      "x": 700, "y": 360, "highlight": true },
+    { "id": "kz", "name": "Kazakhstan",   "city": "Almaty",        "x": 750, "y": 322 },
+    { "id": "ru", "name": "Russia",       "city": "Moscow",        "x": 612, "y": 287 },
+    { "id": "gb", "name": "United Kingdom","city": "London",       "x": 477, "y": 273 },
+    { "id": "fr", "name": "France",       "city": "Paris",         "x": 495, "y": 297 },
+    { "id": "es", "name": "Spain",        "city": "Madrid",        "x": 480, "y": 322 },
+    { "id": "it", "name": "Italy",        "city": "Rome",          "x": 535, "y": 322 },
+    { "id": "pl", "name": "Poland",       "city": "Warsaw",        "x": 545, "y": 290 },
+    { "id": "tr", "name": "Turkey",       "city": "Istanbul",      "x": 595, "y": 335 },
+    { "id": "ae", "name": "UAE",          "city": "Dubai",         "x": 645, "y": 380 },
+    { "id": "sa", "name": "Saudi Arabia", "city": "Riyadh",        "x": 625, "y": 388 },
+    { "id": "ir", "name": "Iran",         "city": "Tehran",        "x": 645, "y": 358 },
+    { "id": "in", "name": "India",        "city": "Mumbai",        "x": 728, "y": 425 },
+    { "id": "cn", "name": "China",        "city": "Shanghai",      "x": 845, "y": 380 },
+    { "id": "jp", "name": "Japan",        "city": "Tokyo",         "x": 905, "y": 350 },
+    { "id": "kr", "name": "South Korea",  "city": "Seoul",         "x": 880, "y": 360 },
+    { "id": "us", "name": "USA",          "city": "New York",      "x": 290, "y": 285 },
+    { "id": "mx", "name": "Mexico",       "city": "Mexico City",   "x": 220, "y": 405 },
+    { "id": "br", "name": "Brazil",       "city": "São Paulo",     "x": 365, "y": 510 },
+    { "id": "ar", "name": "Argentina",    "city": "Buenos Aires",  "x": 340, "y": 555 },
+    { "id": "ng", "name": "Nigeria",      "city": "Lagos",         "x": 525, "y": 460 },
+    { "id": "eg", "name": "Egypt",        "city": "Cairo",         "x": 590, "y": 388 },
+    { "id": "za", "name": "South Africa", "city": "Cape Town",     "x": 590, "y": 580 },
+    { "id": "au", "name": "Australia",    "city": "Sydney",        "x": 905, "y": 555 },
+    { "id": "tj", "name": "Tajikistan",   "city": "Dushanbe",      "x": 705, "y": 365 }
+  ]
+}
