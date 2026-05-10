@@ -103,6 +103,9 @@ const formErrors = {
         client:visible
         images={product.image ? [product.image] : []}
         alt={product.name}
+        category={product.category}
+        viscosity={(product as any).viscosity ?? ''}
+        sku={product.sku}
         transition:name={`product-img-${product.slug}`}
       />
 
