@@ -1,0 +1,13 @@
+import { chromium } from 'playwright'
+const browser = await chromium.launch()
+const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
+const page = await ctx.newPage()
+await page.goto('http://localhost:4321/', { waitUntil: 'load' })
+await page.evaluate(() => document.fonts && document.fonts.ready)
+await page.waitForTimeout(500)
+const map = page.locator('section').filter({ has: page.locator('svg[aria-label*="Карта"]') }).first()
+await map.scrollIntoViewIfNeeded()
+await page.waitForTimeout(400)
+await map.screenshot({ path: 'screenshots/map-new.png' })
+console.log('saved')
+await browser.close()
