@@ -1,0 +1,1142 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: perf.spec.ts >> lighthouse mobile: /
+- Location: tests/perf.spec.ts:23:3
+
+# Error details
+
+```
+TypeError: Failed to fetch browser webSocket URL from http://127.0.0.1:9222/json/version: fetch failed
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e6]
+        - generic [ref=e9]: Leitzstraße 45, 70469 Stuttgart, Germany
+      - button "RU" [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+        - generic [ref=e16]: RU
+        - img [ref=e17]
+    - generic [ref=e19]:
+      - link "+49 711 12 34 56 78" [ref=e20] [cursor=pointer]:
+        - /url: tel:+4971112345678
+        - img [ref=e21]
+        - generic [ref=e23]: +49 711 12 34 56 78
+      - link "info@kruger-oil.de" [ref=e24] [cursor=pointer]:
+        - /url: mailto:info@kruger-oil.de
+        - img [ref=e25]
+        - generic [ref=e28]: info@kruger-oil.de
+      - link "Скачать каталог" [ref=e29] [cursor=pointer]:
+        - /url: /catalog.pdf
+        - img [ref=e30]
+        - generic [ref=e33]: Скачать каталог
+  - banner [ref=e34]:
+    - generic [ref=e36]:
+      - link "Krüger Motor Oil — на главную" [ref=e37] [cursor=pointer]:
+        - /url: /
+        - img "Krüger Motor Oil" [ref=e38]
+      - navigation "Главное меню" [ref=e49]:
+        - link "Главная" [ref=e50] [cursor=pointer]:
+          - /url: /
+        - link "Каталог" [ref=e51] [cursor=pointer]:
+          - /url: /products/
+        - link "О компании" [ref=e53] [cursor=pointer]:
+          - /url: /about/glance/
+          - text: О компании
+          - img [ref=e54]
+        - link "Новости" [ref=e56] [cursor=pointer]:
+          - /url: /news/
+        - link "FAQ" [ref=e57] [cursor=pointer]:
+          - /url: /faq/
+        - link "Контакты" [ref=e58] [cursor=pointer]:
+          - /url: /contact/
+      - generic [ref=e59]:
+        - button "Поиск" [ref=e60] [cursor=pointer]:
+          - img [ref=e61]
+        - link "Связаться" [ref=e64] [cursor=pointer]:
+          - /url: /contact/
+  - main [ref=e65]:
+    - region "Hero" [ref=e67]:
+      - generic [ref=e73]:
+        - generic [ref=e75]:
+          - paragraph [ref=e78]: WE ARE THE MANUFACTURER
+          - heading "Создаём лучшие моторные масла в мире" [level=1] [ref=e79]
+          - paragraph [ref=e80]: От формулы до канистры — каждый литр инженерим мы.
+          - link "Узнать больше" [ref=e81] [cursor=pointer]:
+            - /url: /products/
+            - generic [ref=e82]: Узнать больше
+            - img [ref=e84]
+        - generic:
+          - generic:
+            - generic:
+              - paragraph: DESIGNED FOR DISTANCE
+            - heading [level=1]: Масла, рассчитанные на лишний миллион
+            - paragraph: Доверяют автопарки. Тестируется в экстремальных условиях.
+            - link:
+              - /url: /products/
+              - generic: Узнать больше
+              - generic:
+                - img
+        - generic:
+          - generic:
+            - generic:
+              - paragraph: MOVING THE WORLD, ONE GEAR AT A TIME
+            - heading [level=1]: Our Oils Power The Heart Of Industry
+            - paragraph: Consistent. Reliable. Proven.
+            - link:
+              - /url: /products/
+              - generic: Подробнее
+              - generic:
+                - img
+      - generic:
+        - generic:
+          - generic [ref=e86]:
+            - generic [ref=e87]: "01"
+            - generic [ref=e89]: "03"
+          - generic [ref=e90]:
+            - button "Предыдущий слайд" [ref=e91] [cursor=pointer]:
+              - img [ref=e92]
+            - group "Навигация по слайдам" [ref=e94]:
+              - button "Слайд 1" [ref=e95] [cursor=pointer]
+              - button "Слайд 2" [ref=e96] [cursor=pointer]
+              - button "Слайд 3" [ref=e97] [cursor=pointer]
+            - button "Следующий слайд" [ref=e98] [cursor=pointer]:
+              - img [ref=e99]
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - paragraph [ref=e108]: Bestsellers
+          - heading "Популярные продукты" [level=2] [ref=e109]
+          - paragraph [ref=e110]: Самая востребованная часть нашего каталога
+        - generic [ref=e111]:
+          - link "Показать больше" [ref=e112] [cursor=pointer]:
+            - /url: /products/
+            - text: Показать больше
+            - img [ref=e113]
+          - button "Предыдущие продукты" [disabled] [ref=e115] [cursor=pointer]:
+            - img [ref=e116]
+          - button "Следующие продукты" [ref=e118] [cursor=pointer]:
+            - img [ref=e119]
+      - list [ref=e122]:
+        - listitem [ref=e123]:
+          - article [ref=e124]:
+            - generic [ref=e128]:
+              - generic: K
+              - img [ref=e129]:
+                - generic [ref=e137]: K
+                - generic [ref=e141]: 5 L
+            - generic [ref=e143]:
+              - paragraph [ref=e144]: 5W-30
+              - heading "Krüger® Engine Oil 5W-30 SP" [level=3] [ref=e145]:
+                - link "Krüger® Engine Oil 5W-30 SP" [ref=e146] [cursor=pointer]:
+                  - /url: /product/engine-oil-5w-30-sp/
+              - paragraph [ref=e147]: Полностью синтетическое масло для современных бензиновых двигателей с прямым впрыском.
+              - paragraph [ref=e148]: KR/EO-0010
+              - generic [ref=e149]:
+                - generic [ref=e150]: Подробнее
+                - img [ref=e152]
+        - listitem [ref=e154]:
+          - article [ref=e155]:
+            - generic [ref=e159]:
+              - generic: K
+              - img [ref=e160]:
+                - generic [ref=e168]: K
+                - generic [ref=e172]: 5 L
+            - generic [ref=e174]:
+              - paragraph [ref=e175]: 0W-20
+              - heading "Krüger® Engine Oil 0W-20 C5" [level=3] [ref=e176]:
+                - link "Krüger® Engine Oil 0W-20 C5" [ref=e177] [cursor=pointer]:
+                  - /url: /product/engine-oil-0w-20-c5/
+              - paragraph [ref=e178]: Энергосберегающая синтетика для последнего поколения бензиновых и гибридных моторов.
+              - paragraph [ref=e179]: KR/EO-0001
+              - generic [ref=e180]:
+                - generic [ref=e181]: Подробнее
+                - img [ref=e183]
+        - listitem [ref=e185]:
+          - article [ref=e186]:
+            - generic [ref=e190]:
+              - generic: K
+              - img [ref=e191]:
+                - generic [ref=e199]: K
+                - generic [ref=e203]: 5 L
+            - generic [ref=e205]:
+              - paragraph [ref=e206]: 5W-40
+              - heading "Krüger® Engine Oil 5W-40 SP" [level=3] [ref=e207]:
+                - link "Krüger® Engine Oil 5W-40 SP" [ref=e208] [cursor=pointer]:
+                  - /url: /product/engine-oil-5w-40-sp/
+              - paragraph [ref=e209]: Универсальное синтетическое масло для турбированных бензиновых и дизельных двигателей.
+              - paragraph [ref=e210]: KR/EO-0011
+              - generic [ref=e211]:
+                - generic [ref=e212]: Подробнее
+                - img [ref=e214]
+        - listitem [ref=e216]:
+          - article [ref=e217]:
+            - generic [ref=e221]:
+              - generic: K
+              - img [ref=e222]:
+                - generic [ref=e230]: K
+                - generic [ref=e234]: 5 L
+            - generic [ref=e236]:
+              - paragraph [ref=e237]: 10W-40
+              - heading "Krüger® Engine Oil 10W-40 SN/CF" [level=3] [ref=e238]:
+                - link "Krüger® Engine Oil 10W-40 SN/CF" [ref=e239] [cursor=pointer]:
+                  - /url: /product/engine-oil-10w-40-sn-cf/
+              - paragraph [ref=e240]: Полусинтетика для двигателей со средним и большим пробегом, бензин и дизель.
+              - paragraph [ref=e241]: KR/EO-0023
+              - generic [ref=e242]:
+                - generic [ref=e243]: Подробнее
+                - img [ref=e245]
+        - listitem [ref=e247]:
+          - article [ref=e248]:
+            - generic [ref=e252]:
+              - generic: K
+              - img [ref=e253]:
+                - generic [ref=e261]: K
+                - generic [ref=e265]: 5 L
+            - generic [ref=e267]:
+              - paragraph [ref=e268]: atf
+              - heading "Krüger® ATF Multi" [level=3] [ref=e269]:
+                - link "Krüger® ATF Multi" [ref=e270] [cursor=pointer]:
+                  - /url: /product/atf-multi/
+              - paragraph [ref=e271]: Универсальная жидкость для автоматических трансмиссий большинства легковых автомобилей.
+              - paragraph [ref=e272]: KR/AT-0005
+              - generic [ref=e273]:
+                - generic [ref=e274]: Подробнее
+                - img [ref=e276]
+        - listitem [ref=e278]:
+          - article [ref=e279]:
+            - generic [ref=e283]:
+              - generic: K
+              - img [ref=e284]:
+                - generic [ref=e292]: K
+                - generic [ref=e296]: 5 L
+            - generic [ref=e298]:
+              - paragraph [ref=e299]: hydraulic
+              - heading "Krüger® Hydraulic HVLP 46" [level=3] [ref=e300]:
+                - link "Krüger® Hydraulic HVLP 46" [ref=e301] [cursor=pointer]:
+                  - /url: /product/hydraulic-hvlp-46/
+              - paragraph [ref=e302]: Высокоиндексное гидравлическое масло для систем, работающих в широком диапазоне температур.
+              - paragraph [ref=e303]: KR/HY-0046
+              - generic [ref=e304]:
+                - generic [ref=e305]: Подробнее
+                - img [ref=e307]
+        - listitem [ref=e309]:
+          - article [ref=e310]:
+            - generic [ref=e314]:
+              - generic: K
+              - img [ref=e315]:
+                - generic [ref=e323]: K
+                - generic [ref=e327]: 5 L
+            - generic [ref=e329]:
+              - paragraph [ref=e330]: antifreeze
+              - heading "Krüger® Antifreeze G12+" [level=3] [ref=e331]:
+                - link "Krüger® Antifreeze G12+" [ref=e332] [cursor=pointer]:
+                  - /url: /product/antifreeze-g12/
+              - paragraph [ref=e333]: Долговечный антифриз карбоксилатной технологии для двигателей с алюминиевыми компонентами.
+              - paragraph [ref=e334]: KR/AN-0012
+              - generic [ref=e335]:
+                - generic [ref=e336]: Подробнее
+                - img [ref=e338]
+        - listitem [ref=e340]:
+          - article [ref=e341]:
+            - generic [ref=e345]:
+              - generic: K
+              - img [ref=e346]:
+                - generic [ref=e354]: K
+                - generic [ref=e358]: 5 L
+            - generic [ref=e360]:
+              - paragraph [ref=e361]: brake
+              - heading "Krüger® Brake Fluid DOT 4" [level=3] [ref=e362]:
+                - link "Krüger® Brake Fluid DOT 4" [ref=e363] [cursor=pointer]:
+                  - /url: /product/brake-fluid-dot4/
+              - paragraph [ref=e364]: Тормозная жидкость с высокой температурой кипения для современных тормозных систем.
+              - paragraph [ref=e365]: KR/BR-0004
+              - generic [ref=e366]:
+                - generic [ref=e367]: Подробнее
+                - img [ref=e369]
+    - generic [ref=e372]:
+      - generic [ref=e373]:
+        - generic [ref=e374]:
+          - paragraph [ref=e377]: For Every Vehicle
+          - heading "Рыночные сегменты" [level=2] [ref=e378]
+          - paragraph [ref=e379]: Продукция Krüger разработана для любых отраслей и условий эксплуатации.
+        - link "Подробнее" [ref=e380] [cursor=pointer]:
+          - /url: /products/application/
+          - text: Подробнее
+          - img [ref=e381]
+      - list [ref=e383]:
+        - listitem [ref=e384]:
+          - link "01 Легковые автомобили Для вашего авто Подробнее" [ref=e385] [cursor=pointer]:
+            - /url: /products/?application=car
+            - generic [ref=e387]: "01"
+            - img [ref=e390]
+            - heading "Легковые автомобили" [level=3] [ref=e396]
+            - paragraph [ref=e397]: Для вашего авто
+            - generic [ref=e398]:
+              - generic [ref=e399]: Подробнее
+              - img [ref=e400]
+        - listitem [ref=e402]:
+          - link "02 Грузовики и автобусы Для коммерческого транспорта Подробнее" [ref=e403] [cursor=pointer]:
+            - /url: /products/?application=truck
+            - generic [ref=e405]: "02"
+            - img [ref=e408]
+            - heading "Грузовики и автобусы" [level=3] [ref=e414]
+            - paragraph [ref=e415]: Для коммерческого транспорта
+            - generic [ref=e416]:
+              - generic [ref=e417]: Подробнее
+              - img [ref=e418]
+        - listitem [ref=e420]:
+          - link "03 Электротранспорт Для e-техники Подробнее" [ref=e421] [cursor=pointer]:
+            - /url: /products/?application=ev
+            - generic [ref=e423]: "03"
+            - img [ref=e426]
+            - heading "Электротранспорт" [level=3] [ref=e432]
+            - paragraph [ref=e433]: Для e-техники
+            - generic [ref=e434]:
+              - generic [ref=e435]: Подробнее
+              - img [ref=e436]
+        - listitem [ref=e438]:
+          - link "04 Промышленность Для оборудования Подробнее" [ref=e439] [cursor=pointer]:
+            - /url: /products/?application=industry
+            - generic [ref=e441]: "04"
+            - img [ref=e444]
+            - heading "Промышленность" [level=3] [ref=e448]
+            - paragraph [ref=e449]: Для оборудования
+            - generic [ref=e450]:
+              - generic [ref=e451]: Подробнее
+              - img [ref=e452]
+        - listitem [ref=e454]:
+          - link "05 Сельское и лесное хозяйство Для агротехники Подробнее" [ref=e455] [cursor=pointer]:
+            - /url: /products/?application=agro
+            - generic [ref=e457]: "05"
+            - img [ref=e460]
+            - heading "Сельское и лесное хозяйство" [level=3] [ref=e466]
+            - paragraph [ref=e467]: Для агротехники
+            - generic [ref=e468]:
+              - generic [ref=e469]: Подробнее
+              - img [ref=e470]
+        - listitem [ref=e472]:
+          - link "06 Строительная и землеройная техника Для спецтехники Подробнее" [ref=e473] [cursor=pointer]:
+            - /url: /products/?application=construction
+            - generic [ref=e475]: "06"
+            - img [ref=e478]
+            - heading "Строительная и землеройная техника" [level=3] [ref=e484]
+            - paragraph [ref=e485]: Для спецтехники
+            - generic [ref=e486]:
+              - generic [ref=e487]: Подробнее
+              - img [ref=e488]
+    - generic [ref=e492]:
+      - generic [ref=e493]:
+        - paragraph [ref=e496]: Browse by Application
+        - heading "Каталог продукции" [level=2] [ref=e497]
+      - generic [ref=e498]:
+        - tablist [ref=e499]:
+          - tab "Легковые автомобили" [selected] [ref=e500] [cursor=pointer]:
+            - generic [ref=e501]: Легковые автомобили
+          - tab "Грузовики и автобусы" [ref=e502] [cursor=pointer]:
+            - generic [ref=e503]: Грузовики и автобусы
+          - tab "Электротранспорт" [ref=e504] [cursor=pointer]:
+            - generic [ref=e505]: Электротранспорт
+          - tab "Промышленность" [ref=e506] [cursor=pointer]:
+            - generic [ref=e507]: Промышленность
+          - tab "Сельское и лесное хозяйство" [ref=e508] [cursor=pointer]:
+            - generic [ref=e509]: Сельское и лесное хозяйство
+          - tab "Строительная и землеройная техника" [ref=e510] [cursor=pointer]:
+            - generic [ref=e511]: Строительная и землеройная техника
+        - tabpanel "Легковые автомобили" [ref=e512]:
+          - list [ref=e513]:
+            - listitem [ref=e514]:
+              - article [ref=e515]:
+                - generic [ref=e519]:
+                  - generic: K
+                  - img [ref=e520]:
+                    - generic [ref=e528]: K
+                    - generic [ref=e532]: 5 L
+                - generic [ref=e534]:
+                  - paragraph [ref=e535]: engine
+                  - heading "Krüger® Engine Oil 5W-30 SP" [level=3] [ref=e536]:
+                    - link "Krüger® Engine Oil 5W-30 SP" [ref=e537] [cursor=pointer]:
+                      - /url: /product/engine-oil-5w-30-sp/
+                  - paragraph [ref=e538]: Полностью синтетическое для современных бензиновых.
+                  - paragraph [ref=e539]: KR/EO-0010
+                  - generic [ref=e540]:
+                    - generic [ref=e541]: Подробнее
+                    - img [ref=e543]
+            - listitem [ref=e545]:
+              - article [ref=e546]:
+                - generic [ref=e550]:
+                  - generic: K
+                  - img [ref=e551]:
+                    - generic [ref=e559]: K
+                    - generic [ref=e563]: 5 L
+                - generic [ref=e565]:
+                  - paragraph [ref=e566]: engine
+                  - heading "Krüger® Engine Oil 5W-40 SP" [level=3] [ref=e567]:
+                    - link "Krüger® Engine Oil 5W-40 SP" [ref=e568] [cursor=pointer]:
+                      - /url: /product/engine-oil-5w-40-sp/
+                  - paragraph [ref=e569]: Универсальное синтетическое масло.
+                  - paragraph [ref=e570]: KR/EO-0011
+                  - generic [ref=e571]:
+                    - generic [ref=e572]: Подробнее
+                    - img [ref=e574]
+            - listitem [ref=e576]:
+              - article [ref=e577]:
+                - generic [ref=e581]:
+                  - generic: K
+                  - img [ref=e582]:
+                    - generic [ref=e590]: K
+                    - generic [ref=e594]: 5 L
+                - generic [ref=e596]:
+                  - paragraph [ref=e597]: engine
+                  - heading "Krüger® Engine Oil 0W-20 C5" [level=3] [ref=e598]:
+                    - link "Krüger® Engine Oil 0W-20 C5" [ref=e599] [cursor=pointer]:
+                      - /url: /product/engine-oil-0w-20-c5/
+                  - paragraph [ref=e600]: Энергосберегающая синтетика для гибридов.
+                  - paragraph [ref=e601]: KR/EO-0001
+                  - generic [ref=e602]:
+                    - generic [ref=e603]: Подробнее
+                    - img [ref=e605]
+            - listitem [ref=e607]:
+              - article [ref=e608]:
+                - generic [ref=e612]:
+                  - generic: K
+                  - img [ref=e613]:
+                    - generic [ref=e621]: K
+                    - generic [ref=e625]: 5 L
+                - generic [ref=e627]:
+                  - paragraph [ref=e628]: atf
+                  - heading "Krüger® ATF Multi" [level=3] [ref=e629]:
+                    - link "Krüger® ATF Multi" [ref=e630] [cursor=pointer]:
+                      - /url: /product/atf-multi/
+                  - paragraph [ref=e631]: Универсальная жидкость для АКПП.
+                  - paragraph [ref=e632]: KR/AT-0005
+                  - generic [ref=e633]:
+                    - generic [ref=e634]: Подробнее
+                    - img [ref=e636]
+          - link "Все продукты этой категории" [ref=e639] [cursor=pointer]:
+            - /url: /products/
+            - generic [ref=e640]: Все продукты этой категории
+            - img [ref=e642]
+    - generic [ref=e645]:
+      - generic [ref=e646]:
+        - paragraph [ref=e649]: Full Catalogue
+        - heading "Линейка продукции" [level=2] [ref=e651]
+        - paragraph [ref=e652]: Изучите наш портфель из 150+ премиальных смазок и сервисных жидкостей — для производительности, защиты и эффективности.
+      - list [ref=e653]:
+        - listitem [ref=e654]:
+          - link "01 Моторные масла Защита и производительность" [ref=e655] [cursor=pointer]:
+            - /url: /products/category/engine/
+            - img [ref=e657]
+            - generic [ref=e660]:
+              - generic [ref=e661]: "01"
+              - generic [ref=e662]: Моторные масла
+              - generic [ref=e663]: Защита и производительность
+            - img [ref=e664]
+        - listitem [ref=e666]:
+          - link "02 Гидравлические масла Надёжность в каждом подъёме" [ref=e667] [cursor=pointer]:
+            - /url: /products/category/hydraulic/
+            - img [ref=e669]
+            - generic [ref=e671]:
+              - generic [ref=e672]: "02"
+              - generic [ref=e673]: Гидравлические масла
+              - generic [ref=e674]: Надёжность в каждом подъёме
+            - img [ref=e675]
+        - listitem [ref=e677]:
+          - link "03 Индустриальные трансмиссионные Для редукторов без остановок" [ref=e678] [cursor=pointer]:
+            - /url: /products/category/industrial-gear/
+            - img [ref=e680]
+            - generic [ref=e691]:
+              - generic [ref=e692]: "03"
+              - generic [ref=e693]: Индустриальные трансмиссионные
+              - generic [ref=e694]: Для редукторов без остановок
+            - img [ref=e695]
+        - listitem [ref=e697]:
+          - link "04 ATF / Жидкости АКПП Плавные переключения. Долгий ресурс." [ref=e698] [cursor=pointer]:
+            - /url: /products/category/atf/
+            - img [ref=e700]
+            - generic [ref=e702]:
+              - generic [ref=e703]: "04"
+              - generic [ref=e704]: ATF / Жидкости АКПП
+              - generic [ref=e705]: Плавные переключения. Долгий ресурс.
+            - img [ref=e706]
+        - listitem [ref=e708]:
+          - link "05 Компрессорные масла Для всех типов компрессоров" [ref=e709] [cursor=pointer]:
+            - /url: /products/category/compressor/
+            - img [ref=e711]
+            - generic [ref=e722]:
+              - generic [ref=e723]: "05"
+              - generic [ref=e724]: Компрессорные масла
+              - generic [ref=e725]: Для всех типов компрессоров
+            - img [ref=e726]
+        - listitem [ref=e728]:
+          - link "06 МКПП и редукторные Точность в каждой передаче" [ref=e729] [cursor=pointer]:
+            - /url: /products/category/manual-gear/
+            - img [ref=e731]
+            - generic [ref=e742]:
+              - generic [ref=e743]: "06"
+              - generic [ref=e744]: МКПП и редукторные
+              - generic [ref=e745]: Точность в каждой передаче
+            - img [ref=e746]
+        - listitem [ref=e748]:
+          - link "07 Универсальные тракторные Одно масло для тяжёлой работы" [ref=e749] [cursor=pointer]:
+            - /url: /products/category/tractor/
+            - img [ref=e751]
+            - generic [ref=e757]:
+              - generic [ref=e758]: "07"
+              - generic [ref=e759]: Универсальные тракторные
+              - generic [ref=e760]: Одно масло для тяжёлой работы
+            - img [ref=e761]
+        - listitem [ref=e763]:
+          - link "08 Морские масла Надёжность через океаны" [ref=e764] [cursor=pointer]:
+            - /url: /products/category/marine/
+            - img [ref=e766]
+            - generic [ref=e770]:
+              - generic [ref=e771]: "08"
+              - generic [ref=e772]: Морские масла
+              - generic [ref=e773]: Надёжность через океаны
+            - img [ref=e774]
+        - listitem [ref=e776]:
+          - link "09 Газомоторные Оптимизированы для CNG и LPG" [ref=e777] [cursor=pointer]:
+            - /url: /products/category/gas/
+            - img [ref=e779]
+            - generic [ref=e781]:
+              - generic [ref=e782]: "09"
+              - generic [ref=e783]: Газомоторные
+              - generic [ref=e784]: Оптимизированы для CNG и LPG
+            - img [ref=e785]
+        - listitem [ref=e787]:
+          - link "10 Турбинные Стабильность на скорости" [ref=e788] [cursor=pointer]:
+            - /url: /products/category/turbine/
+            - img [ref=e790]
+            - generic [ref=e801]:
+              - generic [ref=e802]: "10"
+              - generic [ref=e803]: Турбинные
+              - generic [ref=e804]: Стабильность на скорости
+            - img [ref=e805]
+        - listitem [ref=e807]:
+          - link "11 Циркуляционные Поддерживают системы в работе" [ref=e808] [cursor=pointer]:
+            - /url: /products/category/circulating/
+            - img [ref=e810]
+            - generic [ref=e812]:
+              - generic [ref=e813]: "11"
+              - generic [ref=e814]: Циркуляционные
+              - generic [ref=e815]: Поддерживают системы в работе
+            - img [ref=e816]
+        - listitem [ref=e818]:
+          - link "12 Мотоциклетные Чистая производительность" [ref=e819] [cursor=pointer]:
+            - /url: /products/category/moto/
+            - img [ref=e821]
+            - generic [ref=e826]:
+              - generic [ref=e827]: "12"
+              - generic [ref=e828]: Мотоциклетные
+              - generic [ref=e829]: Чистая производительность
+            - img [ref=e830]
+        - listitem [ref=e832]:
+          - link "13 Масла направляющих Защита и точность скольжения" [ref=e833] [cursor=pointer]:
+            - /url: /products/category/slideway/
+            - img [ref=e835]
+            - generic [ref=e837]:
+              - generic [ref=e838]: "13"
+              - generic [ref=e839]: Масла направляющих
+              - generic [ref=e840]: Защита и точность скольжения
+            - img [ref=e841]
+        - listitem [ref=e843]:
+          - link "14 Смазки (Grease) Надёжная смазка для промышленности" [ref=e844] [cursor=pointer]:
+            - /url: /products/category/grease/
+            - img [ref=e846]
+            - generic [ref=e850]:
+              - generic [ref=e851]: "14"
+              - generic [ref=e852]: Смазки (Grease)
+              - generic [ref=e853]: Надёжная смазка для промышленности
+            - img [ref=e854]
+        - listitem [ref=e856]:
+          - link "15 AdBlue Снижение NOx. Соответствие нормам." [ref=e857] [cursor=pointer]:
+            - /url: /products/category/adblue/
+            - img [ref=e859]
+            - generic [ref=e861]:
+              - generic [ref=e862]: "15"
+              - generic [ref=e863]: AdBlue
+              - generic [ref=e864]: Снижение NOx. Соответствие нормам.
+            - img [ref=e865]
+        - listitem [ref=e867]:
+          - link "16 Тормозная жидкость Контроль начинается здесь" [ref=e868] [cursor=pointer]:
+            - /url: /products/category/brake/
+            - img [ref=e870]
+            - generic [ref=e873]:
+              - generic [ref=e874]: "16"
+              - generic [ref=e875]: Тормозная жидкость
+              - generic [ref=e876]: Контроль начинается здесь
+            - img [ref=e877]
+        - listitem [ref=e879]:
+          - link "17 Антифриз Тепловая стабильность" [ref=e880] [cursor=pointer]:
+            - /url: /products/category/antifreeze/
+            - img [ref=e882]
+            - generic [ref=e884]:
+              - generic [ref=e885]: "17"
+              - generic [ref=e886]: Антифриз
+              - generic [ref=e887]: Тепловая стабильность
+            - img [ref=e888]
+        - listitem [ref=e890]:
+          - link "18 Powershift Transmission Fluid Доверие в каждой передаче" [ref=e891] [cursor=pointer]:
+            - /url: /products/category/powershift/
+            - img [ref=e893]
+            - generic [ref=e904]:
+              - generic [ref=e905]: "18"
+              - generic [ref=e906]: Powershift Transmission Fluid
+              - generic [ref=e907]: Доверие в каждой передаче
+            - img [ref=e908]
+        - listitem [ref=e910]:
+          - link "19 EV Fluids Жидкости для e-мобильности" [ref=e911] [cursor=pointer]:
+            - /url: /products/category/ev-fluids/
+            - img [ref=e913]
+            - generic [ref=e915]:
+              - generic [ref=e916]: "19"
+              - generic [ref=e917]: EV Fluids
+              - generic [ref=e918]: Жидкости для e-мобильности
+            - img [ref=e919]
+        - listitem [ref=e921]:
+          - link "20 ГОСТ-масла На основе ГОСТ-стандартов" [ref=e922] [cursor=pointer]:
+            - /url: /products/category/gost/
+            - img [ref=e924]
+            - generic [ref=e926]:
+              - generic [ref=e927]: "20"
+              - generic [ref=e928]: ГОСТ-масла
+              - generic [ref=e929]: На основе ГОСТ-стандартов
+            - img [ref=e930]
+        - listitem [ref=e932]:
+          - link "21 Закалочные масла Контролируемая закалка." [ref=e933] [cursor=pointer]:
+            - /url: /products/category/quench/
+            - img [ref=e935]
+            - generic [ref=e937]:
+              - generic [ref=e938]: "21"
+              - generic [ref=e939]: Закалочные масла
+              - generic [ref=e940]: Контролируемая закалка.
+            - img [ref=e941]
+        - listitem [ref=e943]:
+          - link "22 Опалубочные масла Надёжное масло для каждой отливки" [ref=e944] [cursor=pointer]:
+            - /url: /products/category/mould/
+            - img [ref=e946]
+            - generic [ref=e948]:
+              - generic [ref=e949]: "22"
+              - generic [ref=e950]: Опалубочные масла
+              - generic [ref=e951]: Надёжное масло для каждой отливки
+            - img [ref=e952]
+    - generic [ref=e955]:
+      - generic [ref=e956]:
+        - generic [ref=e957]:
+          - paragraph [ref=e960]: News & Insights
+          - heading "Новости" [level=2] [ref=e961]
+          - paragraph [ref=e962]: Будьте в курсе событий и обновлений отрасли
+        - link "Все новости" [ref=e963] [cursor=pointer]:
+          - /url: /news/
+          - text: Все новости
+          - img [ref=e964]
+      - list [ref=e966]:
+        - listitem [ref=e967]:
+          - article [ref=e968]:
+            - link "Krüger — точность и инновации в каждой капле" [ref=e969] [cursor=pointer]:
+              - /url: /news/krueger-precision-and-innovation/
+              - img "Krüger — точность и инновации в каждой капле" [ref=e970]
+            - generic [ref=e971]:
+              - heading "Krüger — точность и инновации в каждой капле" [level=3] [ref=e972]:
+                - link "Krüger — точность и инновации в каждой капле" [ref=e973] [cursor=pointer]:
+                  - /url: /news/krueger-precision-and-innovation/
+              - paragraph [ref=e974]: Каждая капля Krüger — результат многолетних исследований, точных испытаний и глубокого понимания трибологии.
+              - generic [ref=e975]:
+                - generic [ref=e976]:
+                  - img [ref=e977]
+                  - time [ref=e979]: 7 апреля 2026 г.
+                - img [ref=e981]
+        - listitem [ref=e983]:
+          - article [ref=e984]:
+            - 'link "Адгезионный износ: что это и как с ним бороться" [ref=e985] [cursor=pointer]':
+              - /url: /news/adhesive-wear-explained/
+              - 'img "Адгезионный износ: что это и как с ним бороться" [ref=e986]'
+            - generic [ref=e987]:
+              - 'heading "Адгезионный износ: что это и как с ним бороться" [level=3] [ref=e988]':
+                - 'link "Адгезионный износ: что это и как с ним бороться" [ref=e989] [cursor=pointer]':
+                  - /url: /news/adhesive-wear-explained/
+              - paragraph [ref=e990]: При движении деталей механизмов микроскопические выступы на поверхности металла могут «сваривать» контактирующие участки. Разбираемся.
+              - generic [ref=e991]:
+                - generic [ref=e992]:
+                  - img [ref=e993]
+                  - time [ref=e995]: 12 марта 2026 г.
+                - img [ref=e997]
+        - listitem [ref=e999]:
+          - article [ref=e1000]:
+            - link "Новый дистрибуторский центр в Восточной Европе" [ref=e1001] [cursor=pointer]:
+              - /url: /news/new-distribution-center-eastern-europe/
+              - img "Новый дистрибуторский центр в Восточной Европе" [ref=e1002]
+            - generic [ref=e1003]:
+              - heading "Новый дистрибуторский центр в Восточной Европе" [level=3] [ref=e1004]:
+                - link "Новый дистрибуторский центр в Восточной Европе" [ref=e1005] [cursor=pointer]:
+                  - /url: /news/new-distribution-center-eastern-europe/
+              - paragraph [ref=e1006]: Krüger открыл новый логистический хаб в Польше, который ускорит поставки продукции в страны Центральной и Восточной Европы.
+              - generic [ref=e1007]:
+                - generic [ref=e1008]:
+                  - img [ref=e1009]
+                  - time [ref=e1011]: 28 февраля 2026 г.
+                - img [ref=e1013]
+        - listitem [ref=e1015]:
+          - article [ref=e1016]:
+            - link "Как выбрать масло для зимы — гид от инженеров Krüger" [ref=e1017] [cursor=pointer]:
+              - /url: /news/how-to-choose-winter-oil/
+              - img "Как выбрать масло для зимы — гид от инженеров Krüger" [ref=e1018]
+            - generic [ref=e1019]:
+              - heading "Как выбрать масло для зимы — гид от инженеров Krüger" [level=3] [ref=e1020]:
+                - link "Как выбрать масло для зимы — гид от инженеров Krüger" [ref=e1021] [cursor=pointer]:
+                  - /url: /news/how-to-choose-winter-oil/
+              - paragraph [ref=e1022]: При −30°C обычное масло превращается в желе и не доходит до пар трения вовремя. Разбираемся, на что смотреть в маркировке.
+              - generic [ref=e1023]:
+                - generic [ref=e1024]:
+                  - img [ref=e1025]
+                  - time [ref=e1027]: 14 января 2026 г.
+                - img [ref=e1029]
+        - listitem [ref=e1031]:
+          - article [ref=e1032]:
+            - link "Krüger расширяет линейку EV Fluids" [ref=e1033] [cursor=pointer]:
+              - /url: /news/ev-fluids-expansion/
+              - img "Krüger расширяет линейку EV Fluids" [ref=e1034]
+            - generic [ref=e1035]:
+              - heading "Krüger расширяет линейку EV Fluids" [level=3] [ref=e1036]:
+                - link "Krüger расширяет линейку EV Fluids" [ref=e1037] [cursor=pointer]:
+                  - /url: /news/ev-fluids-expansion/
+              - paragraph [ref=e1038]: "В ассортимент добавлены три новых продукта для электромобилей: масло для редукторов, диэлектрическая жидкость и термопаста для модулей."
+              - generic [ref=e1039]:
+                - generic [ref=e1040]:
+                  - img [ref=e1041]
+                  - time [ref=e1043]: 19 декабря 2025 г.
+                - img [ref=e1045]
+        - listitem [ref=e1047]:
+          - article [ref=e1048]:
+            - link "Krüger получил одобрение Mercedes-Benz MB 229.5" [ref=e1049] [cursor=pointer]:
+              - /url: /news/mb-approval-2295/
+              - img "Krüger получил одобрение Mercedes-Benz MB 229.5" [ref=e1050]
+            - generic [ref=e1051]:
+              - heading "Krüger получил одобрение Mercedes-Benz MB 229.5" [level=3] [ref=e1052]:
+                - link "Krüger получил одобрение Mercedes-Benz MB 229.5" [ref=e1053] [cursor=pointer]:
+                  - /url: /news/mb-approval-2295/
+              - paragraph [ref=e1054]: Моторное масло Krüger® Engine Oil 5W-40 SP получило официальное одобрение Mercedes-Benz по спецификации MB 229.5.
+              - generic [ref=e1055]:
+                - generic [ref=e1056]:
+                  - img [ref=e1057]
+                  - time [ref=e1059]: 4 ноября 2025 г.
+                - img [ref=e1061]
+    - generic [ref=e1066]:
+      - generic [ref=e1067]:
+        - paragraph [ref=e1070]: Get in Touch
+        - heading "Остались вопросы?" [level=2] [ref=e1071]
+        - paragraph [ref=e1072]: Отправьте своё сообщение через форму ниже
+        - generic [ref=e1073]:
+          - generic [ref=e1074]:
+            - generic [ref=e1075]:
+              - generic [ref=e1076]: Как к вам обращаться? *
+              - textbox "Как к вам обращаться?" [ref=e1077]:
+                - /placeholder: Введите своё имя
+            - generic [ref=e1078]:
+              - generic [ref=e1079]: Телефон номер
+              - textbox "Телефон номер" [ref=e1080]:
+                - /placeholder: Phone number
+          - generic [ref=e1081]:
+            - generic [ref=e1082]: Email *
+            - textbox "Email" [ref=e1083]:
+              - /placeholder: example@gmail.com
+          - generic [ref=e1084]:
+            - generic [ref=e1085]: Опишите свой вопрос *
+            - textbox "Опишите свой вопрос" [ref=e1086]:
+              - /placeholder: Введите свой вопрос
+          - generic [ref=e1087]:
+            - generic [ref=e1089]:
+              - checkbox "Отправляя этот запрос, вы соглашаетесь с условиями обработки данных" [ref=e1090] [cursor=pointer]
+              - generic [ref=e1091] [cursor=pointer]: Отправляя этот запрос, вы соглашаетесь с условиями обработки данных *
+            - button "Отправить" [ref=e1092] [cursor=pointer]:
+              - generic [ref=e1093]: Отправить
+              - img
+      - img [ref=e1095]
+    - generic [ref=e1118]:
+      - generic [ref=e1119]:
+        - paragraph [ref=e1122]: OEM Approved
+        - heading "Где доверие встречается с результатом" [level=2] [ref=e1124]
+        - paragraph [ref=e1125]: За годы работы мы заслужили доверие десятков мировых автопроизводителей. OEM-одобрения подтверждают, что Krüger подходит инженерным системам ведущих брендов.
+      - generic [ref=e1126]:
+        - generic [ref=e1127]:
+          - generic: K
+          - paragraph [ref=e1129]: Масла Krüger Oil соответствуют требованиям и стандартам мировых автопроизводителей. Полученные OEM-одобрения и лицензии подтверждают, что наша продукция идеально подходит для инженерных систем таких брендов и обеспечивает надёжную работу двигателя в любых условиях эксплуатации.
+          - paragraph [ref=e1130]: Мы создаём масла, которым автопроизводители доверяют и которые уверенно защищают ваш автомобиль каждый день.
+          - link "О компании" [ref=e1131] [cursor=pointer]:
+            - /url: /about/glance/
+            - generic [ref=e1132]: О компании
+            - img [ref=e1134]
+        - list [ref=e1136]:
+          - listitem [ref=e1137]:
+            - generic "Mercedes-Benz" [ref=e1138]:
+              - generic [ref=e1139]: Mercedes-Benz
+          - listitem [ref=e1140]:
+            - generic "BMW" [ref=e1141]:
+              - generic [ref=e1142]: BMW
+          - listitem [ref=e1143]:
+            - generic "Volkswagen" [ref=e1144]:
+              - generic [ref=e1145]: Volkswagen
+          - listitem [ref=e1146]:
+            - generic "Porsche" [ref=e1147]:
+              - generic [ref=e1148]: Porsche
+          - listitem [ref=e1149]:
+            - generic "Audi" [ref=e1150]:
+              - generic [ref=e1151]: Audi
+          - listitem [ref=e1152]:
+            - generic "Ford" [ref=e1153]:
+              - generic [ref=e1154]: Ford
+          - listitem [ref=e1155]:
+            - generic "Volvo" [ref=e1156]:
+              - generic [ref=e1157]: Volvo
+          - listitem [ref=e1158]:
+            - generic "MAN" [ref=e1159]:
+              - generic [ref=e1160]: MAN
+          - listitem [ref=e1161]:
+            - generic "Scania" [ref=e1162]:
+              - generic [ref=e1163]: Scania
+          - listitem [ref=e1164]:
+            - generic "Renault" [ref=e1165]:
+              - generic [ref=e1166]: Renault
+          - listitem [ref=e1167]:
+            - generic "Toyota" [ref=e1168]:
+              - generic [ref=e1169]: Toyota
+          - listitem [ref=e1170]:
+            - generic "Hyundai" [ref=e1171]:
+              - generic [ref=e1172]: Hyundai
+    - generic [ref=e1173]:
+      - generic [ref=e1176]:
+        - paragraph [ref=e1179]: Global Reach
+        - heading "Масштаб без границ." [level=2] [ref=e1181]
+        - paragraph [ref=e1182]: Продукция Krüger представлена на всех континентах, обеспечивая лидерские стандарты по всему миру.
+      - generic [ref=e1183]:
+        - generic [ref=e1184]:
+          - img "Карта мира с точками присутствия Krüger" [ref=e1185]:
+            - generic "Stuttgart" [ref=e1204]
+            - generic "Vienna" [ref=e1207]
+            - generic "Warsaw" [ref=e1210]
+            - generic "Moscow" [ref=e1213]
+            - generic "Rome" [ref=e1216]
+            - generic "Madrid" [ref=e1219]
+            - generic "Istanbul" [ref=e1222]
+            - generic "Tehran" [ref=e1225]
+            - generic "Tashkent" [ref=e1228]
+            - generic "Almaty" [ref=e1231]
+            - generic "Delhi" [ref=e1234]
+            - generic "Tokyo" [ref=e1237]
+            - generic "Shanghai" [ref=e1240]
+            - generic "Lagos" [ref=e1243]
+            - generic "Nairobi" [ref=e1246]
+            - generic "Cape Town" [ref=e1249]
+            - generic "Vancouver" [ref=e1252]
+            - generic "New York" [ref=e1255]
+            - generic "Mexico City" [ref=e1258]
+            - generic "São Paulo" [ref=e1261]
+            - generic "Buenos Aires" [ref=e1264]
+            - generic "Sydney" [ref=e1267]
+          - generic [ref=e1268]:
+            - generic [ref=e1269]:
+              - paragraph [ref=e1270]: 50+
+              - paragraph [ref=e1271]: стран
+            - generic [ref=e1272]:
+              - paragraph [ref=e1273]: "5"
+              - paragraph [ref=e1274]: континентов
+            - generic [ref=e1275]:
+              - paragraph [ref=e1276]: 1.5k+
+              - paragraph [ref=e1277]: партнёров
+        - generic [ref=e1278]:
+          - paragraph [ref=e1279]: Вас интересует партнёрство?
+          - link "Связаться" [ref=e1280] [cursor=pointer]:
+            - /url: /contact/
+            - generic [ref=e1281]: Связаться
+            - img [ref=e1283]
+    - generic [ref=e1287]:
+      - generic [ref=e1289]:
+        - img "Krüger dealer offers" [ref=e1290]
+        - generic: K
+      - generic [ref=e1292]:
+        - paragraph [ref=e1295]: For Dealers
+        - heading "Получите лучшие предложения" [level=2] [ref=e1296]
+        - paragraph [ref=e1297]: Krüger предлагает выгодные условия для дилеров, сервисных центров и корпоративных автопарков. Свяжитесь с нами, чтобы обсудить персональные условия поставок, маркетинговую поддержку и обучение.
+        - link "Связаться" [ref=e1298] [cursor=pointer]:
+          - /url: /contact/
+          - generic [ref=e1299]: Связаться
+          - img [ref=e1301]
+    - list [ref=e1305]:
+      - listitem [ref=e1306]:
+        - generic [ref=e1307]: "01"
+        - generic [ref=e1308]: 8+
+        - generic [ref=e1310]: лет работы
+      - listitem [ref=e1311]:
+        - generic [ref=e1312]: "02"
+        - generic [ref=e1313]: 1.5k
+        - generic [ref=e1315]: партнёров в мире
+      - listitem [ref=e1316]:
+        - generic [ref=e1317]: "03"
+        - generic [ref=e1318]: "150"
+        - generic [ref=e1320]: уникальных продуктов
+      - listitem [ref=e1321]:
+        - generic [ref=e1322]: "04"
+        - generic [ref=e1323]: 6M
+        - generic [ref=e1325]: литров продано
+      - listitem [ref=e1326]:
+        - generic [ref=e1327]: "05"
+        - generic [ref=e1328]: 50+
+        - generic [ref=e1330]: стран присутствия
+    - generic [ref=e1331]:
+      - generic: K
+      - generic [ref=e1332]:
+        - generic [ref=e1333]:
+          - paragraph [ref=e1336]: ПОЧЕМУ KRÜGER
+          - heading "Немецкое качество в каждом литре" [level=2] [ref=e1337]
+          - paragraph [ref=e1338]: Мы создаём смазочные материалы, которым доверяют автопроизводители и индустриальные предприятия по всему миру.
+        - list [ref=e1339]:
+          - listitem [ref=e1340]:
+            - generic [ref=e1342]: "01"
+            - img [ref=e1344]
+            - heading "Сделано в Германии" [level=3] [ref=e1346]
+            - paragraph [ref=e1347]: Все продукты производятся на заводах в Штутгарте и Гамбурге. Контроль качества на каждом этапе — от выбора базовых масел до розлива.
+          - listitem [ref=e1348]:
+            - generic [ref=e1350]: "02"
+            - img [ref=e1352]
+            - heading "OEM-одобрения" [level=3] [ref=e1355]
+            - paragraph [ref=e1356]: Mercedes-Benz, BMW, Volkswagen, Porsche, Audi, Ford, Volvo, MAN, Scania, Renault, Toyota, Hyundai — официально одобрены для этих брендов.
+          - listitem [ref=e1357]:
+            - generic [ref=e1359]: "03"
+            - img [ref=e1361]
+            - heading "ISO 9001 / 14001 / 45001" [level=3] [ref=e1363]
+            - paragraph [ref=e1364]: Производство сертифицировано по международным стандартам качества, экологической безопасности и охраны труда.
+          - listitem [ref=e1365]:
+            - generic [ref=e1367]: "04"
+            - img [ref=e1369]
+            - heading "150+ продуктов" [level=3] [ref=e1371]
+            - paragraph [ref=e1372]: Полный ассортимент для легковых автомобилей, грузовиков, промышленности, сельхозтехники, строительства и электротранспорта.
+          - listitem [ref=e1373]:
+            - generic [ref=e1375]: "05"
+            - img [ref=e1377]
+            - heading "R&D в Штутгарте" [level=3] [ref=e1388]
+            - paragraph [ref=e1389]: Собственный центр исследований и разработок. Инвестиции в новые формулы, стендовые испытания и OEM-тесты — постоянно.
+          - listitem [ref=e1390]:
+            - generic [ref=e1392]: "06"
+            - img [ref=e1394]
+            - heading "50+ стран присутствия" [level=3] [ref=e1397]
+            - paragraph [ref=e1398]: Дистрибуторская сеть на пяти континентах. Стабильные поставки в любую точку мира с предсказуемыми сроками.
+    - generic [ref=e1399]:
+      - generic:
+        - generic:
+          - generic:
+            - img
+      - generic [ref=e1404]:
+        - paragraph [ref=e1407]: ПОВЕРХНОСТИ БЕЗ ИЗНОСА. БУДУЩЕЕ БЕЗ ОГРАНИЧЕНИЙ.
+        - heading "Powering the Future of E-Mobility" [level=2] [ref=e1408]
+        - paragraph [ref=e1409]: Жидкости Krüger для электромобилей разработаны под требования новой эры мобильности — обеспечивают охлаждение силовой электроники, изоляцию высоковольтных систем и долгий ресурс компонентов трансмиссии.
+        - link "Изучить EV Fluids" [ref=e1410] [cursor=pointer]:
+          - /url: /products/category/ev-fluids/
+          - generic [ref=e1411]: Изучить EV Fluids
+          - img [ref=e1413]
+    - generic [ref=e1416]:
+      - generic [ref=e1417]:
+        - paragraph [ref=e1420]: Trusted By
+        - heading "Компании, которые нам доверяют" [level=2] [ref=e1422]
+        - paragraph [ref=e1423]: Наши надёжные партнёры
+      - list [ref=e1424]:
+        - listitem [ref=e1425]:
+          - generic "Uzbekia" [ref=e1426]:
+            - generic [ref=e1427]: Uzbekia
+        - listitem [ref=e1428]:
+          - generic "Maktab Ta'limi Vazirligi" [ref=e1429]:
+            - generic [ref=e1430]: Maktab Ta'limi Vazirligi
+        - listitem [ref=e1431]:
+          - generic "TBC Bank" [ref=e1432]:
+            - generic [ref=e1433]: TBC Bank
+        - listitem [ref=e1434]:
+          - generic "Sharh" [ref=e1435]:
+            - generic [ref=e1436]: Sharh
+        - listitem [ref=e1437]:
+          - generic "Matn.uz" [ref=e1438]:
+            - generic [ref=e1439]: Matn.uz
+        - listitem [ref=e1440]:
+          - generic "Payme" [ref=e1441]:
+            - generic [ref=e1442]: Payme
+        - listitem [ref=e1443]:
+          - generic "Texnomart" [ref=e1444]:
+            - generic [ref=e1445]: Texnomart
+        - listitem [ref=e1446]:
+          - generic "Bon!" [ref=e1447]:
+            - generic [ref=e1448]: Bon!
+        - listitem [ref=e1449]:
+          - generic "Imkon" [ref=e1450]:
+            - generic [ref=e1451]: Imkon
+        - listitem [ref=e1452]:
+          - generic "UIC Group" [ref=e1453]:
+            - generic [ref=e1454]: UIC Group
+        - listitem [ref=e1455]:
+          - generic "Yoshlar Ishlari Agentligi" [ref=e1456]:
+            - generic [ref=e1457]: Yoshlar Ishlari Agentligi
+        - listitem [ref=e1458]:
+          - generic "Dasta Creative" [ref=e1459]:
+            - generic [ref=e1460]: Dasta Creative
+    - generic [ref=e1463]:
+      - generic [ref=e1464]:
+        - paragraph [ref=e1467]: FAQ
+        - heading "Часто задаваемые вопросы" [level=2] [ref=e1469]
+        - paragraph [ref=e1470]: Ответы на самые популярные вопросы
+      - generic [ref=e1472]:
+        - heading "Как часто менять моторное масло Krüger?" [level=3] [ref=e1474]:
+          - button "Как часто менять моторное масло Krüger?" [ref=e1475] [cursor=pointer]:
+            - text: Как часто менять моторное масло Krüger?
+            - img [ref=e1476]
+        - heading "В чём разница между синтетикой, полусинтетикой и минеральным маслом?" [level=3] [ref=e1479]:
+          - button "В чём разница между синтетикой, полусинтетикой и минеральным маслом?" [ref=e1480] [cursor=pointer]:
+            - text: В чём разница между синтетикой, полусинтетикой и минеральным маслом?
+            - img [ref=e1481]
+        - heading "Что означают маркировки 5W-30, 0W-20, SAE и API?" [level=3] [ref=e1484]:
+          - button "Что означают маркировки 5W-30, 0W-20, SAE и API?" [ref=e1485] [cursor=pointer]:
+            - text: Что означают маркировки 5W-30, 0W-20, SAE и API?
+            - img [ref=e1486]
+        - heading "Где производится продукция Krüger?" [level=3] [ref=e1489]:
+          - button "Где производится продукция Krüger?" [ref=e1490] [cursor=pointer]:
+            - text: Где производится продукция Krüger?
+            - img [ref=e1491]
+        - heading "Можно ли смешивать Krüger с другими маслами?" [level=3] [ref=e1494]:
+          - button "Можно ли смешивать Krüger с другими маслами?" [ref=e1495] [cursor=pointer]:
+            - text: Можно ли смешивать Krüger с другими маслами?
+            - img [ref=e1496]
+        - heading "Как стать дилером или партнёром Krüger?" [level=3] [ref=e1499]:
+          - button "Как стать дилером или партнёром Krüger?" [ref=e1500] [cursor=pointer]:
+            - text: Как стать дилером или партнёром Krüger?
+            - img [ref=e1501]
+      - link "Все вопросы" [ref=e1504] [cursor=pointer]:
+        - /url: /faq/
+        - generic [ref=e1505]: Все вопросы
+        - img [ref=e1507]
+  - generic [ref=e1511]:
+    - generic [ref=e1512]:
+      - heading "Свяжитесь с нами" [level=2] [ref=e1513]
+      - paragraph [ref=e1514]: Контактная информация для связи
+    - link "Телефон для поддержки +49 711 12 34 56 78" [ref=e1515] [cursor=pointer]:
+      - /url: tel:+4971112345678
+      - img [ref=e1517]
+      - generic [ref=e1519]:
+        - generic [ref=e1520]: Телефон для поддержки
+        - generic [ref=e1521]: +49 711 12 34 56 78
+    - link "Электронная почта info@kruger-oil.de" [ref=e1522] [cursor=pointer]:
+      - /url: mailto:info@kruger-oil.de
+      - img [ref=e1524]
+      - generic [ref=e1527]:
+        - generic [ref=e1528]: Электронная почта
+        - generic [ref=e1529]: info@kruger-oil.de
+  - contentinfo [ref=e1530]:
+    - generic [ref=e1532]:
+      - generic [ref=e1533]:
+        - img "Krüger Motor Oil" [ref=e1534]
+        - paragraph [ref=e1545]: Премиальные моторные и индустриальные масла, разработанные в Германии для каждого километра.
+        - generic [ref=e1546]:
+          - paragraph [ref=e1547]: Social
+          - generic [ref=e1548]:
+            - link "facebook" [ref=e1549] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e1550]
+            - link "instagram" [ref=e1552] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e1553]
+            - link "youtube" [ref=e1556] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e1557]
+            - link "linkedin" [ref=e1560] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e1561]
+      - generic [ref=e1565]:
+        - heading "Основные" [level=3] [ref=e1566]
+        - list [ref=e1567]:
+          - listitem [ref=e1568]:
+            - link "Главная" [ref=e1569] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e1570]:
+            - link "Каталог" [ref=e1571] [cursor=pointer]:
+              - /url: /products/
+          - listitem [ref=e1572]:
+            - link "О компании" [ref=e1573] [cursor=pointer]:
+              - /url: /about/glance/
+          - listitem [ref=e1574]:
+            - link "Услуги" [ref=e1575] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=e1576]:
+            - link "Новости" [ref=e1577] [cursor=pointer]:
+              - /url: /news/
+          - listitem [ref=e1578]:
+            - link "FAQ" [ref=e1579] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=e1580]:
+            - link "Контакты" [ref=e1581] [cursor=pointer]:
+              - /url: /contact/
+      - generic [ref=e1582]:
+        - heading "Продукты" [level=3] [ref=e1583]
+        - list [ref=e1584]:
+          - listitem [ref=e1585]:
+            - link "Моторные масла" [ref=e1586] [cursor=pointer]:
+              - /url: /products/category/engine/
+          - listitem [ref=e1587]:
+            - link "Гидравлические масла" [ref=e1588] [cursor=pointer]:
+              - /url: /products/category/hydraulic/
+          - listitem [ref=e1589]:
+            - link "Трансмиссионные масла" [ref=e1590] [cursor=pointer]:
+              - /url: /products/category/manual-gear/
+          - listitem [ref=e1591]:
+            - link "Антифриз" [ref=e1592] [cursor=pointer]:
+              - /url: /products/category/antifreeze/
+          - listitem [ref=e1593]:
+            - link "EV Fluids" [ref=e1594] [cursor=pointer]:
+              - /url: /products/category/ev-fluids/
+          - listitem [ref=e1595]:
+            - link "Весь каталог" [ref=e1596] [cursor=pointer]:
+              - /url: /products/
+          - listitem [ref=e1597]:
+            - link "PDS / SDS" [ref=e1598] [cursor=pointer]:
+              - /url: /pds-sds/
+      - generic [ref=e1599]:
+        - heading "Newsletter" [level=3] [ref=e1600]
+        - paragraph [ref=e1601]: Получайте новости, обновления каталога и отраслевые материалы первыми.
+        - generic [ref=e1602]:
+          - textbox "Введите электронную почту" [ref=e1603]
+          - button "Подписаться" [ref=e1604] [cursor=pointer]:
+            - text: Подписаться
+            - img [ref=e1605]
+    - generic [ref=e1608]:
+      - generic [ref=e1609]: © 2026 Krüger Motor Oil GmbH. Все права защищены.
+      - list [ref=e1610]:
+        - listitem [ref=e1611]:
+          - link "Impressum" [ref=e1612] [cursor=pointer]:
+            - /url: /impressum/
+        - listitem [ref=e1613]:
+          - link "Privacy Policy" [ref=e1614] [cursor=pointer]:
+            - /url: /privacy/
+        - listitem [ref=e1615]:
+          - link "Terms" [ref=e1616] [cursor=pointer]:
+            - /url: /terms/
+        - listitem [ref=e1617]:
+          - link "Cookies" [ref=e1618] [cursor=pointer]:
+            - /url: /cookies/
+      - generic [ref=e1619]:
+        - text: Разработано
+        - strong [ref=e1620]: DASTA
+  - generic "Связаться через мессенджер" [ref=e1621]:
+    - link "WhatsApp" [ref=e1622] [cursor=pointer]:
+      - /url: https://wa.me/49711123456789
+      - img [ref=e1623]
+    - link "Telegram" [ref=e1625] [cursor=pointer]:
+      - /url: https://t.me/kruger_oil
+      - img [ref=e1626]
+  - region "Уведомления"
+```

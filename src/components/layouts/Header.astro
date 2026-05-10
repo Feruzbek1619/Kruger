@@ -36,7 +36,7 @@ const items = [
       <Logo class="h-11 md:h-14 lg:h-16" />
     </a>
 
-    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1" aria-label="Главное меню">
+    <nav class="hidden lg:flex items-center gap-0.5 lg:gap-1" aria-label="Главное меню">
       {items.map((it) => (
         it.children ? (
           <div class="relative group">
@@ -89,7 +89,7 @@ const items = [
     <div class="flex items-center gap-2">
       <button
         type="button"
-        class="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-md text-text hover:bg-bg-soft hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        class="hidden lg:inline-flex h-10 w-10 items-center justify-center rounded-md text-text hover:bg-bg-soft hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label={t(lang, 'nav.search')}
       >
         <Icon name="search" class="h-5 w-5" />

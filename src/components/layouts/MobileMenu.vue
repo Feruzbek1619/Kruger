@@ -18,7 +18,7 @@ function toggleSection(key: string) {
 <template>
   <button
     type="button"
-    class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-text hover:bg-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-text hover:bg-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     :aria-expanded="open"
     aria-controls="mobile-menu"
     aria-label="Открыть меню"
@@ -33,9 +33,9 @@ function toggleSection(key: string) {
       @click="open = false"
     />
     <aside
+      v-if="open"
       id="mobile-menu"
-      class="fixed top-0 right-0 z-modal h-full w-[88vw] max-w-sm bg-bg shadow-xl transform transition-transform duration-200"
-      :class="open ? 'translate-x-0' : 'translate-x-full pointer-events-none'"
+      class="fixed top-0 right-0 z-modal h-full w-[88vw] max-w-sm bg-bg shadow-xl transform translate-x-0 motion-safe:animate-[slide-in-right_220ms_ease-out]"
       aria-label="Мобильное меню"
     >
       <div class="flex items-center justify-between p-4 border-b border-border-soft">

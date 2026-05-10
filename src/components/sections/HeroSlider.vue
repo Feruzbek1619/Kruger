@@ -146,19 +146,19 @@ onUnmounted(stopAuto)
           >
             <ArrowLeft :size="16" :stroke-width="2" aria-hidden="true" />
           </button>
-          <ul class="hidden sm:flex items-center gap-2 mx-2" role="tablist">
-            <li v-for="(_, i) in slides" :key="i">
-              <button
-                type="button"
-                class="h-1.5 rounded-pill transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
-                :class="i === idx ? 'w-10 bg-[#F8CC0F]' : 'w-2 bg-text-inverse/30 hover:bg-text-inverse/50'"
-                :aria-label="`Слайд ${i + 1}`"
-                :aria-selected="i === idx"
-                role="tab"
-                @click="go(i)"
-              />
-            </li>
-          </ul>
+          <!-- Слайдер-точки: не ARIA tabs (это нерелевантно), просто кнопки с aria-current -->
+          <div class="hidden sm:flex items-center gap-2 mx-2" role="group" aria-label="Навигация по слайдам">
+            <button
+              v-for="(_, i) in slides"
+              :key="i"
+              type="button"
+              class="h-1.5 rounded-pill transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
+              :class="i === idx ? 'w-10 bg-[#F8CC0F]' : 'w-2 bg-text-inverse/30 hover:bg-text-inverse/50'"
+              :aria-label="`Слайд ${i + 1}`"
+              :aria-current="i === idx ? 'true' : undefined"
+              @click="go(i)"
+            />
+          </div>
           <button
             type="button"
             class="h-10 w-10 md:h-12 md:w-12 inline-flex items-center justify-center rounded-full bg-primary text-text-inverse hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"

@@ -1,10 +1,32 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import { ArrowRight } from 'lucide-vue-next'
+import { useMouseInElement, usePreferredReducedMotion } from '@vueuse/core'
 import type { Product } from '@/types'
 
-interface Props { product: Product; ctaLabel?: string }
-const props = withDefaults(defineProps<Props>(), { ctaLabel: 'Подробнее' })
+interface Props { product: Product; ctaLabel?: string; tilt?: boolean }
+const props = withDefaults(defineProps<Props>(), { ctaLabel: 'Подробнее', tilt: true })
 const href = `/product/${props.product.slug}/`
+
+// 3D tilt — useMouseInElement + clamp 8°. Уважает prefers-reduced-motion.
+const cardEl = ref<HTMLElement | null>(null)
+const reduced = usePreferredReducedMotion()
+const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(cardEl)
+
+const tiltStyle = computed(() => {
+  if (!props.tilt || reduced.value === 'reduce' || isOutside.value || !elementWidth.value) {
+    return { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' }
+  }
+  // Centered coords -1..1
+  const px = (elementX.value / elementWidth.value) * 2 - 1
+  const py = (elementY.value / elementHeight.value) * 2 - 1
+  const max = 8 // degrees
+  const ry = px * max          // X axis position drives Y rotation
+  const rx = -py * max         // Y axis position drives X rotation (inverted)
+  return {
+    transform: `perspective(1000px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`,
+  }
+})
 
 // Цвет канистры по категории — для визуального разнообразия плейсхолдеров
 const categoryColors: Record<string, string> = {
@@ -33,7 +55,9 @@ const canColor = categoryColors[props.product.category ?? ''] ?? '#0a0a0e'
 
 <template>
   <article
-    class="kr-card group relative flex flex-col bg-bg rounded-xl overflow-hidden border border-border-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30 focus-within:-translate-y-1 focus-within:shadow-xl"
+    ref="cardEl"
+    :style="tiltStyle"
+    class="kr-card group relative flex flex-col bg-bg rounded-xl overflow-hidden border border-border-soft transition-[transform,box-shadow,border-color] duration-200 ease-out hover:shadow-xl hover:border-primary/30 focus-within:shadow-xl will-change-transform"
   >
     <!-- Фирменная красно-жёлтая полоска сверху (двойной акцент) -->
     <div class="flex h-1.5 group-hover:h-2 transition-all duration-300" aria-hidden="true">

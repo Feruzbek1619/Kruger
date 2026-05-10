@@ -49,12 +49,14 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     <Toast client:idle />
 
     <script>
-      // Motion One: reveal-on-scroll + count-up для статов.
+      // Motion One reveal + count-up + Lenis smooth scroll.
       // Перезапуск после Astro View Transitions (astro:page-load).
       import { revealOnScroll, bindCountUps } from '@/lib/motion'
+      import { initLenis } from '@/lib/lenis'
       const init = () => {
         revealOnScroll()
         bindCountUps()
+        initLenis()
       }
       document.addEventListener('astro:page-load', init)
     </script>
