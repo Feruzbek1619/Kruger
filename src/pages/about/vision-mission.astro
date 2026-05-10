@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import Card from '@/components/ui/Card.astro'
+import ru from '@/i18n/ru.json'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const values = ru.about.vision.values
+---
+<BaseLayout title="Видение и миссия — Krüger Motor Oil">
+  <PageHero
+    eyebrow={t(lang, 'about.vision.eyebrow')}
+    title={t(lang, 'about.vision.title')}
+    lead={t(lang, 'about.vision.lead')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.about'), href: '/about/glance/' }, { label: t(lang, 'nav.aboutVision') }]}
+  />
+
+  <section class="bg-bg py-16 md:py-24">
+    <div class="container-page grid gap-8 md:grid-cols-2">
+      <Card variant="elevated" padding="lg">
+        <h2 class="font-display text-2xl font-bold mb-3 text-primary">{t(lang, 'about.vision.vision.title')}</h2>
+        <p class="text-text-muted leading-relaxed">{t(lang, 'about.vision.vision.text')}</p>
+      </Card>
+      <Card variant="elevated" padding="lg">
+        <h2 class="font-display text-2xl font-bold mb-3 text-primary">{t(lang, 'about.vision.mission.title')}</h2>
+        <p class="text-text-muted leading-relaxed">{t(lang, 'about.vision.mission.text')}</p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="bg-bg-soft py-16 md:py-24">
+    <div class="container-page">
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight text-center mb-10">{t(lang, 'about.vision.valuesTitle')}</h2>
+      <ul class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((v, i) => (
+          <li>
+            <Card variant="default" padding="lg">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-pill bg-primary text-text-inverse text-sm font-bold mb-4">{i + 1}</span>
+              <h3 class="font-display font-bold text-lg leading-snug mb-2">{v.title}</h3>
+              <p class="text-sm text-text-muted leading-relaxed">{v.text}</p>
+            </Card>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

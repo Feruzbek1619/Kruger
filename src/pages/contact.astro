@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import Card from '@/components/ui/Card.astro'
+import Icon from '@/components/ui/Icon.astro'
+import ContactFormFull from '@/components/sections/ContactFormFull.vue'
+import ru from '@/i18n/ru.json'
+import { t } from '@/lib/i18n'
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const offices = [
+  { code: 'UZ', region: 'Узбекистан / Центральная Азия', name: 'UIC Group',           city: 'Ташкент, Узбекистан',  phone: '+998 71 200 70 07', email: 'info@uic.group' },
+  { code: 'DE', region: 'Германия (HQ)',                  name: 'Krüger Motor Oil GmbH', city: 'Stuttgart, Germany',   phone: '+49 711 12 34 56 78', email: 'info@kruger-oil.de' },
+]
+
+const formLabels = {
+  name: t(lang, 'questionForm.nameLabel'),
+  namePh: t(lang, 'questionForm.namePh'),
+  phone: t(lang, 'questionForm.phoneLabel'),
+  phonePh: t(lang, 'questionForm.phonePh'),
+  email: t(lang, 'questionForm.emailLabel'),
+  emailPh: t(lang, 'questionForm.emailPh'),
+  message: t(lang, 'questionForm.messageLabel'),
+  messagePh: t(lang, 'questionForm.messagePh'),
+  consent: t(lang, 'questionForm.consent'),
+  submit: t(lang, 'questionForm.submit'),
+  sending: t(lang, 'questionForm.sending'),
+  successToast: t(lang, 'questionForm.successToast'),
+  errorToast: t(lang, 'questionForm.errorToast'),
+}
+const formErrors = {
+  name: t(lang, 'questionForm.errors.name'),
+  emailRequired: t(lang, 'questionForm.errors.emailRequired'),
+  emailInvalid: t(lang, 'questionForm.errors.emailInvalid'),
+  message: t(lang, 'questionForm.errors.message'),
+  consent: t(lang, 'questionForm.errors.consent'),
+}
+---
+<BaseLayout
+  title="Контакты — Krüger Motor Oil"
+  description="Главный офис в Stuttgart, региональные представительства в Центральной Азии и СНГ. Свяжитесь с нами через форму обратной связи."
+  hideContactStrip
+>
+  <PageHero
+    title={t(lang, 'contactPage.title')}
+    lead={t(lang, 'contactPage.lead')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.contact') }]}
+  />
+
+  <section class="bg-bg py-14 md:py-20">
+    <div class="container-page grid gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="font-display text-2xl font-bold mb-5">{t(lang, 'contactPage.hqTitle')}</h2>
+        <Card variant="elevated" padding="lg">
+          <p class="font-display text-lg font-bold">Krüger Motor Oil GmbH</p>
+          <p class="text-text-muted text-sm mt-1">Leitzstraße 45, 70469 Stuttgart, Germany</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="inline-flex items-center gap-2"><Icon name="phone" class="h-4 w-4 text-primary" /> <a href="tel:+497111234567878" class="hover:text-primary">+49 711 12 34 56 78</a></li>
+            <li class="inline-flex items-center gap-2"><Icon name="mail"  class="h-4 w-4 text-primary" /> <a href="mailto:info@kruger-oil.de" class="hover:text-primary">info@kruger-oil.de</a></li>
+          </ul>
+          <p class="mt-5 text-xs text-text-subtle whitespace-pre-line">{t(lang, 'contactPage.hours')}</p>
+          <iframe
+            class="mt-5 w-full aspect-[4/3] rounded-md border border-border-soft"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=9.1310%2C48.7700%2C9.2010%2C48.8050&layer=mapnik&marker=48.7900%2C9.1700"
+            title="Карта офиса Krüger в Stuttgart"
+          ></iframe>
+        </Card>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl font-bold mb-5">{t(lang, 'contactPage.regionalTitle')}</h2>
+        <ul class="grid gap-4">
+          {offices.map((o) => (
+            <li>
+              <Card variant="default" padding="lg">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="inline-flex h-6 px-2 items-center rounded-pill bg-bg-soft text-text-subtle text-xs font-bold tracking-wider leading-none">{o.code}</span>
+                  <p class="text-sm font-medium text-text-muted">{o.region}</p>
+                </div>
+                <p class="font-display text-lg font-bold">{o.name}</p>
+                <p class="text-text-muted text-sm mt-1">{o.city}</p>
+                <ul class="mt-4 space-y-1.5 text-sm">
+                  <li class="inline-flex items-center gap-2"><Icon name="phone" class="h-4 w-4 text-primary" /> {o.phone}</li>
+                  <li class="inline-flex items-center gap-2"><Icon name="mail"  class="h-4 w-4 text-primary" /> {o.email}</li>
+                </ul>
+              </Card>
+            </li>
+          ))}
+        </ul>
+
+        <h2 class="font-display text-2xl font-bold mt-10 mb-3">{t(lang, 'contactPage.socialTitle')}</h2>
+        <div class="flex items-center gap-3">
+          {['facebook','instagram','youtube','linkedin'].map((s) => (
+            <a href="#" aria-label={s} class="inline-flex h-11 w-11 items-center justify-center rounded-pill bg-bg-soft text-text hover:bg-primary hover:text-text-inverse transition-colors">
+              <Icon name={s} class="h-5 w-5" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bg-soft py-14 md:py-20">
+    <div class="container-page max-w-3xl">
+      <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">{t(lang, 'contactPage.writeTitle')}</h2>
+      <ContactFormFull
+        client:visible
+        topics={ru.contactPage.topics}
+        topicLabel={`${t(lang, 'contactPage.fields.topic')} *`}
+        topicPh={t(lang, 'contactPage.fields.topicPlaceholder')}
+        companyLabel={t(lang, 'contactPage.fields.company')}
+        companyPh={t(lang, 'contactPage.fields.companyPh')}
+        labels={formLabels}
+        errors={formErrors}
+      />
+    </div>
+  </section>
+</BaseLayout>

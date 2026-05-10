@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<BaseLayout title="404 — Страница не найдена | Krüger" hideContactStrip>
+  <section class="bg-bg-soft py-20 md:py-28 min-h-[60vh] flex items-center">
+    <div class="container-page max-w-xl text-center">
+      <svg viewBox="0 0 200 200" class="mx-auto h-40 w-auto text-primary mb-8" aria-hidden="true">
+        <ellipse cx="100" cy="170" rx="80" ry="6" fill="currentColor" opacity=".2"/>
+        <path d="M70 60h60v10l8 8v40c0 6-5 12-12 12H74c-7 0-12-6-12-12V78l8-8V60Z" fill="currentColor"/>
+        <path d="M82 50h36v14H82z" fill="currentColor"/>
+        <path d="M65 130c5 18 25 35 50 30s35-25 30-50" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="4 8"/>
+      </svg>
+      <h1 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight mb-4">{t(lang, 'errors.404Title')}</h1>
+      <p class="text-text-muted mb-8">{t(lang, 'errors.404Lead')}</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">{t(lang, 'errors.404Btn1')}</a>
+        <a href="/products/" class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'errors.404Btn2')}</a>
+        <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'errors.404Btn3')}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import { t } from '@/lib/i18n'
+import Icon from '@/components/ui/Icon.astro'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<section class="bg-primary text-text-inverse">
+  <div class="container-page py-10 md:py-14 grid gap-6 md:gap-10 md:grid-cols-[1fr_auto_auto] items-center">
+    <div>
+      <h2 class="font-display text-2xl md:text-3xl font-bold">{t(lang, 'footer.contactStripTitle')}</h2>
+      <p class="mt-1 text-sm md:text-base opacity-90">{t(lang, 'footer.contactStripSubtitle')}</p>
+    </div>
+    <a href={`tel:${t(lang, 'topbar.phone').replace(/\s/g, '')}`} class="inline-flex items-center gap-3 group">
+      <span class="inline-flex h-10 w-10 items-center justify-center rounded-pill bg-bg/15 group-hover:bg-bg/25 transition-colors">
+        <Icon name="phone" class="h-5 w-5" />
+      </span>
+      <span>
+        <span class="block text-xs uppercase tracking-wide opacity-75">{t(lang, 'footer.phoneLabel')}</span>
+        <span class="block font-semibold">{t(lang, 'topbar.phone')}</span>
+      </span>
+    </a>
+    <a href={`mailto:${t(lang, 'topbar.email')}`} class="inline-flex items-center gap-3 group">
+      <span class="inline-flex h-10 w-10 items-center justify-center rounded-pill bg-bg/15 group-hover:bg-bg/25 transition-colors">
+        <Icon name="mail" class="h-5 w-5" />
+      </span>
+      <span>
+        <span class="block text-xs uppercase tracking-wide opacity-75">{t(lang, 'footer.emailLabel')}</span>
+        <span class="block font-semibold">{t(lang, 'topbar.email')}</span>
+      </span>
+    </a>
+  </div>
+</section>

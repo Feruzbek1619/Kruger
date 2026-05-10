@@ -1,0 +1,56 @@
+---
+/**
+ * NewsCard — unified card for news items.
+ * Accepts either a mock NewsItem OR an Astro Content CollectionEntry<'news'>.
+ *
+ * Usage:
+ *   <NewsCard item={mockItem} />           — from src/mocks/news.json
+ *   <NewsCard entry={collectionEntry} />   — from getCollection('news')
+ */
+import type { CollectionEntry } from 'astro:content'
+import type { NewsItem } from '@/types'
+import Icon from '@/components/ui/Icon.astro'
+
+type Props = { item: NewsItem; entry?: undefined } | { entry: CollectionEntry<'news'>; item?: undefined }
+
+const props = Astro.props
+const isEntry = props.entry != null
+
+const title   = isEntry ? props.entry!.data.title   : props.item!.title
+const preview = isEntry ? props.entry!.data.preview  : props.item!.preview
+const tag     = isEntry ? props.entry!.data.tag      : props.item!.tag
+const image   = isEntry ? (props.entry!.data.image ?? '') : (props.item!.image ?? '')
+const href    = isEntry ? `/news/${props.entry!.id}/`    : `/news/${props.item!.slug}/`
+const date    = isEntry
+  ? props.entry!.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+  : new Date(props.item!.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+---
+<article class="group flex flex-col bg-bg rounded-lg overflow-hidden border border-border-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+  <a href={href} class="block aspect-[16/10] bg-bg-soft overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+    {image ? (
+      <img src={image} alt={title} loading="lazy" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-muted to-bg-soft">
+        <span class="font-display text-text-subtle text-sm uppercase tracking-wider">{tag}</span>
+      </div>
+    )}
+  </a>
+  <div class="flex flex-col flex-1 p-5">
+    {isEntry && (
+      <span class="inline-block self-start mb-3 px-2.5 py-1 rounded-pill bg-bg-soft text-text-subtle text-xs uppercase tracking-wide font-semibold">{tag}</span>
+    )}
+    <h3 class="font-display font-bold text-base md:text-lg leading-snug text-text mb-2 line-clamp-2">
+      <a href={href} class="hover:text-primary transition-colors">{title}</a>
+    </h3>
+    <p class="text-sm text-text-muted line-clamp-3 flex-1">{preview}</p>
+    <div class="mt-4 flex items-center justify-between">
+      <span class="text-xs text-text-subtle inline-flex items-center gap-1.5">
+        <Icon name="calendar" class="h-3.5 w-3.5" />
+        <time>{date}</time>
+      </span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-pill border border-border text-text transition-all group-hover:bg-primary group-hover:border-primary group-hover:text-text-inverse">
+        <Icon name="arrowRight" class="h-4 w-4" />
+      </span>
+    </div>
+  </div>
+</article>

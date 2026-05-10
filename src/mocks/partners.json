@@ -1,0 +1,14 @@
+[
+  { "id": "uzbekia",     "name": "Uzbekia",                              "logo": "" },
+  { "id": "mva",         "name": "Maktab Ta'limi Vazirligi",             "logo": "" },
+  { "id": "tbcbank",     "name": "TBC Bank",                              "logo": "" },
+  { "id": "sharh",       "name": "Sharh",                                 "logo": "" },
+  { "id": "matn",        "name": "Matn.uz",                               "logo": "" },
+  { "id": "payme",       "name": "Payme",                                 "logo": "" },
+  { "id": "texnomart",   "name": "Texnomart",                             "logo": "" },
+  { "id": "bon",         "name": "Bon!",                                  "logo": "" },
+  { "id": "imkon",       "name": "Imkon",                                 "logo": "" },
+  { "id": "uic",         "name": "UIC Group",                             "logo": "" },
+  { "id": "yia",         "name": "Yoshlar Ishlari Agentligi",             "logo": "" },
+  { "id": "dasta",       "name": "Dasta Creative",                        "logo": "" }
+]

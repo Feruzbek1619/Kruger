@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import Card from '@/components/ui/Card.astro'
+import Icon from '@/components/ui/Icon.astro'
+import ru from '@/i18n/ru.json'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const items = ru.services.items
+const icons = ['drop','shield','spark','globe','factory','truck'] as const
+---
+<BaseLayout title="Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки">
+  <PageHero
+    eyebrow={t(lang, 'services.eyebrow')}
+    title={t(lang, 'services.title')}
+    lead={t(lang, 'services.lead')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.services') }]}
+  />
+  <section class="bg-bg py-16 md:py-24">
+    <div class="container-page">
+      <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((it, i) => (
+          <li>
+            <Card variant="default" padding="lg">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary text-text-inverse mb-4">
+                <Icon name={icons[i] ?? 'spark'} class="h-6 w-6" />
+              </span>
+              <h3 class="font-display font-bold text-lg leading-snug mb-2">{it.title}</h3>
+              <p class="text-sm text-text-muted leading-relaxed">{it.text}</p>
+            </Card>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-12 text-center">
+        <p class="text-text-muted mb-4">{t(lang, 'services.ctaText')}</p>
+        <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">{t(lang, 'services.ctaBtn')}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

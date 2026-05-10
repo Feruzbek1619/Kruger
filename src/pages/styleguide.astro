@@ -1,0 +1,240 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Button from '@/components/ui/Button.vue'
+import Input from '@/components/ui/Input.vue'
+import Checkbox from '@/components/ui/Checkbox.vue'
+import Card from '@/components/ui/Card.astro'
+import Tabs from '@/components/ui/Tabs.vue'
+import Accordion from '@/components/ui/Accordion.vue'
+import Badge from '@/components/ui/Badge.astro'
+import Chip from '@/components/ui/Chip.vue'
+import Spinner from '@/components/ui/Spinner.astro'
+import Icon from '@/components/ui/Icon.astro'
+import Logo from '@/components/ui/Logo.astro'
+import SegmentIcon from '@/components/ui/SegmentIcon.astro'
+---
+<BaseLayout title="Styleguide — Krüger Design System" hideContactStrip>
+  <div class="container-page py-12 md:py-16">
+    <header class="mb-12">
+      <Logo class="h-12 mb-6" />
+      <h1 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight">Styleguide</h1>
+      <p class="mt-3 text-text-muted max-w-2xl">
+        Дизайн-система Krüger Motor Oil. Токены OKLCH в <code>tokens.css</code>,
+        примитивы — <strong>shadcn-vue</strong> + <strong>Radix Vue (reka-ui)</strong>,
+        иконки — <strong>lucide-vue-next</strong>, анимации — <strong>Motion One</strong>,
+        переходы между страницами — <strong>Astro View Transitions</strong>.
+      </p>
+      <p class="mt-2 text-sm text-text-muted">
+        Public API наших обёрток (<code>Button</code>, <code>Input</code>, <code>Tabs</code>, ...) сохранён,
+        внутри они делегируют в <code>src/components/ui/shadcn/*</code>.
+      </p>
+    </header>
+
+    <!-- Color tokens -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Цвета</h2>
+      <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {[
+          ['primary', 'Brand'],
+          ['primary-hover', 'Hover'],
+          ['accent', 'Accent'],
+          ['bg-dark', 'Dark BG'],
+          ['bg-soft', 'Soft BG'],
+          ['bg-muted', 'Muted'],
+          ['text', 'Text'],
+          ['text-muted', 'Muted text'],
+          ['text-subtle', 'Subtle'],
+          ['border', 'Border'],
+          ['success', 'Success'],
+          ['error', 'Error'],
+        ].map(([name, label]) => (
+          <li class="flex flex-col gap-2">
+            <div class={`h-20 rounded-md border border-border-soft bg-${name}`}></div>
+            <div class="text-xs">
+              <div class="font-semibold">{label}</div>
+              <code class="text-text-subtle">--color-{name}</code>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Typography -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Типографика</h2>
+      <div class="space-y-4">
+        <div><span class="text-xs text-text-subtle uppercase">7xl / 96px</span><h1 class="font-display text-7xl font-extrabold leading-tight">Krüger Motor Oil</h1></div>
+        <div><span class="text-xs text-text-subtle uppercase">5xl / 60px</span><h2 class="font-display text-5xl font-bold leading-tight">Made in Germany</h2></div>
+        <div><span class="text-xs text-text-subtle uppercase">3xl / 36px</span><h3 class="font-display text-3xl font-bold">Подзаголовок секции</h3></div>
+        <div><span class="text-xs text-text-subtle uppercase">xl / 22px · lead</span><p class="text-xl text-text-muted">Lead-абзац для больших блоков с текстом — поддерживает ä ö ü ß корректно.</p></div>
+        <div><span class="text-xs text-text-subtle uppercase">base / 16px</span><p class="text-base">Основной текст параграфа. Inter Variable, latin-extended.</p></div>
+        <div><span class="text-xs text-text-subtle uppercase">sm / 14px</span><p class="text-sm text-text-muted">Вторичный текст и подписи.</p></div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Buttons (6 состояний)</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <Card variant="flat">
+          <h3 class="font-semibold mb-4">Primary · sm/md/lg</h3>
+          <div class="flex flex-wrap items-center gap-3">
+            <Button variant="primary" size="sm" client:load>Small</Button>
+            <Button variant="primary" size="md" client:load>Default</Button>
+            <Button variant="primary" size="lg" client:load>Large</Button>
+            <Button variant="primary" loading client:load>Loading</Button>
+            <Button variant="primary" disabled client:load>Disabled</Button>
+          </div>
+        </Card>
+        <Card variant="flat">
+          <h3 class="font-semibold mb-4">Secondary / Ghost / Danger</h3>
+          <div class="flex flex-wrap gap-3">
+            <Button variant="secondary" client:load>Secondary</Button>
+            <Button variant="ghost" client:load>Ghost</Button>
+            <Button variant="danger" client:load>Danger</Button>
+            <Button variant="inverse" client:load>Inverse</Button>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Inputs -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Inputs (5 состояний)</h2>
+      <div class="grid gap-4 md:grid-cols-2 max-w-3xl">
+        <Input label="Default" placeholder="Введите своё имя" client:load />
+        <Input label="Filled" placeholder="..." modelValue="Krüger Motor Oil" client:load />
+        <Input label="Error" placeholder="..." error="Похоже, в адресе ошибка" client:load />
+        <Input label="Success" placeholder="..." modelValue="ok@kruger-oil.de" success client:load />
+        <Input label="Disabled" placeholder="..." disabled client:load />
+        <Input type="textarea" label="Textarea" placeholder="Опишите ваш вопрос" :rows="4" client:load />
+      </div>
+    </section>
+
+    <!-- Checkbox -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Checkbox</h2>
+      <div class="flex flex-col gap-3 max-w-md">
+        <Checkbox label="Согласен с обработкой данных" client:load />
+        <Checkbox label="Получать новости" modelValue client:load />
+        <Checkbox label="Отключено" disabled client:load />
+        <Checkbox label="Ошибка" error="Подтвердите согласие" client:load />
+      </div>
+    </section>
+
+    <!-- Tabs / Accordion -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Tabs</h2>
+      <Tabs
+        client:load
+        tabs={[
+          { id: 'a', label: 'Легковые' },
+          { id: 'b', label: 'Грузовики' },
+          { id: 'c', label: 'Промышленность' },
+        ]}
+      >
+        <p slot="a">Контент таба «Легковые».</p>
+        <p slot="b">Контент таба «Грузовики».</p>
+        <p slot="c">Контент таба «Промышленность».</p>
+      </Tabs>
+
+      <h2 class="font-display text-2xl font-bold mt-10 mb-6">Accordion</h2>
+      <Accordion
+        client:load
+        items={[
+          { id: '1', question: 'Как часто менять масло?', answer: 'Стандартный интервал — 10 000–15 000 км или раз в год.' },
+          { id: '2', question: 'Где производится Krüger?', answer: 'На заводах в Германии (Stuttgart, Hamburg).' },
+        ]}
+      />
+    </section>
+
+    <!-- Badges / Chips / Spinner / Icon -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Badges · Chips · Spinner · Icons</h2>
+      <div class="flex flex-wrap gap-3 mb-6">
+        <Badge>Default</Badge>
+        <Badge variant="new">New</Badge>
+        <Badge variant="bestseller">Bestseller</Badge>
+        <Badge variant="success">Success</Badge>
+        <Badge variant="error">Error</Badge>
+      </div>
+      <div class="flex flex-wrap gap-3 mb-6">
+        <Chip value="1L" client:load />
+        <Chip value="4L" modelValue="4L" client:load />
+        <Chip value="5L" client:load />
+        <Chip value="20L" client:load />
+        <Chip value="200L" disabled client:load />
+      </div>
+      <div class="flex items-center gap-6 mb-6 text-primary">
+        <Spinner size="sm" />
+        <Spinner size="md" />
+        <Spinner size="lg" />
+      </div>
+      <div class="flex flex-wrap gap-4 text-text">
+        {['search','menu','close','arrowLeft','arrowRight','chevronDown','download','phone','mail','pin','globe','calendar','star','flame','check','alert'].map((n) => (
+          <span class="inline-flex flex-col items-center gap-1">
+            <Icon name={n} class="h-6 w-6" />
+            <code class="text-xs text-text-subtle leading-none">{n}</code>
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Segment SVGs -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-2">Иконки рыночных сегментов</h2>
+      <p class="text-sm text-text-muted mb-6">6 уникальных SVG из <code>src/assets/icons/segments/</code>. <code>currentColor</code> наследуется от родителя.</p>
+      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {(['car','truck','ev','industry','agro','construction'] as const).map((s) => (
+          <li class="flex flex-col items-center gap-2 p-4 rounded-lg bg-bg-soft text-primary">
+            <SegmentIcon segment={s} class="h-12 w-12" />
+            <code class="text-xs text-text-subtle">{s}</code>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Animations -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-2">Анимации</h2>
+      <p class="text-sm text-text-muted mb-6">
+        Motion One через хелперы в <code>src/lib/motion.ts</code>. Reveal-on-scroll —
+        класс <code>.kr-reveal</code>. Count-up — атрибут <code>data-countup</code>.
+        <code>prefers-reduced-motion</code> уважается автоматически.
+      </p>
+      <div class="grid gap-4 md:grid-cols-3">
+        <Card variant="flat" padding="lg">
+          <p class="text-xs text-text-subtle mb-2">data-countup="8+"</p>
+          <p class="font-display text-5xl font-extrabold text-primary tabular-nums" data-countup="8+">8+</p>
+        </Card>
+        <Card variant="flat" padding="lg">
+          <p class="text-xs text-text-subtle mb-2">data-countup="1.5k"</p>
+          <p class="font-display text-5xl font-extrabold text-primary tabular-nums" data-countup="1.5k">1.5k</p>
+        </Card>
+        <Card variant="flat" padding="lg">
+          <p class="text-xs text-text-subtle mb-2">data-countup="6M"</p>
+          <p class="font-display text-5xl font-extrabold text-primary tabular-nums" data-countup="6M">6M</p>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="mb-16">
+      <h2 class="font-display text-2xl font-bold mb-6">Cards</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        <Card variant="default" padding="md">
+          <h3 class="font-semibold mb-1">Default</h3>
+          <p class="text-sm text-text-muted">Базовая карточка с границей.</p>
+        </Card>
+        <Card variant="elevated" padding="md">
+          <h3 class="font-semibold mb-1">Elevated</h3>
+          <p class="text-sm text-text-muted">С тенью.</p>
+        </Card>
+        <Card variant="flat" padding="md" href="#">
+          <h3 class="font-semibold mb-1">Flat · clickable</h3>
+          <p class="text-sm text-text-muted">При hover поднимается.</p>
+        </Card>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

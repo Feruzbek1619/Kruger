@@ -1,0 +1,77 @@
+---
+import { t } from '@/lib/i18n'
+import Logo from '@/components/ui/Logo.astro'
+import Icon from '@/components/ui/Icon.astro'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<footer class="bg-bg-dark text-text-inverse">
+  <div class="container-page py-14 md:py-20 grid gap-10 md:grid-cols-12">
+    <div class="md:col-span-4">
+      <Logo variant="white" class="h-10" />
+      <p class="mt-5 text-sm leading-relaxed opacity-80 max-w-xs">{t(lang, 'footer.brandDescription')}</p>
+      <div class="mt-6 flex items-center gap-3">
+        {['facebook','instagram','youtube','linkedin'].map((s) => (
+          <a href="#" aria-label={s} class="inline-flex h-10 w-10 items-center justify-center rounded-pill border border-border-soft/30 hover:bg-primary hover:border-primary transition-colors">
+            <Icon name={s} class="h-4 w-4" />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="md:col-span-2">
+      <h3 class="font-display font-bold text-sm uppercase tracking-wide mb-4 opacity-90">{t(lang, 'footer.colMain')}</h3>
+      <ul class="space-y-2 text-sm opacity-80">
+        <li><a href="/" class="hover:text-primary transition-colors">{t(lang, 'nav.home')}</a></li>
+        <li><a href="/services/" class="hover:text-primary transition-colors">{t(lang, 'nav.service')}</a></li>
+        <li><a href="/about/" class="hover:text-primary transition-colors">{t(lang, 'nav.about')}</a></li>
+        <li><a href="/services/" class="hover:text-primary transition-colors">{t(lang, 'nav.services')}</a></li>
+        <li><a href="/news/" class="hover:text-primary transition-colors">{t(lang, 'nav.news')}</a></li>
+        <li><a href="/faq/" class="hover:text-primary transition-colors">{t(lang, 'nav.faq')}</a></li>
+        <li><a href="/contact/" class="hover:text-primary transition-colors">{t(lang, 'nav.contact')}</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <h3 class="font-display font-bold text-sm uppercase tracking-wide mb-4 opacity-90">{t(lang, 'footer.colProducts')}</h3>
+      <ul class="space-y-2 text-sm opacity-80">
+        <li><a href="/products/category/engine/"     class="hover:text-primary transition-colors">{t(lang, 'footer.products.engine')}</a></li>
+        <li><a href="/products/category/hydraulic/"  class="hover:text-primary transition-colors">{t(lang, 'footer.products.hydraulic')}</a></li>
+        <li><a href="/products/category/manual-gear/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.transmission')}</a></li>
+        <li><a href="/products/category/antifreeze/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.antifreeze')}</a></li>
+        <li><a href="/products/category/ev-fluids/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.ev')}</a></li>
+        <li><a href="/products/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.all')}</a></li>
+        <li><a href="/pds-sds/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.pds')}</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <h3 class="font-display font-bold text-sm uppercase tracking-wide mb-4 opacity-90">{t(lang, 'footer.colSubscribe')}</h3>
+      <p class="text-sm opacity-80 mb-4">{t(lang, 'footer.subscribeText')}</p>
+      <form class="flex flex-col sm:flex-row gap-2" onsubmit="return false">
+        <input
+          type="email"
+          required
+          aria-label={t(lang, 'footer.subscribePlaceholder')}
+          placeholder={t(lang, 'footer.subscribePlaceholder')}
+          class="flex-1 h-11 rounded-md bg-bg/10 border-2 border-border-soft/30 px-4 text-sm text-text-inverse placeholder:text-text-inverse/50 focus:outline-none focus:border-primary"
+        />
+        <button type="submit" class="h-11 px-5 rounded-md bg-primary text-text-inverse text-sm font-medium hover:opacity-90 transition-opacity">
+          {t(lang, 'footer.subscribeBtn')}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="border-t border-border-soft/15">
+    <div class="container-page py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs opacity-75">
+      <span>{t(lang, 'footer.rights')}</span>
+      <ul class="flex items-center gap-4">
+        <li><a href="/impressum/" class="hover:text-primary">{t(lang, 'footer.legal.impressum')}</a></li>
+        <li><a href="/privacy/" class="hover:text-primary">{t(lang, 'footer.legal.privacy')}</a></li>
+        <li><a href="/terms/" class="hover:text-primary">{t(lang, 'footer.legal.terms')}</a></li>
+        <li><a href="/cookies/" class="hover:text-primary">{t(lang, 'footer.legal.cookies')}</a></li>
+      </ul>
+      <span>{t(lang, 'footer.designedBy')} ✦ DASTA</span>
+    </div>
+  </div>
+</footer>

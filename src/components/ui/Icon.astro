@@ -1,0 +1,73 @@
+---
+/**
+ * Astro-обёртка над lucide-vue-next.
+ * Принимает либо строгое Lucide-имя в PascalCase ("Phone", "MapPin"),
+ * либо алиас из старого API ("phone", "pin"). Любой компонент рендерится
+ * через Vue без отгрузки JS на клиент (Astro статически вычисляет markup).
+ */
+import IconVue from './Icon.vue'
+
+interface Props {
+  name: string
+  size?: number | string
+  strokeWidth?: number
+  class?: string
+  ariaLabel?: string
+}
+
+const { name, size = 20, strokeWidth = 1.75, class: extra, ariaLabel } = Astro.props
+
+const aliases: Record<string, string> = {
+  // ui basics
+  search: 'Search',
+  menu: 'Menu',
+  close: 'X',
+  arrowRight: 'ArrowRight',
+  arrowLeft: 'ArrowLeft',
+  arrowUpRight: 'ArrowUpRight',
+  chevronDown: 'ChevronDown',
+  chevronRight: 'ChevronRight',
+  chevronUp: 'ChevronUp',
+  download: 'Download',
+  send: 'Send',
+  check: 'Check',
+  alert: 'AlertTriangle',
+  star: 'Star',
+  flame: 'Flame',
+  external: 'ExternalLink',
+  // contact
+  phone: 'Phone',
+  mail: 'Mail',
+  pin: 'MapPin',
+  globe: 'Globe',
+  calendar: 'Calendar',
+  // social
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  youtube: 'Youtube',
+  linkedin: 'Linkedin',
+  whatsapp: 'MessageCircle',
+  telegramApp: 'Send',
+  // segments / categories (fallbacks where Lucide has a close match)
+  car: 'Car',
+  truck: 'Truck',
+  ev: 'BatteryCharging',
+  gear: 'Cog',
+  tractor: 'Tractor',
+  excavator: 'Construction',
+  oil: 'Droplets',
+  drop: 'Droplet',
+  spark: 'Zap',
+  shield: 'ShieldCheck',
+  factory: 'Factory',
+  ship: 'Ship',
+  bike: 'Bike',
+  bolt: 'Zap',
+  thermo: 'Thermometer',
+  jar: 'Package',
+  cog: 'Cog',
+}
+
+const resolvedName = aliases[name] ?? name
+---
+<IconVue name={resolvedName as any} size={size} strokeWidth={strokeWidth} class={extra} aria-label={ariaLabel} />

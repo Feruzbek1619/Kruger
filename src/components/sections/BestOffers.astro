@@ -1,0 +1,33 @@
+---
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<section class="bg-bg">
+  <div class="container-page py-16 md:py-24 grid gap-10 lg:grid-cols-2 items-center">
+    <div class="aspect-[4/3] lg:aspect-auto lg:h-full rounded-xl overflow-hidden bg-gradient-to-br from-bg-dark via-bg-dark to-text relative">
+      <svg viewBox="0 0 600 400" class="absolute inset-0 w-full h-full opacity-90" aria-hidden="true">
+        <defs>
+          <radialGradient id="hl" cx="20%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="var(--color-illus-deep)" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="600" height="400" fill="url(#hl)"/>
+        <ellipse cx="200" cy="220" rx="60" ry="60" fill="var(--color-illus-mid)"/>
+        <ellipse cx="200" cy="220" rx="38" ry="38" fill="white" opacity=".15"/>
+        <circle cx="200" cy="220" r="14" fill="var(--primary)"/>
+        <path d="M40 250l60-110c8-15 25-25 45-25h220c20 0 37 10 45 25l60 110-30 100H70L40 250Z" fill="var(--color-illus-dark)" opacity=".95"/>
+        <rect x="120" y="160" width="160" height="60" rx="10" fill="var(--color-illus-mid)"/>
+        <rect x="320" y="160" width="160" height="60" rx="10" fill="var(--color-illus-mid)"/>
+      </svg>
+    </div>
+
+    <div class="lg:max-w-xl">
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{t(lang, 'offers.title')}</h2>
+      <p class="mt-4 text-text-muted leading-relaxed">{t(lang, 'offers.text')}</p>
+      <a href="/contact/" class="mt-7 inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">
+        {t(lang, 'offers.cta')}
+      </a>
+    </div>
+  </div>
+</section>

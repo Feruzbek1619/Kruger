@@ -1,0 +1,8 @@
+[
+  { "id": "car",          "title": "Легковые автомобили",                 "subtitle": "Для вашего авто",               "icon": "car",       "href": "/products/?application=car" },
+  { "id": "truck",        "title": "Грузовики и автобусы",                "subtitle": "Для коммерческого транспорта",  "icon": "truck",     "href": "/products/?application=truck" },
+  { "id": "ev",           "title": "Электротранспорт",                    "subtitle": "Для e-техники",                 "icon": "ev",        "href": "/products/?application=ev" },
+  { "id": "industry",     "title": "Промышленность",                      "subtitle": "Для оборудования",              "icon": "gear",      "href": "/products/?application=industry" },
+  { "id": "agro",         "title": "Сельское и лесное хозяйство",         "subtitle": "Для агротехники",               "icon": "tractor",   "href": "/products/?application=agro" },
+  { "id": "construction", "title": "Строительная и землеройная техника",  "subtitle": "Для спецтехники",               "icon": "excavator", "href": "/products/?application=construction" }
+]

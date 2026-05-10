@@ -1,0 +1,24 @@
+---
+import passengerCar from '@/assets/icons/segments/passenger-car.svg?raw'
+import truckBus from '@/assets/icons/segments/truck-bus.svg?raw'
+import eMobility from '@/assets/icons/segments/e-mobility.svg?raw'
+import industry from '@/assets/icons/segments/industry.svg?raw'
+import agriculture from '@/assets/icons/segments/agriculture.svg?raw'
+import construction from '@/assets/icons/segments/construction.svg?raw'
+
+interface Props {
+  segment: 'car' | 'truck' | 'ev' | 'industry' | 'agro' | 'construction'
+  class?: string
+}
+const { segment, class: extra = 'h-7 w-7' } = Astro.props
+
+const map: Record<Props['segment'], string> = {
+  car: passengerCar,
+  truck: truckBus,
+  ev: eMobility,
+  industry: industry,
+  agro: agriculture,
+  construction: construction,
+}
+---
+<span class:list={['inline-flex shrink-0', extra]} set:html={map[segment]} />

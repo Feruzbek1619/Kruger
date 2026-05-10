@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import Card from '@/components/ui/Card.astro'
+import Icon from '@/components/ui/Icon.astro'
+import ru from '@/i18n/ru.json'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const items = ru.about.commitments.items
+const icons = ['shield','spark','drop','car','globe','factory'] as const
+---
+<BaseLayout title="Наши обязательства — Krüger Motor Oil">
+  <PageHero
+    eyebrow={t(lang, 'about.commitments.eyebrow')}
+    title={t(lang, 'about.commitments.title')}
+    lead={t(lang, 'about.commitments.lead')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.about'), href: '/about/glance/' }, { label: t(lang, 'nav.aboutCommitments') }]}
+  />
+
+  <section class="bg-bg py-16 md:py-24">
+    <div class="container-page">
+      <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((it, i) => (
+          <li>
+            <Card variant="default" padding="lg">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary text-text-inverse mb-4">
+                <Icon name={icons[i] ?? 'spark'} class="h-6 w-6" />
+              </span>
+              <h3 class="font-display font-bold text-lg leading-snug mb-2">{it.title}</h3>
+              <p class="text-sm text-text-muted leading-relaxed">{it.text}</p>
+            </Card>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

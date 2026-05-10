@@ -1,0 +1,24 @@
+---
+import { t } from '@/lib/i18n'
+import stats from '@/mocks/stats.json'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<section class="bg-bg-dark text-text-inverse">
+  <div class="container-page py-14 md:py-20">
+    <ul class="grid grid-cols-2 md:grid-cols-5 gap-y-10 gap-x-6 text-center">
+      {stats.map((s) => (
+        <li class="kr-reveal border-r border-border-soft/15 last:border-r-0 px-4 first:border-l-0">
+          <div
+            class="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-text-inverse tabular-nums"
+            data-countup={s.value}
+          >
+            {s.value}
+          </div>
+          <div class="mt-2 text-xs md:text-sm uppercase tracking-wider text-text-inverse/70">
+            {t(lang, s.labelKey)}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

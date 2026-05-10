@@ -1,0 +1,56 @@
+---
+import { t } from '@/lib/i18n'
+import SegmentIcon from '@/components/ui/SegmentIcon.astro'
+import segments from '@/mocks/segments.json'
+import type { MarketSegment } from '@/types'
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const items = segments as MarketSegment[]
+const top = items.slice(0, 4)
+const bottom = items.slice(4)
+---
+<section class="bg-bg-soft py-16 md:py-24">
+  <div class="container-page">
+    <div class="flex items-end justify-between gap-6 mb-8 md:mb-12 flex-wrap">
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{t(lang, 'segments.title')}</h2>
+        <p class="mt-2 text-text-muted max-w-2xl">{t(lang, 'segments.subtitle')}</p>
+      </div>
+      <a href="/products/application/" class="inline-flex h-11 px-6 items-center rounded-pill bg-bg text-text font-medium hover:bg-bg-muted transition-colors border border-border-soft">
+        {t(lang, 'segments.more')}
+      </a>
+    </div>
+
+    <ul class="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      {top.map((s) => (
+        <li>
+          <a href={s.href} class="group flex flex-col items-start gap-5 h-full p-6 md:p-7 bg-bg rounded-lg border border-border-soft hover:bg-primary hover:text-text-inverse hover:border-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+            <span class="inline-flex h-14 w-14 items-center justify-center rounded-pill bg-primary text-text-inverse group-hover:bg-bg group-hover:text-primary transition-colors">
+              <SegmentIcon segment={s.id as any} class="h-7 w-7" />
+            </span>
+            <span>
+              <span class="block font-display text-lg font-bold">{s.title}</span>
+              <span class="block text-sm text-text-muted group-hover:text-text-inverse/85 mt-1">{s.subtitle}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <ul class="mt-4 md:mt-6 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2">
+      {bottom.map((s) => (
+        <li>
+          <a href={s.href} class="group flex items-center gap-5 h-full p-6 md:p-7 bg-bg rounded-lg border border-border-soft hover:bg-primary hover:text-text-inverse hover:border-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+            <span class="inline-flex h-14 w-14 items-center justify-center rounded-pill bg-primary text-text-inverse group-hover:bg-bg group-hover:text-primary transition-colors shrink-0">
+              <SegmentIcon segment={s.id as any} class="h-7 w-7" />
+            </span>
+            <span>
+              <span class="block font-display text-lg font-bold">{s.title}</span>
+              <span class="block text-sm text-text-muted group-hover:text-text-inverse/85 mt-1">{s.subtitle}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

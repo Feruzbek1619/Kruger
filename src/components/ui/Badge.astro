@@ -1,0 +1,26 @@
+---
+import { Badge as ShadcnBadge } from '@/components/ui/shadcn/badge'
+
+type Variant = 'default' | 'new' | 'bestseller' | 'success' | 'error'
+
+interface Props {
+  variant?: Variant
+  class?: string
+}
+
+const { variant = 'default', class: extra = '' } = Astro.props
+
+const map: Record<Variant, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; extra?: string }> = {
+  default:    { variant: 'secondary' },
+  new:        { variant: 'outline',     extra: 'bg-accent text-accent-foreground border-transparent' },
+  bestseller: { variant: 'default',     extra: 'bg-primary text-primary-foreground' },
+  success:    { variant: 'outline',     extra: 'bg-[color:var(--color-success)] text-primary-foreground border-transparent' },
+  error:      { variant: 'destructive' },
+}
+
+const conf = map[variant]
+---
+
+<ShadcnBadge variant={conf.variant} class={`uppercase tracking-wide rounded-pill ${conf.extra ?? ''} ${extra}`}>
+  <slot />
+</ShadcnBadge>

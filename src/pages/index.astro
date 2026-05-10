@@ -1,0 +1,142 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { t } from '@/lib/i18n'
+
+import HeroSlider from '@/components/sections/HeroSlider.vue'
+import PopularProducts from '@/components/sections/PopularProducts.vue'
+import MarketSegments from '@/components/sections/MarketSegments.astro'
+import ProductsTabs from '@/components/sections/ProductsTabs.vue'
+import ProductRange from '@/components/sections/ProductRange.astro'
+import NewsGrid from '@/components/sections/NewsGrid.astro'
+import ContactForm from '@/components/sections/ContactForm.vue'
+import OEMApprovals from '@/components/sections/OEMApprovals.astro'
+import WorldMap from '@/components/sections/WorldMap.astro'
+import BestOffers from '@/components/sections/BestOffers.astro'
+import StatsBar from '@/components/sections/StatsBar.astro'
+import EMobilityCTA from '@/components/sections/EMobilityCTA.astro'
+import PartnersGrid from '@/components/sections/PartnersGrid.astro'
+import FAQAccordion from '@/components/sections/FAQAccordion.vue'
+
+import popular from '@/mocks/popular.json'
+import productsByApp from '@/mocks/products.json'
+import segments from '@/mocks/segments.json'
+import faq from '@/mocks/faq.json'
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const slides = [
+  {
+    eyebrow: t(lang, 'hero.slide1.eyebrow'),
+    title: t(lang, 'hero.slide1.title'),
+    subtitle: t(lang, 'hero.slide1.subtitle'),
+    cta: t(lang, 'hero.slide1.cta'),
+    href: '/products/',
+    bg: '',
+  },
+  {
+    eyebrow: t(lang, 'hero.slide2.eyebrow'),
+    title: t(lang, 'hero.slide2.title'),
+    subtitle: t(lang, 'hero.slide2.subtitle'),
+    cta: t(lang, 'hero.slide2.cta'),
+    href: '/products/',
+    bg: '',
+  },
+  {
+    eyebrow: t(lang, 'hero.slide3.eyebrow'),
+    title: t(lang, 'hero.slide3.title'),
+    subtitle: t(lang, 'hero.slide3.subtitle'),
+    cta: t(lang, 'hero.slide3.cta'),
+    href: '/products/',
+    bg: '',
+  },
+]
+
+const tabsData = (segments as { id: string; title: string }[]).map((s) => ({
+  id: s.id,
+  label: s.title,
+  items: (productsByApp as Record<string, unknown[]>)[s.id] ?? [],
+})) as { id: string; label: string; items: unknown[] }[]
+
+const formLabels = {
+  name: t(lang, 'questionForm.nameLabel'),
+  namePh: t(lang, 'questionForm.namePh'),
+  phone: t(lang, 'questionForm.phoneLabel'),
+  phonePh: t(lang, 'questionForm.phonePh'),
+  email: t(lang, 'questionForm.emailLabel'),
+  emailPh: t(lang, 'questionForm.emailPh'),
+  message: t(lang, 'questionForm.messageLabel'),
+  messagePh: t(lang, 'questionForm.messagePh'),
+  consent: t(lang, 'questionForm.consent'),
+  submit: t(lang, 'questionForm.submit'),
+  sending: t(lang, 'questionForm.sending'),
+  successToast: t(lang, 'questionForm.successToast'),
+  errorToast: t(lang, 'questionForm.errorToast'),
+}
+const formErrors = {
+  name: t(lang, 'questionForm.errors.name'),
+  emailRequired: t(lang, 'questionForm.errors.emailRequired'),
+  emailInvalid: t(lang, 'questionForm.errors.emailInvalid'),
+  message: t(lang, 'questionForm.errors.message'),
+  consent: t(lang, 'questionForm.errors.consent'),
+}
+---
+<BaseLayout title="Krüger Motor Oil — премиальные моторные масла, разработанные в Германии">
+  <HeroSlider
+    client:load
+    slides={slides}
+    prevLabel={t(lang, 'hero.prevSlide')}
+    nextLabel={t(lang, 'hero.nextSlide')}
+  />
+
+  <PopularProducts
+    client:visible
+    products={popular as any}
+    title={t(lang, 'popular.title')}
+    subtitle={t(lang, 'popular.subtitle')}
+    showMore={t(lang, 'popular.showMore')}
+    more={t(lang, 'popular.more')}
+    prevLabel={t(lang, 'popular.prev')}
+    nextLabel={t(lang, 'popular.next')}
+  />
+
+  <MarketSegments />
+
+  <ProductsTabs
+    client:visible
+    title={t(lang, 'tabs.title')}
+    groups={tabsData as any}
+    more={t(lang, 'popular.more')}
+  />
+
+  <ProductRange />
+
+  <NewsGrid />
+
+  <ContactForm
+    client:visible
+    title={t(lang, 'questionForm.title')}
+    subtitle={t(lang, 'questionForm.subtitle')}
+    labels={formLabels}
+    errors={formErrors}
+  />
+
+  <OEMApprovals />
+
+  <WorldMap />
+
+  <BestOffers />
+
+  <StatsBar />
+
+  <EMobilityCTA />
+
+  <PartnersGrid />
+
+  <FAQAccordion
+    client:visible
+    title={t(lang, 'faq.title')}
+    subtitle={t(lang, 'faq.subtitle')}
+    items={faq as any}
+    allLabel={t(lang, 'faq.all')}
+  />
+</BaseLayout>

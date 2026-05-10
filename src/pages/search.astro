@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const quickLinks = [
+  { href: '/products/',                       label: 'Каталог продукции' },
+  { href: '/products/category/engine/',       label: 'Моторные масла' },
+  { href: '/products/category/ev-fluids/',    label: 'EV Fluids' },
+  { href: '/news/',                           label: 'Новости' },
+  { href: '/faq/',                            label: 'FAQ' },
+  { href: '/contact/',                        label: 'Контакты' },
+]
+---
+<BaseLayout title="Поиск по сайту — Krüger Motor Oil">
+  <PageHero
+    title={t(lang, 'search.title')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: 'Поиск' }]}
+  />
+  <section class="bg-bg py-12 md:py-16">
+    <div class="container-page max-w-2xl">
+      <form action="/search" method="get" class="flex flex-col sm:flex-row gap-2 mb-6">
+        <input
+          type="search"
+          name="q"
+          placeholder={t(lang, 'search.placeholder')}
+          class="flex-1 h-12 rounded-md bg-bg-soft border-2 border-transparent hover:border-border focus:border-primary focus:bg-bg px-4 text-base focus:outline-none"
+        />
+        <button type="submit" class="h-12 px-7 rounded-md bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">Найти</button>
+      </form>
+      <p class="text-sm text-text-muted bg-bg-soft border border-border-soft rounded-md px-4 py-3 mb-8">{t(lang, 'search.soonNotice')}</p>
+      <h2 class="font-display text-lg font-bold mb-3">{t(lang, 'search.quickLinks')}</h2>
+      <ul class="grid gap-2 text-sm">
+        {quickLinks.map((q) => (
+          <li>
+            <a href={q.href} class="inline-flex items-center gap-2 text-primary hover:underline">
+              <Icon name="arrowRight" class="h-4 w-4" />
+              <span>{q.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

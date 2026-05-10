@@ -1,0 +1,38 @@
+{
+  "car": [
+    { "id": "t1c1", "slug": "engine-oil-5w-30-sp",   "sku": "KR/EO-0010", "name": "Krüger® Engine Oil 5W-30 SP",  "shortDescription": "Полностью синтетическое для современных бензиновых.",  "category": "engine", "application": ["car"], "volumes": ["1L","4L","5L"], "image": "" },
+    { "id": "t1c2", "slug": "engine-oil-5w-40-sp",   "sku": "KR/EO-0011", "name": "Krüger® Engine Oil 5W-40 SP",  "shortDescription": "Универсальное синтетическое масло.",                  "category": "engine", "application": ["car"], "volumes": ["1L","4L","5L"], "image": "" },
+    { "id": "t1c3", "slug": "engine-oil-0w-20-c5",   "sku": "KR/EO-0001", "name": "Krüger® Engine Oil 0W-20 C5",  "shortDescription": "Энергосберегающая синтетика для гибридов.",           "category": "engine", "application": ["car"], "volumes": ["1L","4L"],      "image": "" },
+    { "id": "t1c4", "slug": "atf-multi",             "sku": "KR/AT-0005", "name": "Krüger® ATF Multi",            "shortDescription": "Универсальная жидкость для АКПП.",                     "category": "atf",    "application": ["car"], "volumes": ["1L","4L"],      "image": "" }
+  ],
+  "truck": [
+    { "id": "t2c1", "slug": "engine-oil-10w-40-e7",  "sku": "KR/EO-0040", "name": "Krüger® Engine Oil 10W-40 E7", "shortDescription": "Для тяжёлых дизелей коммерческого транспорта.",        "category": "engine", "application": ["truck"], "volumes": ["20L","200L"], "image": "" },
+    { "id": "t2c2", "slug": "engine-oil-15w-40-e7",  "sku": "KR/EO-0041", "name": "Krüger® Engine Oil 15W-40 E7", "shortDescription": "Минеральная база с современным пакетом присадок.",     "category": "engine", "application": ["truck"], "volumes": ["20L","200L"], "image": "" },
+    { "id": "t2c3", "slug": "gear-oil-80w-90-gl-5",  "sku": "KR/GE-0080", "name": "Krüger® Gear Oil 80W-90 GL-5",  "shortDescription": "Трансмиссионное масло для гипоидных передач.",         "category": "gear",   "application": ["truck"], "volumes": ["20L","200L"], "image": "" },
+    { "id": "t2c4", "slug": "adblue",                 "sku": "KR/AB-0001", "name": "Krüger® AdBlue",               "shortDescription": "Снижение NOx, соответствие нормам Euro 5/6.",          "category": "adblue", "application": ["truck"], "volumes": ["10L","200L","1000L"], "image": "" }
+  ],
+  "ev": [
+    { "id": "t3c1", "slug": "ev-fluid-cool",          "sku": "KR/EV-0001", "name": "Krüger® EV Fluid Cool",        "shortDescription": "Диэлектрическая охлаждающая жидкость для батарей.",     "category": "ev",     "application": ["ev"],    "volumes": ["5L","20L"],   "image": "" },
+    { "id": "t3c2", "slug": "ev-reducer-oil-70w",    "sku": "KR/EV-0070", "name": "Krüger® EV Reducer Oil 70W",   "shortDescription": "Низковязкое масло для редукторов электромобилей.",      "category": "ev",     "application": ["ev"],    "volumes": ["1L","4L","20L"], "image": "" },
+    { "id": "t3c3", "slug": "ev-grease-hi-v",        "sku": "KR/EV-0050", "name": "Krüger® EV Grease Hi-V",       "shortDescription": "Высоковольтная смазка для подшипников ротора.",         "category": "ev",     "application": ["ev"],    "volumes": ["0.4kg","1kg"],   "image": "" },
+    { "id": "t3c4", "slug": "ev-brake-fluid",        "sku": "KR/EV-0004", "name": "Krüger® EV Brake Fluid",       "shortDescription": "Тормозная жидкость для регенеративных систем.",         "category": "brake",  "application": ["ev"],    "volumes": ["0.5L","1L"],     "image": "" }
+  ],
+  "industry": [
+    { "id": "t4c1", "slug": "hydraulic-hvlp-46",     "sku": "KR/HY-0046", "name": "Krüger® Hydraulic HVLP 46",    "shortDescription": "Универсальное гидравлическое масло.",                  "category": "hydraulic", "application": ["industry"], "volumes": ["20L","200L","1000L"], "image": "" },
+    { "id": "t4c2", "slug": "industrial-gear-iso-220","sku": "KR/IG-0220","name": "Krüger® Industrial Gear ISO 220","shortDescription": "Для промышленных редукторов с высокой нагрузкой.",   "category": "gear",      "application": ["industry"], "volumes": ["20L","200L"],         "image": "" },
+    { "id": "t4c3", "slug": "compressor-vdl-100",    "sku": "KR/CO-0100", "name": "Krüger® Compressor VDL 100",   "shortDescription": "Для воздушных компрессоров с длительными интервалами.","category": "compressor","application": ["industry"], "volumes": ["20L","200L"],         "image": "" },
+    { "id": "t4c4", "slug": "turbine-t-32",          "sku": "KR/TU-0032", "name": "Krüger® Turbine T 32",         "shortDescription": "Турбинное масло с высокой стабильностью.",             "category": "turbine",   "application": ["industry"], "volumes": ["20L","200L"],         "image": "" }
+  ],
+  "agro": [
+    { "id": "t5c1", "slug": "utto-10w-30",           "sku": "KR/UT-0030", "name": "Krüger® UTTO 10W-30",          "shortDescription": "Универсальное тракторное трансмиссионно-гидравлическое.","category": "utto",     "application": ["agro"], "volumes": ["20L","200L"],         "image": "" },
+    { "id": "t5c2", "slug": "stou-15w-40",           "sku": "KR/UT-0040", "name": "Krüger® STOU 15W-40",          "shortDescription": "Универсальное масло для всех узлов сельхозтехники.",   "category": "stou",      "application": ["agro"], "volumes": ["20L","200L"],         "image": "" },
+    { "id": "t5c3", "slug": "engine-oil-15w-40-ci-4","sku": "KR/EO-0044", "name": "Krüger® Engine Oil 15W-40 CI-4","shortDescription": "Для дизелей сельхозтехники в тяжёлых условиях.",      "category": "engine",    "application": ["agro"], "volumes": ["20L","200L"],         "image": "" },
+    { "id": "t5c4", "slug": "hydraulic-hvlp-68",     "sku": "KR/HY-0068", "name": "Krüger® Hydraulic HVLP 68",    "shortDescription": "Гидравлическое масло для тяжёлых режимов.",            "category": "hydraulic", "application": ["agro"], "volumes": ["20L","200L"],         "image": "" }
+  ],
+  "construction": [
+    { "id": "t6c1", "slug": "engine-oil-10w-40-e9",  "sku": "KR/EO-0042", "name": "Krüger® Engine Oil 10W-40 E9", "shortDescription": "Для дизелей с DPF и SCR на спецтехнике.",              "category": "engine",     "application": ["construction"], "volumes": ["20L","200L"], "image": "" },
+    { "id": "t6c2", "slug": "hydraulic-hvlp-46-zf",  "sku": "KR/HY-0146", "name": "Krüger® Hydraulic HVLP 46 ZF", "shortDescription": "С усиленным пакетом противоизносных присадок.",        "category": "hydraulic",  "application": ["construction"], "volumes": ["20L","200L"], "image": "" },
+    { "id": "t6c3", "slug": "powershift-to-4-30",    "sku": "KR/PS-0030", "name": "Krüger® Powershift TO-4 30",   "shortDescription": "Для трансмиссий и гидравлики землеройной техники.",    "category": "powershift", "application": ["construction"], "volumes": ["20L","200L"], "image": "" },
+    { "id": "t6c4", "slug": "wheel-bearing-grease",  "sku": "KR/GR-0050", "name": "Krüger® Wheel Bearing Grease", "shortDescription": "Высокотемпературная литиевая смазка ступиц.",          "category": "grease",     "application": ["construction"], "volumes": ["0.4kg","1kg","18kg"], "image": "" }
+  ]
+}

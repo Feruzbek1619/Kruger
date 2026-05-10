@@ -1,0 +1,7 @@
+[
+  { "value": "8+",   "labelKey": "stats.years" },
+  { "value": "1.5k", "labelKey": "stats.partners" },
+  { "value": "150",  "labelKey": "stats.products" },
+  { "value": "6M",   "labelKey": "stats.litres" },
+  { "value": "50+",  "labelKey": "stats.countries" }
+]

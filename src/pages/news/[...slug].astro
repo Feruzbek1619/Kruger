@@ -1,0 +1,81 @@
+---
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import NewsCard from '@/components/cards/NewsCard.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { t } from '@/lib/i18n'
+
+export async function getStaticPaths() {
+  const entries = await getCollection('news')
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }))
+}
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const { entry } = Astro.props as { entry: Awaited<ReturnType<typeof getCollection<'news'>>>[number] }
+const { Content } = await render(entry)
+
+const all = await getCollection('news')
+const related = all.filter((e) => e.id !== entry.id).slice(0, 3)
+const date = entry.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+---
+<BaseLayout title={`${entry.data.title} — Krüger`} description={entry.data.preview}>
+  <PageHero
+    eyebrow={entry.data.tag}
+    title={entry.data.title}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.news'), href: '/news/' }, { label: entry.data.title }]}
+  />
+
+  <article class="bg-bg py-16 md:py-20">
+    <div class="container-page max-w-3xl">
+      <div class="flex items-center gap-4 text-sm text-text-muted mb-8">
+        <time>{date}</time>
+        <span aria-hidden="true">·</span>
+        <span>{entry.data.tag}</span>
+      </div>
+      <div class="prose-news">
+        <Content />
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-border-soft flex flex-wrap items-center justify-between gap-4">
+        <a href="/news/" class="inline-flex items-center gap-2 text-sm font-medium text-text hover:text-primary">
+          <Icon name="arrowLeft" class="h-4 w-4" />
+          {t(lang, 'common.back')}
+        </a>
+        <div class="flex items-center gap-2 text-sm text-text-muted">
+          <span class="mr-2">{t(lang, 'common.share')}:</span>
+          {[
+            ['facebook',   `https://www.facebook.com/sharer/sharer.php?u=${Astro.url.href}`],
+            ['linkedin',   `https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(entry.data.title)}`],
+            ['telegramApp',`https://t.me/share/url?url=${Astro.url.href}&text=${encodeURIComponent(entry.data.title)}`],
+          ].map(([name, url]) => (
+            <a href={url} target="_blank" rel="noopener" aria-label={name} class="inline-flex h-9 w-9 items-center justify-center rounded-pill border border-border text-text hover:bg-primary hover:border-primary hover:text-text-inverse transition-colors">
+              <Icon name={name} class="h-4 w-4" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </article>
+
+  {related.length > 0 && (
+    <section class="bg-bg-soft py-16 md:py-20">
+      <div class="container-page">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-8">{t(lang, 'newsPage.related')}</h2>
+        <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-3">
+          {related.map((e) => <li><NewsCard entry={e} /></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style is:global>
+  .prose-news h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); margin: 2rem 0 0.75rem; color: var(--color-text); line-height: 1.2; }
+  .prose-news h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); margin: 1.5rem 0 0.5rem; color: var(--color-text); }
+  .prose-news p  { margin-block: 1rem; line-height: 1.65; color: var(--color-text); }
+  .prose-news ul { padding-left: 1.25rem; margin-block: 1rem; list-style: disc; }
+  .prose-news ul li { margin-block: 0.35rem; line-height: 1.6; }
+  .prose-news strong { color: var(--color-text); font-weight: 600; }
+  .prose-news a  { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; }
+</style>

@@ -1,0 +1,14 @@
+[
+  { "id": "mercedes",   "name": "Mercedes-Benz", "logo": "" },
+  { "id": "bmw",        "name": "BMW",           "logo": "" },
+  { "id": "vw",         "name": "Volkswagen",    "logo": "" },
+  { "id": "porsche",    "name": "Porsche",       "logo": "" },
+  { "id": "audi",       "name": "Audi",          "logo": "" },
+  { "id": "ford",       "name": "Ford",          "logo": "" },
+  { "id": "volvo",      "name": "Volvo",         "logo": "" },
+  { "id": "man",        "name": "MAN",           "logo": "" },
+  { "id": "scania",     "name": "Scania",        "logo": "" },
+  { "id": "renault",    "name": "Renault",       "logo": "" },
+  { "id": "toyota",     "name": "Toyota",        "logo": "" },
+  { "id": "hyundai",    "name": "Hyundai",       "logo": "" }
+]

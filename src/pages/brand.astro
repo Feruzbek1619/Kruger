@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import Card from '@/components/ui/Card.astro'
+import Icon from '@/components/ui/Icon.astro'
+import ru from '@/i18n/ru.json'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const items = ru.brand.items
+---
+<BaseLayout title="Brand Portal — материалы Krüger для дилеров и партнёров">
+  <PageHero
+    eyebrow={t(lang, 'brand.eyebrow')}
+    title={t(lang, 'brand.title')}
+    lead={t(lang, 'brand.lead')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: 'Brand Portal' }]}
+  />
+  <section class="bg-bg py-16 md:py-24">
+    <div class="container-page">
+      <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((it) => (
+          <li>
+            <Card variant="default" padding="lg">
+              <div class="aspect-[4/3] bg-bg-soft rounded-md mb-4 flex items-center justify-center text-text-subtle">
+                <Icon name="download" class="h-10 w-10" />
+              </div>
+              <h3 class="font-display font-bold text-lg leading-snug mb-2">{it.title}</h3>
+              <p class="text-sm text-text-muted leading-relaxed mb-4">{it.text}</p>
+              <a href="#" class="inline-flex items-center gap-2 h-11 px-5 rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">
+                <Icon name="download" class="h-4 w-4" />
+                {it.cta} ({it.size})
+              </a>
+            </Card>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-12 text-center">
+        <p class="text-text-muted mb-4">{t(lang, 'brand.ctaText')}</p>
+        <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'brand.ctaBtn')}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

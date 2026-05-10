@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHero from '@/components/sections/PageHero.astro'
+import StatsBar from '@/components/sections/StatsBar.astro'
+import Card from '@/components/ui/Card.astro'
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const blocks = [
+  { key: 'history',     paragraphs: [t(lang, 'about.glance.history.p1'),     t(lang, 'about.glance.history.p2'),     t(lang, 'about.glance.history.p3')], title: t(lang, 'about.glance.history.title') },
+  { key: 'production',  paragraphs: [t(lang, 'about.glance.production.p1'),  t(lang, 'about.glance.production.p2')], title: t(lang, 'about.glance.production.title') },
+  { key: 'rd',          paragraphs: [t(lang, 'about.glance.rd.p1'),          t(lang, 'about.glance.rd.p2')],          title: t(lang, 'about.glance.rd.title') },
+  { key: 'geo',         paragraphs: [t(lang, 'about.glance.geo.p1')],                                                  title: t(lang, 'about.glance.geo.title') },
+]
+---
+<BaseLayout title="О компании Krüger — производство в Германии с 2017 года">
+  <PageHero
+    eyebrow={t(lang, 'about.glance.eyebrow')}
+    title={t(lang, 'about.glance.title')}
+    lead={t(lang, 'about.glance.lead')}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.about'), href: '/about/glance/' }, { label: t(lang, 'nav.aboutGlance') }]}
+  />
+
+  <section class="bg-bg py-16 md:py-24">
+    <div class="container-page space-y-10 md:space-y-14">
+      {blocks.map((b) => (
+        <article class="grid gap-8 md:grid-cols-12 items-start">
+          <div class="md:col-span-4">
+            <h2 class="font-display text-2xl md:text-3xl font-bold text-text">{b.title}</h2>
+          </div>
+          <div class="md:col-span-8 space-y-4 text-text-muted leading-relaxed">
+            {b.paragraphs.map((p) => <p>{p}</p>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <StatsBar />
+
+  <section class="bg-bg-soft py-16 md:py-20">
+    <div class="container-page text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">{t(lang, 'about.glance.ctaTitle')}</h2>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="/about/vision-mission/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">{t(lang, 'about.glance.ctaVision')}</a>
+        <a href="/about/commitments/" class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'about.glance.ctaCommitments')}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

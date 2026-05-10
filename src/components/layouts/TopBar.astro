@@ -1,0 +1,31 @@
+---
+import { t } from '@/lib/i18n'
+import Icon from '@/components/ui/Icon.astro'
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<div class="bg-primary text-text-inverse text-sm">
+  <div class="container-page flex items-center justify-between gap-4 h-10 flex-wrap">
+    <div class="flex items-center gap-5 min-w-0">
+      <span class="hidden md:inline-flex items-center gap-2 truncate">
+        <Icon name="pin" class="h-4 w-4 shrink-0" />
+        <span class="truncate">{t(lang, 'topbar.address')}</span>
+      </span>
+      <LanguageSwitcher client:load current={lang} />
+    </div>
+    <div class="flex items-center gap-5">
+      <a href={`tel:${t(lang, 'topbar.phone').replace(/\s/g, '')}`} class="hidden sm:inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Icon name="phone" class="h-4 w-4" />
+        <span>{t(lang, 'topbar.phone')}</span>
+      </a>
+      <a href={`mailto:${t(lang, 'topbar.email')}`} class="hidden lg:inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Icon name="mail" class="h-4 w-4" />
+        <span>{t(lang, 'topbar.email')}</span>
+      </a>
+      <a href="/catalog.pdf" class="inline-flex items-center gap-2 bg-bg text-text px-3 py-1.5 rounded-pill text-sm font-medium hover:bg-bg-soft transition-colors">
+        <Icon name="download" class="h-3.5 w-3.5" />
+        <span>{t(lang, 'topbar.downloadCatalog')}</span>
+      </a>
+    </div>
+  </div>
+</div>

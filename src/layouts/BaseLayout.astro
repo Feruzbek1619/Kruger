@@ -1,0 +1,62 @@
+---
+import '@/styles/global.css'
+import { ClientRouter } from 'astro:transitions'
+import TopBar from '@/components/layouts/TopBar.astro'
+import Header from '@/components/layouts/Header.astro'
+import Footer from '@/components/layouts/Footer.astro'
+import ContactStrip from '@/components/sections/ContactStrip.astro'
+import FloatingButtons from '@/components/ui/FloatingButtons.vue'
+import Toast from '@/components/ui/Toast.vue'
+
+interface Props {
+  title?: string
+  description?: string
+  hideContactStrip?: boolean
+}
+
+const {
+  title = 'Krüger Motor Oil — премиальные моторные масла, разработанные в Германии',
+  description = 'Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.',
+  hideContactStrip = false,
+} = Astro.props
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <ClientRouter />
+  </head>
+  <body class="bg-bg text-text">
+    <a href="#main" class="skip-link">К основному контенту</a>
+    <TopBar />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    {!hideContactStrip && <ContactStrip />}
+    <Footer />
+    <FloatingButtons client:idle />
+    <Toast client:idle />
+
+    <script>
+      // Motion One: reveal-on-scroll + count-up для статов.
+      // Перезапуск после Astro View Transitions (astro:page-load).
+      import { revealOnScroll, bindCountUps } from '@/lib/motion'
+      const init = () => {
+        revealOnScroll()
+        bindCountUps()
+      }
+      document.addEventListener('astro:page-load', init)
+    </script>
+  </body>
+</html>

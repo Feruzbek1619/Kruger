@@ -1,0 +1,26 @@
+---
+import { t } from '@/lib/i18n'
+import NewsCard from '@/components/cards/NewsCard.astro'
+import news from '@/mocks/news.json'
+import type { NewsItem } from '@/types'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const items = news as NewsItem[]
+---
+<section class="bg-bg py-16 md:py-24">
+  <div class="container-page">
+    <div class="flex items-end justify-between gap-6 mb-8 md:mb-12 flex-wrap">
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{t(lang, 'news.title')}</h2>
+        <p class="mt-2 text-text-muted">{t(lang, 'news.subtitle')}</p>
+      </div>
+      <a href="/news/" class="inline-flex h-11 px-6 items-center rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors">
+        {t(lang, 'news.all')}
+      </a>
+    </div>
+    <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {items.map((n) => (
+        <li><NewsCard item={n} /></li>
+      ))}
+    </ul>
+  </div>
+</section>

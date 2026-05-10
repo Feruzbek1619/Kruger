@@ -1,0 +1,60 @@
+---
+import { t } from '@/lib/i18n'
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+// 12 representative geo points (lat-rough proxy via x/y on the SVG canvas).
+// SVG is 1000x500, equirectangular projection.
+const dots = [
+  { x: 510, y: 150, name: 'Stuttgart' },
+  { x: 540, y: 175, name: 'Vienna' },
+  { x: 580, y: 165, name: 'Warsaw' },
+  { x: 620, y: 155, name: 'Moscow' },
+  { x: 670, y: 215, name: 'Tashkent' },
+  { x: 730, y: 235, name: 'Almaty' },
+  { x: 470, y: 200, name: 'Madrid' },
+  { x: 525, y: 215, name: 'Rome' },
+  { x: 580, y: 245, name: 'Istanbul' },
+  { x: 620, y: 255, name: 'Tehran' },
+  { x: 870, y: 245, name: 'Tokyo' },
+  { x: 240, y: 230, name: 'New York' },
+]
+---
+<section class="bg-bg-soft pt-16 md:pt-20">
+  <div class="bg-primary text-text-inverse">
+    <div class="container-page py-12 md:py-16 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">{t(lang, 'map.title')}</h2>
+      <p class="mt-3 max-w-2xl mx-auto opacity-90">{t(lang, 'map.subtitle')}</p>
+    </div>
+  </div>
+
+  <div class="container-page py-10 md:py-16">
+    <div class="bg-bg rounded-xl p-4 md:p-8 shadow-md">
+      <svg viewBox="0 0 1000 500" class="w-full h-auto" role="img" aria-label="Карта мира с точками присутствия Krüger">
+        <rect width="1000" height="500" fill="var(--color-illus-bg)" rx="8" />
+        <!-- simplified continents (very approximate silhouettes) -->
+        <g fill="var(--color-illus-land)">
+          <path d="M150 120c30-30 70-30 110-15 35 15 60 15 100 0 30-10 70-5 90 25 20 30-5 60-30 75-40 25-90 35-130 25-40-10-70-25-100-25s-50-15-50-40 0-35 10-45Z"/>
+          <path d="M450 110c40-25 90-25 140-10 50 15 90 30 130 25 40-5 90-15 130 5 30 15 50 35 65 60 10 20-5 40-30 50-40 15-90 15-140 25-50 10-100 30-150 30-50 0-90-15-130-30-40-15-80-30-105-55-25-25-25-65 0-90 30-30 60-30 90-10Z"/>
+          <path d="M780 220c30-15 70-10 100 5 30 15 50 35 50 60 0 20-15 35-40 40-30 5-70 0-100-15-30-15-45-30-45-45 0-15 10-30 35-45Z"/>
+          <path d="M180 240c40-15 80-10 110 5 30 15 50 35 50 65 0 30-25 50-65 60-40 10-90 5-110-15-20-20-25-50-15-75 10-25 20-30 30-40Z"/>
+          <path d="M260 380c30-10 70-5 100 10 30 15 50 25 60 20 10-5 5-25 25-30 15-5 40 0 50 15 10 15 5 35-10 45-15 10-45 10-75 5-30-5-70-5-100 5-30 10-60 0-65-25-5-25 5-35 15-45Z"/>
+        </g>
+        {dots.map((d) => (
+          <g>
+            <circle cx={d.x} cy={d.y} r="10" fill="var(--primary)" opacity="0.25" />
+            <circle cx={d.x} cy={d.y} r="5" fill="var(--primary)">
+              <title>{d.name}</title>
+            </circle>
+          </g>
+        ))}
+      </svg>
+    </div>
+
+    <div class="mt-8 md:mt-10 text-center">
+      <p class="text-text-muted mb-4">{t(lang, 'map.ctaText')}</p>
+      <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">
+        {t(lang, 'map.ctaBtn')}
+      </a>
+    </div>
+  </div>
+</section>
