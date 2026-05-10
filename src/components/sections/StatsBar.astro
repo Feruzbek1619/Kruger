@@ -3,18 +3,34 @@ import { t } from '@/lib/i18n'
 import stats from '@/mocks/stats.json'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
-<section class="bg-bg-dark text-text-inverse">
-  <div class="container-page py-14 md:py-20">
-    <ul class="grid grid-cols-2 md:grid-cols-5 gap-y-10 gap-x-6 text-center">
-      {stats.map((s) => (
-        <li class="kr-reveal border-r border-border-soft/15 last:border-r-0 px-4 first:border-l-0">
+<section class="relative bg-[#0a0a0e] text-text-inverse overflow-hidden">
+  <!-- Жёлтая диагональная полоса как в Hero (брендовая отсылка) -->
+  <div
+    class="absolute -right-32 -top-32 w-72 h-[42rem] rotate-[18deg] bg-[#F8CC0F]/[0.06] pointer-events-none"
+    aria-hidden="true"
+  />
+  <div
+    class="absolute -right-16 -top-32 w-1.5 h-[42rem] rotate-[18deg] bg-[#F8CC0F]/40 pointer-events-none"
+    aria-hidden="true"
+  />
+
+  <div class="relative container-page py-16 md:py-24">
+    <ul class="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-4">
+      {stats.map((s, i) => (
+        <li class="kr-reveal relative px-4 md:px-6 text-center group">
+          <!-- Number index micro-label (premium feel) -->
+          <span class="absolute top-0 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-widest text-[#F8CC0F]/60">
+            {String(i + 1).padStart(2, '0')}
+          </span>
           <div
-            class="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-text-inverse tabular-nums"
+            class="font-display text-6xl md:text-7xl lg:text-8xl font-extrabold leading-none tracking-tight tabular-nums bg-gradient-to-b from-text-inverse to-text-inverse/70 bg-clip-text text-transparent transition-transform group-hover:scale-105 origin-bottom"
             data-countup={s.value}
           >
             {s.value}
           </div>
-          <div class="mt-2 text-xs md:text-sm uppercase tracking-wider text-text-inverse/70">
+          <!-- Yellow underline accent -->
+          <span class="block mx-auto mt-3 h-0.5 w-8 bg-[#F8CC0F]" aria-hidden="true" />
+          <div class="mt-3 text-xs md:text-sm uppercase tracking-[0.18em] text-text-inverse/60 font-semibold">
             {t(lang, s.labelKey)}
           </div>
         </li>

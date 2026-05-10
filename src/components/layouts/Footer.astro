@@ -4,74 +4,108 @@ import Logo from '@/components/ui/Logo.astro'
 import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
-<footer class="bg-bg-dark text-text-inverse">
-  <div class="container-page py-14 md:py-20 grid gap-10 md:grid-cols-12">
+<footer class="relative bg-[#0a0a0e] text-text-inverse overflow-hidden">
+  <!-- Yellow brand stripe -->
+  <span class="absolute top-0 left-0 right-0 h-1 bg-[#F8CC0F]" aria-hidden="true" />
+  <!-- Diagonal accent в углу -->
+  <div
+    class="absolute -left-24 -bottom-32 w-72 h-[42rem] -rotate-[18deg] bg-[#F8CC0F]/[0.04] pointer-events-none"
+    aria-hidden="true"
+  />
+
+  <div class="relative container-page py-16 md:py-20 grid gap-10 md:grid-cols-12">
+    <!-- Brand column -->
     <div class="md:col-span-4">
-      <Logo variant="white" class="h-10" />
-      <p class="mt-5 text-sm leading-relaxed opacity-80 max-w-xs">{t(lang, 'footer.brandDescription')}</p>
-      <div class="mt-6 flex items-center gap-3">
-        {['facebook','instagram','youtube','linkedin'].map((s) => (
-          <a href="#" aria-label={s} class="inline-flex h-10 w-10 items-center justify-center rounded-pill border border-border-soft/30 hover:bg-primary hover:border-primary transition-colors">
-            <Icon name={s} class="h-4 w-4" />
-          </a>
-        ))}
+      <Logo variant="white" class="h-11" />
+      <p class="mt-6 text-sm leading-relaxed opacity-75 max-w-xs">
+        {t(lang, 'footer.brandDescription')}
+      </p>
+      <div class="mt-8">
+        <p class="text-[10px] uppercase tracking-[0.2em] opacity-50 font-semibold mb-3">Social</p>
+        <div class="flex items-center gap-2">
+          {['facebook','instagram','youtube','linkedin'].map((s) => (
+            <a
+              href="#"
+              aria-label={s}
+              class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-text-inverse/15 hover:bg-[#F8CC0F] hover:border-[#F8CC0F] hover:text-text transition-colors"
+            >
+              <Icon name={s} class="h-4 w-4" />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
 
+    <!-- Main links -->
     <div class="md:col-span-2">
-      <h3 class="font-display font-bold text-sm uppercase tracking-wide mb-4 opacity-90">{t(lang, 'footer.colMain')}</h3>
-      <ul class="space-y-2 text-sm opacity-80">
-        <li><a href="/" class="hover:text-primary transition-colors">{t(lang, 'nav.home')}</a></li>
-        <li><a href="/services/" class="hover:text-primary transition-colors">{t(lang, 'nav.service')}</a></li>
-        <li><a href="/about/" class="hover:text-primary transition-colors">{t(lang, 'nav.about')}</a></li>
-        <li><a href="/services/" class="hover:text-primary transition-colors">{t(lang, 'nav.services')}</a></li>
-        <li><a href="/news/" class="hover:text-primary transition-colors">{t(lang, 'nav.news')}</a></li>
-        <li><a href="/faq/" class="hover:text-primary transition-colors">{t(lang, 'nav.faq')}</a></li>
-        <li><a href="/contact/" class="hover:text-primary transition-colors">{t(lang, 'nav.contact')}</a></li>
+      <h3 class="font-display font-bold text-xs uppercase tracking-[0.18em] mb-5 text-[#F8CC0F]">
+        {t(lang, 'footer.colMain')}
+      </h3>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'nav.home')}</a></li>
+        <li><a href="/products/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">Каталог</a></li>
+        <li><a href="/about/glance/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'nav.about')}</a></li>
+        <li><a href="/services/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'nav.services')}</a></li>
+        <li><a href="/news/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'nav.news')}</a></li>
+        <li><a href="/faq/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'nav.faq')}</a></li>
+        <li><a href="/contact/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'nav.contact')}</a></li>
       </ul>
     </div>
 
+    <!-- Products -->
     <div class="md:col-span-3">
-      <h3 class="font-display font-bold text-sm uppercase tracking-wide mb-4 opacity-90">{t(lang, 'footer.colProducts')}</h3>
-      <ul class="space-y-2 text-sm opacity-80">
-        <li><a href="/products/category/engine/"     class="hover:text-primary transition-colors">{t(lang, 'footer.products.engine')}</a></li>
-        <li><a href="/products/category/hydraulic/"  class="hover:text-primary transition-colors">{t(lang, 'footer.products.hydraulic')}</a></li>
-        <li><a href="/products/category/manual-gear/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.transmission')}</a></li>
-        <li><a href="/products/category/antifreeze/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.antifreeze')}</a></li>
-        <li><a href="/products/category/ev-fluids/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.ev')}</a></li>
-        <li><a href="/products/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.all')}</a></li>
-        <li><a href="/pds-sds/" class="hover:text-primary transition-colors">{t(lang, 'footer.products.pds')}</a></li>
+      <h3 class="font-display font-bold text-xs uppercase tracking-[0.18em] mb-5 text-[#F8CC0F]">
+        {t(lang, 'footer.colProducts')}
+      </h3>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="/products/category/engine/"     class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.engine')}</a></li>
+        <li><a href="/products/category/hydraulic/"  class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.hydraulic')}</a></li>
+        <li><a href="/products/category/manual-gear/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.transmission')}</a></li>
+        <li><a href="/products/category/antifreeze/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.antifreeze')}</a></li>
+        <li><a href="/products/category/ev-fluids/"  class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.ev')}</a></li>
+        <li><a href="/products/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.all')}</a></li>
+        <li><a href="/pds-sds/" class="opacity-75 hover:opacity-100 hover:text-[#F8CC0F] transition-colors">{t(lang, 'footer.products.pds')}</a></li>
       </ul>
     </div>
 
+    <!-- Subscribe -->
     <div class="md:col-span-3">
-      <h3 class="font-display font-bold text-sm uppercase tracking-wide mb-4 opacity-90">{t(lang, 'footer.colSubscribe')}</h3>
-      <p class="text-sm opacity-80 mb-4">{t(lang, 'footer.subscribeText')}</p>
-      <form class="flex flex-col sm:flex-row gap-2" onsubmit="return false">
+      <h3 class="font-display font-bold text-xs uppercase tracking-[0.18em] mb-5 text-[#F8CC0F]">
+        Newsletter
+      </h3>
+      <p class="text-sm opacity-75 mb-5 leading-relaxed">{t(lang, 'footer.subscribeText')}</p>
+      <form class="space-y-2.5" onsubmit="return false">
         <input
           type="email"
           required
           aria-label={t(lang, 'footer.subscribePlaceholder')}
           placeholder={t(lang, 'footer.subscribePlaceholder')}
-          class="flex-1 h-11 rounded-md bg-bg/10 border-2 border-border-soft/30 px-4 text-sm text-text-inverse placeholder:text-text-inverse/50 focus:outline-none focus:border-primary"
+          class="w-full h-12 rounded-md bg-text-inverse/[0.05] border border-text-inverse/15 px-4 text-sm text-text-inverse placeholder:text-text-inverse/40 focus:outline-none focus:border-[#F8CC0F] transition-colors"
         />
-        <button type="submit" class="h-11 px-5 rounded-md bg-primary text-text-inverse text-sm font-medium hover:opacity-90 transition-opacity">
+        <button
+          type="submit"
+          class="group w-full inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md bg-primary hover:bg-primary-hover text-text-inverse text-sm font-semibold transition-colors"
+        >
           {t(lang, 'footer.subscribeBtn')}
+          <Icon name="arrowRight" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </button>
       </form>
     </div>
   </div>
 
-  <div class="border-t border-border-soft/15">
-    <div class="container-page py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs opacity-75">
-      <span>{t(lang, 'footer.rights')}</span>
-      <ul class="flex items-center gap-4">
-        <li><a href="/impressum/" class="hover:text-primary">{t(lang, 'footer.legal.impressum')}</a></li>
-        <li><a href="/privacy/" class="hover:text-primary">{t(lang, 'footer.legal.privacy')}</a></li>
-        <li><a href="/terms/" class="hover:text-primary">{t(lang, 'footer.legal.terms')}</a></li>
-        <li><a href="/cookies/" class="hover:text-primary">{t(lang, 'footer.legal.cookies')}</a></li>
+  <!-- Bottom bar -->
+  <div class="relative border-t border-text-inverse/10">
+    <div class="container-page py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+      <span class="opacity-60">{t(lang, 'footer.rights')}</span>
+      <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 opacity-60">
+        <li><a href="/impressum/" class="hover:text-[#F8CC0F] hover:opacity-100">{t(lang, 'footer.legal.impressum')}</a></li>
+        <li><a href="/privacy/"   class="hover:text-[#F8CC0F] hover:opacity-100">{t(lang, 'footer.legal.privacy')}</a></li>
+        <li><a href="/terms/"     class="hover:text-[#F8CC0F] hover:opacity-100">{t(lang, 'footer.legal.terms')}</a></li>
+        <li><a href="/cookies/"   class="hover:text-[#F8CC0F] hover:opacity-100">{t(lang, 'footer.legal.cookies')}</a></li>
       </ul>
-      <span>{t(lang, 'footer.designedBy')} ✦ DASTA</span>
+      <span class="opacity-60">
+        {t(lang, 'footer.designedBy')} <strong class="text-[#F8CC0F] font-bold ml-1">DASTA</strong>
+      </span>
     </div>
   </div>
 </footer>
