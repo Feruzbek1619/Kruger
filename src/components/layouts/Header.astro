@@ -3,57 +3,64 @@ import { t } from '@/lib/i18n'
 import Logo from '@/components/ui/Logo.astro'
 import Icon from '@/components/ui/Icon.astro'
 import MobileMenu from '@/components/layouts/MobileMenu.vue'
+import { ChevronDown } from 'lucide-vue-next'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 const path = Astro.url.pathname
 
+// Главное меню: Главная · Каталог · О компании⌄ (вкл. Сервис) · Новости · FAQ · Контакты
 const items = [
   { label: t(lang, 'nav.home'),    href: '/' },
-  { label: t(lang, 'nav.service'), href: '/services/' },
+  { label: 'Каталог',              href: '/products/' },
   {
     label: t(lang, 'nav.about'),
-    href: '/about/',
+    href: '/about/glance/',
     children: [
       { label: t(lang, 'nav.aboutGlance'),      href: '/about/glance/' },
       { label: t(lang, 'nav.aboutVision'),      href: '/about/vision-mission/' },
       { label: t(lang, 'nav.aboutCommitments'), href: '/about/commitments/' },
+      { label: t(lang, 'nav.services'),         href: '/services/' },
     ],
   },
-  { label: t(lang, 'nav.services'), href: '/services/' },
-  { label: t(lang, 'nav.news'),     href: '/news/' },
-  { label: t(lang, 'nav.faq'),      href: '/faq/' },
-  { label: t(lang, 'nav.contact'),  href: '/contact/' },
+  { label: t(lang, 'nav.news'),    href: '/news/' },
+  { label: t(lang, 'nav.faq'),     href: '/faq/' },
+  { label: t(lang, 'nav.contact'), href: '/contact/' },
 ]
 ---
-<header class="sticky top-0 z-sticky bg-bg border-b border-border-soft">
+<header class="sticky top-0 z-sticky bg-bg/95 backdrop-blur-sm border-b-2 border-border-soft">
+  <!-- Тонкая жёлтая полоска вверху — фирменный акцент -->
+  <div class="h-1 bg-[#F8CC0F]" aria-hidden="true"></div>
+
   <div class="container-page flex items-center justify-between gap-6 h-16 md:h-20">
-    <a href="/" class="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
+    <a href="/" class="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-transform hover:scale-[1.02]">
       <Logo class="h-9 md:h-11" />
     </a>
 
-    <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Главное меню">
+    <nav class="hidden md:flex items-center gap-0.5 lg:gap-1" aria-label="Главное меню">
       {items.map((it) => (
         it.children ? (
           <div class="relative group">
             <a
               href={it.href}
               class:list={[
-                'inline-flex items-center gap-1 px-3 py-2 rounded text-sm lg:text-base font-medium transition-colors hover:text-primary',
-                path.startsWith(it.href) ? 'text-text font-bold' : 'text-text',
+                'inline-flex items-center gap-1 px-3 py-2 rounded-md text-sm lg:text-base font-semibold transition-colors hover:text-primary',
+                path.startsWith('/about/') ? 'text-primary' : 'text-text',
               ]}
             >
               {it.label}
-              <svg viewBox="0 0 12 12" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 5 3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <ChevronDown :size={14} class="transition-transform group-hover:rotate-180" aria-hidden="true" />
             </a>
-            <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block min-w-[14rem]">
-              <ul class="bg-bg rounded-md shadow-lg border border-border-soft py-2">
+            <!-- Дропдаун с фирменным жёлтым акцентом сверху -->
+            <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block min-w-[15rem]">
+              <ul class="bg-bg rounded-lg shadow-xl border border-border-soft overflow-hidden">
+                <li class="h-1 bg-[#F8CC0F]" aria-hidden="true"></li>
                 {it.children.map((c) => (
                   <li>
                     <a
                       href={c.href}
                       class:list={[
-                        'block px-4 py-2 text-sm hover:bg-bg-soft hover:text-primary',
-                        path === c.href ? 'text-primary font-semibold bg-bg-soft' : 'text-text',
+                        'block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-bg-soft hover:text-primary',
+                        path === c.href ? 'text-primary bg-bg-soft' : 'text-text',
                       ]}
                     >
                       {c.label}
@@ -67,8 +74,10 @@ const items = [
           <a
             href={it.href}
             class:list={[
-              'px-3 py-2 rounded text-sm lg:text-base font-medium transition-colors hover:text-primary',
-              path === it.href ? 'text-text font-bold' : 'text-text',
+              'relative px-3 py-2 rounded-md text-sm lg:text-base font-semibold transition-colors hover:text-primary',
+              (path === it.href || (it.href !== '/' && path.startsWith(it.href)))
+                ? 'text-primary after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-0.5 after:bg-primary after:rounded-full'
+                : 'text-text',
             ]}
           >
             {it.label}
@@ -80,11 +89,17 @@ const items = [
     <div class="flex items-center gap-2">
       <button
         type="button"
-        class="hidden md:inline-flex h-10 w-10 items-center justify-center rounded text-text hover:bg-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        class="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-md text-text hover:bg-bg-soft hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label={t(lang, 'nav.search')}
       >
         <Icon name="search" class="h-5 w-5" />
       </button>
+      <a
+        href="/contact/"
+        class="hidden lg:inline-flex h-10 px-5 items-center rounded-pill bg-primary text-text-inverse text-sm font-semibold hover:bg-primary-hover transition-colors"
+      >
+        {t(lang, 'map.ctaBtn')}
+      </a>
       <MobileMenu client:load items={items} />
     </div>
   </div>

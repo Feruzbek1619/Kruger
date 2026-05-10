@@ -14,7 +14,9 @@ interface Props {
 }
 const { variant = 'color', class: extra = 'h-10' } = Astro.props
 
-const yellow = variant === 'mono' ? 'currentColor' : 'var(--color-brand-yellow)'
+// SVG fill atribute не читает CSS-переменные надёжно в браузерах,
+// поэтому жёлтый используем литерально (это бренд-цвет, который не меняется).
+const yellow = variant === 'mono' ? 'currentColor' : '#F8CC0F'
 const ink    = variant === 'mono' ? 'currentColor' : variant === 'white' ? 'white' : 'black'
 ---
 <svg
