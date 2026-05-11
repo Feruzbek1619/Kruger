@@ -22,6 +22,7 @@ import type { Product } from '@/types'
 interface Props {
   products: Product[]
   applicationOptions: { id: string; label: string }[]
+  categoryLabels?: Record<string, string>
   labels: {
     filters: string
     filterByApplication: string
@@ -88,9 +89,15 @@ const allSpecs = computed(() => {
   )
   return [...s].sort()
 })
+// Natural sort: "1L" < "4L" < "10L" < "200L" < "1000L"; "L" before "kg".
+function volumeWeight(v: string): number {
+  const num = parseFloat(v) || 0
+  const unitPenalty = /kg/i.test(v) ? 100000 : 0
+  return num + unitPenalty
+}
 const allVolumes = computed(() => {
   const s = new Set(props.products.flatMap((p) => p.volumes ?? []))
-  return [...s]
+  return [...s].sort((a, b) => volumeWeight(a) - volumeWeight(b))
 })
 
 const options = computed(() => ({
@@ -99,6 +106,7 @@ const options = computed(() => ({
   allViscosities: allViscosities.value,
   allSpecs: allSpecs.value,
   allVolumes: allVolumes.value,
+  categoryLabels: props.categoryLabels ?? {},
 }))
 
 // ── Filtering + sorting ───────────────────────────────────

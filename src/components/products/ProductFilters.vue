@@ -35,6 +35,7 @@ interface Props {
     allViscosities: string[]
     allSpecs: string[]
     allVolumes: string[]
+    categoryLabels?: Record<string, string>
   }
   labels: {
     filters: string
@@ -125,7 +126,7 @@ const defaultOpen = ['app']
                 :model-value="isChecked('categories', cat)"
                 @update:model-value="toggle('categories', cat)"
               >
-                <span class="capitalize">{{ cat }}</span>
+                <span>{{ options.categoryLabels?.[cat] ?? cat }}</span>
               </Checkbox>
             </li>
           </ul>

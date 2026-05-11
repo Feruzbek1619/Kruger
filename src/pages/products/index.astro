@@ -18,6 +18,7 @@ import ProductCatalogShell from '@/components/products/ProductCatalogShell.vue'
 import { t } from '@/lib/i18n'
 import allProducts from '@/mocks/all-products.json'
 import segments from '@/mocks/segments.json'
+import categories from '@/mocks/categories.json'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
@@ -25,6 +26,11 @@ const applicationOptions = (segments as { id: string; title: string }[]).map((s)
   id: s.id,
   label: s.title,
 }))
+
+// Словарь категорий: { engine: "Моторные масла", hydraulic: "Гидравлические масла", ... }
+const categoryLabels = (categories as { id: string; title: string }[]).reduce<Record<string, string>>(
+  (acc, c) => { acc[c.id] = c.title; return acc }, {}
+)
 
 const labels = {
   filters:             t(lang, 'products.filters'),
@@ -72,6 +78,7 @@ const labels = {
     client:idle
     products={allProducts as any}
     applicationOptions={applicationOptions}
+    categoryLabels={categoryLabels}
     labels={labels}
   />
 </BaseLayout>
