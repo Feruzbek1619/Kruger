@@ -16,9 +16,9 @@ const {
 const dark = variant === 'dark'
 ---
 <section class:list={[dark ? 'bg-bg-dark text-text-inverse' : 'bg-bg-soft text-text']}>
-  <div class="container-page py-14 md:py-20">
+  <div class:list={['container-page', title || lead ? 'py-14 md:py-20' : 'py-5 md:py-6']}>
     {breadcrumbs.length > 0 && (
-      <nav aria-label="Хлебные крошки" class:list={['mb-6 text-xs', dark ? 'text-text-inverse/70' : 'text-text-muted']}>
+      <nav aria-label="Хлебные крошки" class:list={[title || lead ? 'mb-6' : 'mb-0', 'text-xs', dark ? 'text-text-inverse/70' : 'text-text-muted']}>
         <ol class="flex flex-wrap items-center gap-2">
           {breadcrumbs.map((b, i) => (
             <li class="inline-flex items-center gap-2">

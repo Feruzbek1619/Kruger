@@ -24,7 +24,6 @@ const { product } = Astro.props as { product: Product }
 const details = (productDetails as Record<string, any>)[product.slug] ?? (productDetails as any)._default
 const fallback = (productDetails as any)._default
 
-// Merge with fallback so missing arrays come from default
 const d = {
   description:        details.description       || fallback.description,
   engineTypes:        details.engineTypes?.length      ? details.engineTypes      : fallback.engineTypes,
@@ -37,14 +36,15 @@ const d = {
   benefits:           details.benefits?.length         ? details.benefits         : fallback.benefits,
 }
 
-// Find category for breadcrumbs
 const category = (categories as any[]).find((c) => c.id === product.category)
 const categoryTitle = category?.title ?? 'Продукция'
 
-// Specs combined for tab 3
 const apiSpecs  = (product as any).apiSpec ?? []
 const aceaSpecs = (product as any).aceaSpec ?? []
 const compliesWith = [...apiSpecs, ...aceaSpecs]
+
+// Иконки преимуществ — циклятся по списку d.benefits
+const benefitIcons = ['shield', 'spark', 'drop', 'thermo', 'cog', 'leaf'] as const
 
 const tabs = [
   { id: 'description',    label: t(lang, 'products.detail.tabDescription') },
@@ -89,12 +89,14 @@ const formErrors = {
     ]}
   />
 
-  <!-- Hero block: gallery + info -->
-  <section class="bg-bg pt-4 pb-12 md:pb-16">
-    <div class="container-page grid gap-10 lg:grid-cols-[1fr_1.1fr]">
+  <!-- Hero block: gallery + info, premium 2-col layout -->
+  <section class="bg-bg pt-4 pb-16 md:pb-24" id="product-hero">
+    <div class="container-page grid gap-10 lg:gap-12 lg:grid-cols-2 items-start">
       <ProductGallery
         client:visible
-        images={product.image ? [product.image] : []}
+        images={product.image
+          ? [product.image, product.image === '/products/kruger-1.png' ? '/products/kruger-2.png' : '/products/kruger-1.png']
+          : []}
         alt={product.name}
         category={product.category}
         viscosity={(product as any).viscosity ?? ''}
@@ -102,34 +104,64 @@ const formErrors = {
         transition:name={`product-img-${product.slug}`}
       />
 
-      <div>
-        <p class="text-xs uppercase tracking-wider text-text-muted mb-2">{categoryTitle}</p>
-        <h1 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight mb-3" transition:name={`product-title-${product.slug}`}>
+      <div class="lg:pt-2">
+        <!-- Category eyebrow -->
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{categoryTitle}</p>
+        </div>
+
+        <!-- Product name -->
+        <h1
+          class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-3"
+          transition:name={`product-title-${product.slug}`}
+        >
           {product.name}
         </h1>
-        <p class="text-sm text-text-muted mb-5">
-          <span class="font-medium">{t(lang, 'products.detail.sku')}:</span> {product.sku}
-        </p>
-        <p class="text-base md:text-lg text-text leading-relaxed mb-6">
+
+        <!-- SKU + viscosity badge row -->
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="text-sm text-text-muted">
+            <span class="font-medium">{t(lang, 'products.detail.sku')}:</span> <span class="font-mono">{product.sku}</span>
+          </span>
+          {(product as any).viscosity && (
+            <span class="inline-flex h-7 px-2.5 items-center rounded-md bg-primary text-text-inverse text-xs font-bold tracking-wider">
+              {(product as any).viscosity}
+            </span>
+          )}
+        </div>
+
+        <!-- Lead description -->
+        <p class="text-base md:text-lg text-text leading-relaxed mb-7">
           {product.shortDescription}
         </p>
 
         {product.volumes && product.volumes.length > 0 && (
-          <div class="mb-7">
-            <p class="text-xs uppercase tracking-wider text-text-muted mb-2.5">
+          <div class="mb-8 pt-6 border-t border-border-soft">
+            <p class="text-[10px] md:text-xs uppercase tracking-[0.18em] text-text-muted font-bold mb-3">
               {t(lang, 'products.detail.availableVolumes')}
             </p>
             <ul class="flex flex-wrap gap-2">
-              {product.volumes.map((v) => (
+              {product.volumes.map((v, i) => (
                 <li>
-                  <span class="inline-flex h-9 px-4 items-center rounded-pill border border-border bg-bg-soft text-sm font-medium text-text font-mono">{v}</span>
+                  <button
+                    type="button"
+                    data-volume={v}
+                    class:list={[
+                      'kr-volume-chip inline-flex h-10 px-4 items-center rounded-pill text-sm font-semibold font-mono transition-colors',
+                      i === 0
+                        ? 'bg-primary text-text-inverse border-2 border-primary'
+                        : 'bg-bg text-text border-2 border-border-soft hover:border-primary hover:text-primary',
+                    ]}
+                  >{v}</button>
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        <div class="flex flex-wrap gap-3">
+        <!-- CTAs row -->
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 pt-6 border-t border-border-soft">
           <RequestPriceForm
             client:load
             productName={product.name}
@@ -141,14 +173,14 @@ const formErrors = {
           />
           <a
             href={`/pds-sds/?product=${product.slug}#pds`}
-            class="inline-flex items-center gap-2 h-11 px-5 rounded-md border border-border bg-bg text-text font-medium text-sm hover:bg-bg-soft transition-colors"
+            class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md border-2 border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             <Icon name="download" class="h-4 w-4" />
             {t(lang, 'products.detail.downloadPDS')}
           </a>
           <a
             href={`/pds-sds/?product=${product.slug}#sds`}
-            class="inline-flex items-center gap-2 h-11 px-5 rounded-md border border-border bg-bg text-text font-medium text-sm hover:bg-bg-soft transition-colors"
+            class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md border-2 border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             <Icon name="download" class="h-4 w-4" />
             {t(lang, 'products.detail.downloadSDS')}
@@ -158,101 +190,141 @@ const formErrors = {
     </div>
   </section>
 
-  <!-- Tabs -->
-  <section class="bg-bg-soft py-12 md:py-16">
+  <!-- Sticky compact summary bar (shows on scroll past hero) -->
+  <div
+    id="product-sticky"
+    class="sticky top-0 z-[60] bg-bg/95 backdrop-blur-md border-b border-border-soft -translate-y-full opacity-0 transition-all duration-300 ease-out"
+  >
+    <div class="container-page py-3 flex items-center gap-4">
+      <span class="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-md bg-bg-soft shrink-0 overflow-hidden">
+        {product.image ? (
+          <img src={product.image} alt="" class="max-h-full max-w-full object-contain" loading="lazy" />
+        ) : (
+          <span class="font-mono text-[10px] font-bold text-text">{(product as any).viscosity ?? 'K'}</span>
+        )}
+      </span>
+      <div class="flex-1 min-w-0">
+        <p class="font-display font-bold text-sm md:text-base text-text truncate">{product.name}</p>
+        <p class="text-xs text-text-muted font-mono">{product.sku}</p>
+      </div>
+      <a
+        href="#product-hero"
+        class="hidden md:inline-flex items-center gap-2 h-10 px-4 rounded-pill border-2 border-border-soft text-sm font-semibold text-text hover:border-primary hover:text-primary transition-colors"
+      >
+        {t(lang, 'products.detail.requestPrice')}
+      </a>
+    </div>
+  </div>
+
+  <!-- Tabs section -->
+  <section class="bg-bg-soft py-16 md:py-24">
     <div class="container-page">
       <Tabs client:visible tabs={tabs}>
 
         <!-- Description -->
-        <div slot="description" class="max-w-3xl">
-          <p class="text-base md:text-lg text-text leading-relaxed whitespace-pre-line">
+        <div slot="description" class="max-w-3xl mx-auto py-2">
+          <p class="text-lg md:text-xl text-text leading-relaxed whitespace-pre-line mb-8">
             {d.description}
           </p>
+          {d.benefits?.length > 0 && (
+            <div>
+              <p class="text-[10px] md:text-xs uppercase tracking-[0.18em] text-text-muted font-bold mb-4">
+                Ключевые преимущества
+              </p>
+              <ul class="grid gap-3 sm:grid-cols-2">
+                {d.benefits.slice(0, 6).map((b: string) => (
+                  <li class="flex items-start gap-3 text-sm md:text-base text-text leading-snug">
+                    <Icon name="check" class="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <!-- Application -->
-        <div slot="application" class="grid gap-8 md:grid-cols-2 max-w-4xl">
+        <div slot="application" class="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto py-2">
           {d.engineTypes.length > 0 && (
-            <div>
-              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.engineTypes')}</h3>
-              <ul class="space-y-2">
+            <div class="bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-4">{t(lang, 'products.detail.engineTypes')}</h3>
+              <ul class="space-y-3">
                 {d.engineTypes.map((e: string) => (
-                  <li class="flex items-start gap-2 text-sm">
-                    <Icon name="check" class="h-4 w-4 text-success shrink-0 mt-0.5" />
-                    <span class="text-text">{e}</span>
+                  <li class="flex items-start gap-3 text-sm md:text-base text-text leading-snug">
+                    <Icon name="check" class="h-5 w-5 text-success shrink-0 mt-0.5" />
+                    <span>{e}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           {d.notRecommendedFor.length > 0 && (
-            <div>
-              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.notRecommended')}</h3>
-              <ul class="space-y-2">
+            <div class="bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-4">{t(lang, 'products.detail.notRecommended')}</h3>
+              <ul class="space-y-3">
                 {d.notRecommendedFor.map((n: string) => (
-                  <li class="flex items-start gap-2 text-sm">
-                    <Icon name="close" class="h-4 w-4 text-error shrink-0 mt-0.5" />
-                    <span class="text-text">{n}</span>
+                  <li class="flex items-start gap-3 text-sm md:text-base text-text leading-snug">
+                    <Icon name="close" class="h-5 w-5 text-error shrink-0 mt-0.5" />
+                    <span>{n}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           {d.intervals.length > 0 && (
-            <div class="md:col-span-2">
-              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.intervals')}</h3>
-              <ul class="space-y-1.5">
+            <div class="md:col-span-2 bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-4">{t(lang, 'products.detail.intervals')}</h3>
+              <ul class="divide-y divide-border-soft">
                 {d.intervals.map((iv: { label: string; value: string }) => (
-                  <li class="flex items-baseline justify-between gap-4 py-1.5 border-b border-border-soft text-sm">
+                  <li class="flex items-baseline justify-between gap-4 py-3 text-sm md:text-base">
                     <span class="text-text-muted">{iv.label}</span>
-                    <span class="font-medium text-text">{iv.value}</span>
+                    <span class="font-bold font-mono text-text">{iv.value}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           {d.compatible && (
-            <div class="md:col-span-2">
-              <h3 class="font-display font-bold text-base mb-2">{t(lang, 'products.detail.compatible')}</h3>
-              <p class="text-sm text-text-muted leading-relaxed">{d.compatible}</p>
+            <div class="md:col-span-2 bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-3">{t(lang, 'products.detail.compatible')}</h3>
+              <p class="text-sm md:text-base text-text-muted leading-relaxed">{d.compatible}</p>
             </div>
           )}
         </div>
 
         <!-- Specifications -->
-        <div slot="specifications" class="grid gap-8 md:grid-cols-2 max-w-4xl">
+        <div slot="specifications" class="grid gap-6 max-w-4xl mx-auto py-2">
           {compliesWith.length > 0 && (
-            <div>
-              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.compliesWith')}</h3>
+            <div class="bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-4">{t(lang, 'products.detail.compliesWith')}</h3>
               <ul class="flex flex-wrap gap-2">
                 {compliesWith.map((s: string) => (
                   <li>
-                    <span class="inline-flex h-8 px-3 items-center rounded-pill bg-bg text-text border border-border-soft text-xs font-mono">{s}</span>
+                    <span class="inline-flex h-8 px-3 items-center rounded-pill bg-bg-soft text-text border border-border-soft text-xs font-mono font-semibold">{s}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           {d.oemApprovals.length > 0 && (
-            <div>
-              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.oemApprovals')}</h3>
-              <ul class="space-y-1.5 text-sm">
+            <div class="bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-4">{t(lang, 'products.detail.oemApprovals')}</h3>
+              <ul class="flex flex-wrap gap-2">
                 {d.oemApprovals.map((o: string) => (
-                  <li class="flex items-start gap-2">
-                    <span class="inline-block w-1 h-1 rounded-full bg-primary mt-2" aria-hidden="true" />
-                    <span class="text-text">{o}</span>
+                  <li>
+                    <span class="inline-flex h-8 px-3 items-center rounded-pill bg-primary text-text-inverse text-xs font-mono font-bold">{o}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           {d.recommendedFor.length > 0 && (
-            <div class="md:col-span-2">
-              <h3 class="font-display font-bold text-base mb-3">{t(lang, 'products.detail.recommendedFor')}</h3>
-              <ul class="space-y-1.5 text-sm">
+            <div class="bg-bg rounded-xl border border-border-soft p-6 md:p-7">
+              <h3 class="font-display font-bold text-lg mb-4">{t(lang, 'products.detail.recommendedFor')}</h3>
+              <ul class="grid gap-2.5 sm:grid-cols-2 text-sm">
                 {d.recommendedFor.map((r: string) => (
-                  <li class="flex items-start gap-2">
-                    <span class="inline-block w-1 h-1 rounded-full bg-text-muted mt-2" aria-hidden="true" />
+                  <li class="flex items-start gap-2.5">
+                    <Icon name="check" class="h-4 w-4 text-primary shrink-0 mt-1" />
                     <span class="text-text">{r}</span>
                   </li>
                 ))}
@@ -261,8 +333,8 @@ const formErrors = {
           )}
         </div>
 
-        <!-- Properties — extracted to ProductSpecsTable component -->
-        <div slot="properties" class="max-w-4xl">
+        <!-- Properties -->
+        <div slot="properties" class="max-w-4xl mx-auto py-2">
           <ProductSpecsTable
             rows={d.physicalProps}
             labels={{
@@ -273,13 +345,15 @@ const formErrors = {
           />
         </div>
 
-        <!-- Benefits -->
-        <div slot="benefits" class="max-w-3xl">
-          <ul class="grid gap-3 sm:grid-cols-2">
-            {d.benefits.map((b: string) => (
-              <li class="flex items-start gap-3 p-4 bg-bg rounded-lg border border-border-soft">
-                <Icon name="check" class="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span class="text-sm text-text leading-snug">{b}</span>
+        <!-- Benefits — 2x3 grid cards with icons -->
+        <div slot="benefits" class="max-w-5xl mx-auto py-2">
+          <ul class="grid gap-4 md:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {d.benefits.map((b: string, i: number) => (
+              <li class="group flex flex-col gap-4 p-6 md:p-7 bg-bg rounded-xl border border-border-soft hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
+                <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-text-inverse shrink-0">
+                  <Icon name={benefitIcons[i % benefitIcons.length]} class="h-6 w-6" />
+                </span>
+                <p class="text-sm md:text-base text-text leading-snug font-medium">{b}</p>
               </li>
             ))}
           </ul>
@@ -289,11 +363,50 @@ const formErrors = {
     </div>
   </section>
 
-  <!-- Related products — extracted to RelatedProducts component -->
   <RelatedProducts
     currentSlug={product.slug}
     currentCategory={product.category}
     title={t(lang, 'products.detail.relatedTitle')}
     ctaLabel={t(lang, 'products.moreDetails')}
   />
+
+  <script>
+    // Sticky compact summary bar — shows after scrolling past hero (~600px).
+    const init = () => {
+      const sticky = document.getElementById('product-sticky')
+      const hero = document.getElementById('product-hero')
+      if (!sticky || !hero) return
+      const heroBottom = hero.offsetTop + hero.offsetHeight - 80
+      let shown = false
+      const update = () => {
+        const should = window.scrollY > heroBottom
+        if (should === shown) return
+        shown = should
+        sticky.classList.toggle('-translate-y-full', !should)
+        sticky.classList.toggle('opacity-0', !should)
+      }
+      update()
+      window.addEventListener('scroll', update, { passive: true })
+      window.addEventListener('resize', update)
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true })
+    } else {
+      init()
+    }
+
+    // Volume chips — toggle active state on click (UI-only; not wired to data yet).
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement
+      const chip = target?.closest('.kr-volume-chip') as HTMLButtonElement | null
+      if (!chip) return
+      const siblings = chip.parentElement?.parentElement?.querySelectorAll('.kr-volume-chip')
+      siblings?.forEach((s) => {
+        s.classList.remove('bg-primary', 'text-text-inverse', 'border-primary')
+        s.classList.add('bg-bg', 'text-text', 'border-border-soft', 'hover:border-primary', 'hover:text-primary')
+      })
+      chip.classList.remove('bg-bg', 'text-text', 'border-border-soft', 'hover:border-primary', 'hover:text-primary')
+      chip.classList.add('bg-primary', 'text-text-inverse', 'border-primary')
+    })
+  </script>
 </BaseLayout>

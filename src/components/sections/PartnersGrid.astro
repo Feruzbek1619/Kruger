@@ -10,7 +10,7 @@ const items = partners as Partner[]
     <div class="text-center mb-10 md:mb-14">
       <div class="inline-flex items-center gap-3 mb-3">
         <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">Trusted By</p>
+        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">НАМ ДОВЕРЯЮТ</p>
         <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
       </div>
       <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">
@@ -23,7 +23,7 @@ const items = partners as Partner[]
       {items.map((p) => (
         <li>
           <div
-            class="group h-20 md:h-24 flex items-center justify-center rounded-xl bg-transparent px-3 hover:bg-bg hover:shadow-md transition-all duration-200"
+            class="group h-20 md:h-24 flex items-center justify-center rounded-xl bg-transparent px-3 hover:bg-bg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
             title={p.name}
           >
             {p.logo ? (

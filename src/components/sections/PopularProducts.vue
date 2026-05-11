@@ -39,7 +39,7 @@ function prev() { idx.value = Math.max(0, idx.value - 1) }
         <div>
           <div class="flex items-center gap-3 mb-3">
             <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">Bestsellers</p>
+            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">ХИТЫ ПРОДАЖ</p>
           </div>
           <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">{{ title }}</h2>
           <p class="mt-3 text-sm md:text-base text-text-muted">{{ subtitle }}</p>

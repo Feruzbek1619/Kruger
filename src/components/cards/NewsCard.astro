@@ -25,7 +25,7 @@ const date    = isEntry
   ? props.entry!.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
   : new Date(props.item!.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 ---
-<article class="group flex flex-col bg-bg rounded-lg overflow-hidden border border-border-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+<article class="group flex flex-col bg-bg rounded-xl overflow-hidden border border-border-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
   <a href={href} class="block aspect-[16/10] bg-bg-soft overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
     {image ? (
       <img src={image} alt={title} loading="lazy" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" />

@@ -87,12 +87,12 @@ async function submit(e: Event) {
       aria-hidden="true"
     />
 
-    <div class="relative container-page py-14 md:py-20 grid gap-10 lg:grid-cols-2 items-center">
+    <div class="relative container-page py-16 md:py-24 grid gap-10 lg:grid-cols-2 items-center">
       <!-- LEFT: title + form -->
       <div>
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-brand-yellow" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">Get in Touch</p>
+          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">СВЯЖИТЕСЬ С НАМИ</p>
         </div>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 leading-[1.1]">
           {{ title }}

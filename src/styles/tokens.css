@@ -108,6 +108,30 @@
   --radius-xl: calc(var(--radius) + 12px);
   --radius-pill: 9999px;
 
+  /* ───── Semantic spacing (для консистентности — НЕ менять без аудита) ─────
+     Используем эти токены вместо raw py-12 / py-16 / py-20 / py-24.
+     Цель: 3 шкалы для секций, 1 для карточек, 1 для отступов между блоками. */
+  --space-section-y:        5rem;     /* 80px — стандарт mobile (py-20) */
+  --space-section-y-md:     6rem;     /* 96px — стандарт desktop (py-24) */
+  --space-section-y-tight:  4rem;     /* 64px — компактные секции (py-16) */
+  --space-section-y-hero:   7rem;     /* 112px — hero-style (py-28) */
+  --space-section-y-minimal:1.5rem;   /* 24px — только крошки/breadcrumb */
+
+  --space-card-padding:     1.5rem;   /* 24px — внутри стандартной карточки (p-6) */
+  --space-card-padding-lg:  2rem;     /* 32px — премиум карточки (p-8) */
+  --space-card-gap:         1.5rem;   /* 24px — между карточками (gap-6) */
+  --space-card-gap-tight:   1rem;     /* 16px — компактные сетки (gap-4) */
+
+  /* ───── Semantic radii ───── */
+  --radius-card:            var(--radius);          /* 12px — все clickable cards */
+  --radius-card-lg:         calc(var(--radius) + 4px); /* 16px — премиум блоки */
+  --radius-button:          calc(var(--radius) - 4px); /* 8px — square buttons */
+  --radius-input:           calc(var(--radius) - 4px); /* 8px — input fields */
+
+  /* ───── Hover motion ───── */
+  --lift-hover:             -2px;     /* единый translateY для карточек на hover */
+  --lift-hover-strong:      -4px;     /* для крупных hero-cards */
+
   /* ───── Typography ───── */
   --font-display: "Manrope Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-body: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -134,6 +158,19 @@
   --shadow-md: 0 4px 12px oklch(0 0 0 / 0.08);
   --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.12);
   --shadow-xl: 0 24px 64px oklch(0 0 0 / 0.16);
+
+  /* Semantic shadows — единый язык для всех карточек */
+  --shadow-card:            var(--shadow-sm);
+  --shadow-card-hover:      var(--shadow-lg);
+  --shadow-card-elevated:   var(--shadow-md);
+
+  /* ───── Motion timing — единые длительности и easings ───── */
+  --duration-fast:          150ms;    /* color / opacity / micro-interactions */
+  --duration-base:          200ms;    /* default hover / transitions */
+  --duration-slow:          300ms;    /* content reveal / overlay fade */
+  --duration-slower:        500ms;    /* image scale / carousel */
+  --easing-out:             cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-in-out:          cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ───── Z-index ───── */
   --z-base: 0;

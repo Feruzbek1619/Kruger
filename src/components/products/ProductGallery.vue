@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 
 interface Props {
   images: string[]
@@ -10,6 +11,24 @@ interface Props {
 }
 const props = defineProps<Props>()
 const current = ref(0)
+
+function next() {
+  if (!props.images.length) return
+  current.value = (current.value + 1) % props.images.length
+}
+function prev() {
+  if (!props.images.length) return
+  current.value = (current.value - 1 + props.images.length) % props.images.length
+}
+
+// Swipe support
+let touchStartX = 0
+function onTouchStart(e: TouchEvent) { touchStartX = e.touches[0].clientX }
+function onTouchEnd(e: TouchEvent) {
+  const dx = e.changedTouches[0].clientX - touchStartX
+  if (Math.abs(dx) < 40) return
+  dx > 0 ? prev() : next()
+}
 
 // Цвет канистры по категории — токены из tokens.css (--color-canister-*).
 // SVG fill="..." не читает CSS vars во всех браузерах, поэтому используем
@@ -33,7 +52,11 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
 <template>
   <div class="flex flex-col gap-4">
     <!-- Main image / detailed canister placeholder -->
-    <div class="relative aspect-square rounded-2xl overflow-hidden border border-border-soft bg-gradient-to-br from-bg-soft to-bg-muted">
+    <div
+      class="group relative aspect-square rounded-2xl overflow-hidden border border-border-soft bg-bg"
+      @touchstart.passive="onTouchStart"
+      @touchend.passive="onTouchEnd"
+    >
       <!-- Watermark K -->
       <span
         class="absolute -right-10 -top-10 font-display text-[24rem] font-extrabold text-text/[0.04] leading-none select-none pointer-events-none"
@@ -42,10 +65,47 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
 
       <img
         v-if="images[current]"
+        :key="current"
         :src="images[current]"
         :alt="alt"
-        class="relative object-contain w-full h-full p-10"
+        class="relative object-contain w-full h-full p-10 transition-opacity duration-300"
       />
+
+      <!-- Prev/Next nav buttons (visible on multi-image gallery) -->
+      <template v-if="images.length > 1">
+        <button
+          type="button"
+          @click="prev"
+          aria-label="Предыдущее фото"
+          class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-bg/90 backdrop-blur-sm border border-border-soft text-text shadow-md opacity-0 group-hover:opacity-100 hover:bg-bg hover:border-primary hover:text-primary transition-all"
+        >
+          <ChevronLeft :size="20" :stroke-width="2.5" />
+        </button>
+        <button
+          type="button"
+          @click="next"
+          aria-label="Следующее фото"
+          class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-bg/90 backdrop-blur-sm border border-border-soft text-text shadow-md opacity-0 group-hover:opacity-100 hover:bg-bg hover:border-primary hover:text-primary transition-all"
+        >
+          <ChevronRight :size="20" :stroke-width="2.5" />
+        </button>
+
+        <!-- Dot indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+          <button
+            v-for="(_, i) in images"
+            :key="i"
+            type="button"
+            @click="current = i"
+            :aria-label="`Перейти к фото ${i + 1}`"
+            :aria-current="i === current"
+            :class="[
+              'rounded-full transition-all',
+              i === current ? 'h-2 w-6 bg-primary' : 'h-2 w-2 bg-border hover:bg-text-muted',
+            ]"
+          />
+        </div>
+      </template>
 
       <!-- Realistic canister placeholder с категорийным цветом -->
       <svg
