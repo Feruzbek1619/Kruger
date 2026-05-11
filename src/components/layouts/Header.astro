@@ -53,10 +53,8 @@ const items = [
               {it.label}
               <ChevronDown :size={14} class="transition-transform group-hover:rotate-180" aria-hidden="true" />
             </a>
-            <!-- Дропдаун с фирменным жёлтым акцентом сверху -->
             <div class="absolute top-full left-0 pt-2 hidden group-hover:block group-focus-within:block min-w-[15rem] z-[70]">
               <ul class="bg-bg rounded-lg shadow-xl border border-border-soft overflow-hidden">
-                <li class="h-1 bg-brand-yellow" aria-hidden="true"></li>
                 {it.children.map((c) => (
                   <li>
                     <a

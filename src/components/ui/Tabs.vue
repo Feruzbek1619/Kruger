@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, type Component } from 'vue'
 import {
   Tabs as ShadcnTabs,
   TabsList,
@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/shadcn/tabs'
 import { cn } from '@/lib/utils'
 
-interface Tab { id: string; label: string }
+interface Tab { id: string; label: string; icon?: Component }
 interface Props {
   tabs: Tab[]
   modelValue?: string
@@ -35,20 +35,26 @@ const value = computed({
 
 <template>
   <ShadcnTabs v-model="value" class="w-full">
-    <TabsList :class="cn('flex flex-wrap gap-2 mb-8 h-auto bg-transparent p-0')">
-      <TabsTrigger
-        v-for="tab in tabs"
-        :key="tab.id"
-        :value="tab.id"
-        :class="cn(
-          'rounded-pill px-5 py-2.5 text-sm md:text-base font-medium transition-colors duration-150',
-          'data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none',
-          'bg-muted text-foreground hover:bg-secondary'
-        )"
-      >
-        {{ tab.label }}
-      </TabsTrigger>
-    </TabsList>
+    <div class="flex items-center gap-3 mb-8">
+      <TabsList :class="cn('kr-tabs-scroll flex flex-nowrap items-center justify-start gap-2 h-auto bg-transparent py-1 px-0.5 overflow-x-auto flex-1 min-w-0')">
+        <TabsTrigger
+          v-for="tab in tabs"
+          :key="tab.id"
+          :value="tab.id"
+          :class="cn(
+            'shrink-0 inline-flex items-center gap-2 h-11 px-4 rounded-pill border-2 text-sm font-semibold transition-colors duration-200',
+            'bg-bg text-text border-border-soft hover:border-primary hover:text-primary',
+            'data-[state=active]:bg-primary data-[state=active]:text-text-inverse data-[state=active]:border-primary data-[state=active]:shadow-md'
+          )"
+        >
+          <component :is="tab.icon" v-if="tab.icon" :size="18" :stroke-width="2" aria-hidden="true" />
+          <span>{{ tab.label }}</span>
+        </TabsTrigger>
+      </TabsList>
+      <div v-if="$slots.trailing" class="shrink-0">
+        <slot name="trailing" />
+      </div>
+    </div>
     <TabsContent
       v-for="tab in tabs"
       :key="tab.id"
@@ -59,3 +65,13 @@ const value = computed({
     </TabsContent>
   </ShadcnTabs>
 </template>
+
+<style scoped>
+.kr-tabs-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.kr-tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
+</style>

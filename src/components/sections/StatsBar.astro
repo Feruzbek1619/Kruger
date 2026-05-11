@@ -17,9 +17,9 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
   <div class="relative container-page py-16 md:py-24">
     <ul class="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-4">
       {stats.map((s) => (
-        <li class="kr-reveal relative px-4 md:px-6 text-center group">
+        <li class="kr-reveal relative px-2 md:px-6 text-center group">
           <div
-            class="font-display text-6xl md:text-7xl lg:text-8xl font-extrabold leading-none tracking-tight tabular-nums bg-gradient-to-b from-text-inverse to-text-inverse/70 bg-clip-text text-transparent transition-transform group-hover:scale-105 origin-bottom"
+            class="font-display text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tabular-nums bg-gradient-to-b from-text-inverse to-text-inverse/70 bg-clip-text text-transparent transition-transform group-hover:scale-105 origin-bottom pb-1"
             data-countup={s.value}
           >
             {s.value}
@@ -34,3 +34,80 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     </ul>
   </div>
 </section>
+
+<script>
+  // Count-up animation для StatsBar.
+  // Парсит формат "8+", "1.5k", "150", "6M", "50+" → суффикс + число.
+  // Уважает prefers-reduced-motion (мгновенный финал, без анимации).
+  type Parsed = { from: number; to: number; suffix: string; decimals: number }
+
+  function parse(value: string): Parsed {
+    const m = value.match(/^([\d.]+)(.*)$/)
+    if (!m) return { from: 0, to: 0, suffix: value, decimals: 0 }
+    const numStr = m[1]
+    const decimals = numStr.includes('.') ? numStr.split('.')[1].length : 0
+    return { from: 0, to: parseFloat(numStr), suffix: m[2] ?? '', decimals }
+  }
+
+  function format(value: number, decimals: number, suffix: string) {
+    return value.toFixed(decimals) + suffix
+  }
+
+  function animate(el: HTMLElement, parsed: Parsed, duration = 1400) {
+    const start = performance.now()
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3) // easeOutCubic
+
+    function tick(now: number) {
+      const t = Math.min(1, (now - start) / duration)
+      const v = parsed.from + (parsed.to - parsed.from) * ease(t)
+      el.textContent = format(v, parsed.decimals, parsed.suffix)
+      if (t < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }
+
+  function init() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>('[data-countup]'))
+    if (!nodes.length) return
+
+    const pending = new Set<HTMLElement>()
+    nodes.forEach((el) => {
+      const target = el.dataset.countup ?? ''
+      const parsed = parse(target)
+      if (reduced || parsed.to === 0) {
+        el.textContent = target
+        return
+      }
+      el.textContent = format(0, parsed.decimals, parsed.suffix)
+      pending.add(el)
+    })
+
+    if (reduced || !pending.size) return
+
+    const check = () => {
+      const vh = window.innerHeight
+      pending.forEach((el) => {
+        const r = el.getBoundingClientRect()
+        // Triggers when element enters bottom 80% of viewport
+        if (r.top < vh * 0.85 && r.bottom > 0) {
+          pending.delete(el)
+          animate(el, parse(el.dataset.countup ?? ''))
+        }
+      })
+      if (!pending.size) {
+        window.removeEventListener('scroll', check)
+        window.removeEventListener('resize', check)
+      }
+    }
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    window.addEventListener('resize', check, { passive: true })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true })
+  } else {
+    init()
+  }
+</script>

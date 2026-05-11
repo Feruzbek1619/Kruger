@@ -34,9 +34,7 @@ defineProps<Props>()
         <p class="mt-3 text-sm md:text-base text-text-muted">{{ subtitle }}</p>
       </div>
 
-      <div class="bg-bg rounded-2xl shadow-sm overflow-hidden border border-border-soft">
-        <Accordion :items="items" />
-      </div>
+      <Accordion :items="items" />
 
       <div class="mt-10 text-center">
         <a

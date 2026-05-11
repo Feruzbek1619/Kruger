@@ -20,20 +20,28 @@ withDefaults(defineProps<Props>(), { allowMultiple: false })
   <ShadcnAccordion
     :type="allowMultiple ? 'multiple' : 'single'"
     collapsible
-    class="w-full divide-y divide-border-soft border-y border-border-soft"
+    class="w-full flex flex-col gap-3"
   >
     <AccordionItem
       v-for="item in items"
       :key="item.id"
       :value="item.id"
-      class="border-0"
+      class="kr-faq-item bg-bg rounded-xl border border-border-soft overflow-hidden transition-colors hover:border-primary/40 data-[state=open]:border-primary/60 data-[state=open]:shadow-md"
     >
       <AccordionTrigger
-        class="px-4 md:px-6 py-5 text-left text-base md:text-lg leading-snug font-medium hover:no-underline hover:bg-muted/60 [&[data-state=open]]:font-semibold [&[data-state=open]>svg]:rotate-45 [&[data-state=open]>svg]:bg-primary [&[data-state=open]>svg]:text-primary-foreground"
+        class="kr-faq-trigger group px-5 md:px-6 py-5 text-left text-base md:text-lg leading-snug font-semibold text-text hover:no-underline [&[data-state=open]]:text-primary [&>svg]:hidden"
       >
-        {{ item.question }}
+        <span class="flex-1 pr-4">{{ item.question }}</span>
+        <template #icon>
+          <span
+            class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-soft text-text-muted transition-all duration-200 group-hover:border-primary group-hover:text-primary group-data-[state=open]:bg-primary group-data-[state=open]:border-primary group-data-[state=open]:text-text-inverse group-data-[state=open]:rotate-180"
+            aria-hidden="true"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </template>
       </AccordionTrigger>
-      <AccordionContent class="px-4 md:px-6 pb-6 text-text-muted leading-relaxed text-sm md:text-base">
+      <AccordionContent class="px-5 md:px-6 pb-6 pt-0 text-text-muted leading-relaxed text-sm md:text-base">
         {{ item.answer }}
       </AccordionContent>
     </AccordionItem>

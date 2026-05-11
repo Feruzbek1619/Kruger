@@ -23,10 +23,9 @@ const items = segments as MarketSegment[]
       </div>
       <a
         href="/products/"
-        class="hidden md:inline-flex h-11 px-5 items-center gap-2 rounded-pill bg-bg text-text font-medium hover:bg-bg-muted transition-colors text-sm border border-border-soft"
+        class="hidden md:inline-flex h-11 px-5 items-center rounded-pill bg-bg text-text font-medium hover:bg-bg-muted transition-colors text-sm border border-border-soft"
       >
         {t(lang, 'segments.more')}
-        <Icon name="arrowRight" class="h-4 w-4" />
       </a>
     </div>
 
@@ -43,11 +42,6 @@ const items = segments as MarketSegment[]
               style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
               aria-hidden="true"
             />
-            <!-- Index number -->
-            <span class="absolute top-6 right-6 font-mono text-xs tracking-wider text-text-subtle group-hover:text-brand-yellow/80 transition-colors">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-
             <span
               class="inline-flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-text-inverse mb-6 transition-all duration-300 group-hover:bg-brand-yellow group-hover:text-text group-hover:scale-110 group-hover:rotate-[-4deg]"
               aria-hidden="true"
@@ -70,12 +64,16 @@ const items = segments as MarketSegment[]
     </ul>
 
     <!-- Mobile CTA -->
-    <a
-      href="/products/"
-      class="md:hidden mt-6 inline-flex w-full h-12 items-center justify-center gap-2 rounded-pill bg-bg text-text font-semibold border border-border-soft text-sm"
-    >
-      {t(lang, 'segments.more')}
-      <Icon name="arrowRight" class="h-4 w-4" />
-    </a>
+    <div class="md:hidden mt-6 text-center">
+      <a
+        href="/products/"
+        class="group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-bg hover:bg-bg-muted text-text font-semibold border border-border-soft transition-colors text-sm"
+      >
+        <span>{t(lang, 'segments.more')}</span>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-text-inverse transition-transform group-hover:translate-x-1">
+          <Icon name="arrowRight" size={16} strokeWidth={2.5} />
+        </span>
+      </a>
+    </div>
   </div>
 </section>

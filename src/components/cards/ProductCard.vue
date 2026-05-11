@@ -70,7 +70,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
     ref="cardEl"
     :style="tiltStyle"
     :class="[
-      'kr-card group relative bg-bg rounded-xl overflow-hidden border border-border-soft transition-[transform,border-color] duration-200 ease-out hover:border-primary/40 will-change-transform',
+      'kr-card group relative h-full bg-bg rounded-xl overflow-hidden border border-border-soft transition-[transform,border-color] duration-200 ease-out hover:border-primary/40 will-change-transform',
       isCompact ? 'flex flex-row items-stretch min-h-[7rem]' : 'flex flex-col',
     ]"
   >
@@ -85,7 +85,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
     <!-- Image area -->
     <div
       :class="[
-        'relative bg-gradient-to-br from-bg-soft to-bg-muted flex items-center justify-center overflow-hidden shrink-0',
+        'relative bg-bg flex items-center justify-center overflow-hidden shrink-0',
         isCompact ? 'w-28 sm:w-32' : isFeatured ? 'aspect-[5/4]' : 'aspect-[4/3]',
       ]"
     >
@@ -157,15 +157,12 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
 
     <!-- Content -->
     <div :class="['flex-1 flex flex-col', isCompact ? 'p-3 sm:p-4' : 'p-5']">
-      <p class="text-[11px] uppercase tracking-wider text-text-muted font-semibold mb-1.5">
-        {{ product.viscosity || product.category }}
-      </p>
-      <h3 :class="['font-display font-bold leading-snug text-text', isCompact ? 'text-sm sm:text-base' : isFeatured ? 'text-lg md:text-xl' : 'text-base md:text-lg']">
+      <h3 :class="['font-display font-bold leading-snug text-text line-clamp-2 min-h-[2.5em]', isCompact ? 'text-sm sm:text-base' : isFeatured ? 'text-lg md:text-xl' : 'text-base md:text-lg']">
         <a :href="href" class="after:absolute after:inset-0 focus-visible:outline-none">
           {{ product.name }}
         </a>
       </h3>
-      <p v-if="!isCompact" class="mt-2 text-sm text-text-muted line-clamp-2 flex-1">{{ product.shortDescription }}</p>
+      <p v-if="!isCompact" class="mt-2 text-sm text-text-muted line-clamp-2 min-h-[2.6em] flex-1">{{ product.shortDescription }}</p>
       <p :class="['text-xs text-text-subtle font-mono', isCompact ? 'mt-1.5' : 'mt-3']">{{ product.sku }}</p>
 
       <!-- CTA — кнопка с фирменной стрелкой -->

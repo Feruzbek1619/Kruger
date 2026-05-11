@@ -133,8 +133,8 @@ const formErrors = {
         </ul>
 
         <!-- Social media tile group -->
-        <div class="p-6 rounded-xl bg-bg-soft border border-border-soft">
-          <div class="flex items-center gap-3 mb-4">
+        <Card variant="default" padding="lg">
+          <div class="flex items-center gap-3 mb-3">
             <span class="inline-block h-0.5 w-6 bg-primary" aria-hidden="true" />
             <p class="text-[10px] font-bold tracking-[0.22em] text-primary uppercase">Follow</p>
           </div>
@@ -144,13 +144,13 @@ const formErrors = {
               <a
                 href="#"
                 aria-label={s}
-                class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-bg text-text border border-border-soft hover:bg-primary hover:text-text-inverse hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
+                class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-bg-soft text-text border border-border-soft hover:bg-primary hover:text-text-inverse hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Icon name={s} size={18} />
               </a>
             ))}
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   </section>

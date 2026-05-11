@@ -45,13 +45,6 @@ function prev() { idx.value = Math.max(0, idx.value - 1) }
           <p class="mt-3 text-sm md:text-base text-text-muted">{{ subtitle }}</p>
         </div>
         <div class="flex items-center gap-2">
-          <a
-            href="/products/"
-            class="hidden md:inline-flex h-11 px-5 items-center gap-2 rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors text-sm"
-          >
-            {{ showMore }}
-            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
           <button
             type="button"
             class="h-11 w-11 inline-flex items-center justify-center rounded-full border border-border text-text disabled:opacity-30 hover:bg-bg-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

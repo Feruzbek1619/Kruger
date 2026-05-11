@@ -1,13 +1,12 @@
 ---
 interface Props {
   eyebrow?: string
-  title: string
+  title?: string
   lead?: string
   breadcrumbs?: { label: string; href?: string }[]
   variant?: 'light' | 'dark'
 }
 const {
-  eyebrow,
   title,
   lead,
   breadcrumbs = [],
@@ -30,8 +29,7 @@ const dark = variant === 'dark'
         </ol>
       </nav>
     )}
-    {eyebrow && <p class="text-xs font-semibold tracking-[0.18em] text-primary uppercase mb-3">{eyebrow}</p>}
-    <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl">{title}</h1>
+    {title && <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl">{title}</h1>}
     {lead && <p class:list={['mt-5 text-lg md:text-xl max-w-3xl', dark ? 'text-text-inverse/85' : 'text-text-muted']}>{lead}</p>}
   </div>
 </section>
