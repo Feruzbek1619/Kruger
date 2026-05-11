@@ -1,14 +1,62 @@
 [
-  { "id": "mercedes",   "name": "Mercedes-Benz", "logo": "" },
-  { "id": "bmw",        "name": "BMW",           "logo": "" },
-  { "id": "vw",         "name": "Volkswagen",    "logo": "" },
-  { "id": "porsche",    "name": "Porsche",       "logo": "" },
-  { "id": "audi",       "name": "Audi",          "logo": "" },
-  { "id": "ford",       "name": "Ford",          "logo": "" },
-  { "id": "volvo",      "name": "Volvo",         "logo": "" },
-  { "id": "man",        "name": "MAN",           "logo": "" },
-  { "id": "scania",     "name": "Scania",        "logo": "" },
-  { "id": "renault",    "name": "Renault",       "logo": "" },
-  { "id": "toyota",     "name": "Toyota",        "logo": "" },
-  { "id": "hyundai",    "name": "Hyundai",       "logo": "" }
+  {
+    "id": "mercedes",
+    "name": "Mercedes-Benz",
+    "logo": "/oem/mercedes.svg"
+  },
+  {
+    "id": "bmw",
+    "name": "BMW",
+    "logo": "/oem/bmw.svg"
+  },
+  {
+    "id": "vw",
+    "name": "Volkswagen",
+    "logo": "/oem/volkswagen.svg"
+  },
+  {
+    "id": "porsche",
+    "name": "Porsche",
+    "logo": "/oem/porsche.svg"
+  },
+  {
+    "id": "audi",
+    "name": "Audi",
+    "logo": "/oem/audi.svg"
+  },
+  {
+    "id": "ford",
+    "name": "Ford",
+    "logo": "/oem/ford.svg"
+  },
+  {
+    "id": "volvo",
+    "name": "Volvo",
+    "logo": "/oem/volvo.svg"
+  },
+  {
+    "id": "man",
+    "name": "MAN",
+    "logo": "/oem/man.svg"
+  },
+  {
+    "id": "scania",
+    "name": "Scania",
+    "logo": "/oem/scania.svg"
+  },
+  {
+    "id": "renault",
+    "name": "Renault",
+    "logo": "/oem/renault.svg"
+  },
+  {
+    "id": "toyota",
+    "name": "Toyota",
+    "logo": "/oem/toyota.svg"
+  },
+  {
+    "id": "hyundai",
+    "name": "Hyundai",
+    "logo": "/oem/hyundai.svg"
+  }
 ]

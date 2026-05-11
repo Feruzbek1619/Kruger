@@ -1,14 +1,62 @@
 [
-  { "id": "uzbekia",     "name": "Uzbekia",                              "logo": "" },
-  { "id": "mva",         "name": "Maktab Ta'limi Vazirligi",             "logo": "" },
-  { "id": "tbcbank",     "name": "TBC Bank",                              "logo": "" },
-  { "id": "sharh",       "name": "Sharh",                                 "logo": "" },
-  { "id": "matn",        "name": "Matn.uz",                               "logo": "" },
-  { "id": "payme",       "name": "Payme",                                 "logo": "" },
-  { "id": "texnomart",   "name": "Texnomart",                             "logo": "" },
-  { "id": "bon",         "name": "Bon!",                                  "logo": "" },
-  { "id": "imkon",       "name": "Imkon",                                 "logo": "" },
-  { "id": "uic",         "name": "UIC Group",                             "logo": "" },
-  { "id": "yia",         "name": "Yoshlar Ishlari Agentligi",             "logo": "" },
-  { "id": "dasta",       "name": "Dasta Creative",                        "logo": "" }
+  {
+    "id": "uzbekia",
+    "name": "Uzbekia",
+    "logo": "/partners/Logo.svg"
+  },
+  {
+    "id": "mva",
+    "name": "Maktab Ta'limi Vazirligi",
+    "logo": "/partners/Logo-1.svg"
+  },
+  {
+    "id": "tbcbank",
+    "name": "TBC Bank",
+    "logo": "/partners/Logo-2.svg"
+  },
+  {
+    "id": "sharh",
+    "name": "Sharh",
+    "logo": "/partners/Logo-3.svg"
+  },
+  {
+    "id": "matn",
+    "name": "Matn.uz",
+    "logo": "/partners/Logo-4.svg"
+  },
+  {
+    "id": "payme",
+    "name": "Payme",
+    "logo": "/partners/Logo.svg"
+  },
+  {
+    "id": "texnomart",
+    "name": "Texnomart",
+    "logo": "/partners/Logo-1.svg"
+  },
+  {
+    "id": "bon",
+    "name": "Bon!",
+    "logo": "/partners/Logo-2.svg"
+  },
+  {
+    "id": "imkon",
+    "name": "Imkon",
+    "logo": "/partners/Logo-3.svg"
+  },
+  {
+    "id": "uic",
+    "name": "UIC Group",
+    "logo": "/partners/Logo-4.svg"
+  },
+  {
+    "id": "yia",
+    "name": "Yoshlar Ishlari Agentligi",
+    "logo": "/partners/Logo.svg"
+  },
+  {
+    "id": "dasta",
+    "name": "Dasta Creative",
+    "logo": "/partners/Logo-1.svg"
+  }
 ]

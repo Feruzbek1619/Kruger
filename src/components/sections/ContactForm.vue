@@ -87,7 +87,7 @@ async function submit(e: Event) {
       aria-hidden="true"
     />
 
-    <div class="relative container-page py-14 md:py-20 grid gap-10 lg:grid-cols-[1.05fr_1fr] items-center">
+    <div class="relative container-page py-14 md:py-20 grid gap-10 lg:grid-cols-2 items-center">
       <!-- LEFT: title + form -->
       <div>
         <div class="flex items-center gap-3 mb-4">
@@ -158,65 +158,14 @@ async function submit(e: Event) {
         </form>
       </div>
 
-      <!-- RIGHT: technical car cutaway illustration (как в Figma — wireframe двигателя/EV) -->
-      <div class="hidden lg:flex items-center justify-center" aria-hidden="true">
-        <svg viewBox="0 0 600 380" class="w-full max-w-lg" fill="none" stroke="currentColor" stroke-width="1.5">
-          <!-- Car body silhouette (transparent wireframe) -->
-          <path
-            d="M60 280 L100 180 Q120 140 160 130 L260 120 Q300 110 340 115 L450 130 Q480 135 500 160 L540 220 L555 280 L555 305 Q555 315 545 315 L470 315 Q465 295 445 295 Q425 295 420 315 L180 315 Q175 295 155 295 Q135 295 130 315 L55 315 Q45 315 45 305 L45 280 Q45 275 60 280 Z"
-            stroke="white"
-            stroke-opacity="0.45"
-          />
-          <!-- Windows -->
-          <path d="M170 165 L240 145 L320 145 L400 165 L420 220 L160 220 Z" stroke="white" stroke-opacity="0.3" />
-          <path d="M285 145 L285 220" stroke="white" stroke-opacity="0.3" />
-
-          <!-- Wheels -->
-          <circle cx="143" cy="305" r="32" stroke="white" stroke-opacity="0.5" />
-          <circle cx="143" cy="305" r="22" stroke="white" stroke-opacity="0.35" />
-          <circle cx="143" cy="305" r="8" fill="white" fill-opacity="0.2" stroke="none" />
-          <circle cx="433" cy="305" r="32" stroke="white" stroke-opacity="0.5" />
-          <circle cx="433" cy="305" r="22" stroke="white" stroke-opacity="0.35" />
-          <circle cx="433" cy="305" r="8" fill="white" fill-opacity="0.2" stroke="none" />
-
-          <!-- Engine block (left side, technical) -->
-          <rect x="100" y="195" width="80" height="60" rx="3" stroke="white" stroke-opacity="0.5" />
-          <rect x="110" y="205" width="22" height="40" rx="1" stroke="white" stroke-opacity="0.3" />
-          <rect x="138" y="205" width="22" height="40" rx="1" stroke="white" stroke-opacity="0.3" />
-          <line x1="121" y1="195" x2="121" y2="190" stroke="white" stroke-opacity="0.35" />
-          <line x1="149" y1="195" x2="149" y2="190" stroke="white" stroke-opacity="0.35" />
-
-          <!-- EV battery pack (centre/right, transparent rectangle) -->
-          <rect x="195" y="240" width="220" height="48" rx="3" stroke="white" stroke-opacity="0.4" />
-          <line x1="225" y1="240" x2="225" y2="288" stroke="white" stroke-opacity="0.25" />
-          <line x1="265" y1="240" x2="265" y2="288" stroke="white" stroke-opacity="0.25" />
-          <line x1="305" y1="240" x2="305" y2="288" stroke="white" stroke-opacity="0.25" />
-          <line x1="345" y1="240" x2="345" y2="288" stroke="white" stroke-opacity="0.25" />
-          <line x1="385" y1="240" x2="385" y2="288" stroke="white" stroke-opacity="0.25" />
-
-          <!-- Yellow + red wiring lines (брендовые цвета на разрезе) -->
-          <path d="M165 215 Q200 200 220 235" style="stroke: var(--color-brand-yellow)" stroke-opacity="0.85" stroke-width="2" />
-          <path d="M180 220 Q220 215 250 235" style="stroke: var(--color-brand-yellow)" stroke-opacity="0.7" stroke-width="2" />
-          <circle cx="220" cy="235" r="3" style="fill: var(--color-brand-yellow)" stroke="none" />
-          <circle cx="250" cy="235" r="3" style="fill: var(--color-brand-yellow)" stroke="none" />
-
-          <path d="M415 215 Q450 200 460 175" style="stroke: var(--color-primary)" stroke-opacity="0.9" stroke-width="2" />
-          <path d="M400 230 Q440 215 480 195" style="stroke: var(--color-primary)" stroke-opacity="0.7" stroke-width="2" />
-          <circle cx="460" cy="175" r="3" style="fill: var(--color-primary)" stroke="none" />
-          <circle cx="480" cy="195" r="3" style="fill: var(--color-primary)" stroke="none" />
-
-          <!-- Drivetrain shaft -->
-          <line x1="180" y1="265" x2="190" y2="265" stroke="white" stroke-opacity="0.5" stroke-width="3" />
-          <line x1="415" y1="265" x2="425" y2="265" stroke="white" stroke-opacity="0.5" stroke-width="3" />
-
-          <!-- Tech labels (mini ticks) -->
-          <g stroke="white" stroke-opacity="0.3" stroke-width="0.8">
-            <line x1="220" y1="240" x2="220" y2="220" />
-            <line x1="220" y1="220" x2="240" y2="220" />
-            <line x1="385" y1="240" x2="385" y2="218" />
-            <line x1="385" y1="218" x2="370" y2="218" />
-          </g>
-        </svg>
+      <!-- RIGHT: EV cutaway photo (extends to right edge of section) -->
+      <div class="hidden lg:flex items-center justify-start -mr-[max(2rem,calc((100vw-80rem)/2))]" aria-hidden="true">
+        <img
+          src="/electric-vehicle.png"
+          alt=""
+          loading="lazy"
+          class="w-full max-w-none object-contain"
+        />
       </div>
     </div>
   </section>
