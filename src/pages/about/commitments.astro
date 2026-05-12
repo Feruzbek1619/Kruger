@@ -10,7 +10,10 @@ const items = ru.about.commitments.items
 // Семантика по items: clients, partners, environment, employees, society, standards
 const icons = ['users', 'handshake', 'leaf', 'userCheck', 'heart', 'award'] as const
 ---
-<BaseLayout title="Наши обязательства — Krüger Motor Oil">
+<BaseLayout
+  title="Наши обязательства — Krüger Motor Oil"
+  description="Шесть направлений, в которых Krüger держит слово: перед клиентами, партнёрами, окружающей средой, сотрудниками, обществом и стандартами."
+>
   <PageHero
     eyebrow={t(lang, 'about.commitments.eyebrow')}
     title={t(lang, 'about.commitments.title')}

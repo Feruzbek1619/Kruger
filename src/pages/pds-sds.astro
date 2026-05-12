@@ -16,7 +16,10 @@ const usedCategories = (categories as { id: string; title: string }[])
   .filter((c) => usedCategoryIds.includes(c.id))
   .map((c) => ({ id: c.id, title: c.title }))
 ---
-<BaseLayout title="PDS / SDS — технические документы Krüger">
+<BaseLayout
+  title="PDS / SDS — технические документы Krüger"
+  description="Product Data Sheet и Safety Data Sheet на 40+ продуктов Krüger. Поиск по названию, артикулу, фильтр по категории и языку."
+>
   <PageHero
     title={t(lang, 'pdsSds.title')}
     lead={t(lang, 'pdsSds.lead')}

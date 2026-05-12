@@ -11,7 +11,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         <Icon name="pin" class="h-4 w-4 shrink-0" />
         <span class="truncate">{t(lang, 'topbar.address')}</span>
       </span>
-      <LanguageSwitcher client:load current={lang} />
+      <LanguageSwitcher client:idle current={lang} />
     </div>
     <div class="flex items-center gap-5">
       <a href={`tel:${t(lang, 'topbar.phone').replace(/\s/g, '')}`} class="hidden sm:inline-flex items-center gap-2 hover:opacity-80 transition-opacity">

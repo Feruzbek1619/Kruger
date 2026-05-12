@@ -10,7 +10,10 @@ const items = ru.services.items
 // Семантика: подбор, аудит, лаб-анализ, обучение, маркетинг, поставки
 const icons = ['sliders', 'clipboardCheck', 'flask', 'graduation', 'megaphone', 'truck'] as const
 ---
-<BaseLayout title="Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки">
+<BaseLayout
+  title="Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки"
+  description="Подбор смазочных материалов, технический аудит, лабораторный анализ масел, обучение персонала, маркетинговая поддержка дилеров и корпоративные поставки."
+>
   <PageHero
     eyebrow={t(lang, 'services.eyebrow')}
     title={t(lang, 'services.title')}

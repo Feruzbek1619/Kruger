@@ -14,7 +14,10 @@ const quickLinks = [
   { href: '/contact/',                        label: 'Контакты' },
 ]
 ---
-<BaseLayout title="Поиск по сайту — Krüger Motor Oil">
+<BaseLayout
+  title="Поиск по сайту — Krüger Motor Oil"
+  description="Найдите подходящий продукт Krüger по названию, вязкости (5W-30, 0W-20, ATF), спецификации (API, ACEA, MB-Approval) или быстрым ссылкам."
+>
   <PageHero
     title={t(lang, 'search.title')}
     breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: 'Поиск' }]}

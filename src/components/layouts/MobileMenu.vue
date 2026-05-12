@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 interface Item { label: string; href: string; children?: Item[] }
 interface Props { items: Item[] }
 const props = defineProps<Props>()
 
 const open = ref(false)
+const mounted = ref(false)
 const expanded = ref<Set<string>>(new Set())
+
+onMounted(() => { mounted.value = true })
 
 function toggleSection(key: string) {
   if (expanded.value.has(key)) expanded.value.delete(key)
@@ -26,7 +29,7 @@ function toggleSection(key: string) {
   >
     <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
   </button>
-  <Teleport to="body">
+  <Teleport v-if="mounted" to="body">
     <div
       v-if="open"
       class="fixed inset-0 z-modal bg-bg-dark/60"
