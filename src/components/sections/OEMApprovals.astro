@@ -53,13 +53,13 @@ const brands = oem as OEMBrand[]
             <div class:list={['kr-oem-row relative overflow-hidden', `kr-oem-row--${direction}`]}>
               <div class="kr-oem-track flex items-center gap-4 md:gap-5 w-max">
                 {/* duplicated 4× for seamless loop */}
-                {[...rowBrands, ...rowBrands, ...rowBrands, ...rowBrands].map((b, i) => (
+                {[...rowBrands, ...rowBrands, ...rowBrands, ...rowBrands].map((b) => (
                   <div
-                    class="group shrink-0 h-24 md:h-28 w-40 md:w-48 flex items-center justify-center rounded-xl bg-transparent p-4 transition-all duration-200 hover:bg-bg hover:shadow-lg"
-                    title={b.name}
+                    class="kr-oem-card group shrink-0 h-24 md:h-28 w-32 md:w-44 flex items-center justify-center rounded-xl bg-transparent p-3 md:p-4 transition-all duration-300 hover:bg-bg"
+                    aria-label={b.name}
                   >
                     {b.logo ? (
-                      <img src={b.logo} alt={b.name} loading="lazy" class="max-h-full max-w-full object-contain opacity-50 group-hover:opacity-100 transition-opacity duration-200" />
+                      <img src={b.logo} alt={b.name} loading="lazy" class="max-h-full max-w-full object-contain opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
                     ) : (
                       <span class="font-display font-extrabold text-base md:text-lg text-text-subtle text-center group-hover:text-text transition-colors">{b.name}</span>
                     )}
@@ -90,6 +90,18 @@ const brands = oem as OEMBrand[]
   .kr-oem-row--right .kr-oem-track { animation: kr-marquee-right 40s linear infinite; }
   /* Пауза на hover ряда — чтобы пользователь мог рассмотреть логотип */
   .kr-oem-row:hover .kr-oem-track { animation-play-state: paused; }
+
+  /* Premium glow на hover карточки логотипа (вместо stark white card) */
+  .kr-oem-card {
+    will-change: transform, box-shadow;
+  }
+  .kr-oem-card:hover {
+    box-shadow:
+      0 0 0 1px rgb(229 30 37 / 0.08),
+      0 8px 24px rgb(229 30 37 / 0.12),
+      0 2px 8px rgb(0 0 0 / 0.04);
+    transform: translateY(-1px);
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .kr-oem-row--left .kr-oem-track,
