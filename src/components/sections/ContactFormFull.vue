@@ -93,7 +93,7 @@ async function submit(e: Event) {
       <span class="text-sm font-medium text-text">{{ topicLabel }}</span>
       <select
         v-model="form.topic"
-        class="w-full h-12 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base text-text transition-colors focus:outline-none"
+        class="w-full h-12 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary/60 focus:bg-bg focus:ring-4 focus:ring-primary/10 px-4 text-base text-text transition-colors focus:outline-none"
       >
         <option value="" disabled>{{ topicPh }}</option>
         <option v-for="t in topics" :key="t" :value="t">{{ t }}</option>

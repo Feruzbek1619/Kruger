@@ -63,13 +63,15 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
         aria-hidden="true"
       >K</span>
 
-      <img
-        v-if="images[current]"
-        :key="current"
-        :src="images[current]"
-        :alt="alt"
-        class="relative object-contain w-full h-full p-10 transition-opacity duration-300"
-      />
+      <Transition name="kr-gallery-fade" mode="out-in">
+        <img
+          v-if="images[current]"
+          :key="current"
+          :src="images[current]"
+          :alt="alt"
+          class="relative object-contain w-full h-full p-10"
+        />
+      </Transition>
 
       <!-- Prev/Next nav buttons (visible on multi-image gallery) -->
       <template v-if="images.length > 1">
@@ -178,8 +180,8 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
       <li v-for="(img, i) in images" :key="i">
         <button
           type="button"
-          class="aspect-square w-full bg-bg-soft rounded-md border transition-colors p-2"
-          :class="i === current ? 'border-primary' : 'border-border-soft hover:border-border'"
+          class="aspect-square w-full bg-bg-soft rounded-md border transition-all p-2 focus-visible:outline-none"
+          :class="i === current ? 'border-primary/60 ring-2 ring-primary/15 ring-offset-2 ring-offset-bg' : 'border-border-soft hover:border-border opacity-70 hover:opacity-100'"
           :aria-label="`Фото ${i + 1}`"
           :aria-current="i === current"
           @click="current = i"
@@ -205,3 +207,24 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
     </ul>
   </div>
 </template>
+
+<style scoped>
+.kr-gallery-fade-enter-active,
+.kr-gallery-fade-leave-active {
+  transition: opacity 250ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.kr-gallery-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.96);
+}
+.kr-gallery-fade-leave-to {
+  opacity: 0;
+  transform: scale(1.04);
+}
+@media (prefers-reduced-motion: reduce) {
+  .kr-gallery-fade-enter-active,
+  .kr-gallery-fade-leave-active { transition: none; }
+  .kr-gallery-fade-enter-from,
+  .kr-gallery-fade-leave-to { transform: none; }
+}
+</style>

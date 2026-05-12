@@ -46,7 +46,7 @@ const wrapperClass = computed(() =>
 const fieldClass = computed(() =>
   cn(
     'h-12 bg-muted border border-input transition-colors',
-    'hover:border-muted-foreground/50 focus-visible:bg-background focus-visible:border-primary focus-visible:ring-0',
+    'hover:border-muted-foreground/50 focus-visible:bg-background focus-visible:border-primary/60 focus-visible:ring-4 focus-visible:ring-primary/10 focus-visible:ring-offset-0 focus-visible:outline-none',
     props.error && 'border-destructive focus-visible:border-destructive',
     props.success && 'border-[color:var(--color-success)]',
   ),
@@ -73,7 +73,7 @@ const fieldClass = computed(() =>
       :aria-describedby="error ? `${id}-err` : hint ? `${id}-hint` : undefined"
       :class="cn(
         'min-h-[7rem] bg-muted border border-input transition-colors',
-        'hover:border-muted-foreground/50 focus-visible:bg-background focus-visible:border-primary focus-visible:ring-0',
+        'hover:border-muted-foreground/50 focus-visible:bg-background focus-visible:border-primary/60 focus-visible:ring-4 focus-visible:ring-primary/10 focus-visible:ring-offset-0 focus-visible:outline-none',
         error && 'border-destructive focus-visible:border-destructive',
         success && 'border-[color:var(--color-success)]',
       )"
