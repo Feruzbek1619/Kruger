@@ -178,7 +178,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
       <li v-for="(img, i) in images" :key="i">
         <button
           type="button"
-          class="aspect-square w-full bg-bg-soft rounded-md border-2 transition-colors p-2"
+          class="aspect-square w-full bg-bg-soft rounded-md border transition-colors p-2"
           :class="i === current ? 'border-primary' : 'border-border-soft hover:border-border'"
           :aria-label="`Фото ${i + 1}`"
           :aria-current="i === current"

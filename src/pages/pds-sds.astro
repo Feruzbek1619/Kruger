@@ -34,12 +34,12 @@ const usedCategories = (categories as { id: string; title: string }[])
             id="pds-search"
             type="search"
             placeholder={t(lang, 'pdsSds.searchPh')}
-            class="h-11 rounded-md bg-bg-soft border-2 border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base focus:outline-none"
+            class="h-11 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base focus:outline-none"
           />
         </label>
         <label class="flex flex-col gap-1.5 md:w-56">
           <span class="text-sm font-medium text-text">Категория</span>
-          <select id="pds-category" class="h-11 rounded-md bg-bg-soft border-2 border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base focus:outline-none">
+          <select id="pds-category" class="h-11 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base focus:outline-none">
             <option value="">{t(lang, 'pdsSds.categoryAll')}</option>
             {usedCategories.map((c) => (
               <option value={c.id}>{c.title}</option>
@@ -48,7 +48,7 @@ const usedCategories = (categories as { id: string; title: string }[])
         </label>
         <label class="flex flex-col gap-1.5 md:w-40">
           <span class="text-sm font-medium text-text">Язык</span>
-          <select id="pds-language" class="h-11 rounded-md bg-bg-soft border-2 border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base focus:outline-none">
+          <select id="pds-language" class="h-11 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary focus:bg-bg px-4 text-base focus:outline-none">
             <option value="">Все языки</option>
             <option value="RU">{t(lang, 'pdsSds.languageRu')}</option>
             <option value="EN">{t(lang, 'pdsSds.languageEn')}</option>

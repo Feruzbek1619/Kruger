@@ -42,7 +42,7 @@ const value = computed({
           :key="tab.id"
           :value="tab.id"
           :class="cn(
-            'shrink-0 inline-flex items-center gap-2 h-11 px-4 rounded-pill border-2 text-sm font-semibold transition-colors duration-200',
+            'shrink-0 inline-flex items-center gap-2 h-11 px-4 rounded-pill border text-sm font-semibold transition-colors duration-200',
             'bg-bg text-text border-border-soft hover:border-primary hover:text-primary',
             'data-[state=active]:bg-primary data-[state=active]:text-text-inverse data-[state=active]:border-primary data-[state=active]:shadow-md'
           )"

@@ -150,8 +150,8 @@ const formErrors = {
                     class:list={[
                       'kr-volume-chip inline-flex h-10 px-4 items-center rounded-pill text-sm font-semibold font-mono transition-colors',
                       i === 0
-                        ? 'bg-primary text-text-inverse border-2 border-primary'
-                        : 'bg-bg text-text border-2 border-border-soft hover:border-primary hover:text-primary',
+                        ? 'bg-primary text-text-inverse border border-primary'
+                        : 'bg-bg text-text border border-border-soft hover:border-primary hover:text-primary',
                     ]}
                   >{v}</button>
                 </li>
@@ -173,14 +173,14 @@ const formErrors = {
           />
           <a
             href={`/pds-sds/?product=${product.slug}#pds`}
-            class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md border-2 border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
+            class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md border border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             <Icon name="download" class="h-4 w-4" />
             {t(lang, 'products.detail.downloadPDS')}
           </a>
           <a
             href={`/pds-sds/?product=${product.slug}#sds`}
-            class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md border-2 border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
+            class="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-md border border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             <Icon name="download" class="h-4 w-4" />
             {t(lang, 'products.detail.downloadSDS')}
@@ -209,7 +209,7 @@ const formErrors = {
       </div>
       <a
         href="#product-hero"
-        class="hidden md:inline-flex items-center gap-2 h-10 px-4 rounded-pill border-2 border-border-soft text-sm font-semibold text-text hover:border-primary hover:text-primary transition-colors"
+        class="hidden md:inline-flex items-center gap-2 h-10 px-4 rounded-pill border border-border-soft text-sm font-semibold text-text hover:border-primary hover:text-primary transition-colors"
       >
         {t(lang, 'products.detail.requestPrice')}
       </a>

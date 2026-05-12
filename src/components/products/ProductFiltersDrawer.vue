@@ -111,7 +111,7 @@ function onApply() {
       >
         <button
           type="button"
-          class="flex-1 inline-flex h-12 px-6 items-center justify-center rounded-pill border-2 border-border-soft text-text font-semibold hover:border-primary hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          class="flex-1 inline-flex h-12 px-6 items-center justify-center rounded-pill border border-border-soft text-text font-semibold hover:border-primary hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           :disabled="totalSelected === 0"
           @click="onReset"
         >
