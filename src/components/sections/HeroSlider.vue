@@ -56,12 +56,19 @@ onUnmounted(stopAuto)
       :class="i === idx ? 'opacity-100' : 'opacity-0 pointer-events-none'"
       :aria-hidden="i !== idx"
     >
+      <img
+        v-if="slide.bg"
+        :src="slide.bg.replace(/w=\d+/, 'w=1280').replace(/q=\d+/, 'q=75')"
+        :fetchpriority="i === 0 ? 'high' : 'low'"
+        :loading="i === 0 ? 'eager' : 'lazy'"
+        :decoding="i === 0 ? 'sync' : 'async'"
+        :alt="''"
+        :class="['absolute inset-0 w-full h-full object-cover transition-transform duration-[10s] ease-out', i === idx ? 'scale-105' : 'scale-100']"
+      />
       <div
-        class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] ease-out"
-        :class="i === idx ? 'scale-105' : 'scale-100'"
-        :style="slide.bg
-          ? `background-image: url('${slide.bg}')`
-          : 'background: radial-gradient(ellipse at right, var(--color-illus-mid) 0%, var(--color-illus-deep) 70%)'"
+        v-else
+        class="absolute inset-0"
+        style="background: radial-gradient(ellipse at right, var(--color-illus-mid) 0%, var(--color-illus-deep) 70%)"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-bg-dark/95 via-bg-dark/70 to-transparent" />
       <div class="absolute inset-0 bg-gradient-to-t from-bg-dark/65 via-transparent to-transparent" />
