@@ -12,12 +12,15 @@ interface Props {
   title?: string
   description?: string
   hideContactStrip?: boolean
+  /** URL картинки, которая является LCP-кандидатом — будет preload в <head>. */
+  preloadImage?: string
 }
 
 const {
   title = 'Krüger Motor Oil — премиальные моторные масла, разработанные в Германии',
   description = 'Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.',
   hideContactStrip = false,
+  preloadImage,
 } = Astro.props
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
@@ -31,6 +34,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

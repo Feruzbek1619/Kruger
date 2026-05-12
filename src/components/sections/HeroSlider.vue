@@ -58,7 +58,7 @@ onUnmounted(stopAuto)
     >
       <img
         v-if="slide.bg"
-        :src="slide.bg.replace(/w=\d+/, 'w=1280').replace(/q=\d+/, 'q=75')"
+        :src="slide.bg"
         :fetchpriority="i === 0 ? 'high' : 'low'"
         :loading="i === 0 ? 'eager' : 'lazy'"
         :decoding="i === 0 ? 'sync' : 'async'"

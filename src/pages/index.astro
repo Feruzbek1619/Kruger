@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getImage } from 'astro:assets'
 import { t } from '@/lib/i18n'
+
+import heroBg1 from '@/assets/hero/slide-1.jpg'
+import heroBg2 from '@/assets/hero/slide-2.jpg'
+import heroBg3 from '@/assets/hero/slide-3.jpg'
 
 import HeroSlider from '@/components/sections/HeroSlider.vue'
 import Advantages from '@/components/sections/Advantages.astro'
@@ -25,6 +30,12 @@ import faq from '@/mocks/faq.json'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
+// Оптимизированные WebP/AVIF варианты hero-фотографий через Astro image pipeline.
+// 1280px достаточно для 100vw на desktop (max-content-width ~ 1280px).
+const heroOpt = await Promise.all(
+  [heroBg1, heroBg2, heroBg3].map((src) => getImage({ src, format: 'webp', width: 1280, quality: 75 })),
+)
+
 const slides = [
   {
     eyebrow: t(lang, 'hero.slide1.eyebrow'),
@@ -32,7 +43,7 @@ const slides = [
     subtitle: t(lang, 'hero.slide1.subtitle'),
     cta: t(lang, 'hero.slide1.cta'),
     href: '/products/',
-    bg: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1920&q=85',
+    bg: heroOpt[0].src,
   },
   {
     eyebrow: t(lang, 'hero.slide2.eyebrow'),
@@ -40,7 +51,7 @@ const slides = [
     subtitle: t(lang, 'hero.slide2.subtitle'),
     cta: t(lang, 'hero.slide2.cta'),
     href: '/products/',
-    bg: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=85',
+    bg: heroOpt[1].src,
   },
   {
     eyebrow: t(lang, 'hero.slide3.eyebrow'),
@@ -48,7 +59,7 @@ const slides = [
     subtitle: t(lang, 'hero.slide3.subtitle'),
     cta: t(lang, 'hero.slide3.cta'),
     href: '/products/',
-    bg: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85',
+    bg: heroOpt[2].src,
   },
 ]
 
@@ -81,7 +92,10 @@ const formErrors = {
   consent: t(lang, 'questionForm.errors.consent'),
 }
 ---
-<BaseLayout title="Krüger Motor Oil — премиальные моторные масла, разработанные в Германии">
+<BaseLayout
+  title="Krüger Motor Oil — премиальные моторные масла, разработанные в Германии"
+  preloadImage={heroOpt[0].src}
+>
   <HeroSlider
     client:load
     slides={slides}
