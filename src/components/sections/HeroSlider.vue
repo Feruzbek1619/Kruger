@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ArrowRight } from 'lucide-vue-next'
 
 interface Slide {
   eyebrow: string
@@ -25,8 +25,7 @@ const paused = ref(false)
 let timer: number | undefined
 
 function go(n: number) { idx.value = (n + props.slides.length) % props.slides.length }
-function next() { go(idx.value + 1); startAuto() }
-function prev() { go(idx.value - 1); startAuto() }
+function next() { go(idx.value + 1) }
 
 function startAuto() {
   stopAuto()
@@ -140,17 +139,8 @@ onUnmounted(stopAuto)
           </span>
         </div>
 
-        <!-- Слайдер-точки + prev/next -->
-        <div class="flex items-center gap-3 pointer-events-auto pr-16 md:pr-0" role="group" aria-label="Навигация по слайдам">
-          <button
-            type="button"
-            @click="prev"
-            aria-label="Предыдущий слайд"
-            class="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-full border border-text-inverse/25 text-text-inverse hover:bg-text-inverse/10 hover:border-text-inverse/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
-          >
-            <ChevronLeft :size="20" :stroke-width="2" />
-          </button>
-          <div class="flex items-center gap-2">
+        <!-- Слайдер-точки -->
+        <div class="flex items-center gap-2 pointer-events-auto pr-16 md:pr-0" role="group" aria-label="Навигация по слайдам">
           <button
             v-for="(_, i) in slides"
             :key="i"
@@ -164,15 +154,6 @@ onUnmounted(stopAuto)
               class="h-1.5 rounded-pill transition-all pointer-events-none"
               :class="i === idx ? 'w-10 bg-brand-yellow' : 'w-2.5 bg-text-inverse/40 group-hover:bg-text-inverse/60'"
             />
-          </button>
-          </div>
-          <button
-            type="button"
-            @click="next"
-            aria-label="Следующий слайд"
-            class="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-full border border-text-inverse/25 text-text-inverse hover:bg-text-inverse/10 hover:border-text-inverse/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
-          >
-            <ChevronRight :size="20" :stroke-width="2" />
           </button>
         </div>
       </div>
