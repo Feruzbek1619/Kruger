@@ -22,9 +22,12 @@ const items = news as NewsItem[]
       </div>
       <a
         href="/news/"
-        class="hidden md:inline-flex h-11 px-5 items-center rounded-pill bg-bg-soft text-text font-medium hover:bg-bg-muted transition-colors text-sm"
+        class="group hidden md:inline-flex items-center gap-2 h-11 pl-5 pr-1.5 rounded-pill bg-bg-soft hover:bg-bg-muted text-text font-semibold transition-colors text-sm whitespace-nowrap"
       >
-        {t(lang, 'news.all')}
+        <span>{t(lang, 'news.all')}</span>
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-text-inverse transition-transform group-hover:translate-x-0.5">
+          <Icon name="arrowRight" class="h-3.5 w-3.5" />
+        </span>
       </a>
     </div>
 
@@ -34,12 +37,16 @@ const items = news as NewsItem[]
       ))}
     </ul>
 
-    <a
-      href="/news/"
-      class="md:hidden mt-8 inline-flex w-full h-12 items-center justify-center gap-2 rounded-pill bg-bg-soft text-text font-semibold text-sm"
-    >
-      {t(lang, 'news.all')}
-      <Icon name="arrowRight" class="h-4 w-4" />
-    </a>
+    <div class="md:hidden mt-8 text-center">
+      <a
+        href="/news/"
+        class="group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-bg-soft hover:bg-bg-muted text-text font-semibold transition-colors text-sm"
+      >
+        <span>{t(lang, 'news.all')}</span>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-text-inverse transition-transform group-hover:translate-x-1">
+          <Icon name="arrowRight" class="h-4 w-4" />
+        </span>
+      </a>
+    </div>
   </div>
 </section>

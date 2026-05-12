@@ -23,9 +23,12 @@ const items = segments as MarketSegment[]
       </div>
       <a
         href="/products/"
-        class="hidden md:inline-flex h-11 px-5 items-center rounded-pill bg-bg text-text font-medium hover:bg-bg-muted transition-colors text-sm border border-border-soft"
+        class="group hidden md:inline-flex items-center gap-2 h-11 pl-5 pr-1.5 rounded-pill bg-bg hover:bg-bg-muted text-text font-semibold border border-border-soft transition-colors text-sm whitespace-nowrap"
       >
-        {t(lang, 'segments.more')}
+        <span>{t(lang, 'segments.more')}</span>
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-text-inverse transition-transform group-hover:translate-x-0.5">
+          <Icon name="arrowRight" class="h-3.5 w-3.5" />
+        </span>
       </a>
     </div>
 
