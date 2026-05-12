@@ -45,7 +45,7 @@ const tabs = computed(() =>
         <template #trailing>
           <a
             href="/products/"
-            class="group inline-flex items-center gap-2 h-11 pl-4 pr-1.5 rounded-pill bg-bg-soft hover:bg-bg-muted text-text font-semibold transition-colors text-sm whitespace-nowrap"
+            class="group inline-flex items-center gap-2 h-11 pl-4 pr-1.5 rounded-pill bg-bg border border-border-soft hover:border-primary text-text font-semibold transition-colors text-sm whitespace-nowrap"
           >
             <span class="hidden sm:inline">Все продукты</span>
             <span class="sm:hidden">Все</span>
