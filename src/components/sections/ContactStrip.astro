@@ -17,7 +17,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight">
         {t(lang, 'footer.contactStripTitle')}
       </h2>
-      <p class="mt-2 text-sm md:text-base opacity-85">{t(lang, 'footer.contactStripSubtitle')}</p>
+      <p class="mt-2 text-sm md:text-base">{t(lang, 'footer.contactStripSubtitle')}</p>
     </div>
 
     <a
@@ -28,7 +28,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         <Icon name="phone" class="h-5 w-5" />
       </span>
       <span>
-        <span class="block text-[10px] uppercase tracking-[0.18em] opacity-70 font-semibold">
+        <span class="block text-[10px] uppercase tracking-[0.18em] text-text-inverse font-semibold">
           {t(lang, 'footer.phoneLabel')}
         </span>
         <span class="block font-display font-bold text-base lg:text-lg">{t(lang, 'topbar.phone')}</span>
@@ -43,7 +43,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         <Icon name="mail" class="h-5 w-5" />
       </span>
       <span>
-        <span class="block text-[10px] uppercase tracking-[0.18em] opacity-70 font-semibold">
+        <span class="block text-[10px] uppercase tracking-[0.18em] text-text-inverse font-semibold">
           {t(lang, 'footer.emailLabel')}
         </span>
         <span class="block font-display font-bold text-base lg:text-lg">{t(lang, 'topbar.email')}</span>

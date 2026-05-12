@@ -97,7 +97,7 @@ async function submit(e: Event) {
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 leading-[1.1]">
           {{ title }}
         </h2>
-        <p class="text-text-inverse/85 mb-8 text-sm md:text-base">{{ subtitle }}</p>
+        <p class="text-text-inverse mb-8 text-sm md:text-base">{{ subtitle }}</p>
 
         <form
           class="bg-bg text-text rounded-2xl p-6 md:p-8 grid gap-4 md:gap-5 shadow-xl"

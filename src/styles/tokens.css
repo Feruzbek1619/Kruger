@@ -208,7 +208,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.01 285);
 
-  --primary: oklch(0.6 0.22 27);
+  --primary: oklch(0.55 0.22 27);             /* WCAG AA: ≥4.5:1 на белом для small text (eyebrow 10-12px) */
   --primary-foreground: oklch(1 0 0);
 
   --secondary: oklch(0.96 0.005 285);

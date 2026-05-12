@@ -92,6 +92,7 @@ onUnmounted(stopAuto)
           :key="`content-${i}`"
           class="col-start-1 row-start-1 transition-all duration-700"
           :class="i === idx ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'"
+          :inert="i !== idx ? true : undefined"
           :aria-hidden="i !== idx"
         >
           <div class="max-w-2xl">
@@ -144,12 +145,16 @@ onUnmounted(stopAuto)
             v-for="(_, i) in slides"
             :key="i"
             type="button"
-            class="h-1.5 rounded-pill transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"
-            :class="i === idx ? 'w-10 bg-brand-yellow' : 'w-2.5 bg-text-inverse/30 hover:bg-text-inverse/50'"
+            class="kr-hero-dot relative inline-flex items-center justify-center h-8 w-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse rounded-pill"
             :aria-label="`Слайд ${i + 1}`"
             :aria-current="i === idx ? 'true' : undefined"
             @click="go(i)"
-          />
+          >
+            <span
+              class="h-1.5 rounded-pill transition-all pointer-events-none"
+              :class="i === idx ? 'w-10 bg-brand-yellow' : 'w-2.5 bg-text-inverse/40 group-hover:bg-text-inverse/60'"
+            />
+          </button>
         </div>
       </div>
     </div>
