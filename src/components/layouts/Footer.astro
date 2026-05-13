@@ -72,9 +72,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         Newsletter
       </h3>
       <p class="text-sm opacity-75 mb-5 leading-relaxed">{t(lang, 'footer.subscribeText')}</p>
-      <form class="space-y-2.5" onsubmit="return false">
+      <form id="kr-newsletter" class="space-y-2.5">
         <input
           type="email"
+          name="email"
           required
           aria-label={t(lang, 'footer.subscribePlaceholder')}
           placeholder={t(lang, 'footer.subscribePlaceholder')}
@@ -82,10 +83,13 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         />
         <button
           type="submit"
-          class="w-full inline-flex items-center justify-center h-12 px-5 rounded-md bg-primary hover:bg-primary-hover text-text-inverse text-sm font-semibold transition-colors"
+          data-loading-label={t(lang, 'questionForm.sending')}
+          data-default-label={t(lang, 'footer.subscribeBtn')}
+          class="kr-newsletter-btn w-full inline-flex items-center justify-center h-12 px-5 rounded-md bg-primary hover:bg-primary-hover text-text-inverse text-sm font-semibold transition-colors disabled:opacity-60"
         >
           {t(lang, 'footer.subscribeBtn')}
         </button>
+        <p class="kr-newsletter-msg hidden text-xs leading-snug" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -106,3 +110,52 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     </div>
   </div>
 </footer>
+
+<script>
+  // Newsletter form: POST через единый submitInquiry({ kind: 'newsletter' }).
+  // В mock-mode (PUBLIC_USE_MOCKS=true) симулирует 700ms задержку и возвращает фейковый id.
+  import { submitInquiry } from '@/lib/api'
+
+  const init = () => {
+    const form = document.getElementById('kr-newsletter') as HTMLFormElement | null
+    if (!form) return
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!
+    const msg = form.querySelector<HTMLParagraphElement>('.kr-newsletter-msg')!
+    const input = form.querySelector<HTMLInputElement>('input[name="email"]')!
+    const defaultLabel = btn.dataset.defaultLabel || 'Подписаться'
+    const loadingLabel = btn.dataset.loadingLabel || 'Отправляем…'
+
+    const setMsg = (text: string, kind: 'success' | 'error') => {
+      msg.textContent = text
+      msg.classList.remove('hidden', 'text-success', 'text-error')
+      msg.classList.add(kind === 'success' ? 'text-success' : 'text-error')
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const email = input.value.trim()
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setMsg('Похоже, в адресе ошибка', 'error')
+        input.focus()
+        return
+      }
+      btn.disabled = true
+      btn.textContent = loadingLabel
+      try {
+        await submitInquiry({ kind: 'newsletter', email, consent: true })
+        setMsg('Спасибо! Подтверждение придёт на email.', 'success')
+        input.value = ''
+      } catch {
+        setMsg('Что-то пошло не так. Попробуйте позже.', 'error')
+      } finally {
+        btn.disabled = false
+        btn.textContent = defaultLabel
+      }
+    })
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true })
+  } else {
+    init()
+  }
+</script>

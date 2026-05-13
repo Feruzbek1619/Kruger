@@ -14,6 +14,12 @@ interface Props {
   hideContactStrip?: boolean
   /** URL картинки, которая является LCP-кандидатом — будет preload в <head>. */
   preloadImage?: string
+  /** Canonical URL for SEO + og:url (auto: Astro.url.pathname). */
+  canonical?: string
+  /** Open Graph image URL (1200×630 recommended). Defaults to /og.png */
+  ogImage?: string
+  /** Дополнительный JSON-LD schema (Article, Product, etc.) — на специфичных страницах */
+  jsonLd?: Record<string, unknown>
 }
 
 const {
@@ -21,9 +27,44 @@ const {
   description = 'Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.',
   hideContactStrip = false,
   preloadImage,
+  canonical,
+  ogImage = '/og.png',
+  jsonLd,
 } = Astro.props
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const siteUrl = 'https://kruger-oil.de'
+const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
+
+// Organization schema — рендерится на всех страницах
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Krüger Motor Oil GmbH',
+  alternateName: 'Krüger',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.svg`,
+  description,
+  foundingDate: '2017',
+  foundingLocation: { '@type': 'Place', name: 'Stuttgart, Germany' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Leitzstraße 45',
+    postalCode: '70469',
+    addressLocality: 'Stuttgart',
+    addressCountry: 'DE',
+  },
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    telephone: '+49-711-12-34-56-78',
+    email: 'info@kruger-oil.de',
+    contactType: 'customer support',
+    availableLanguage: ['Russian', 'English', 'German'],
+  }],
+  sameAs: [],
+}
 ---
 <!doctype html>
 <html lang={lang}>
@@ -34,10 +75,33 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="canonical" href={canonicalUrl} />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Krüger Motor Oil" />
+    <meta property="og:locale" content={lang === 'ru' ? 'ru_RU' : lang === 'de' ? 'de_DE' : 'en_US'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- JSON-LD Organization schema (every page) -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
     <ClientRouter />
   </head>
   <body class="bg-bg text-text">

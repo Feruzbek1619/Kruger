@@ -18,11 +18,21 @@ const items = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   />
   <section class="bg-bg py-16 md:py-24">
     <div class="container-page">
-      <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {items.map((entry) => (
-          <li><NewsCard entry={entry} /></li>
-        ))}
-      </ul>
+      {items.length > 0 ? (
+        <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {items.map((entry) => (
+            <li><NewsCard entry={entry} /></li>
+          ))}
+        </ul>
+      ) : (
+        <div class="text-center py-12 md:py-20 max-w-md mx-auto">
+          <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-bg-soft text-text-muted mb-5">
+            <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 5h18M3 12h18M3 19h12" stroke-linecap="round"/></svg>
+          </div>
+          <p class="font-display text-xl md:text-2xl font-bold text-text mb-2">Пока без публикаций</p>
+          <p class="text-text-muted">Скоро здесь появятся новости компании и технические гиды.</p>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>

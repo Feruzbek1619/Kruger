@@ -75,10 +75,33 @@ const formErrors = {
   emailInvalid:   t(lang, 'questionForm.errors.emailInvalid'),
   consent:        t(lang, 'questionForm.errors.consent'),
 }
+
+// Schema.org/Product JSON-LD for rich results in Google
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  sku: product.sku,
+  description: product.shortDescription,
+  image: product.image ? `https://kruger-oil.de${product.image}` : undefined,
+  category: categoryTitle,
+  brand: { '@type': 'Brand', name: 'Krüger Motor Oil' },
+  manufacturer: { '@type': 'Organization', name: 'Krüger Motor Oil GmbH' },
+  url: `https://kruger-oil.de/product/${product.slug}/`,
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'EUR',
+    price: '0',          // цены через "Запросить цену" — POA
+    priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+    seller: { '@type': 'Organization', name: 'Krüger Motor Oil GmbH' },
+  },
+}
 ---
 <BaseLayout
   title={`${product.name} — ${product.shortDescription.substring(0, 60)}... | Krüger`}
   description={product.shortDescription}
+  jsonLd={productSchema}
 >
   <PageHero
     breadcrumbs={[

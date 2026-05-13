@@ -19,14 +19,30 @@ interface Props {
   emptyTitle: string
   emptyText: string
   resetLabel: string
+  /** Показать skeleton-карточки вместо реальных продуктов (loading state) */
+  loading?: boolean
 }
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), { loading: false })
 const emit = defineEmits<{ 'reset': [] }>()
 </script>
 
 <template>
+  <!-- Skeleton loaders (loading state) -->
+  <ul v-if="loading" class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true" aria-label="Загрузка продуктов">
+    <li v-for="i in 6" :key="`s${i}`" class="kr-skeleton-card animate-pulse">
+      <div class="aspect-[4/3] bg-bg-soft rounded-xl mb-3" />
+      <div class="h-4 bg-bg-soft rounded w-3/4 mb-2" />
+      <div class="h-3 bg-bg-soft rounded w-full mb-1" />
+      <div class="h-3 bg-bg-soft rounded w-5/6 mb-3" />
+      <div class="flex items-center justify-between">
+        <div class="h-3 bg-bg-soft rounded w-20" />
+        <div class="h-9 w-9 bg-bg-soft rounded-full" />
+      </div>
+    </li>
+  </ul>
+
   <!-- Empty state -->
-  <div v-if="items.length === 0" class="py-16 md:py-20 text-center">
+  <div v-else-if="items.length === 0" class="py-16 md:py-20 text-center">
     <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-bg-soft mb-5">
       <PackageX :size="28" :stroke-width="1.5" class="text-text-muted" aria-hidden="true" />
     </div>
