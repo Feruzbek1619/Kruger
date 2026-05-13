@@ -42,7 +42,7 @@ onUnmounted(stopAuto)
   <section
     class="hero-section relative min-h-[38rem] md:min-h-[44rem] lg:min-h-[48rem] overflow-hidden bg-bg-dark text-text-inverse"
     aria-roledescription="carousel"
-    aria-label="Hero"
+    aria-label="Главный баннер"
     @mouseenter="paused = true"
     @mouseleave="paused = false"
     @focusin="paused = true"

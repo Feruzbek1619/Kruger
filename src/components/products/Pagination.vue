@@ -65,7 +65,7 @@ function goto(n: number) {
 </script>
 
 <template>
-  <nav v-if="totalPages > 1" class="mt-10 flex flex-col items-center gap-3" aria-label="Pagination">
+  <nav v-if="totalPages > 1" class="mt-10 flex flex-col items-center gap-3" aria-label="Пагинация">
     <ul class="flex items-center justify-center gap-1.5 flex-wrap">
       <li>
         <button
