@@ -2,9 +2,38 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import StatsBar from '@/components/sections/StatsBar.astro'
+import Logo from '@/components/ui/Logo.astro'
 import Icon from '@/components/ui/Icon.astro'
+import PopularProducts from '@/components/sections/PopularProducts.vue'
+import FAQAccordion from '@/components/sections/FAQAccordion.vue'
+import ContactForm from '@/components/sections/ContactForm.vue'
+import popular from '@/mocks/popular.json'
+import faq from '@/mocks/faq.json'
 import { t } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+const formLabels = {
+  name:       t(lang, 'questionForm.nameLabel'),
+  namePh:     t(lang, 'questionForm.namePh'),
+  phone:      t(lang, 'questionForm.phoneLabel'),
+  phonePh:    t(lang, 'questionForm.phonePh'),
+  email:      t(lang, 'questionForm.emailLabel'),
+  emailPh:    t(lang, 'questionForm.emailPh'),
+  message:    t(lang, 'questionForm.messageLabel'),
+  messagePh:  t(lang, 'questionForm.messagePh'),
+  consent:    t(lang, 'questionForm.consent'),
+  submit:     t(lang, 'questionForm.submit'),
+  sending:    t(lang, 'questionForm.sending'),
+  successToast: t(lang, 'questionForm.successToast'),
+  errorToast:   t(lang, 'questionForm.errorToast'),
+}
+const formErrors = {
+  name:           t(lang, 'questionForm.errors.name'),
+  emailRequired:  t(lang, 'questionForm.errors.emailRequired'),
+  emailInvalid:   t(lang, 'questionForm.errors.emailInvalid'),
+  message:        t(lang, 'questionForm.errors.message'),
+  consent:        t(lang, 'questionForm.errors.consent'),
+}
 
 const blocks = [
   { key: 'history',    icon: 'clock',      paragraphs: [t(lang, 'about.glance.history.p1'),    t(lang, 'about.glance.history.p2'), t(lang, 'about.glance.history.p3')], title: t(lang, 'about.glance.history.title') },
@@ -23,6 +52,37 @@ const blocks = [
     lead={t(lang, 'about.glance.lead')}
     breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.about'), href: '/about/glance/' }, { label: t(lang, 'nav.aboutGlance') }]}
   />
+
+  <!-- Brand intro: Logo + welcome paragraph -->
+  <section class="bg-bg py-16 md:py-20 border-b border-border-soft">
+    <div class="container-page grid gap-10 md:gap-12 md:grid-cols-[auto_1fr] items-start">
+      <div class="shrink-0">
+        <Logo class="h-20 md:h-28 w-auto" />
+        <p class="mt-4 text-[10px] md:text-xs uppercase tracking-[0.22em] font-bold text-text-muted">Made in Germany · since 2017</p>
+      </div>
+      <div class="space-y-4 max-w-3xl text-base md:text-lg leading-relaxed text-text">
+        <p>
+          <strong class="font-display font-bold">Krüger Motor Oil GmbH</strong> — немецкий производитель премиальных
+          смазочных материалов для автомобильной и индустриальной отрасли. Штаб-квартира и R&D-центр расположены
+          в Штутгарте, производство — на сертифицированных заводах в Германии.
+        </p>
+        <p class="text-text-muted">
+          Мы разрабатываем масла под требования ведущих автопроизводителей: Mercedes-Benz, BMW, Volkswagen, Porsche,
+          Audi, Ford, Volvo, MAN, Scania, Renault, Toyota и Hyundai — все 12 OEM подтвердили совместимость наших
+          формул со своими инженерными системами.
+        </p>
+        <p class="text-text-muted">
+          Портфель из 150+ продуктов покрывает шесть рыночных сегментов: легковые автомобили, коммерческий транспорт,
+          электромобили, промышленность, сельское и лесное хозяйство, строительная и землеройная техника.
+          Производство сертифицировано по ISO 9001 (качество), ISO 14001 (экология) и ISO 45001 (охрана труда).
+        </p>
+        <p class="text-text-muted">
+          За 8 лет работы Krüger вырос в дистрибуторскую сеть на пяти континентах с присутствием в 50+ странах.
+          Каждый литр — результат немецкой инженерии, лабораторного контроля и постоянных OEM-тестов.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <section class="bg-bg py-20 md:py-24">
     <div class="container-page">
@@ -77,6 +137,33 @@ const blocks = [
   </section>
 
   <StatsBar />
+
+  <PopularProducts
+    client:visible
+    products={popular as any}
+    title={t(lang, 'popular.title')}
+    subtitle={t(lang, 'popular.subtitle')}
+    showMore={t(lang, 'popular.showMore')}
+    more={t(lang, 'popular.more')}
+    prevLabel={t(lang, 'popular.prev')}
+    nextLabel={t(lang, 'popular.next')}
+  />
+
+  <FAQAccordion
+    client:visible
+    title={t(lang, 'faq.title')}
+    subtitle={t(lang, 'faq.subtitle')}
+    items={faq as any}
+    allLabel={t(lang, 'faq.all')}
+  />
+
+  <ContactForm
+    client:visible
+    title={t(lang, 'questionForm.title')}
+    subtitle={t(lang, 'questionForm.subtitle')}
+    labels={formLabels}
+    errors={formErrors}
+  />
 
   <section class="bg-bg-soft py-20 md:py-24 relative overflow-hidden">
     <!-- Brand decorative diagonal stripe -->
