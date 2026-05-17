@@ -161,7 +161,7 @@ async function submit(e: Event) {
       <!-- RIGHT: EV cutaway photo (extends to right edge of section) -->
       <div class="hidden lg:flex items-center justify-start -mr-[max(2rem,calc((100vw-80rem)/2))]" aria-hidden="true">
         <img
-          src="/electric-vehicle.png"
+          src="/electric-vehicle.webp"
           alt=""
           loading="lazy"
           class="w-full max-w-none object-contain"

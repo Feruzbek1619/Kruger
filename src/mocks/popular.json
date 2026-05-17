@@ -17,7 +17,7 @@
       "20L",
       "200L"
     ],
-    "image": "/products/kruger-1.png"
+    "image": "/products/kruger-1.webp"
   },
   {
     "id": "p2",
@@ -35,7 +35,7 @@
       "4L",
       "5L"
     ],
-    "image": "/products/kruger-2.png"
+    "image": "/products/kruger-2.webp"
   },
   {
     "id": "p3",
@@ -54,7 +54,7 @@
       "5L",
       "20L"
     ],
-    "image": "/products/kruger-1.png"
+    "image": "/products/kruger-1.webp"
   },
   {
     "id": "p4",
@@ -73,7 +73,7 @@
       "5L",
       "20L"
     ],
-    "image": "/products/kruger-2.png"
+    "image": "/products/kruger-2.webp"
   },
   {
     "id": "p5",
@@ -90,7 +90,7 @@
       "4L",
       "20L"
     ],
-    "image": "/products/kruger-1.png"
+    "image": "/products/kruger-1.webp"
   },
   {
     "id": "p6",
@@ -107,7 +107,7 @@
       "200L",
       "1000L"
     ],
-    "image": "/products/kruger-2.png"
+    "image": "/products/kruger-2.webp"
   },
   {
     "id": "p7",
@@ -125,7 +125,7 @@
       "5L",
       "20L"
     ],
-    "image": "/products/kruger-1.png"
+    "image": "/products/kruger-1.webp"
   },
   {
     "id": "p8",
@@ -143,6 +143,6 @@
       "1L",
       "5L"
     ],
-    "image": "/products/kruger-2.png"
+    "image": "/products/kruger-2.webp"
   }
 ]
