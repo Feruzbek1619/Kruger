@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css'
+import '@/styles/skeleton.css'
 import { ClientRouter } from 'astro:transitions'
 import TopBar from '@/components/layouts/TopBar.astro'
 import Header from '@/components/layouts/Header.astro'
@@ -37,6 +38,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 const siteUrl = 'https://kruger-oil.de'
 const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
+
+// Skeleton loading mode — активируется через ?skeleton=1 в URL.
+// Превращает текущую страницу в shimmer-плейсхолдер БЕЗ изменения layout/structure.
+const isSkeleton = Astro.url.searchParams.get('skeleton') === '1'
 
 // Organization schema — рендерится на всех страницах
 const organizationSchema = {
@@ -102,10 +107,44 @@ const organizationSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
+    <!-- Skeleton mode boot (client-side): ?skeleton=1 → data-skeleton="true" БЕЗ FOUC -->
+    <script is:inline>
+      (function () {
+        try {
+          var p = new URLSearchParams(window.location.search);
+          if (p.get('skeleton') === '1') {
+            document.documentElement.setAttribute('data-skeleton-html', 'true');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style is:inline>
+      html[data-skeleton-html="true"] body { visibility: hidden; }
+    </style>
+
     <ClientRouter />
   </head>
-  <body class="bg-bg text-text">
+  <body class="bg-bg text-text" data-skeleton={isSkeleton ? 'true' : undefined}>
     <a href="#main" class="skip-link">К основному контенту</a>
+    <script is:inline>
+      // Sync ?skeleton=1 → body[data-skeleton="true"]. Покрывает SSG-сборку
+      // и переходы Astro View Transitions (astro:after-swap).
+      (function () {
+        function sync() {
+          try {
+            var p = new URLSearchParams(window.location.search);
+            if (p.get('skeleton') === '1') {
+              document.body.setAttribute('data-skeleton', 'true');
+            } else {
+              document.body.removeAttribute('data-skeleton');
+            }
+            document.documentElement.removeAttribute('data-skeleton-html');
+          } catch (e) {}
+        }
+        sync();
+        document.addEventListener('astro:after-swap', sync);
+      })();
+    </script>
     <TopBar />
     <Header />
     <main id="main">

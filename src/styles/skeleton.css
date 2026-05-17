@@ -1,0 +1,178 @@
+/* ============================================================================
+ * SKELETON LOADING MODE — Krüger Motor Oil
+ * ----------------------------------------------------------------------------
+ * Активация: <body data-skeleton="true"> (включается через ?skeleton=1 в URL).
+ *
+ * Принципы:
+ *  — НЕ меняет layout, spacing, structure, positions.
+ *  — Только визуально превращает контент в shimmer-плейсхолдеры.
+ *  — Premium SaaS-стиль (Linear, Stripe, Notion, Framer).
+ * ========================================================================== */
+
+@keyframes kr-skel-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+body[data-skeleton="true"] {
+  /* Tone palette — neutral gray, как Linear / Stripe */
+  --skel-bg:     oklch(0.93 0.002 250);
+  --skel-hi:     oklch(0.97 0.002 250);
+  --skel-bg-dk:  oklch(0.30 0.003 250);
+  --skel-hi-dk:  oklch(0.38 0.003 250);
+  --skel-radius: 6px;
+  --skel-duration: 1.6s;
+
+  cursor: progress;
+}
+
+/* Reduced motion → static skeleton, без shimmer */
+@media (prefers-reduced-motion: reduce) {
+  body[data-skeleton="true"] {
+    --skel-duration: 0s;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * BASE SHIMMER MIXIN — применяется ко всем «контентным» элементам
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"]
+  :where(
+    h1, h2, h3, h4, h5, h6,
+    p, li, label, blockquote,
+    button, a:not(.skip-link),
+    input, textarea, select,
+    img, picture, video, svg,
+    figure, iframe
+  ):not([data-skel-keep]) {
+  color: transparent !important;
+  text-shadow: none !important;
+  text-decoration: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  background-color: var(--skel-bg);
+  background-image: linear-gradient(
+    90deg,
+    var(--skel-bg) 0%,
+    var(--skel-hi) 50%,
+    var(--skel-bg) 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  border-radius: var(--skel-radius);
+  animation: kr-skel-shimmer var(--skel-duration) linear infinite;
+
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* На тёмном фоне (primary, footer, contact-strip) — инвертированная палитра */
+body[data-skeleton="true"]
+  :where(.bg-primary, .bg-bg-dark, .bg-text, [class*="bg-primary"])
+  :where(
+    h1, h2, h3, h4, h5, h6,
+    p, li, label, blockquote,
+    button, a:not(.skip-link),
+    input, textarea, select,
+    img, picture, video, svg,
+    figure, iframe
+  ):not([data-skel-keep]) {
+  background-color: var(--skel-bg-dk);
+  background-image: linear-gradient(
+    90deg,
+    var(--skel-bg-dk) 0%,
+    var(--skel-hi-dk) 50%,
+    var(--skel-bg-dk) 100%
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * IMAGES / ICONS — content hidden, box stays as shimmer
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* <img>, <picture>: скрыть пиксели, оставить box-shimmer (object-fit прячет artifacts) */
+body[data-skeleton="true"] :where(img, picture, video):not([data-skel-keep]) {
+  object-fit: cover;
+  object-position: -9999px -9999px;
+}
+
+/* SVG icons — спрятать paths, оставить bbox для shimmer */
+body[data-skeleton="true"] svg:not([data-skel-keep]) {
+  fill: transparent !important;
+  stroke: transparent !important;
+}
+body[data-skeleton="true"] svg:not([data-skel-keep]) * {
+  fill: transparent !important;
+  stroke: transparent !important;
+  opacity: 0 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * INPUT / TEXTAREA — empty shimmer pill
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"] :where(input, textarea, select)::placeholder {
+  color: transparent !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * BACKGROUND IMAGES — отключить (Hero может использовать bg-image)
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"] [style*="background-image"]:not([data-skel-keep]) {
+  background-image: linear-gradient(
+    90deg,
+    var(--skel-bg) 0%,
+    var(--skel-hi) 50%,
+    var(--skel-bg) 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  background-repeat: no-repeat !important;
+  animation: kr-skel-shimmer var(--skel-duration) linear infinite;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * DECORATIVE / aria-hidden — НЕ трогаем (полоски, разделители, glow и т.д.)
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"] [aria-hidden="true"],
+body[data-skeleton="true"] [aria-hidden="true"] * {
+  animation: none !important;
+  background-image: none !important;
+}
+
+/* Но: декоративные SVG (флаги, паттерны) — всё-таки прячем чтобы не мешали */
+body[data-skeleton="true"] svg[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * INHERITED COLORS — фолбэк для текста внутри shimmer-блока
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"]
+  :where(h1, h2, h3, h4, h5, h6, p, li, button, a:not(.skip-link)) * {
+  color: transparent !important;
+  text-decoration: none !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * SKIP-LINK — оставляем функциональным (a11y)
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"] .skip-link {
+  display: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+ * FORM CONTROL STATES — убрать focus-ring у скелетон-инпутов
+ * ────────────────────────────────────────────────────────────────────────── */
+
+body[data-skeleton="true"]
+  :where(button, a, input, textarea, select):focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
