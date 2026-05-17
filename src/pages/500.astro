@@ -4,12 +4,63 @@ import { t } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
 <BaseLayout title="500 — Ошибка сервера | Krüger" hideContactStrip>
-  <section class="bg-bg-soft py-20 md:py-28 min-h-[60vh] flex items-center">
-    <div class="container-page max-w-xl text-center">
-      <p class="font-display text-7xl md:text-8xl font-extrabold text-primary mb-4">500</p>
-      <h1 class="font-display text-2xl md:text-3xl font-bold tracking-tight mb-4">{t(lang, 'errors.500Title')}</h1>
-      <p class="text-text-muted mb-8">{t(lang, 'errors.500Lead')}</p>
-      <a href="/" class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">{t(lang, 'errors.500Btn')}</a>
+  <section class="relative overflow-hidden bg-bg-soft py-20 md:py-28 min-h-[70vh] flex items-center">
+    <!-- Soft brand ambient glows -->
+    <div
+      class="absolute -top-40 -right-40 w-[42rem] h-[42rem] rounded-full bg-brand-yellow/[0.07] blur-3xl pointer-events-none"
+      aria-hidden="true"
+    />
+    <div
+      class="absolute -bottom-44 -left-44 w-[42rem] h-[42rem] rounded-full bg-primary/[0.05] blur-3xl pointer-events-none"
+      aria-hidden="true"
+    />
+
+    <div class="relative container-page max-w-xl text-center">
+      <!-- Visual: 500 watermark + oil-can dashboard icon -->
+      <div class="relative mx-auto w-full max-w-md h-44 md:h-56 mb-10 md:mb-12">
+        <!-- 500 outline watermark -->
+        <span
+          class="absolute inset-0 flex items-center justify-center font-display font-black leading-none tracking-tighter select-none pointer-events-none text-[10rem] md:text-[14rem]"
+          style="-webkit-text-stroke: 2px var(--color-primary); color: transparent; opacity: 0.14;"
+          aria-hidden="true"
+        >500</span>
+
+        <!-- Soft halo behind icon -->
+        <span
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 md:w-56 h-48 md:h-56 rounded-full bg-primary/12 blur-3xl pointer-events-none"
+          aria-hidden="true"
+        />
+
+        <!-- Oil-can warning lamp icon (dashboard style) -->
+        <svg
+          viewBox="0 0 240 160"
+          class="relative mx-auto h-full w-auto text-primary drop-shadow-lg"
+          aria-hidden="true"
+        >
+          <path
+            d="M95 38 L95 56 L50 56 L50 76 L18 76 L18 96 L50 96 L50 132 L168 132 L205 92 L178 92 L178 56 L125 56 L125 38 Z"
+            fill="currentColor"
+          />
+          <path
+            d="M215 102 C 221 112 221 124 215 130 C 209 124 209 112 215 102 Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+
+      <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4">
+        {t(lang, 'errors.500Title')}
+      </h1>
+      <p class="text-text-muted text-base md:text-lg mb-10 max-w-md mx-auto leading-relaxed">
+        {t(lang, 'errors.500Lead')}
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex h-12 px-7 items-center rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+      >
+        {t(lang, 'errors.500Btn')}
+      </a>
     </div>
   </section>
 </BaseLayout>

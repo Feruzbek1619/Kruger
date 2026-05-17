@@ -8,7 +8,12 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
   <span class="absolute top-0 left-0 right-0 h-1 bg-brand-yellow" aria-hidden="true" />
   <!-- Diagonal accent -->
   <div
-    class="absolute -right-32 -top-16 w-72 h-72 rotate-[18deg] bg-brand-yellow/10 pointer-events-none"
+    class="absolute -right-32 -top-16 w-72 h-72 rotate-[18deg] bg-brand-yellow/10 pointer-events-none blur-2xl"
+    aria-hidden="true"
+  />
+  <!-- Soft radial glow на левом краю — premium depth -->
+  <div
+    class="absolute -left-40 -bottom-40 w-[40rem] h-[40rem] rounded-full bg-brand-yellow/[0.06] blur-3xl pointer-events-none"
     aria-hidden="true"
   />
 

@@ -153,16 +153,44 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.65;
 
-  /* ───── Shadows ───── */
-  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);
-  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.08);
-  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.12);
-  --shadow-xl: 0 24px 64px oklch(0 0 0 / 0.16);
+  /* ───── Shadows — Apple-style multi-layer soft diffusion ─────
+     Принцип: 2 слоя — короткая нижняя для контакта с поверхностью + длинная мягкая
+     для ambient diffusion. Низкая opacity, большой blur radius.
+     Никаких резких теней с opacity > 0.15 на карточках. */
+  --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.04);
+  --shadow-sm:
+    0 1px 2px oklch(0 0 0 / 0.03),
+    0 1px 3px oklch(0 0 0 / 0.04);
+  --shadow-md:
+    0 2px 4px oklch(0 0 0 / 0.04),
+    0 8px 24px oklch(0 0 0 / 0.06);
+  --shadow-lg:
+    0 4px 8px oklch(0 0 0 / 0.04),
+    0 16px 48px oklch(0 0 0 / 0.08);
+  --shadow-xl:
+    0 8px 16px oklch(0 0 0 / 0.05),
+    0 32px 80px oklch(0 0 0 / 0.10);
+
+  /* Soft branded glows — для CTA hover и premium accents */
+  --shadow-glow-primary:
+    0 0 0 1px oklch(0.6 0.22 27 / 0.08),
+    0 4px 16px oklch(0.6 0.22 27 / 0.10),
+    0 12px 32px oklch(0.6 0.22 27 / 0.08);
+  --shadow-glow-yellow:
+    0 0 0 1px oklch(0.86 0.16 95 / 0.15),
+    0 4px 16px oklch(0.86 0.16 95 / 0.20),
+    0 12px 32px oklch(0.86 0.16 95 / 0.10);
+
+  /* Inset depth — для бэйджей, скрытых аватарок */
+  --shadow-inset:
+    inset 0 1px 2px oklch(0 0 0 / 0.06);
 
   /* Semantic shadows — единый язык для всех карточек */
   --shadow-card:            var(--shadow-sm);
-  --shadow-card-hover:      var(--shadow-lg);
+  --shadow-card-hover:      var(--shadow-md);
   --shadow-card-elevated:   var(--shadow-md);
+  --shadow-card-floating:   var(--shadow-lg);
+  --shadow-modal:           var(--shadow-xl);
 
   /* ───── Motion timing — единые длительности и easings ───── */
   --duration-fast:          150ms;    /* color / opacity / micro-interactions */
