@@ -140,17 +140,17 @@ async function submit(e: Event) {
             required
           />
 
-          <!-- Bottom row: consent (left) + submit (right) — как в Figma -->
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mt-1 pt-2 border-t border-border-soft">
+          <!-- Bottom row: consent + submit — stack on mobile, row on md+ -->
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mt-1 pt-2 border-t border-border-soft">
             <Checkbox
               v-model="form.consent"
               required
               :error="errs.consent"
-              class="flex-1 sm:max-w-sm"
+              class="flex-1 md:max-w-sm"
             >
               <span class="text-xs text-text-muted leading-snug">{{ labels.consent }}</span>
             </Checkbox>
-            <Button type="submit" :loading="loading" size="md" class="shrink-0">
+            <Button type="submit" :loading="loading" size="md" class="w-full md:w-auto md:shrink-0">
               <span>{{ loading ? labels.sending : labels.submit }}</span>
               <Send v-if="!loading" :size="16" :stroke-width="2" class="ml-1" aria-hidden="true" />
             </Button>

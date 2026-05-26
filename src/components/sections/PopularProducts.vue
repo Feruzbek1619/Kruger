@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import type { Product } from '@/types'
 import ProductCard from '@/components/cards/ProductCard.vue'
 
@@ -15,17 +15,23 @@ interface Props {
 const props = defineProps<Props>()
 
 const idx = ref(0)
-const visible = ref(4)
+// Старт с 1 — безопасно для SSR/гидратации и любых mobile-устройств.
+// updateVisible() поднимет значение сразу после mount.
+const visible = ref(1)
 
 function updateVisible() {
   if (typeof window === 'undefined') return
   const w = window.innerWidth
-  visible.value = w >= 1280 ? 4 : w >= 768 ? 3 : w >= 480 ? 2 : 1
+  visible.value = w >= 1280 ? 4 : w >= 768 ? 3 : w >= 560 ? 2 : 1
 }
-if (typeof window !== 'undefined') {
+
+onMounted(() => {
   updateVisible()
   window.addEventListener('resize', updateVisible)
-}
+})
+onUnmounted(() => {
+  if (typeof window !== 'undefined') window.removeEventListener('resize', updateVisible)
+})
 
 const maxIdx = computed(() => Math.max(0, props.products.length - visible.value))
 function next() { idx.value = Math.min(maxIdx.value, idx.value + 1) }

@@ -25,7 +25,9 @@ const iconMap = {
 ---
 <section class="bg-bg border-b border-border-soft py-5" aria-label="Сегменты применения">
   <div class="container-page">
-    <ul class="kr-segments flex gap-2 md:gap-3 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap snap-x snap-mandatory md:snap-none">
+    <ul
+      class="kr-segments flex gap-2 md:gap-3 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap snap-x snap-mandatory md:snap-none scrollbar-none"
+    >
       {segments.map((s) => {
         const Icon = iconMap[s.id as keyof typeof iconMap]
         return (
@@ -70,3 +72,17 @@ const iconMap = {
     }
   }, 500)
 </script>
+
+<style>
+  /* Hide native scrollbar on segments strip */
+  .kr-segments::-webkit-scrollbar { display: none; }
+  .kr-segments { scrollbar-width: none; }
+
+  /* Fade right edge to hint scrollable content — mobile only */
+  @media (max-width: 47.9375rem) {
+    .kr-segments {
+      mask-image: linear-gradient(to right, black calc(100% - 32px), transparent);
+      -webkit-mask-image: linear-gradient(to right, black calc(100% - 32px), transparent);
+    }
+  }
+</style>
