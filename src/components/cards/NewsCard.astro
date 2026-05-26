@@ -26,13 +26,22 @@ const date    = isEntry
   : new Date(props.item!.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 ---
 <article class="group flex flex-col bg-bg rounded-xl overflow-hidden border border-border-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-  <a href={href} class="block aspect-[16/10] bg-bg-soft overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-    {image ? (
-      <img src={image} alt={title} loading="lazy" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" />
-    ) : (
-      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-muted to-bg-soft">
-        <span class="font-display text-text-subtle text-sm uppercase tracking-wider">{tag}</span>
-      </div>
+  <a
+    href={href}
+    class="relative block aspect-[16/10] bg-gradient-to-br from-bg-muted to-bg-soft overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+  >
+    <!-- Fallback placeholder — виден если картинка не загрузилась -->
+    <span class="absolute inset-0 flex items-center justify-center font-display text-text-subtle text-sm uppercase tracking-wider select-none">
+      {tag}
+    </span>
+    {image && (
+      <img
+        src={image}
+        alt={title}
+        loading="lazy"
+        onerror="this.style.display='none'"
+        class="relative object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+      />
     )}
   </a>
   <div class="flex flex-col flex-1 p-5">

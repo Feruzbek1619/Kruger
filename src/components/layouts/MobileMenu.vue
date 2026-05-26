@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 interface Item { label: string; href: string; children?: Item[] }
 interface Props { items: Item[] }
@@ -10,6 +10,12 @@ const mounted = ref(false)
 const expanded = ref<Set<string>>(new Set())
 
 onMounted(() => { mounted.value = true })
+
+// Уведомляем FloatingButtons чтобы спрятать их когда меню открыто
+watch(open, (isOpen) => {
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(new CustomEvent('kr-mobile-menu', { detail: { open: isOpen } }))
+})
 
 function toggleSection(key: string) {
   if (expanded.value.has(key)) expanded.value.delete(key)

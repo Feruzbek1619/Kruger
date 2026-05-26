@@ -5,38 +5,57 @@
  * - revealOnScroll(): анимирует .kr-reveal элементы при попадании во вьюпорт
  * - countUp(): плавно увеличивает число от 0 до target при появлении
  *
- * Подключаем в Layout (один раз для страницы) — реагирует на новые
- * элементы через MutationObserver, чтобы переживать View Transitions.
+ * Reveal использует CSS transition + IntersectionObserver — это
+ * надёжнее WAAPI/Motion (которые иногда зависают из-за конфликта с
+ * Lenis-driver на mobile). Safety-net через 2.5с принудительно
+ * показывает всё, что осталось скрытым.
  */
-import { animate, inView } from 'motion'
+import { animate } from 'motion'
 
 export function reduceMotion(): boolean {
   if (typeof window === 'undefined') return false
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
+function reveal(el: HTMLElement) {
+  el.classList.add('is-revealed')
+}
+
 export function revealOnScroll(root: Document | HTMLElement = document) {
+  const elements = Array.from(root.querySelectorAll<HTMLElement>('.kr-reveal'))
+  if (!elements.length) return
+
   if (reduceMotion()) {
-    root.querySelectorAll<HTMLElement>('.kr-reveal').forEach((el) => {
-      el.style.opacity = '1'
-      el.style.transform = 'none'
-    })
+    elements.forEach(reveal)
     return
   }
-  inView(
-    root.querySelectorAll<HTMLElement>('.kr-reveal'),
-    (info) => {
-      const target = info.target as HTMLElement
-      // Motion One v11 keyframes for DOM elements
-      ;(animate as any)(
-        target,
-        { opacity: [0, 1], y: [16, 0] },
-        { duration: 0.5, easing: 'ease-out' },
-      )
-      return () => {}
+
+  // Safety-net: через 2.5с откроем всё что осталось — на случай если
+  // IntersectionObserver не сработал по любой причине.
+  const safetyTimer = window.setTimeout(() => {
+    elements.forEach((el) => {
+      if (!el.classList.contains('is-revealed')) reveal(el)
+    })
+  }, 2500)
+
+  if (typeof IntersectionObserver === 'undefined') {
+    elements.forEach(reveal)
+    clearTimeout(safetyTimer)
+    return
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        reveal(entry.target as HTMLElement)
+        io.unobserve(entry.target)
+      })
     },
-    { amount: 0.15 },
+    { threshold: 0.1, rootMargin: '0px 0px -8% 0px' },
   )
+
+  elements.forEach((el) => io.observe(el))
 }
 
 interface CountUpOptions { duration?: number; suffix?: string }
@@ -66,16 +85,26 @@ export function countUp(el: HTMLElement, target: string | number, opts: CountUpO
 }
 
 export function bindCountUps(root: Document | HTMLElement = document) {
-  const els = root.querySelectorAll<HTMLElement>('[data-countup]')
+  const els = Array.from(root.querySelectorAll<HTMLElement>('[data-countup]'))
   if (!els.length) return
-  inView(
-    els,
-    (info) => {
-      const el = info.target as HTMLElement
-      const target = el.dataset.countup ?? el.textContent ?? ''
-      countUp(el, target)
-      return () => {}
+
+  if (typeof IntersectionObserver === 'undefined') {
+    els.forEach((el) => countUp(el, el.dataset.countup ?? el.textContent ?? ''))
+    return
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        const el = entry.target as HTMLElement
+        const target = el.dataset.countup ?? el.textContent ?? ''
+        countUp(el, target)
+        io.unobserve(el)
+      })
     },
-    { amount: 0.5 },
+    { threshold: 0.5 },
   )
+
+  els.forEach((el) => io.observe(el))
 }
