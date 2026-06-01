@@ -5,6 +5,7 @@ import Input from '@/components/ui/Input.vue'
 import Checkbox from '@/components/ui/Checkbox.vue'
 import Button from '@/components/ui/Button.vue'
 import { useToast } from '@/lib/useToast'
+import { submitInquiry } from '@/lib/api'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/shadcn/dialog'
 
 interface Props {
@@ -61,7 +62,16 @@ async function submit(e: Event) {
   }
   loading.value = true
   try {
-    await new Promise((res) => setTimeout(res, 700))
+    await submitInquiry({
+      kind: 'request-price',
+      name: form.name,
+      email: form.email,
+      phone: form.phone || undefined,
+      qty: form.qty || undefined,
+      productSku: props.productSku,
+      message: `Запрос цены: ${props.productName} (${props.productSku})`,
+      consent: true,
+    })
     toast.success(props.labels.successToast)
     Object.assign(form, { name: '', email: '', phone: '', qty: '', consent: false })
     open.value = false

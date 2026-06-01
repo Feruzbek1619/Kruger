@@ -6,6 +6,7 @@ import Input from '@/components/ui/Input.vue'
 import Checkbox from '@/components/ui/Checkbox.vue'
 import Button from '@/components/ui/Button.vue'
 import { useToast } from '@/lib/useToast'
+import { submitInquiry } from '@/lib/api'
 
 interface Props {
   title: string
@@ -62,7 +63,14 @@ async function submit(e: Event) {
   }
   loading.value = true
   try {
-    await new Promise((r) => setTimeout(r, 800))
+    await submitInquiry({
+      kind: 'question',
+      name: form.name,
+      email: form.email,
+      phone: form.phone || undefined,
+      message: form.message,
+      consent: true,
+    })
     toast.success(props.labels.successToast)
     form.name = ''
     form.phone = ''
