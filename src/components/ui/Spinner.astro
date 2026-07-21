@@ -1,9 +1,10 @@
 ---
+import { t } from '@/lib/i18n'
 interface Props {
   size?: 'sm' | 'md' | 'lg'
   label?: string
 }
-const { size = 'md', label = 'Загружаем…' } = Astro.props
+const { size = 'md', label = t((Astro.currentLocale ?? 'ru'), 'common.loading') } = Astro.props
 const sizeMap = { sm: 'h-4 w-4', md: 'h-6 w-6', lg: 'h-10 w-10' } as const
 ---
 <span

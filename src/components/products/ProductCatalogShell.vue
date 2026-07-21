@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 /**
  * ProductCatalogShell — orchestrator страницы каталога. Держит filter/sort/view/page
  * state, синхронизирует через useUrlSearchParams (history) и рендерит дочерние
@@ -23,6 +24,8 @@ interface Props {
   products: Product[]
   applicationOptions: { id: string; label: string }[]
   categoryLabels?: Record<string, string>
+  catalogHeading: string
+  lang?: string
   labels: {
     filters: string
     filterByApplication: string
@@ -201,7 +204,7 @@ function onUpdateSelected(v: FilterSelection) {
   <section class="bg-bg py-8 md:py-12" aria-labelledby="catalog-heading">
     <div class="container-page">
       <!-- sr-only h2 для иерархии заголовков (PageHero h1 → h2 → ProductCard h3) -->
-      <h2 id="catalog-heading" class="sr-only">Каталог продукции</h2>
+      <h2 id="catalog-heading" class="sr-only">{{ catalogHeading }}</h2>
 
       <!-- Mobile top-bar: count + drawer trigger -->
       <div class="flex items-center justify-between gap-4 mb-5 lg:hidden">
@@ -220,7 +223,7 @@ function onUpdateSelected(v: FilterSelection) {
 
       <div class="grid gap-8 lg:grid-cols-[17rem_1fr]">
         <!-- Desktop sidebar -->
-        <aside class="hidden lg:block self-start sticky top-28" aria-label="Фильтры">
+        <aside class="hidden lg:block self-start sticky top-28" :aria-label="ui('filters')">
           <ProductFilters
             :selected="selected"
             :options="options"
@@ -249,7 +252,7 @@ function onUpdateSelected(v: FilterSelection) {
           </div>
 
           <!-- Active filter chips -->
-          <div v-if="hasFilters" class="flex flex-wrap gap-2 mb-6" aria-label="Активные фильтры">
+          <div v-if="hasFilters" class="flex flex-wrap gap-2 mb-6" :aria-label="ui('activeFilters')">
             <span
               v-for="chip in activeChips"
               :key="`${chip.group}-${chip.value}`"
@@ -259,7 +262,7 @@ function onUpdateSelected(v: FilterSelection) {
               <button
                 type="button"
                 class="inline-flex h-6 w-6 items-center justify-center rounded-full hover:bg-primary/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                :aria-label="`Удалить фильтр ${chip.label}`"
+                :aria-label="ui('removeFilter', chip.label)"
                 @click="removeChip(chip.group, chip.value)"
               >
                 <X :size="12" :stroke-width="2.5" aria-hidden="true" />
@@ -277,6 +280,7 @@ function onUpdateSelected(v: FilterSelection) {
 
           <!-- Grid / List / Empty -->
           <ProductGrid
+            :lang="lang"
             :items="paginated"
             :view="view"
             :cta-label="labels.moreDetails"

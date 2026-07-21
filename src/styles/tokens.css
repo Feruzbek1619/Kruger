@@ -141,6 +141,7 @@
      (которые корректны: 1.875rem / 2.25rem / 3rem / 3.75rem / 4.5rem). Не дублируем
      чтобы tokens.css не врал — getComputedStyle на --text-3xl возвращал пусто
      раньше (объявлено в @theme inline но не подхватывалось). */
+  --text-eyebrow: 0.625rem;  /* 10px — микро-лейблы (eyebrow/kicker над заголовками) */
   --text-xs:  0.75rem;
   --text-sm:  0.875rem;
   --text-base: 1rem;

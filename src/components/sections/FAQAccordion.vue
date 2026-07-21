@@ -8,8 +8,10 @@ interface Props {
   subtitle: string
   items: Item[]
   allLabel: string
+  lang?: string
 }
-defineProps<Props>()
+const props = defineProps<Props>()
+const lp = props.lang && props.lang !== 'ru' ? `/${props.lang}` : ''
 </script>
 
 <template>
@@ -25,10 +27,10 @@ defineProps<Props>()
       <div class="text-center mb-10 md:mb-14">
         <div class="inline-flex items-center gap-3 mb-3">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">FAQ</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">FAQ</p>
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
         </div>
-        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
           {{ title }}
         </h2>
         <p class="mt-3 text-sm md:text-base text-text-muted">{{ subtitle }}</p>
@@ -38,7 +40,7 @@ defineProps<Props>()
 
       <div class="mt-10 text-center">
         <a
-          href="/faq/"
+          :href="lp + '/faq/'"
           class="group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-bg text-text font-semibold border border-border hover:bg-bg-muted transition-colors"
         >
           <span>{{ allLabel }}</span>

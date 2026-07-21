@@ -1,0 +1,13 @@
+---
+// de-локаль: страница новости.
+import Page from "../../news/[...slug].astro"
+import { getAllNews } from "@/lib/api"
+
+export async function getStaticPaths() {
+  const items = await getAllNews()
+  return items.map((n) => ({ params: { slug: n.slug }, props: { slug: n.slug } }))
+}
+
+const { slug } = Astro.props
+---
+<Page slug={slug} />

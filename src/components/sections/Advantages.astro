@@ -1,11 +1,10 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, tRaw, localePath } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
-import ru from '@/i18n/ru.json'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
 const icons = ['factory','shield','spark','drop','cog','globe'] as const
-const items = ru.advantages.items
+const items = tRaw<any[]>(lang, 'advantages.items')
 ---
 <section class="relative bg-bg py-16 md:py-24 overflow-hidden">
   <!-- Subtle K-watermark в фоне -->
@@ -23,7 +22,7 @@ const items = ru.advantages.items
         </p>
         <span class="inline-block h-0.5 w-10 bg-primary" aria-hidden="true" />
       </div>
-      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
+      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
         {t(lang, 'advantages.title')}
       </h2>
       <p class="mt-4 max-w-2xl mx-auto text-base md:text-lg text-text-muted leading-relaxed">

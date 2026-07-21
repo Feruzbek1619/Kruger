@@ -7,17 +7,21 @@
  * и адаптеров без поддержки _redirects. delay=0 в meta-refresh — WCAG-compliant
  * (Timing Adjustable не нарушается при немедленном редиректе).
  */
+import { t, localePath } from '@/lib/i18n'
+
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const target = localePath(lang, '/about/glance/')
 ---
 <!doctype html>
-<html lang="ru">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0;url=/about/glance/" />
-    <title>Krüger Motor Oil — переход</title>
-    <link rel="canonical" href="https://kruger-oil.de/about/glance/" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <title>{t(lang, 'redirect.title')}</title>
+    <link rel="canonical" href={`https://kruger-oil.de${target}`} />
     <meta name="robots" content="noindex" />
   </head>
   <body>
-    <a href="/about/glance/">Перейти на «О компании»</a>
+    <a href={target}>{t(lang, 'redirect.link')}</a>
   </body>
 </html>

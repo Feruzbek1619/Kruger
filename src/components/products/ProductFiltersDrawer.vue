@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 /**
  * ProductFiltersDrawer — мобильная обёртка для ProductFilters в shadcn Sheet
  * (bottom drawer). Триггер — кнопка «Фильтры» с badge-счётчиком активных.
@@ -81,7 +82,7 @@ function onApply() {
         <span
           v-if="totalSelected > 0"
           class="inline-flex h-5 min-w-5 px-1 items-center justify-center rounded-full bg-primary text-text-inverse text-xs font-bold"
-          aria-label="Активных фильтров"
+          :aria-label="ui('activeFiltersCount')"
         >
           {{ totalSelected }}
         </span>

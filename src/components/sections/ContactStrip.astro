@@ -1,5 +1,5 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
@@ -33,7 +33,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         <Icon name="phone" class="h-5 w-5" />
       </span>
       <span>
-        <span class="block text-[10px] uppercase tracking-[0.18em] text-text-inverse font-semibold">
+        <span class="block text-eyebrow uppercase tracking-[0.18em] text-text-inverse font-semibold">
           {t(lang, 'footer.phoneLabel')}
         </span>
         <span class="block font-display font-bold text-base lg:text-lg">{t(lang, 'topbar.phone')}</span>
@@ -48,7 +48,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         <Icon name="mail" class="h-5 w-5" />
       </span>
       <span>
-        <span class="block text-[10px] uppercase tracking-[0.18em] text-text-inverse font-semibold">
+        <span class="block text-eyebrow uppercase tracking-[0.18em] text-text-inverse font-semibold">
           {t(lang, 'footer.emailLabel')}
         </span>
         <span class="block font-display font-bold text-base lg:text-lg">{t(lang, 'topbar.email')}</span>

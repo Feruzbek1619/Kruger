@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { ArrowRight } from 'lucide-vue-next'
 
@@ -42,7 +43,7 @@ onUnmounted(stopAuto)
   <section
     class="hero-section relative min-h-[38rem] md:min-h-[44rem] lg:min-h-[48rem] overflow-hidden bg-bg-dark text-text-inverse"
     aria-roledescription="carousel"
-    aria-label="Главный баннер"
+    :aria-label="ui('heroBanner')"
     @mouseenter="paused = true"
     @mouseleave="paused = false"
     @focusin="paused = true"
@@ -76,11 +77,11 @@ onUnmounted(stopAuto)
 
     <!-- Brand mark: yellow diagonal stripe (отсылка к лого) -->
     <div
-      class="absolute -left-20 -bottom-32 w-72 h-[42rem] -rotate-[18deg] bg-brand-yellow pointer-events-none hidden md:block"
+      class="absolute -left-20 -bottom-32 w-72 h-[42rem] -rotate-[18deg] bg-brand-yellow pointer-events-none hidden lg:block"
       aria-hidden="true"
     />
     <div
-      class="absolute -left-12 -bottom-24 w-2 h-[42rem] -rotate-[18deg] bg-brand-yellow/40 pointer-events-none hidden md:block"
+      class="absolute -left-12 -bottom-24 w-2 h-[42rem] -rotate-[18deg] bg-brand-yellow/40 pointer-events-none hidden lg:block"
       aria-hidden="true"
     />
 
@@ -98,7 +99,7 @@ onUnmounted(stopAuto)
           <div class="max-w-2xl">
             <div class="flex items-center gap-3 mb-5">
               <span class="inline-block h-0.5 w-8 md:w-10 bg-brand-yellow" aria-hidden="true" />
-              <p class="text-[10px] md:text-sm font-bold tracking-[0.22em] text-brand-yellow uppercase">
+              <p class="text-eyebrow md:text-sm font-bold tracking-[0.22em] text-brand-yellow uppercase">
                 {{ slide.eyebrow }}
               </p>
             </div>
@@ -140,13 +141,13 @@ onUnmounted(stopAuto)
         </div>
 
         <!-- Слайдер-точки -->
-        <div class="flex items-center gap-2 pointer-events-auto pr-16 md:pr-0" role="group" aria-label="Навигация по слайдам">
+        <div class="flex items-center gap-2 pointer-events-auto pr-16 md:pr-0" role="group" :aria-label="ui('slideNav')">
           <button
             v-for="(_, i) in slides"
             :key="i"
             type="button"
             class="kr-hero-dot relative inline-flex items-center justify-center h-8 w-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse rounded-pill"
-            :aria-label="`Слайд ${i + 1}`"
+            :aria-label="ui('slideN', i + 1)"
             :aria-current="i === idx ? 'true' : undefined"
             @click="go(i)"
           >

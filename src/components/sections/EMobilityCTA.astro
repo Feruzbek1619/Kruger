@@ -1,5 +1,5 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
@@ -37,7 +37,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
   <div class="relative container-page py-20 md:py-28 max-w-3xl">
     <div class="flex items-center gap-3 mb-5">
       <span class="inline-block h-0.5 w-10 bg-brand-yellow" aria-hidden="true" />
-      <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">
+      <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">
         {t(lang, 'ev.eyebrow')}
       </p>
     </div>
@@ -48,7 +48,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       {t(lang, 'ev.text')}
     </p>
     <a
-      href="/products/?category=ev-fluids"
+      href={localePath(lang, "/products/?category=ev-fluids")}
       class="group mt-8 inline-flex items-center gap-3 h-13 md:h-14 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-all"
     >
       <span class="text-sm md:text-base">{t(lang, 'ev.cta')}</span>

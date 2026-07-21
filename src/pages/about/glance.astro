@@ -7,10 +7,17 @@ import Icon from '@/components/ui/Icon.astro'
 import PopularProducts from '@/components/sections/PopularProducts.vue'
 import FAQAccordion from '@/components/sections/FAQAccordion.vue'
 import ContactForm from '@/components/sections/ContactForm.vue'
-import popular from '@/mocks/popular.json'
-import faq from '@/mocks/faq.json'
-import { t } from '@/lib/i18n'
+import { getPopularProducts, getFAQ } from '@/lib/api'
+import faqMock from '@/mocks/faq.json'
+import { t, localePath } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+// FAQ-тизер: из API (редактируется в админке, переведён), fallback — мок.
+const faqGroups = await getFAQ(lang)
+const faqItems = faqGroups.length
+  ? faqGroups.flatMap((g) => g.items).slice(0, 6)
+  : faqMock
+const popular = await getPopularProducts(lang)
 
 const formLabels = {
   name:       t(lang, 'questionForm.nameLabel'),
@@ -43,14 +50,14 @@ const blocks = [
 ]
 ---
 <BaseLayout
-  title="О компании Krüger — производство в Германии с 2017 года"
-  description="Krüger Motor Oil — премиальные смазочные материалы из Штутгарта. R&D-центр, ISO 9001/14001/45001, 150+ продуктов, поставки в 50+ стран."
+  title={t(lang, "seo.glance.title")}
+  description={t(lang, "seo.glance.description")}
 >
   <PageHero
     eyebrow={t(lang, 'about.glance.eyebrow')}
     title={t(lang, 'about.glance.title')}
     lead={t(lang, 'about.glance.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.about'), href: '/about/glance/' }, { label: t(lang, 'nav.aboutGlance') }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'nav.about'), href: localePath(lang, '/about/glance/') }, { label: t(lang, 'nav.aboutGlance') }]}
   />
 
   <!-- Brand intro: Logo + welcome paragraph -->
@@ -58,28 +65,15 @@ const blocks = [
     <div class="container-page grid gap-10 md:gap-12 md:grid-cols-[auto_1fr] items-start">
       <div class="shrink-0">
         <Logo class="h-20 md:h-28 w-auto" />
-        <p class="mt-4 text-[10px] md:text-xs uppercase tracking-[0.22em] font-bold text-text-muted">Made in Germany · since 2017</p>
+        <p class="mt-4 text-eyebrow md:text-xs uppercase tracking-[0.22em] font-bold text-text-muted">Made in Germany · since 2017</p>
       </div>
       <div class="space-y-4 max-w-3xl text-base md:text-lg leading-relaxed text-text">
         <p>
-          <strong class="font-display font-bold">Krüger Motor Oil GmbH</strong> — немецкий производитель премиальных
-          смазочных материалов для автомобильной и индустриальной отрасли. Штаб-квартира и R&D-центр расположены
-          в Штутгарте, производство — на сертифицированных заводах в Германии.
+          <strong class="font-display font-bold">Krüger Motor Oil GmbH</strong> — {t(lang, 'about.glance.intro.p1')}
         </p>
-        <p class="text-text-muted">
-          Мы разрабатываем масла под требования ведущих автопроизводителей: Mercedes-Benz, BMW, Volkswagen, Porsche,
-          Audi, Ford, Volvo, MAN, Scania, Renault, Toyota и Hyundai — все 12 OEM подтвердили совместимость наших
-          формул со своими инженерными системами.
-        </p>
-        <p class="text-text-muted">
-          Портфель из 150+ продуктов покрывает шесть рыночных сегментов: легковые автомобили, коммерческий транспорт,
-          электромобили, промышленность, сельское и лесное хозяйство, строительная и землеройная техника.
-          Производство сертифицировано по ISO 9001 (качество), ISO 14001 (экология) и ISO 45001 (охрана труда).
-        </p>
-        <p class="text-text-muted">
-          За 8 лет работы Krüger вырос в дистрибуторскую сеть на пяти континентах с присутствием в 50+ странах.
-          Каждый литр — результат немецкой инженерии, лабораторного контроля и постоянных OEM-тестов.
-        </p>
+        <p class="text-text-muted">{t(lang, 'about.glance.intro.p2')}</p>
+        <p class="text-text-muted">{t(lang, 'about.glance.intro.p3')}</p>
+        <p class="text-text-muted">{t(lang, 'about.glance.intro.p4')}</p>
       </div>
     </div>
   </section>
@@ -89,10 +83,10 @@ const blocks = [
       <div class="max-w-2xl mb-12 md:mb-16">
         <div class="inline-flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">НАША ИСТОРИЯ</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'about.glance.historyEyebrow')}</p>
         </div>
         <h2 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">
-          Четыре опоры Krüger
+          {t(lang, 'about.glance.pillarsTitle')}
         </h2>
       </div>
 
@@ -139,6 +133,7 @@ const blocks = [
   <StatsBar />
 
   <PopularProducts
+    lang={lang}
     client:visible
     products={popular as any}
     title={t(lang, 'popular.title')}
@@ -147,13 +142,15 @@ const blocks = [
     more={t(lang, 'popular.more')}
     prevLabel={t(lang, 'popular.prev')}
     nextLabel={t(lang, 'popular.next')}
+    eyebrow={t(lang, 'popular.eyebrow')}
   />
 
   <FAQAccordion
+    lang={lang}
     client:visible
     title={t(lang, 'faq.title')}
     subtitle={t(lang, 'faq.subtitle')}
-    items={faq as any}
+    items={faqItems as any}
     allLabel={t(lang, 'faq.all')}
   />
 
@@ -161,6 +158,7 @@ const blocks = [
     client:visible
     title={t(lang, 'questionForm.title')}
     subtitle={t(lang, 'questionForm.subtitle')}
+    eyebrow={t(lang, 'questionForm.eyebrow')}
     labels={formLabels}
     errors={formErrors}
   />
@@ -174,13 +172,13 @@ const blocks = [
     <div class="relative container-page text-center max-w-2xl mx-auto">
       <div class="inline-flex items-center gap-3 mb-4">
         <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">УЗНАТЬ БОЛЬШЕ</p>
+        <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'about.glance.ctaEyebrow')}</p>
         <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
       </div>
       <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight mb-8">{t(lang, 'about.glance.ctaTitle')}</h2>
       <div class="flex flex-wrap items-center justify-center gap-3">
         <a
-          href="/about/vision-mission/"
+          href={localePath(lang, "/about/vision-mission/")}
           class="group inline-flex items-center gap-3 h-12 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
         >
           <span>{t(lang, 'about.glance.ctaVision')}</span>
@@ -189,7 +187,7 @@ const blocks = [
           </span>
         </a>
         <a
-          href="/about/commitments/"
+          href={localePath(lang, "/about/commitments/")}
           class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border-soft font-semibold hover:bg-bg-muted transition-colors"
         >
           {t(lang, 'about.glance.ctaCommitments')}

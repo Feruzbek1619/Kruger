@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 /**
  * Pagination — кнопки prev/N/next с collapse при >7 страницах.
  * Логика: 1 ... current-1, current, current+1 ... last
@@ -26,11 +27,11 @@ const props = defineProps<Props>()
 const emit = defineEmits<{ 'update:page': [value: number] }>()
 
 const labels = computed(() => ({
-  prev: props.labels?.prev ?? 'Назад',
-  next: props.labels?.next ?? 'Далее',
-  found: props.labels?.found ?? 'Найдено',
-  productsWord: props.labels?.productsWord ?? 'продуктов',
-  showing: props.labels?.showing ?? 'Показано',
+  prev: props.labels?.prev ?? '',
+  next: props.labels?.next ?? '',
+  found: props.labels?.found ?? '',
+  productsWord: props.labels?.productsWord ?? '',
+  showing: props.labels?.showing ?? '',
 }))
 
 // Pages array with collapse: [1, 2, '…', current-1, current, current+1, '…', last]
@@ -65,7 +66,7 @@ function goto(n: number) {
 </script>
 
 <template>
-  <nav v-if="totalPages > 1" class="mt-10 flex flex-col items-center gap-3" aria-label="Пагинация">
+  <nav v-if="totalPages > 1" class="mt-10 flex flex-col items-center gap-3" :aria-label="ui('pagination')">
     <ul class="flex items-center justify-center gap-1.5 flex-wrap">
       <li>
         <button
@@ -95,7 +96,7 @@ function goto(n: number) {
               : 'border border-border-soft text-text hover:bg-bg-soft hover:border-primary',
           ]"
           :aria-current="n === page ? 'page' : undefined"
-          :aria-label="`Страница ${n}`"
+          :aria-label="ui('pageN', n)"
           @click="goto(n as number)"
         >
           {{ n }}

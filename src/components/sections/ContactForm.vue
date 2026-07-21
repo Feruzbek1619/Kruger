@@ -11,6 +11,7 @@ import { submitInquiry } from '@/lib/api'
 interface Props {
   title: string
   subtitle: string
+  eyebrow: string
   labels: {
     name: string
     namePh: string
@@ -37,7 +38,7 @@ interface Props {
 const props = defineProps<Props>()
 const toast = useToast()
 
-const form = reactive({ name: '', phone: '', email: '', message: '', consent: false })
+const form = reactive({ name: '', phone: '', email: '', message: '', consent: false, website: '' })
 const errs = reactive({ name: '', email: '', message: '', consent: '' })
 const loading = ref(false)
 
@@ -53,6 +54,7 @@ function clear() { errs.name = errs.email = errs.message = errs.consent = '' }
 async function submit(e: Event) {
   e.preventDefault()
   clear()
+  if (form.website) return // honeypot: поле скрыто от людей — если заполнено, это бот
   const result = schema.safeParse(form)
   if (!result.success) {
     for (const issue of result.error.issues) {
@@ -100,9 +102,9 @@ async function submit(e: Event) {
       <div>
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-brand-yellow" aria-hidden="true" />
-          <p class="text-xs md:text-sm font-bold tracking-[0.22em] text-text-inverse uppercase">СВЯЖИТЕСЬ С НАМИ</p>
+          <p class="text-xs md:text-sm font-bold tracking-[0.22em] text-text-inverse uppercase">{{ eyebrow }}</p>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 leading-[1.1]">
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 leading-tight">
           {{ title }}
         </h2>
         <p class="text-text-inverse mb-8 text-sm md:text-base">{{ subtitle }}</p>
@@ -112,6 +114,12 @@ async function submit(e: Event) {
           novalidate
           @submit="submit"
         >
+          <!-- Honeypot — скрыто от людей, приманка для ботов (не удалять) -->
+          <div class="sr-only" aria-hidden="true">
+            <label>Leave this field empty
+              <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
           <div class="grid md:grid-cols-2 gap-4">
             <Input
               v-model="form.name"

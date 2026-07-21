@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 /**
  * ViewToggle — переключатель вида: сетка / список.
  *
@@ -29,7 +30,7 @@ function setView(v: View) {
 <template>
   <div
     role="radiogroup"
-    aria-label="Вид отображения"
+    :aria-label="ui('viewMode')"
     class="hidden md:inline-flex items-center rounded-md border border-border-soft bg-bg p-1"
   >
     <button

@@ -47,6 +47,7 @@ const form = reactive({
   email: '',
   message: '',
   consent: false,
+  website: '',
 })
 const errs = reactive({ name: '', email: '', message: '', consent: '' })
 const loading = ref(false)
@@ -63,6 +64,7 @@ function clear() { errs.name = errs.email = errs.message = errs.consent = '' }
 async function submit(e: Event) {
   e.preventDefault()
   clear()
+  if (form.website) return // honeypot: поле скрыто от людей — если заполнено, это бот
   const result = schema.safeParse(form)
   if (!result.success) {
     for (const issue of result.error.issues) {
@@ -99,6 +101,12 @@ async function submit(e: Event) {
     novalidate
     @submit="submit"
   >
+    <!-- Honeypot — скрыто от людей, приманка для ботов (не удалять) -->
+    <div class="sr-only" aria-hidden="true">
+      <label>Leave this field empty
+        <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
     <label class="flex flex-col gap-1.5">
       <span class="text-sm font-medium text-text">{{ topicLabel }}</span>
       <select

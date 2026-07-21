@@ -1,5 +1,5 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Logo from '@/components/ui/Logo.astro'
 import Icon from '@/components/ui/Icon.astro'
 import MobileMenu from '@/components/layouts/MobileMenu.vue'
@@ -10,21 +10,21 @@ const path = Astro.url.pathname
 
 // Главное меню: Главная · Каталог · О компании⌄ (вкл. Сервис) · Новости · FAQ · Контакты
 const items = [
-  { label: t(lang, 'nav.home'),    href: '/' },
-  { label: 'Каталог',              href: '/products/' },
+  { label: t(lang, 'nav.home'),    href: localePath(lang, '/') },
+  { label: t(lang, 'nav.catalog'), href: localePath(lang, '/products/') },
   {
     label: t(lang, 'nav.about'),
-    href: '/about/glance/',
+    href: localePath(lang, '/about/glance/'),
     children: [
-      { label: t(lang, 'nav.aboutGlance'),      href: '/about/glance/' },
-      { label: t(lang, 'nav.aboutVision'),      href: '/about/vision-mission/' },
-      { label: t(lang, 'nav.aboutCommitments'), href: '/about/commitments/' },
-      { label: t(lang, 'nav.services'),         href: '/services/' },
+      { label: t(lang, 'nav.aboutGlance'),      href: localePath(lang, '/about/glance/') },
+      { label: t(lang, 'nav.aboutVision'),      href: localePath(lang, '/about/vision-mission/') },
+      { label: t(lang, 'nav.aboutCommitments'), href: localePath(lang, '/about/commitments/') },
+      { label: t(lang, 'nav.services'),         href: localePath(lang, '/services/') },
     ],
   },
-  { label: t(lang, 'nav.news'),    href: '/news/' },
-  { label: t(lang, 'nav.faq'),     href: '/faq/' },
-  { label: t(lang, 'nav.contact'), href: '/contact/' },
+  { label: t(lang, 'nav.news'),    href: localePath(lang, '/news/') },
+  { label: t(lang, 'nav.faq'),     href: localePath(lang, '/faq/') },
+  { label: t(lang, 'nav.contact'), href: localePath(lang, '/contact/') },
 ]
 ---
 <header
@@ -35,11 +35,11 @@ const items = [
   <div class="h-1 bg-brand-yellow" aria-hidden="true"></div>
 
   <div class="container-page flex items-center justify-between gap-4 lg:gap-6 h-18 md:h-22 lg:h-24">
-    <a href="/" class="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-transform hover:scale-[1.02]" aria-label="Krüger Motor Oil — на главную">
+    <a href={localePath(lang, "/")} class="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-transform hover:scale-[1.02]" aria-label={t(lang, 'a11y.homeLink')}>
       <Logo class="h-9 md:h-11 lg:h-12" />
     </a>
 
-    <nav class="hidden lg:flex items-center gap-0.5 lg:gap-1" aria-label="Главное меню">
+    <nav class="hidden lg:flex items-center gap-0.5 lg:gap-1" aria-label={t(lang, 'a11y.mainNav')}>
       {items.map((it) => (
         it.children ? (
           <div class="relative group">
@@ -89,14 +89,14 @@ const items = [
 
     <div class="flex items-center gap-2">
       <a
-        href="/search/"
+        href={localePath(lang, "/search/")}
         class="hidden lg:inline-flex h-10 w-10 items-center justify-center rounded-md text-text hover:bg-bg-soft hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label={t(lang, 'nav.search')}
       >
         <Icon name="search" class="h-5 w-5" />
       </a>
       <a
-        href="/contact/"
+        href={localePath(lang, "/contact/")}
         class="hidden lg:inline-flex h-10 px-5 items-center rounded-pill bg-primary text-text-inverse text-sm font-semibold hover:bg-primary-hover transition-colors"
       >
         {t(lang, 'map.ctaBtn')}

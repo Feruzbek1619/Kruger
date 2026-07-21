@@ -7,21 +7,26 @@ import ProductSpecsTable from '@/components/products/ProductSpecsTable.astro'
 import RelatedProducts from '@/components/products/RelatedProducts.astro'
 import Tabs from '@/components/ui/Tabs.vue'
 import Icon from '@/components/ui/Icon.astro'
-import allProducts from '@/mocks/all-products.json'
 import productDetails from '@/mocks/product-details.json'
-import categories from '@/mocks/categories.json'
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
+import { getAllProducts, getProductDetail, getCategories } from '@/lib/api'
 import type { Product } from '@/types'
 
 export async function getStaticPaths() {
-  const list = allProducts as Product[]
-  return list.map((p) => ({ params: { slug: p.slug }, props: { product: p } }))
+  // Страницы товаров — из API-слоя (mock-fallback = all-products.json).
+  // Раньше был union с products.json ради 26 «фантомных» slug главной; теперь
+  // и главная берёт товары из того же источника (бэка) — фантомов нет.
+  const products = await getAllProducts()
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }))
 }
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const { product } = Astro.props as { product: Product }
+// getStaticPaths не знает локаль (Astro строит пути один раз), поэтому props
+// приходят на RU. Локализованные текстовые поля берём из detail-ответа API.
+const { product: baseProduct } = Astro.props as { product: Product }
 
-const details = (productDetails as Record<string, any>)[product.slug] ?? (productDetails as any)._default
+const details = (await getProductDetail(baseProduct.slug, lang)) as Record<string, any>
+const product = (details.slug ? { ...baseProduct, ...details } : baseProduct) as Product
 const fallback = (productDetails as any)._default
 
 const d = {
@@ -29,15 +34,16 @@ const d = {
   engineTypes:        details.engineTypes?.length      ? details.engineTypes      : fallback.engineTypes,
   notRecommendedFor:  details.notRecommendedFor?.length ? details.notRecommendedFor : fallback.notRecommendedFor,
   intervals:          details.intervals?.length        ? details.intervals        : fallback.intervals,
-  compatible:         details.compatible       || fallback.compatible,
+  compatible:         details.compatible       || t(lang, 'products.detail.compatibleFallback'),
   oemApprovals:       details.oemApprovals?.length     ? details.oemApprovals     : fallback.oemApprovals,
   recommendedFor:     details.recommendedFor?.length   ? details.recommendedFor   : fallback.recommendedFor,
   physicalProps:      details.physicalProps?.length    ? details.physicalProps    : fallback.physicalProps,
   benefits:           details.benefits?.length         ? details.benefits         : fallback.benefits,
 }
 
-const category = (categories as any[]).find((c) => c.id === product.category)
-const categoryTitle = category?.title ?? 'Продукция'
+const categories = await getCategories(lang)
+const category = categories.find((c) => c.id === product.category)
+const categoryTitle = category?.title ?? t(lang, 'products.categoryFallback')
 
 const apiSpecs  = (product as any).apiSpec ?? []
 const aceaSpecs = (product as any).aceaSpec ?? []
@@ -105,9 +111,9 @@ const productSchema = {
 >
   <PageHero
     breadcrumbs={[
-      { label: t(lang, 'common.breadcrumbHome'), href: '/' },
-      { label: 'Продукты',                       href: '/products/' },
-      { label: categoryTitle,                    href: category ? category.href : '/products/' },
+      { label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') },
+      { label: t(lang, 'products.breadcrumb'),    href: localePath(lang, '/products/') },
+      { label: categoryTitle,                    href: localePath(lang, category ? category.href : '/products/') },
       { label: product.name },
     ]}
   />
@@ -131,12 +137,12 @@ const productSchema = {
         <!-- Category eyebrow -->
         <div class="inline-flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{categoryTitle}</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{categoryTitle}</p>
         </div>
 
         <!-- Product name -->
         <h1
-          class="font-display text-[1.625rem] sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-3 break-words"
+          class="font-display text-[1.625rem] sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-3 break-words"
           transition:name={`product-title-${product.slug}`}
         >
           {product.name}
@@ -161,7 +167,7 @@ const productSchema = {
 
         {product.volumes && product.volumes.length > 0 && (
           <div class="mb-8 pt-6 border-t border-border-soft">
-            <p class="text-[10px] md:text-xs uppercase tracking-[0.18em] text-text-muted font-bold mb-3">
+            <p class="text-eyebrow md:text-xs uppercase tracking-[0.18em] text-text-muted font-bold mb-3">
               {t(lang, 'products.detail.availableVolumes')}
             </p>
             <ul class="flex flex-wrap gap-2">
@@ -195,14 +201,14 @@ const productSchema = {
             errors={formErrors}
           />
           <a
-            href={`/pds-sds/?product=${product.slug}#pds`}
+            href={localePath(lang, `/pds-sds/?product=${product.slug}#pds`)}
             class="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-pill border border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             <Icon name="download" class="h-4 w-4" />
             {t(lang, 'products.detail.downloadPDS')}
           </a>
           <a
-            href={`/pds-sds/?product=${product.slug}#sds`}
+            href={localePath(lang, `/pds-sds/?product=${product.slug}#sds`)}
             class="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-pill border border-border-soft bg-bg text-text font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             <Icon name="download" class="h-4 w-4" />
@@ -223,7 +229,7 @@ const productSchema = {
         {product.image ? (
           <img src={product.image} alt="" class="max-h-full max-w-full object-contain" loading="lazy" />
         ) : (
-          <span class="font-mono text-[10px] font-bold text-text">{(product as any).viscosity ?? 'K'}</span>
+          <span class="font-mono text-eyebrow font-bold text-text">{(product as any).viscosity ?? 'K'}</span>
         )}
       </span>
       <div class="flex-1 min-w-0">
@@ -251,8 +257,8 @@ const productSchema = {
           </p>
           {d.benefits?.length > 0 && (
             <div>
-              <p class="text-[10px] md:text-xs uppercase tracking-[0.18em] text-text-muted font-bold mb-4">
-                Ключевые преимущества
+              <p class="text-eyebrow md:text-xs uppercase tracking-[0.18em] text-text-muted font-bold mb-4">
+                {t(lang, 'products.detail.keyBenefits')}
               </p>
               <ul class="grid gap-3 sm:grid-cols-2">
                 {d.benefits.slice(0, 6).map((b: string) => (

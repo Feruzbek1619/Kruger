@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import { onMounted, ref } from 'vue'
 import { X, CheckCircle2, XCircle, Info } from 'lucide-vue-next'
 import { useToast } from '@/lib/useToast'
@@ -16,7 +17,7 @@ const kindIcon = { info: Info, success: CheckCircle2, error: XCircle } as const
       class="fixed bottom-6 right-6 z-toast flex flex-col gap-2 max-w-sm"
       role="region"
       aria-live="polite"
-      aria-label="Уведомления"
+      :aria-label="ui('notifications')"
     >
       <div
         v-for="t in toasts"
@@ -33,7 +34,7 @@ const kindIcon = { info: Info, success: CheckCircle2, error: XCircle } as const
         <button
           type="button"
           class="opacity-70 hover:opacity-100"
-          aria-label="Закрыть"
+          :aria-label="ui('close')"
           @click="dismiss(t.id)"
         >
           <X :size="16" :stroke-width="2" aria-hidden="true" />

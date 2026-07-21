@@ -7,11 +7,12 @@
  * поэтому активный chip определяется client-side скриптом на основе
  * window.location.search. Скрипт также реагирует на popstate (back/forward).
  */
-import segmentsData from '@/mocks/segments.json'
+import { getSegments } from '@/lib/api'
 import { Car, Truck, Zap, Settings, Tractor, Construction } from 'lucide-vue-next'
-import type { MarketSegment } from '@/types'
+import { t, localePath } from '@/lib/i18n'
 
-const segments = segmentsData as MarketSegment[]
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const segments = await getSegments(lang)
 
 // Маппинг id → Lucide icon component
 const iconMap = {
@@ -23,7 +24,7 @@ const iconMap = {
   construction: Construction,
 } as const
 ---
-<section class="bg-bg border-b border-border-soft py-5" aria-label="Сегменты применения">
+<section class="bg-bg border-b border-border-soft py-5" aria-label={t(lang, 'a11y.segmentStrip')}>
   <div class="container-page">
     <ul
       class="kr-segments flex gap-2 md:gap-3 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap snap-x snap-mandatory md:snap-none scrollbar-none"
@@ -33,7 +34,7 @@ const iconMap = {
         return (
           <li class="snap-start shrink-0">
             <a
-              href={s.href}
+              href={localePath(lang, s.href)}
               data-segment={s.id}
               class="kr-segment-chip inline-flex items-center gap-2 h-11 px-4 rounded-pill border text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 bg-bg text-text border-border-soft hover:border-primary hover:text-primary data-[active=true]:bg-primary data-[active=true]:text-text-inverse data-[active=true]:border-primary data-[active=true]:shadow-md"
             >

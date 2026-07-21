@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
 <BaseLayout title="Impressum — Krüger Motor Oil GmbH">
   <PageHero
     title={t(lang, 'legal.impressumTitle')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: 'Impressum' }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: 'Impressum' }]}
   />
   <section class="bg-bg py-12 md:py-16">
     <div class="container-page max-w-3xl prose-news">
@@ -16,22 +16,22 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       <h2>Krüger Motor Oil GmbH</h2>
       <p>Leitzstraße 45<br>70469 Stuttgart<br>Deutschland</p>
 
-      <h2>Vertreten durch / Представитель</h2>
-      <p>[Имя директора]</p>
+      <h2>{t(lang, 'impressum.repr')}</h2>
+      <p>{t(lang, 'impressum.director')}</p>
 
-      <h2>Kontakt / Контакт</h2>
+      <h2>{t(lang, 'impressum.contact')}</h2>
       <p>Telefon: +49 711 12 34 56 78<br>E-Mail: info@kruger-oil.de</p>
 
-      <h2>Registereintrag / Регистрация</h2>
+      <h2>{t(lang, 'impressum.register')}</h2>
       <p>Eingetragen im Handelsregister<br>Registergericht: Amtsgericht Stuttgart<br>Registernummer: HRB …</p>
 
-      <h2>Umsatzsteuer-ID / НДС</h2>
+      <h2>{t(lang, 'impressum.vat')}</h2>
       <p>USt-IdNr. nach §27 a UStG: DE…</p>
 
-      <h2>Verantwortlich für den Inhalt / Ответственный за контент</h2>
-      <p>[Имя]</p>
+      <h2>{t(lang, 'impressum.responsible')}</h2>
+      <p>{t(lang, 'impressum.responsibleName')}</p>
 
-      <h2>Streitschlichtung / Разрешение споров</h2>
+      <h2>{t(lang, 'impressum.dispute')}</h2>
       <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
       <h2>Haftung für Inhalte</h2>

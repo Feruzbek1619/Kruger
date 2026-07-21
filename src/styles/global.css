@@ -8,6 +8,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* eyebrow/kicker микро-лейбл (10px). Токен --text-eyebrow объявлен в tokens.css,
+   но @theme inline не эмитит кастомные text-* утилиты — объявляем явно.
+   Только font-size (как было у text-[10px]), без line-height. */
+@utility text-eyebrow {
+  font-size: var(--text-eyebrow);
+}
+
 /* ============================================================
  * Reset + base — внутри @layer base, чтобы Tailwind-утилиты
  * (`h-11`, `w-32`, ...) могли переопределять без !important.

@@ -3,16 +3,27 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import Accordion from '@/components/ui/Accordion.vue'
 import faqFull from '@/mocks/faq-full.json'
-import { t } from '@/lib/i18n'
+import { getFAQ } from '@/lib/api'
+import { t, localePath } from '@/lib/i18n'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
-const sections = [
-  { key: 'products', label: t(lang, 'faq.categories.products'), items: faqFull.products },
-  { key: 'quality',  label: t(lang, 'faq.categories.quality'),  items: faqFull.quality },
-  { key: 'buying',   label: t(lang, 'faq.categories.buying'),   items: faqFull.buying },
-  { key: 'service',  label: t(lang, 'faq.categories.service'),  items: faqFull.service },
-]
+// FAQ из API (сгруппирован по категориям, редактируется в админке).
+// Fallback (бэк недоступен) — faq-full.json + i18n-заголовки категорий.
+type FaqItem = { id: string; question: string; answer: string }
+type FaqSrc = { id?: string | number; question: string; answer: string }
+const norm = (arr: FaqSrc[]): FaqItem[] =>
+  arr.map((it) => ({ id: String(it.id ?? it.question), question: it.question, answer: it.answer }))
+
+const apiGroups = await getFAQ(lang)
+const sections: { key: string; label: string; items: FaqItem[] }[] = apiGroups.length
+  ? apiGroups.map((g) => ({ key: String(g.id ?? g.title), label: g.title, items: norm(g.items) }))
+  : [
+      { key: 'products', label: t(lang, 'faq.categories.products'), items: norm(faqFull.products) },
+      { key: 'quality',  label: t(lang, 'faq.categories.quality'),  items: norm(faqFull.quality) },
+      { key: 'buying',   label: t(lang, 'faq.categories.buying'),   items: norm(faqFull.buying) },
+      { key: 'service',  label: t(lang, 'faq.categories.service'),  items: norm(faqFull.service) },
+    ]
 
 // FAQPage schema.org
 const allItems = sections.flatMap((s) => s.items)
@@ -27,13 +38,13 @@ const schema = {
 }
 ---
 <BaseLayout
-  title="FAQ — частые вопросы о моторных маслах Krüger"
-  description="Краткие ответы по продуктам Krüger, OEM-одобрениям, поставкам и сервису. Если ответа нет — напишите в форму обратной связи."
+  title={t(lang, "seo.faq.title")}
+  description={t(lang, "seo.faq.description")}
 >
   <PageHero
     title={t(lang, 'faqPage.title')}
     lead={t(lang, 'faqPage.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.faq') }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'nav.faq') }]}
   />
   <section class="bg-bg py-16 md:py-24">
     <div class="container-page max-w-3xl">

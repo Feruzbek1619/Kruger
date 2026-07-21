@@ -20,5 +20,6 @@
   { "id": "ev-fluids",    "title": "EV Fluids",                       "slogan": "Жидкости для e-мобильности",               "icon": "bolt",    "href": "/products/?category=ev-fluids" },
   { "id": "gost",         "title": "ГОСТ-масла",                      "slogan": "На основе ГОСТ-стандартов",                "icon": "factory", "href": "/products/?category=gost" },
   { "id": "quench",       "title": "Закалочные масла",                "slogan": "Контролируемая закалка.",                   "icon": "thermo",  "href": "/products/?category=quench" },
-  { "id": "mould",        "title": "Опалубочные масла",               "slogan": "Надёжное масло для каждой отливки",        "icon": "drop",    "href": "/products/?category=mould" }
+  { "id": "mould",        "title": "Опалубочные масла",               "slogan": "Надёжное масло для каждой отливки",        "icon": "drop",    "href": "/products/?category=mould" },
+  { "id": "stou",         "title": "STOU (универсальные тракторные)", "slogan": "Один продукт для всех узлов трактора",     "icon": "tractor", "href": "/products/?category=stou" }
 ]

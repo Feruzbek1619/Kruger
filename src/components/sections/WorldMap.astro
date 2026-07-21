@@ -17,9 +17,9 @@
  * Источник стран: src/mocks/presence-countries.json (когда подключим
  * Django admin — заменим на API endpoint /api/countries/, формат тот же).
  */
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import worldMap from '@svg-maps/world'
-import presence from '@/mocks/presence-countries.json'
+import { getPresence } from '@/lib/api'
 import { ArrowRight } from 'lucide-vue-next'
 import 'flag-icons/css/flag-icons.min.css'
 
@@ -29,6 +29,7 @@ const map = (worldMap as any).default ?? worldMap
 const viewBox: string = map.viewBox
 const locations: { name: string; id: string; path: string }[] = map.locations
 
+const presence = await getPresence(lang)
 const HIGHLIGHT_ID = presence.highlightId
 const markers = presence.markers
 ---
@@ -39,7 +40,7 @@ const markers = presence.markers
       <!-- ━━━━━━━━ Title + CTA top row (tomoil-style) ━━━━━━━━ -->
       <header class="px-6 md:px-12 pt-8 md:pt-10 pb-2 flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-8">
         <div class="flex-1">
-          <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-[1.1] text-text">
+          <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-text">
             {t(lang, 'map.title')}
           </h2>
           <p class="mt-2 text-sm md:text-base text-text-muted max-w-2xl leading-relaxed">
@@ -47,7 +48,7 @@ const markers = presence.markers
           </p>
         </div>
         <a
-          href="/contact/"
+          href={localePath(lang, "/contact/")}
           class="kr-mapcta group inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 self-start md:self-auto shrink-0"
         >
           <span>{t(lang, 'map.ctaBtn')}</span>
@@ -63,7 +64,7 @@ const markers = presence.markers
           viewBox={viewBox}
           class="w-full h-auto block"
           role="img"
-          aria-label="Карта мира с точками присутствия Krüger"
+          aria-label={t(lang, 'map.ariaMap')}
           xmlns="http://www.w3.org/2000/svg"
         >
           <!-- Все страны -->
@@ -112,7 +113,7 @@ const markers = presence.markers
         <div
           id="kr-map-tooltip"
           role="tooltip"
-          aria-label="Страна присутствия Krüger"
+          aria-label={t(lang, 'map.ariaTooltip')}
           class="absolute pointer-events-none opacity-0 transition-opacity duration-150 bg-bg shadow-xl rounded-lg border border-border-soft px-3 py-2 flex items-center gap-2.5 z-10"
           style="transform: translate(-50%, calc(-100% - 14px));"
         >

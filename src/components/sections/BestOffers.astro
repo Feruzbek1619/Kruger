@@ -1,5 +1,5 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 ---
@@ -35,7 +35,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       <div class="relative px-6 pb-10 pt-2 md:px-10 md:pt-10 md:pb-14 lg:py-14 lg:pr-12 lg:pl-0">
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-brand-yellow" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">ДЛЯ ДИЛЕРОВ</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-brand-yellow uppercase">{t(lang, 'offers.eyebrow')}</p>
         </div>
         <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.15]">
           {t(lang, 'offers.title')}
@@ -44,7 +44,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
           {t(lang, 'offers.text')}
         </p>
         <a
-          href="/contact/"
+          href={localePath(lang, "/contact/")}
           class="group mt-7 inline-flex items-center gap-3 h-12 pl-6 pr-2 rounded-pill bg-primary text-text-inverse font-semibold text-sm md:text-base hover:bg-primary-hover transition-colors"
         >
           <span>{t(lang, 'offers.cta')}</span>

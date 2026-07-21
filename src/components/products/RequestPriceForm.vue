@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import { reactive, ref } from 'vue'
 import { z } from 'zod'
 import Input from '@/components/ui/Input.vue'
@@ -39,7 +40,7 @@ const props = defineProps<Props>()
 const toast = useToast()
 const open = ref(false)
 
-const form = reactive({ name: '', email: '', phone: '', qty: '', consent: false })
+const form = reactive({ name: '', email: '', phone: '', qty: '', consent: false, website: '' })
 const errs = reactive({ name: '', email: '', consent: '' })
 const loading = ref(false)
 
@@ -52,6 +53,7 @@ const schema = z.object({
 async function submit(e: Event) {
   e.preventDefault()
   errs.name = errs.email = errs.consent = ''
+  if (form.website) return // honeypot: поле скрыто от людей — если заполнено, это бот
   const r = schema.safeParse(form)
   if (!r.success) {
     for (const i of r.error.issues) {
@@ -95,7 +97,7 @@ async function submit(e: Event) {
         <DialogHeader class="space-y-1">
           <div class="inline-flex items-center gap-2 mb-2">
             <span class="inline-block h-0.5 w-6 bg-primary" aria-hidden="true" />
-            <span class="text-[10px] md:text-xs font-bold tracking-[0.18em] text-primary uppercase">Запрос цены</span>
+            <span class="text-eyebrow md:text-xs font-bold tracking-[0.18em] text-primary uppercase">{{ ui('requestPrice') }}</span>
           </div>
           <DialogTitle class="font-display text-2xl md:text-3xl font-extrabold leading-tight text-text">{{ title }}</DialogTitle>
           <p class="text-sm text-text-muted">
@@ -107,6 +109,12 @@ async function submit(e: Event) {
       </div>
 
       <form class="grid gap-4 px-6 md:px-8 py-6 md:py-7" novalidate @submit="submit">
+        <!-- Honeypot — скрыто от людей, приманка для ботов (не удалять) -->
+        <div class="sr-only" aria-hidden="true">
+          <label>Leave this field empty
+            <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
         <Input v-model="form.name"  :label="labels.name"  :placeholder="labels.namePh"  :error="errs.name"  required autocomplete="name" />
         <Input v-model="form.email" type="email" :label="labels.email" :placeholder="labels.emailPh" :error="errs.email" required autocomplete="email" />
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">

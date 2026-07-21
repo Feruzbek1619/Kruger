@@ -4,14 +4,13 @@ import PageHero from '@/components/sections/PageHero.astro'
 import Card from '@/components/ui/Card.astro'
 import Icon from '@/components/ui/Icon.astro'
 import ContactFormFull from '@/components/sections/ContactFormFull.vue'
-import ru from '@/i18n/ru.json'
-import { t } from '@/lib/i18n'
+import { t, tRaw, localePath } from '@/lib/i18n'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
 // Только региональные офисы. HQ (Stuttgart) — отдельной премиум-карточкой слева.
 const offices = [
-  { code: 'UZ', region: 'Узбекистан / Центральная Азия', name: 'UIC Group', city: 'Ташкент, Узбекистан', phone: '+998 71 200 70 07', email: 'info@uic.group' },
+  { code: 'UZ', region: t(lang, 'contactPage.officeUz.region'), name: 'UIC Group', city: t(lang, 'contactPage.officeUz.city'), phone: '+998 71 200 70 07', email: 'info@uic.group' },
 ]
 
 const formLabels = {
@@ -38,15 +37,15 @@ const formErrors = {
 }
 ---
 <BaseLayout
-  title="Контакты — Krüger Motor Oil"
-  description="Главный офис в Stuttgart, региональные представительства в Центральной Азии и СНГ. Свяжитесь с нами через форму обратной связи."
+  title={t(lang, "seo.contact.title")}
+  description={t(lang, "seo.contact.description")}
   hideContactStrip
 >
   <PageHero
     eyebrow={t(lang, 'contactPage.eyebrow')}
     title={t(lang, 'contactPage.title')}
     lead={t(lang, 'contactPage.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.contact') }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'nav.contact') }]}
   />
 
   <section class="bg-bg py-16 md:py-24">
@@ -55,7 +54,7 @@ const formErrors = {
       <div class="lg:col-span-7 kr-reveal">
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">ГЛАВНЫЙ ОФИС</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'contactPage.hqEyebrow')}</p>
         </div>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-tight mb-6">{t(lang, 'contactPage.hqTitle')}</h2>
 
@@ -63,10 +62,10 @@ const formErrors = {
           <div class="p-7 md:p-8 lg:p-10">
             <div class="flex items-center gap-3 mb-4">
               <span class="inline-flex h-7 px-2.5 items-center rounded-md bg-primary text-text-inverse text-xs font-bold tracking-wider leading-none">DE</span>
-              <span class="text-xs font-bold tracking-wider text-text-muted uppercase">Германия</span>
+              <span class="text-xs font-bold tracking-wider text-text-muted uppercase">{t(lang, 'contactPage.germany')}</span>
             </div>
             <p class="font-display text-xl md:text-2xl font-bold text-text">Krüger Motor Oil GmbH</p>
-            <p class="text-text-muted text-sm md:text-[0.9375rem] mt-1.5">Leitzstraße 45, 70469 Stuttgart, Germany</p>
+            <p class="text-text-muted text-sm md:text-[0.9375rem] mt-1.5">{t(lang, 'topbar.address')}</p>
 
             <ul class="mt-6 space-y-3">
               <li class="flex items-center gap-3.5">
@@ -94,7 +93,7 @@ const formErrors = {
             class="w-full aspect-[16/9] border-t border-border-soft"
             loading="lazy"
             src="https://www.openstreetmap.org/export/embed.html?bbox=9.1310%2C48.7700%2C9.2010%2C48.8050&layer=mapnik&marker=48.7900%2C9.1700"
-            title="Карта офиса Krüger в Stuttgart"
+            title={t(lang, 'contactPage.mapTitle')}
           ></iframe>
         </Card>
       </div>
@@ -103,7 +102,7 @@ const formErrors = {
       <div class="lg:col-span-5 kr-reveal">
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">РЕГИОНАЛЬНЫЕ</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'contactPage.regionalEyebrow')}</p>
         </div>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-tight leading-tight mb-6">{t(lang, 'contactPage.regionalTitle')}</h2>
 
@@ -136,7 +135,7 @@ const formErrors = {
         <Card variant="default" padding="lg">
           <div class="flex items-center gap-3 mb-3">
             <span class="inline-block h-0.5 w-6 bg-primary" aria-hidden="true" />
-            <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">СОЦСЕТИ</p>
+            <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'contactPage.socialEyebrow')}</p>
           </div>
           <h3 class="font-display text-base font-bold mb-4">{t(lang, 'contactPage.socialTitle')}</h3>
           <div class="flex items-center gap-2.5">
@@ -165,16 +164,16 @@ const formErrors = {
       <div class="text-center mb-10 md:mb-12">
         <div class="inline-flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">НАПИШИТЕ НАМ</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'contactPage.writeEyebrow')}</p>
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
         </div>
-        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">{t(lang, 'contactPage.writeTitle')}</h2>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">{t(lang, 'contactPage.writeTitle')}</h2>
       </div>
 
       <ContactFormFull
         client:visible
-        topics={ru.contactPage.topics}
-        topicLabel={`${t(lang, 'contactPage.fields.topic')} *`}
+        topics={tRaw<any[]>(lang, 'contactPage.topics')}
+        topicLabel={t(lang, 'contactPage.fields.topic')}
         topicPh={t(lang, 'contactPage.fields.topicPlaceholder')}
         companyLabel={t(lang, 'contactPage.fields.company')}
         companyPh={t(lang, 'contactPage.fields.companyPh')}

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 /**
  * ProductGrid — рендерит список продуктов в виде сетки или плоского списка.
  *
@@ -19,6 +20,7 @@ interface Props {
   emptyTitle: string
   emptyText: string
   resetLabel: string
+  lang?: string
   /** Показать skeleton-карточки вместо реальных продуктов (loading state) */
   loading?: boolean
 }
@@ -28,7 +30,7 @@ const emit = defineEmits<{ 'reset': [] }>()
 
 <template>
   <!-- Skeleton loaders (loading state) -->
-  <ul v-if="loading" class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true" aria-label="Загрузка продуктов">
+  <ul v-if="loading" class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true" :aria-label="ui('loadingProducts')">
     <li v-for="i in 6" :key="`s${i}`" class="kr-skeleton-card animate-pulse">
       <div class="aspect-[4/3] bg-bg-soft rounded-xl mb-3" />
       <div class="h-4 bg-bg-soft rounded w-3/4 mb-2" />
@@ -63,14 +65,14 @@ const emit = defineEmits<{ 'reset': [] }>()
     class="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
   >
     <li v-for="p in items" :key="p.id">
-      <ProductCard :product="p" :cta-label="ctaLabel" variant="default" />
+      <ProductCard :product="p" :cta-label="ctaLabel" variant="default" :lang="lang" />
     </li>
   </ul>
 
   <!-- List view (desktop only via ViewToggle) -->
   <ul v-else class="flex flex-col gap-3">
     <li v-for="p in items" :key="p.id">
-      <ProductCard :product="p" :cta-label="ctaLabel" variant="compact" :tilt="false" />
+      <ProductCard :product="p" :cta-label="ctaLabel" variant="compact" :tilt="false" :lang="lang" />
     </li>
   </ul>
 </template>

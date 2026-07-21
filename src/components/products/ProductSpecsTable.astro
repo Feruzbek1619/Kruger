@@ -7,6 +7,7 @@
  * Полосатые строки через even:bg-bg-soft.
  */
 import type { PhysicalProp } from '@/types'
+import { t } from '@/lib/i18n'
 
 interface Props {
   rows: PhysicalProp[]
@@ -16,10 +17,11 @@ interface Props {
     method?: string
   }
 }
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 const { rows, labels = {} } = Astro.props
-const lParam  = labels.param  ?? 'Параметр'
-const lValue  = labels.value  ?? 'Значение'
-const lMethod = labels.method ?? 'Метод испытания'
+const lParam  = labels.param  ?? t(lang, 'products.detail.specParam')
+const lValue  = labels.value  ?? t(lang, 'products.detail.specValue')
+const lMethod = labels.method ?? t(lang, 'products.detail.specMethod')
 ---
 {rows && rows.length > 0 ? (
   <div class="overflow-x-auto rounded-lg border border-border-soft">
@@ -43,5 +45,5 @@ const lMethod = labels.method ?? 'Метод испытания'
     </table>
   </div>
 ) : (
-  <p class="text-sm text-text-muted">Данные физико-химических свойств уточняются.</p>
+  <p class="text-sm text-text-muted">{t(lang, 'products.detail.specsPending')}</p>
 )}

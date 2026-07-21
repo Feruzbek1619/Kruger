@@ -1,5 +1,5 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Logo from '@/components/ui/Logo.astro'
 import Icon from '@/components/ui/Icon.astro'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
@@ -19,7 +19,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         {t(lang, 'footer.brandDescription')}
       </p>
       <div class="mt-8">
-        <p class="text-[10px] uppercase tracking-[0.2em] opacity-50 font-semibold mb-3">Соцсети</p>
+        <p class="text-eyebrow uppercase tracking-[0.2em] opacity-50 font-semibold mb-3">{t(lang, 'footer.social')}</p>
         <div class="flex items-center gap-2">
           {['facebook','instagram','youtube','linkedin'].map((s) => (
             <a
@@ -40,13 +40,13 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         {t(lang, 'footer.colMain')}
       </h3>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.home')}</a></li>
-        <li><a href="/products/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">Каталог</a></li>
-        <li><a href="/about/glance/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.about')}</a></li>
-        <li><a href="/services/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.services')}</a></li>
-        <li><a href="/news/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.news')}</a></li>
-        <li><a href="/faq/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.faq')}</a></li>
-        <li><a href="/contact/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.contact')}</a></li>
+        <li><a href={localePath(lang, "/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.home')}</a></li>
+        <li><a href={localePath(lang, "/products/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.catalog')}</a></li>
+        <li><a href={localePath(lang, "/about/glance/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.about')}</a></li>
+        <li><a href={localePath(lang, "/services/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.services')}</a></li>
+        <li><a href={localePath(lang, "/news/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.news')}</a></li>
+        <li><a href={localePath(lang, "/faq/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.faq')}</a></li>
+        <li><a href={localePath(lang, "/contact/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'nav.contact')}</a></li>
       </ul>
     </div>
 
@@ -56,13 +56,13 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         {t(lang, 'footer.colProducts')}
       </h3>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="/products/?category=engine"     class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.engine')}</a></li>
-        <li><a href="/products/?category=hydraulic"  class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.hydraulic')}</a></li>
-        <li><a href="/products/?category=manual"     class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.transmission')}</a></li>
-        <li><a href="/products/?category=antifreeze" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.antifreeze')}</a></li>
-        <li><a href="/products/?category=ev-fluids"  class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.ev')}</a></li>
-        <li><a href="/products/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.all')}</a></li>
-        <li><a href="/pds-sds/" class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.pds')}</a></li>
+        <li><a href={localePath(lang, "/products/?category=engine")}     class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.engine')}</a></li>
+        <li><a href={localePath(lang, "/products/?category=hydraulic")}  class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.hydraulic')}</a></li>
+        <li><a href={localePath(lang, "/products/?category=manual")}     class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.transmission')}</a></li>
+        <li><a href={localePath(lang, "/products/?category=antifreeze")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.antifreeze')}</a></li>
+        <li><a href={localePath(lang, "/products/?category=ev-fluids")}  class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.ev')}</a></li>
+        <li><a href={localePath(lang, "/products/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.all')}</a></li>
+        <li><a href={localePath(lang, "/pds-sds/")} class="opacity-75 hover:opacity-100 hover:text-brand-yellow transition-colors">{t(lang, 'footer.products.pds')}</a></li>
       </ul>
     </div>
 
@@ -72,7 +72,22 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
         Newsletter
       </h3>
       <p class="text-sm opacity-75 mb-5 leading-relaxed">{t(lang, 'footer.subscribeText')}</p>
-      <form id="kr-newsletter" class="space-y-2.5">
+      <form
+        id="kr-newsletter"
+        class="space-y-2.5"
+        data-msg-invalid={t(lang, 'questionForm.errors.emailInvalid')}
+        data-msg-success={t(lang, 'footer.subscribeSuccess')}
+        data-msg-error={t(lang, 'footer.subscribeError')}
+      >
+        <!-- Honeypot — скрыто от людей, приманка для ботов (не удалять) -->
+        <input
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          class="sr-only"
+        />
         <input
           type="email"
           name="email"
@@ -99,10 +114,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     <div class="container-page py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
       <span class="opacity-60">{t(lang, 'footer.rights')}</span>
       <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 opacity-60">
-        <li><a href="/impressum/" class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.impressum')}</a></li>
-        <li><a href="/privacy/"   class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.privacy')}</a></li>
-        <li><a href="/terms/"     class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.terms')}</a></li>
-        <li><a href="/cookies/"   class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.cookies')}</a></li>
+        <li><a href={localePath(lang, "/impressum/")} class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.impressum')}</a></li>
+        <li><a href={localePath(lang, "/privacy/")}   class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.privacy')}</a></li>
+        <li><a href={localePath(lang, "/terms/")}     class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.terms')}</a></li>
+        <li><a href={localePath(lang, "/cookies/")}   class="hover:text-brand-yellow hover:opacity-100">{t(lang, 'footer.legal.cookies')}</a></li>
       </ul>
       <span class="opacity-60">
         {t(lang, 'footer.designedBy')} <strong class="text-brand-yellow font-bold ml-1">DASTA</strong>
@@ -122,6 +137,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
     const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!
     const msg = form.querySelector<HTMLParagraphElement>('.kr-newsletter-msg')!
     const input = form.querySelector<HTMLInputElement>('input[name="email"]')!
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]')!
     const defaultLabel = btn.dataset.defaultLabel || 'Подписаться'
     const loadingLabel = btn.dataset.loadingLabel || 'Отправляем…'
 
@@ -133,9 +149,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
+      if (honeypot.value) return // honeypot: поле скрыто от людей — если заполнено, это бот
       const email = input.value.trim()
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setMsg('Похоже, в адресе ошибка', 'error')
+        setMsg(form.dataset.msgInvalid ?? '', 'error')
         input.focus()
         return
       }
@@ -143,10 +160,10 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       btn.textContent = loadingLabel
       try {
         await submitInquiry({ kind: 'newsletter', email, consent: true })
-        setMsg('Спасибо! Подтверждение придёт на email.', 'success')
+        setMsg(form.dataset.msgSuccess ?? '', 'success')
         input.value = ''
       } catch {
-        setMsg('Что-то пошло не так. Попробуйте позже.', 'error')
+        setMsg(form.dataset.msgError ?? '', 'error')
       } finally {
         btn.disabled = false
         btn.textContent = defaultLabel

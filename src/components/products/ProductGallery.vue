@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import { computed, ref } from 'vue'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 
@@ -78,7 +79,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
         <button
           type="button"
           @click="prev"
-          aria-label="Предыдущее фото"
+          :aria-label="ui('prevPhoto')"
           class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-bg/90 backdrop-blur-sm border border-border-soft text-text shadow-md opacity-0 group-hover:opacity-100 hover:bg-bg hover:border-primary hover:text-primary transition-all"
         >
           <ChevronLeft :size="20" :stroke-width="2.5" />
@@ -86,7 +87,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
         <button
           type="button"
           @click="next"
-          aria-label="Следующее фото"
+          :aria-label="ui('nextPhoto')"
           class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-bg/90 backdrop-blur-sm border border-border-soft text-text shadow-md opacity-0 group-hover:opacity-100 hover:bg-bg hover:border-primary hover:text-primary transition-all"
         >
           <ChevronRight :size="20" :stroke-width="2.5" />
@@ -99,7 +100,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
             :key="i"
             type="button"
             @click="current = i"
-            :aria-label="`Перейти к фото ${i + 1}`"
+            :aria-label="ui('goToPhotoN', i + 1)"
             :aria-current="i === current"
             :class="[
               'rounded-full transition-all',
@@ -182,11 +183,11 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
           type="button"
           class="aspect-square w-full bg-bg-soft rounded-md border transition-all p-2 focus-visible:outline-none"
           :class="i === current ? 'border-primary/60 ring-2 ring-primary/15 ring-offset-2 ring-offset-bg' : 'border-border-soft hover:border-border opacity-70 hover:opacity-100'"
-          :aria-label="`Фото ${i + 1}`"
+          :aria-label="ui('photoN', i + 1)"
           :aria-current="i === current"
           @click="current = i"
         >
-          <img v-if="img" :src="img" :alt="`${alt} — ракурс ${i + 1}`" class="object-contain w-full h-full" />
+          <img v-if="img" :src="img" :alt="ui('photoAngleN', i + 1).replace('{alt}', alt)" class="object-contain w-full h-full" />
           <span v-else class="block w-full h-full bg-bg-muted rounded" />
         </button>
       </li>

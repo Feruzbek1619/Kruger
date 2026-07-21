@@ -1,10 +1,9 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
-import categories from '@/mocks/categories.json'
-import type { ProductCategory } from '@/types'
+import { getCategories } from '@/lib/api'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const items = categories as ProductCategory[]
+const items = await getCategories(lang)
 ---
 <section class="relative bg-bg-soft py-16 md:py-24 overflow-hidden">
   <!-- Subtle K-watermark -->
@@ -17,10 +16,10 @@ const items = categories as ProductCategory[]
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
       <div class="inline-flex items-center gap-3 mb-4">
         <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-        <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">ПОЛНЫЙ КАТАЛОГ</p>
+        <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'range.eyebrow')}</p>
         <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
       </div>
-      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
+      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
         {t(lang, 'range.title')}
       </h2>
       <p class="mt-4 text-base md:text-lg text-text-muted leading-relaxed">{t(lang, 'range.subtitle')}</p>
@@ -30,7 +29,7 @@ const items = categories as ProductCategory[]
       {items.map((c) => (
         <li>
           <a
-            href={c.href}
+            href={localePath(lang, c.href)}
             class="group relative flex items-start gap-4 h-full p-5 bg-bg rounded-xl border border-border-soft hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 overflow-hidden"
           >
             <!-- Hover yellow stripe at bottom -->

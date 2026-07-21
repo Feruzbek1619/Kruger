@@ -1,50 +1,101 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
-import Icon from '@/components/ui/Icon.astro'
-import { t } from '@/lib/i18n'
+import SearchResults from '@/components/sections/SearchResults.vue'
+import productDetails from '@/mocks/product-details.json'
+import { getAllProducts, getCategories, getAllNews } from '@/lib/api'
+import { t, localePath } from '@/lib/i18n'
+import type { Product } from '@/types'
+
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
-const quickLinks = [
-  { href: '/products/',                       label: 'Каталог продукции' },
-  { href: '/products/?category=engine',       label: 'Моторные масла' },
-  { href: '/products/?category=ev-fluids',    label: 'EV Fluids' },
-  { href: '/news/',                           label: 'Новости' },
-  { href: '/faq/',                            label: 'FAQ' },
-  { href: '/contact/',                        label: 'Контакты' },
+// Корпус поиска — из API на нужном языке (fallback внутри api.ts).
+const allProducts = await getAllProducts(lang)
+const catList = await getCategories(lang)
+const catTitle = (id?: string) => catList.find((c) => c.id === id)?.title ?? ''
+
+const details = productDetails as Record<string, any>
+
+// ── Корпус поиска (собирается на билд-тайме из статических данных) ──
+const productItems = (allProducts as Product[]).map((p) => {
+  const d = details[p.slug] ?? {}
+  return {
+    type: 'product' as const,
+    title: p.name,
+    url: `/product/${p.slug}/`,
+    excerpt: p.shortDescription,
+    meta: p.sku,
+    keywords: [
+      p.name,
+      p.sku,
+      catTitle(p.category),
+      (p as any).viscosity ?? '',
+      ...((p as any).apiSpec ?? []),
+      ...((p as any).aceaSpec ?? []),
+      ...((p as any).application ?? []),
+      // Расширенные данные (OEM-одобрения, совместимость) — чтобы искать по бренду/спеке
+      ...(d.oemApprovals ?? []),
+      ...(d.recommendedFor ?? []),
+      d.compatible ?? '',
+    ].join(' '),
+  }
+})
+
+const newsEntries = await getAllNews(lang)
+const newsItems = newsEntries.map((e) => ({
+  type: 'news' as const,
+  title: e.title,
+  url: `/news/${e.slug}/`,
+  excerpt: e.preview,
+  keywords: `${e.title} ${e.preview} ${e.tag}`,
+}))
+
+const pageItems = [
+  { type: 'page' as const, title: t(lang, 'nav.catalog'), url: '/products/', excerpt: t(lang, 'products.listingLead'), keywords: 'каталог продукция масла catalog' },
+  { type: 'page' as const, title: t(lang, 'nav.about'), url: '/about/glance/', excerpt: '', keywords: 'о компании about krüger stuttgart германия' },
+  { type: 'page' as const, title: t(lang, 'nav.services'), url: '/services/', excerpt: '', keywords: 'услуги дилеры сотрудничество services' },
+  { type: 'page' as const, title: t(lang, 'nav.news'), url: '/news/', excerpt: '', keywords: 'новости статьи материалы news' },
+  { type: 'page' as const, title: t(lang, 'nav.faq'), url: '/faq/', excerpt: '', keywords: 'faq вопросы ответы база знаний' },
+  { type: 'page' as const, title: t(lang, 'nav.contact'), url: '/contact/', excerpt: '', keywords: 'контакты связаться телефон email contact' },
+  { type: 'page' as const, title: 'PDS / SDS', url: '/pds-sds/', excerpt: '', keywords: 'pds sds документы паспорта безопасности документация' },
+  { type: 'page' as const, title: t(lang, 'nav.brand'), url: '/brand/', excerpt: '', keywords: 'бренд brandbook логотип фирменный стиль' },
 ]
+
+const items = [...productItems, ...newsItems, ...pageItems]
+
+const quickLinks = [
+  { href: localePath(lang, '/products/'), label: t(lang, 'nav.catalog') },
+  { href: localePath(lang, '/products/?category=engine'), label: catTitle('engine') },
+  { href: localePath(lang, '/products/?category=ev-fluids'), label: 'EV Fluids' },
+  { href: localePath(lang, '/news/'), label: t(lang, 'nav.news') },
+  { href: localePath(lang, '/faq/'), label: t(lang, 'nav.faq') },
+  { href: localePath(lang, '/contact/'), label: t(lang, 'nav.contact') },
+]
+
+const labels = {
+  placeholder: t(lang, 'search.placeholder'),
+  submit: t(lang, 'search.submit'),
+  quickLinks: t(lang, 'search.quickLinks'),
+  typePrompt: t(lang, 'search.typePrompt'),
+  resultsFor: t(lang, 'search.resultsFor'),
+  nothingFound: t(lang, 'search.nothingFound'),
+  nothingHint: t(lang, 'search.nothingHint'),
+  groupProducts: t(lang, 'search.groupProducts'),
+  groupNews: t(lang, 'search.groupNews'),
+  groupPages: t(lang, 'search.groupPages'),
+}
 ---
 <BaseLayout
-  title="Поиск по сайту — Krüger Motor Oil"
-  description="Найдите подходящий продукт Krüger по названию, вязкости (5W-30, 0W-20, ATF), спецификации (API, ACEA, MB-Approval) или быстрым ссылкам."
+  title={t(lang, "seo.search.title")}
+  description={t(lang, "seo.search.description")}
 >
   <PageHero
     title={t(lang, 'search.title')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: 'Поиск' }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'search.title') }]}
   />
   <section class="bg-bg py-12 md:py-16">
     <div class="container-page max-w-2xl">
-      <form action="/search" method="get" class="flex flex-col sm:flex-row gap-2 mb-6">
-        <input
-          type="search"
-          name="q"
-          placeholder={t(lang, 'search.placeholder')}
-          class="flex-1 h-12 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary/60 focus:bg-bg focus:ring-4 focus:ring-primary/10 px-4 text-base focus:outline-none"
-        />
-        <button type="submit" class="h-12 px-7 rounded-md bg-primary text-text-inverse font-medium hover:bg-primary-hover transition-colors">Найти</button>
-      </form>
-      <p class="text-sm text-text-muted bg-bg-soft border border-border-soft rounded-md px-4 py-3 mb-8">{t(lang, 'search.soonNotice')}</p>
-      <h2 class="font-display text-lg font-bold mb-3">{t(lang, 'search.quickLinks')}</h2>
-      <ul class="grid gap-2 text-sm">
-        {quickLinks.map((q) => (
-          <li>
-            <a href={q.href} class="inline-flex items-center gap-2 text-primary hover:underline">
-              <Icon name="arrowRight" class="h-4 w-4" />
-              <span>{q.label}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <SearchResults client:load items={items} quickLinks={quickLinks} labels={labels} />
     </div>
   </section>
 </BaseLayout>

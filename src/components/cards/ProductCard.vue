@@ -5,13 +5,14 @@ import { useMouseInElement, usePreferredReducedMotion } from '@vueuse/core'
 import type { Product } from '@/types'
 
 type Variant = 'default' | 'compact' | 'featured'
-interface Props { product: Product; ctaLabel?: string; tilt?: boolean; variant?: Variant }
+interface Props { product: Product; ctaLabel?: string; tilt?: boolean; variant?: Variant; lang?: string }
 const props = withDefaults(defineProps<Props>(), {
-  ctaLabel: 'Подробнее',
+  ctaLabel: '',
   tilt: true,
   variant: 'default',
 })
-const href = `/product/${props.product.slug}/`
+// Локаль-префикс: ru — без префикса, en/de — /en/… /de/…
+const href = `${props.lang && props.lang !== 'ru' ? `/${props.lang}` : ''}/product/${props.product.slug}/`
 const isCompact  = computed(() => props.variant === 'compact')
 const isFeatured = computed(() => props.variant === 'featured')
 // Compact: tilt отключён (плоский ряд), hover lift меньше (-2).

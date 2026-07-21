@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import type { WithClassAsProps } from "./interface"
 import { ArrowLeft } from "lucide-vue-next"
 import { cn } from "@/lib/utils"
@@ -25,7 +26,7 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel()
   >
     <slot>
       <ArrowLeft class="h-4 w-4 text-current" />
-      <span class="sr-only">Предыдущий слайд</span>
+      <span class="sr-only">{{ ui('prevSlide') }}</span>
     </slot>
   </Button>
 </template>

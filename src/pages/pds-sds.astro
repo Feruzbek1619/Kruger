@@ -2,13 +2,12 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import Icon from '@/components/ui/Icon.astro'
-import allProducts from '@/mocks/all-products.json'
-import categories from '@/mocks/categories.json'
-import { t } from '@/lib/i18n'
-import type { Product } from '@/types'
+import { getAllProducts, getCategories } from '@/lib/api'
+import { t, localePath } from '@/lib/i18n'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const products = allProducts as Product[]
+const products = await getAllProducts(lang)
+const categories = await getCategories(lang)
 
 // Used categories (only those that have products)
 const usedCategoryIds = [...new Set(products.map((p) => p.category).filter(Boolean))] as string[]
@@ -17,13 +16,13 @@ const usedCategories = (categories as { id: string; title: string }[])
   .map((c) => ({ id: c.id, title: c.title }))
 ---
 <BaseLayout
-  title="PDS / SDS — технические документы Krüger"
-  description="Product Data Sheet и Safety Data Sheet на 40+ продуктов Krüger. Поиск по названию, артикулу, фильтр по категории и языку."
+  title={t(lang, "seo.pdsSds.title")}
+  description={t(lang, "seo.pdsSds.description")}
 >
   <PageHero
     title={t(lang, 'pdsSds.title')}
     lead={t(lang, 'pdsSds.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: 'PDS / SDS' }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: 'PDS / SDS' }]}
   />
   <section class="bg-bg py-12 md:py-16">
     <div class="container-page">
@@ -38,7 +37,7 @@ const usedCategories = (categories as { id: string; title: string }[])
           />
         </label>
         <label class="flex flex-col gap-1.5 md:w-56">
-          <span class="text-sm font-medium text-text">Категория</span>
+          <span class="text-sm font-medium text-text">{t(lang, 'pdsSds.categoryLabel')}</span>
           <select id="pds-category" class="h-11 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary/60 focus:bg-bg focus:ring-4 focus:ring-primary/10 px-4 text-base focus:outline-none">
             <option value="">{t(lang, 'pdsSds.categoryAll')}</option>
             {usedCategories.map((c) => (
@@ -47,9 +46,9 @@ const usedCategories = (categories as { id: string; title: string }[])
           </select>
         </label>
         <label class="flex flex-col gap-1.5 md:w-40">
-          <span class="text-sm font-medium text-text">Язык</span>
+          <span class="text-sm font-medium text-text">{t(lang, 'pdsSds.languageLabel')}</span>
           <select id="pds-language" class="h-11 rounded-md bg-bg-soft border border-input hover:border-muted-foreground/50 focus:border-primary/60 focus:bg-bg focus:ring-4 focus:ring-primary/10 px-4 text-base focus:outline-none">
-            <option value="">Все языки</option>
+            <option value="">{t(lang, 'pdsSds.languageAll')}</option>
             <option value="RU">{t(lang, 'pdsSds.languageRu')}</option>
             <option value="EN">{t(lang, 'pdsSds.languageEn')}</option>
             <option value="DE">{t(lang, 'pdsSds.languageDe')}</option>
@@ -58,15 +57,15 @@ const usedCategories = (categories as { id: string; title: string }[])
       </div>
 
       <p class="text-sm text-text-muted mb-4">
-        <span id="pds-count">{products.length}</span> документов
+        <span id="pds-count">{products.length}</span> {t(lang, 'pdsSds.documentsWord')}
       </p>
 
       <div class="overflow-x-auto rounded-lg border border-border-soft">
         <table class="w-full text-sm">
           <thead class="bg-bg-soft text-text-subtle uppercase text-xs">
             <tr>
-              <th class="text-left font-semibold px-4 py-3">Продукт</th>
-              <th class="text-left font-semibold px-4 py-3">Артикул</th>
+              <th class="text-left font-semibold px-4 py-3">{t(lang, 'pdsSds.colProduct')}</th>
+              <th class="text-left font-semibold px-4 py-3">{t(lang, 'products.detail.sku')}</th>
               <th class="text-left font-semibold px-4 py-3">PDS</th>
               <th class="text-left font-semibold px-4 py-3">SDS</th>
             </tr>
@@ -107,7 +106,7 @@ const usedCategories = (categories as { id: string; title: string }[])
               </tr>
             ))}
             <tr id="pds-empty" hidden>
-              <td colspan="4" class="px-4 py-10 text-center text-text-muted">Ничего не найдено — попробуйте другой запрос</td>
+              <td colspan="4" class="px-4 py-10 text-center text-text-muted">{t(lang, 'pdsSds.emptyRow')}</td>
             </tr>
           </tbody>
         </table>

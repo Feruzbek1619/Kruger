@@ -2,16 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "astro-dev",
+      "name": "kruger-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 4321
-    },
-    {
-      "name": "astro-preview",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "preview"],
-      "port": 4321
+      "port": 4321,
+      "cwd": "/Users/ustozferuz/Kruger"
     }
   ]
 }

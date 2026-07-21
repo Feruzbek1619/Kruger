@@ -8,6 +8,7 @@ import Footer from '@/components/layouts/Footer.astro'
 import ContactStrip from '@/components/sections/ContactStrip.astro'
 import FloatingButtons from '@/components/ui/FloatingButtons.vue'
 import Toast from '@/components/ui/Toast.vue'
+import { t } from '@/lib/i18n'
 
 interface Props {
   title?: string
@@ -24,8 +25,8 @@ interface Props {
 }
 
 const {
-  title = 'Krüger Motor Oil — премиальные моторные масла, разработанные в Германии',
-  description = 'Krüger — производитель премиальных моторных и индустриальных масел из Штутгарта. 150+ продуктов, OEM-одобрения ведущих автопроизводителей, поставки в 50+ стран.',
+  title,
+  description,
   hideContactStrip = false,
   preloadImage,
   canonical,
@@ -34,10 +35,22 @@ const {
 } = Astro.props
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+// Страницы задают свои SEO-строки; фолбэк — локализованный дефолт главной.
+const pageTitle = title ?? t(lang, 'seo.home.title')
+const pageDescription = description ?? t(lang, 'seo.home.description')
 
 const siteUrl = 'https://kruger-oil.de'
 const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
+
+// hreflang: путь без локаль-префикса → ссылки на все три версии страницы
+const pathNoLocale = Astro.url.pathname.replace(/^\/(en|de)(?=\/|$)/, '') || '/'
+const alternates = [
+  { hreflang: 'ru', href: `${siteUrl}${pathNoLocale}` },
+  { hreflang: 'en', href: `${siteUrl}/en${pathNoLocale}` },
+  { hreflang: 'de', href: `${siteUrl}/de${pathNoLocale}` },
+  { hreflang: 'x-default', href: `${siteUrl}${pathNoLocale}` },
+]
 
 // Skeleton loading mode — активируется через ?skeleton=1 в URL.
 // Превращает текущую страницу в shimmer-плейсхолдер БЕЗ изменения layout/structure.
@@ -76,22 +89,25 @@ const organizationSchema = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="theme-color" content="#E51E25" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Krüger Motor Oil" />
     <meta property="og:locale" content={lang === 'ru' ? 'ru_RU' : lang === 'de' ? 'de_DE' : 'en_US'} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -99,8 +115,8 @@ const organizationSchema = {
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- JSON-LD Organization schema (every page) -->
@@ -125,7 +141,7 @@ const organizationSchema = {
     <ClientRouter />
   </head>
   <body class="bg-bg text-text" data-skeleton={isSkeleton ? 'true' : undefined}>
-    <a href="#main" class="skip-link">К основному контенту</a>
+    <a href="#main" class="skip-link">{t(lang, 'a11y.skipLink')}</a>
     <script is:inline>
       // Sync ?skeleton=1 → body[data-skeleton="true"]. Покрывает SSG-сборку
       // и переходы Astro View Transitions (astro:after-swap).

@@ -6,16 +6,22 @@ interface Props { current?: 'ru' | 'en' | 'de' }
 const props = withDefaults(defineProps<Props>(), { current: 'ru' })
 
 const open = ref(false)
+// EN/DE отложены до Phase 11 (страниц /en/ /de/ ещё нет). Пока показываем только
+// доступные локали, чтобы переключатель не вёл на 404.
 const langs = [
-  { code: 'ru', label: 'Русский', short: 'RU' },
-  { code: 'en', label: 'English', short: 'EN' },
-  { code: 'de', label: 'Deutsch', short: 'DE' },
+  { code: 'ru', label: 'Русский', short: 'RU', available: true },
+  { code: 'en', label: 'English', short: 'EN', available: true },
+  { code: 'de', label: 'Deutsch', short: 'DE', available: true },
 ] as const
 
+const availableLangs = langs.filter((l) => l.available)
+
+/** Переключение языка сохраняет текущую страницу: /en/faq/ → /de/faq/ → /faq/ */
 function pick(code: string) {
   if (typeof window === 'undefined') return
-  if (code === 'ru') window.location.href = '/'
-  else window.location.href = `/${code}/`
+  if (!langs.find((l) => l.code === code)?.available) return
+  const path = window.location.pathname.replace(/^\/(en|de)(?=\/|$)/, '') || '/'
+  window.location.href = code === 'ru' ? path : `/${code}${path}`
 }
 
 function onBlur() {
@@ -43,7 +49,7 @@ function onBlur() {
       role="listbox"
       class="absolute right-0 top-full mt-1 min-w-[10rem] bg-bg text-text rounded-md shadow-lg overflow-hidden z-[70]"
     >
-      <li v-for="l in langs" :key="l.code" role="option" :aria-selected="l.code === props.current">
+      <li v-for="l in availableLangs" :key="l.code" role="option" :aria-selected="l.code === props.current">
         <button
           type="button"
           class="w-full text-left px-4 py-2 text-sm hover:bg-bg-soft"

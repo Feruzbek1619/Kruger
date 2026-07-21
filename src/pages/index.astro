@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { getImage } from 'astro:assets'
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 
 import heroBg1 from '@/assets/hero/slide-1.webp'
 import heroBg2 from '@/assets/hero/slide-2.webp'
@@ -23,12 +23,20 @@ import EMobilityCTA from '@/components/sections/EMobilityCTA.astro'
 import PartnersGrid from '@/components/sections/PartnersGrid.astro'
 import FAQAccordion from '@/components/sections/FAQAccordion.vue'
 
-import popular from '@/mocks/popular.json'
-import productsByApp from '@/mocks/products.json'
-import segments from '@/mocks/segments.json'
-import faq from '@/mocks/faq.json'
+import { getPopularProducts, getProductsByApplication, getFAQ, getSegments } from '@/lib/api'
+import faqMock from '@/mocks/faq.json'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+// FAQ-тизер: из API (редактируется в админке, переведён), fallback — мок.
+const faqGroups = await getFAQ(lang)
+const faqItems = faqGroups.length
+  ? faqGroups.flatMap((g) => g.items).slice(0, 6)
+  : faqMock
+
+// Продуктовые данные через API-слой: PUBLIC_USE_MOCKS=false переключит на бэкенд
+// без изменений компонентов. В mock-режиме возвращает те же src/mocks/*.json.
+const popular = await getPopularProducts(lang)
 
 // Оптимизированные WebP/AVIF варианты hero-фотографий через Astro image pipeline.
 // 1280px достаточно для 100vw на desktop (max-content-width ~ 1280px).
@@ -42,7 +50,7 @@ const slides = [
     title: t(lang, 'hero.slide1.title'),
     subtitle: t(lang, 'hero.slide1.subtitle'),
     cta: t(lang, 'hero.slide1.cta'),
-    href: '/products/',
+    href: localePath(lang, '/products/'),
     bg: heroOpt[0].src,
   },
   {
@@ -50,7 +58,7 @@ const slides = [
     title: t(lang, 'hero.slide2.title'),
     subtitle: t(lang, 'hero.slide2.subtitle'),
     cta: t(lang, 'hero.slide2.cta'),
-    href: '/products/',
+    href: localePath(lang, '/products/'),
     bg: heroOpt[1].src,
   },
   {
@@ -58,16 +66,19 @@ const slides = [
     title: t(lang, 'hero.slide3.title'),
     subtitle: t(lang, 'hero.slide3.subtitle'),
     cta: t(lang, 'hero.slide3.cta'),
-    href: '/products/',
+    href: localePath(lang, '/products/'),
     bg: heroOpt[2].src,
   },
 ]
 
-const tabsData = (segments as { id: string; title: string }[]).map((s) => ({
-  id: s.id,
-  label: s.title,
-  items: (productsByApp as Record<string, unknown[]>)[s.id] ?? [],
-})) as { id: string; label: string; items: unknown[] }[]
+const segments = await getSegments(lang)
+const tabsData = (await Promise.all(
+  segments.map(async (s) => ({
+    id: s.id,
+    label: s.title,
+    items: await getProductsByApplication(s.id, lang),
+  })),
+)) as { id: string; label: string; items: unknown[] }[]
 
 const formLabels = {
   name: t(lang, 'questionForm.nameLabel'),
@@ -93,7 +104,7 @@ const formErrors = {
 }
 ---
 <BaseLayout
-  title="Krüger Motor Oil — премиальные моторные масла, разработанные в Германии"
+  title={t(lang, "seo.home.title")}
   preloadImage={heroOpt[0].src}
 >
   <HeroSlider
@@ -102,6 +113,7 @@ const formErrors = {
   />
 
   <PopularProducts
+    lang={lang}
     client:visible
     products={popular as any}
     title={t(lang, 'popular.title')}
@@ -110,15 +122,20 @@ const formErrors = {
     more={t(lang, 'popular.more')}
     prevLabel={t(lang, 'popular.prev')}
     nextLabel={t(lang, 'popular.next')}
+    eyebrow={t(lang, 'popular.eyebrow')}
   />
 
   <MarketSegments />
 
   <ProductsTabs
+    lang={lang}
     client:visible
     title={t(lang, 'tabs.title')}
     groups={tabsData as any}
     more={t(lang, 'popular.more')}
+    eyebrow={t(lang, 'popular.tabsEyebrow')}
+    allLabel={t(lang, 'products.allProducts')}
+    allShort={t(lang, 'products.all')}
   />
 
   <ProductRange />
@@ -129,6 +146,7 @@ const formErrors = {
     client:visible
     title={t(lang, 'questionForm.title')}
     subtitle={t(lang, 'questionForm.subtitle')}
+    eyebrow={t(lang, 'questionForm.eyebrow')}
     labels={formLabels}
     errors={formErrors}
   />
@@ -148,10 +166,11 @@ const formErrors = {
   <PartnersGrid />
 
   <FAQAccordion
+    lang={lang}
     client:visible
     title={t(lang, 'faq.title')}
     subtitle={t(lang, 'faq.subtitle')}
-    items={faq as any}
+    items={faqItems as any}
     allLabel={t(lang, 'faq.all')}
   />
 </BaseLayout>

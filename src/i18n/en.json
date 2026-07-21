@@ -1,0 +1,668 @@
+{
+  "topbar": {
+    "address": "Leitzstraße 45, 70469 Stuttgart, Germany",
+    "phone": "+49 711 12 34 56 78",
+    "email": "info@kruger-oil.de",
+    "downloadCatalog": "Download catalogue"
+  },
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalogue",
+    "brand": "Brand",
+    "service": "Service",
+    "about": "About us",
+    "aboutGlance": "About us",
+    "aboutVision": "Vision & mission",
+    "aboutCommitments": "Our commitments",
+    "services": "Services",
+    "news": "News",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "search": "Search"
+  },
+  "footer": {
+    "contactStripTitle": "Get in touch",
+    "contactStripSubtitle": "Contact details for enquiries",
+    "phoneLabel": "Support phone",
+    "emailLabel": "Email",
+    "brandDescription": "Premium motor and industrial oils, engineered in Germany for every kilometre.",
+    "colMain": "Main",
+    "colProducts": "Products",
+    "colSubscribe": "Subscribe to our newsletter",
+    "subscribeText": "Be the first to receive news, catalogue updates and industry insights.",
+    "subscribePlaceholder": "Enter your email",
+    "subscribeBtn": "Subscribe",
+    "social": "Social media",
+    "products": {
+      "engine": "Engine oils",
+      "hydraulic": "Hydraulic oils",
+      "transmission": "Transmission oils",
+      "antifreeze": "Antifreeze",
+      "ev": "EV Fluids",
+      "all": "Full catalogue",
+      "pds": "PDS / SDS"
+    },
+    "rights": "© 2026 Krüger Motor Oil GmbH. All rights reserved.",
+    "designedBy": "Developed by",
+    "legal": {
+      "impressum": "Impressum",
+      "privacy": "Privacy",
+      "terms": "Terms of use",
+      "cookies": "Cookies"
+    },
+    "subscribeSuccess": "Thank you! A confirmation will arrive by email.",
+    "subscribeError": "Something went wrong. Please try again later."
+  },
+  "hero": {
+    "slide1": {
+      "eyebrow": "WE ARE THE MANUFACTURER",
+      "title": "Engineering the world's finest motor oils",
+      "subtitle": "From formula to canister — every litre is engineered by us.",
+      "cta": "Find out more"
+    },
+    "slide2": {
+      "eyebrow": "BUILT FOR THE LONG HAUL",
+      "title": "Oils built for the extra million",
+      "subtitle": "Trusted by fleets. Tested in extreme conditions.",
+      "cta": "Find out more"
+    },
+    "slide3": {
+      "eyebrow": "MOVING THE WORLD THROUGH ENGINEERING",
+      "title": "Our oils keep industry in motion",
+      "subtitle": "Consistent. Reliable. Proven.",
+      "cta": "Learn more"
+    },
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide"
+  },
+  "popular": {
+    "title": "Popular products",
+    "subtitle": "These products are ordered most often",
+    "showMore": "View all",
+    "more": "Learn more",
+    "prev": "Previous products",
+    "next": "Next products",
+    "eyebrow": "BESTSELLERS",
+    "tabsEyebrow": "BY APPLICATION"
+  },
+  "segments": {
+    "eyebrow": "FOR EVERY MACHINE",
+    "title": "Market segments",
+    "subtitle": "Solutions for every industry — from passenger cars to heavy-duty equipment.",
+    "more": "Learn more"
+  },
+  "tabs": {
+    "title": "Product catalogue"
+  },
+  "range": {
+    "eyebrow": "FULL CATALOGUE",
+    "title": "Product range",
+    "subtitle": "150+ premium lubricants and service fluids — performance, protection, efficiency."
+  },
+  "news": {
+    "eyebrow": "NEWS & INSIGHTS",
+    "title": "News",
+    "subtitle": "Events, guides and catalogue updates",
+    "all": "All news"
+  },
+  "questionForm": {
+    "title": "Still have questions?",
+    "subtitle": "Send us your message using the form below",
+    "nameLabel": "How should we address you?",
+    "namePh": "Enter your name",
+    "phoneLabel": "Phone number",
+    "phonePh": "+998 …",
+    "emailLabel": "Email",
+    "emailPh": "example@gmail.com",
+    "messageLabel": "Describe your question",
+    "messagePh": "Enter your question",
+    "consent": "By submitting this request you agree to the terms of data processing",
+    "submit": "Send",
+    "sending": "Sending…",
+    "successToast": "Thank you! We will get back to you within 24 hours.",
+    "errorToast": "Something went wrong. Please try again or email us at info@kruger-oil.de",
+    "errors": {
+      "name": "Please tell us your name",
+      "emailRequired": "Email is required",
+      "emailInvalid": "This address looks incorrect",
+      "message": "Describe your question",
+      "consent": "Please confirm your consent to submit"
+    },
+    "eyebrow": "GET IN TOUCH"
+  },
+  "oem": {
+    "eyebrow": "OEM APPROVED",
+    "title": "Trust confirmed by engineers",
+    "subtitle": "OEM approvals from 12 leading vehicle manufacturers confirm that Krüger oils meet the requirements of original equipment systems.",
+    "blockText": "Krüger oils meet the requirements and standards of the world's leading vehicle manufacturers. OEM approvals confirm compatibility with the engineering systems of top brands.",
+    "blockText2": "We create oils that vehicle manufacturers trust and that protect engines every single day.",
+    "cta": "About us"
+  },
+  "map": {
+    "title": "Scale without borders",
+    "subtitle": "Distributors in 50+ countries across five continents.",
+    "ctaText": "Interested in a partnership?",
+    "ctaBtn": "Get in touch",
+    "ariaMap": "World map with Krüger presence markers",
+    "ariaTooltip": "Country with Krüger presence"
+  },
+  "offers": {
+    "eyebrow": "FOR DEALERS",
+    "title": "Terms for dealers and partners",
+    "text": "Competitive terms for dealers, workshops and fleets. Let's discuss tailored supply, marketing support and training.",
+    "cta": "Get in touch"
+  },
+  "stats": {
+    "years": "years in business",
+    "partners": "partners worldwide",
+    "products": "unique products",
+    "litres": "litres sold",
+    "countries": "countries of presence"
+  },
+  "ev": {
+    "eyebrow": "THE FUTURE OF E-MOBILITY",
+    "title": "Energy for the electric vehicles of tomorrow",
+    "text": "Power electronics cooling, high-voltage system insulation, drivetrain durability — Krüger EV Fluids are engineered for modern electric vehicles.",
+    "cta": "Explore EV Fluids"
+  },
+  "partners": {
+    "eyebrow": "TRUSTED BY",
+    "title": "Companies that trust us",
+    "subtitle": "12 companies work with us worldwide"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Concise answers on products and supply",
+    "all": "All questions",
+    "categories": {
+      "products": "Products",
+      "quality": "Quality & standards",
+      "buying": "Purchasing & supply",
+      "service": "Service"
+    }
+  },
+  "common": {
+    "breadcrumbHome": "Home",
+    "loading": "Loading…",
+    "back": "Back",
+    "share": "Share",
+    "readMore": "Read more",
+    "publishedOn": "Published"
+  },
+  "a11y": {
+    "breadcrumbs": "Breadcrumbs",
+    "homeLink": "Krüger Motor Oil — go to homepage",
+    "mainNav": "Main menu",
+    "segmentStrip": "Application segments",
+    "skipLink": "Skip to main content"
+  },
+  "about": {
+    "glance": {
+      "eyebrow": "WHO WE ARE",
+      "title": "Krüger Motor Oil — an inside view",
+      "lead": "German engineering, R&D in Stuttgart, production in Germany. Krüger oils are chosen by vehicle manufacturers and fleet owners in 50+ countries.",
+      "history": {
+        "title": "Eight years of engineering precision",
+        "p1": "Krüger was founded in 2017 in Stuttgart — the city that went down in history as the birthplace of the automobile and the heart of German engineering.",
+        "p2": "From the very first litre we pursued a single goal: to produce lubricants that meet the strictest OEM requirements and perform in any operating conditions — from Arctic frost to desert heat, from city traffic to quarry machinery.",
+        "p3": "Today the Krüger portfolio comprises more than 150 products supplied to 50+ countries worldwide."
+      },
+      "production": {
+        "title": "Manufactured in Germany",
+        "p1": "All our products are manufactured at plants in Germany. This lets us control quality at every stage — from the selection of base oils and additives through to filling the final packaging.",
+        "p2": "Production is certified to ISO 9001 (quality), ISO 14001 (environment) and ISO 45001 (occupational health and safety). Every batch undergoes laboratory testing before it is shipped to the customer."
+      },
+      "rd": {
+        "title": "Laboratory and development",
+        "p1": "Our R&D centre in Stuttgart develops new formulations, tests products on test benches and in real-world conditions, and adapts lubricants to the requirements of specific OEM partners.",
+        "p2": "We invest in research consistently — because engine and transmission technology never stands still, and oil has to evolve with it."
+      },
+      "geo": {
+        "title": "Presence in 50+ countries",
+        "p1": "From Germany and Austria to Uzbekistan, Kazakhstan, Turkey and the Middle East — Krüger works with distributors and partners across five continents. Our regional network keeps delivery times consistent and technical support close at hand."
+      },
+      "ctaTitle": "Learn more about our approach",
+      "ctaVision": "Vision & mission",
+      "ctaCommitments": "Our commitments",
+      "historyEyebrow": "OUR HISTORY",
+      "pillarsTitle": "The four pillars of Krüger",
+      "ctaEyebrow": "LEARN MORE",
+      "intro": {
+        "p1": "a German manufacturer of premium lubricants for the automotive and industrial sectors. Headquarters and R&D centre are based in Stuttgart, with production at certified plants in Germany.",
+        "p2": "We develop oils to the requirements of leading vehicle manufacturers: Mercedes-Benz, BMW, Volkswagen, Porsche, Audi, Ford, Volvo, MAN, Scania, Renault, Toyota and Hyundai — all 12 OEMs have confirmed that our formulations are compatible with their engineering systems.",
+        "p3": "A portfolio of 150+ products covers six market segments: passenger cars, commercial vehicles, electric vehicles, industry, agriculture and forestry, construction and earthmoving equipment. Production is certified to ISO 9001 (quality), ISO 14001 (environment) and ISO 45001 (occupational health and safety).",
+        "p4": "In 8 years Krüger has grown into a distribution network spanning five continents with a presence in 50+ countries. Every litre is the result of German engineering, laboratory control and continuous OEM testing."
+      }
+    },
+    "vision": {
+      "eyebrow": "WHY WE EXIST",
+      "title": "Vision & mission",
+      "lead": "Why we exist and where we are heading.",
+      "visionEyebrow": "VISION",
+      "missionEyebrow": "MISSION",
+      "valuesEyebrow": "VALUES",
+      "ctaText": "Learn about our commitments to customers, partners and the environment.",
+      "vision": {
+        "title": "Our vision",
+        "text": "To become the benchmark for lubricants in Europe and emerging markets, delivering German-quality products to everyone who needs reliable engine and equipment protection — from the private motorist to heavy industry."
+      },
+      "mission": {
+        "title": "Our mission",
+        "text": "To produce lubricants that extend the life of machinery, protect engines and help businesses operate without downtime. Every drop of Krüger is the result of German engineering and years of research."
+      },
+      "valuesTitle": "Our values",
+      "values": [
+        {
+          "title": "Quality without compromise",
+          "text": "Meeting ACEA, API, JASO, GOST and OEM requirements is our baseline, not our goal. Every batch undergoes laboratory testing."
+        },
+        {
+          "title": "Technology",
+          "text": "We invest in R&D so that our products perform in the most advanced engines — from hybrids to fully electric powertrains."
+        },
+        {
+          "title": "Partnership",
+          "text": "We build long-term relationships with dealers, vehicle manufacturers and corporate clients. Our partners' growth is our growth."
+        },
+        {
+          "title": "Responsibility",
+          "text": "Environmentally sound base oils, recycling of used lubricants and a lower carbon footprint are part of our operating strategy."
+        }
+      ]
+    },
+    "commitments": {
+      "eyebrow": "OUR PRINCIPLES",
+      "title": "Our commitments",
+      "lead": "Six areas in which we keep our word.",
+      "sectionEyebrow": "SIX AREAS",
+      "sectionTitle": "Six areas of responsibility",
+      "docsEyebrow": "DOCUMENTATION",
+      "docsTitle": "Technical data sheets and certificates",
+      "docsText": "PDS, SDS, OEM approvals and environmental certificates are available for every Krüger product.",
+      "items": [
+        {
+          "title": "To our customers",
+          "text": "Quality assurance, transparent specifications, product selection support and technical consultancy — at every stage."
+        },
+        {
+          "title": "To our partners",
+          "text": "Reliable supply, marketing support, staff training and joint development in regional markets."
+        },
+        {
+          "title": "To the environment",
+          "text": "Use of biodegradable components, a used-oil recycling programme and lower CO₂ emissions at every stage of production."
+        },
+        {
+          "title": "To our employees",
+          "text": "Safe working conditions, continuous training and development, and support for engineering initiatives."
+        },
+        {
+          "title": "To society",
+          "text": "Support for engineering education, sponsorship of motorsport and technical projects, and social initiatives in the regions where we operate."
+        },
+        {
+          "title": "To standards",
+          "text": "ISO 9001 (quality), ISO 14001 (environment), ISO 45001 (occupational health and safety), plus OEM approvals from the world's leading vehicle manufacturers."
+        }
+      ]
+    }
+  },
+  "newsPage": {
+    "title": "News and insights",
+    "lead": "Company news, technical guides and Krüger catalogue updates.",
+    "filterAll": "All topics",
+    "empty": "Nothing matched this filter",
+    "emptyTitle": "No publications yet",
+    "emptySubtitle": "Company news and technical guides will appear here soon.",
+    "related": "Related articles",
+    "shareTitle": "Share"
+  },
+  "faqPage": {
+    "title": "Knowledge base and frequently asked questions",
+    "lead": "If you haven't found your answer, send us a message via the contact form and we'll reply within 24 hours."
+  },
+  "contactPage": {
+    "eyebrow": "GET IN TOUCH",
+    "hqEyebrow": "HEAD OFFICE",
+    "germany": "Germany",
+    "mapTitle": "Map of the Krüger office in Stuttgart",
+    "regionalEyebrow": "REGIONAL",
+    "socialEyebrow": "SOCIAL MEDIA",
+    "writeEyebrow": "WRITE TO US",
+    "title": "Contact",
+    "lead": "Contact us via the form, send us an email or find your nearest regional distributor.",
+    "hqTitle": "Head office",
+    "hours": "Opening hours:\nMon–Fri: 09:00–18:00 (CET)\nSat–Sun: closed",
+    "regionalTitle": "Regional offices",
+    "writeTitle": "Write to us",
+    "socialTitle": "Find us on social media",
+    "fields": {
+      "topic": "Enquiry type",
+      "topicPlaceholder": "Select a topic",
+      "company": "Company",
+      "companyPh": "Company name"
+    },
+    "topics": [
+      "General enquiry",
+      "Partnership",
+      "Dealership",
+      "Corporate supply",
+      "Technical support",
+      "Complaint / claim",
+      "Other"
+    ],
+    "officeUz": {
+      "region": "Uzbekistan / Central Asia",
+      "city": "Tashkent, Uzbekistan"
+    }
+  },
+  "services": {
+    "eyebrow": "WHAT WE OFFER",
+    "title": "Krüger services",
+    "lead": "Beyond manufacturing lubricants, we provide partners and customers with a complete package of service support.",
+    "sectionEyebrow": "WHAT WE DO",
+    "sectionTitle": "Six areas of work with dealers and customers",
+    "items": [
+      {
+        "title": "Lubricant selection",
+        "text": "We will select the right product for your specific equipment, operating conditions and OEM requirements. Free of charge."
+      },
+      {
+        "title": "Technical audit",
+        "text": "Analysis of your site's current lubrication system, optimisation recommendations and a calculation of the savings from switching to modern products."
+      },
+      {
+        "title": "Laboratory oil analysis",
+        "text": "Used-oil analysis to forecast the condition of an engine or machine. Full report with recommendations."
+      },
+      {
+        "title": "Staff training",
+        "text": "Seminars and training for mechanics, engineers and sales managers — tribology fundamentals, working with Krüger products, case studies."
+      },
+      {
+        "title": "Marketing support for dealers",
+        "text": "POS materials, image library, video content, advertising campaigns — everything you need to sell effectively in your region."
+      },
+      {
+        "title": "Corporate supply",
+        "text": "Direct supply to fleets, industrial plants and service networks. Tailored terms, warehouse logistics, contracts."
+      }
+    ],
+    "ctaTitle": "Ready to discuss working together?",
+    "ctaText": "Need advice on our services?",
+    "ctaBtn": "Get in touch"
+  },
+  "pdsSds": {
+    "title": "Technical documents",
+    "lead": "PDS (Product Data Sheet) and SDS (Safety Data Sheet) for the entire Krüger range in one place.",
+    "searchPh": "By name or item number",
+    "categoryLabel": "Category",
+    "languageLabel": "Language",
+    "languageAll": "All languages",
+    "documentsWord": "documents",
+    "colProduct": "Product",
+    "emptyRow": "Nothing found — try a different query",
+    "categoryAll": "All categories",
+    "languageRu": "Russian",
+    "languageEn": "English",
+    "languageDe": "Deutsch",
+    "noticeText": "Documents are updated regularly. If the PDF you need isn't listed, get in touch.",
+    "soonNotice": "The full document library will go live together with the backend. For now, available on request at info@kruger-oil.de."
+  },
+  "brand": {
+    "eyebrow": "FOR DEALERS AND PARTNERS",
+    "title": "Brand portal",
+    "lead": "Logos, brand guidelines, image library, POS materials and presentations — everything you need to work effectively with the Krüger brand.",
+    "items": [
+      {
+        "title": "Krüger logos",
+        "text": "SVG · PNG · AI · PDF. Colour / white / black.",
+        "size": "12 MB",
+        "cta": "Download archive"
+      },
+      {
+        "title": "Brand guidelines",
+        "text": "Full version with rules on logo usage, colours and typography.",
+        "size": "8 MB",
+        "cta": "Download"
+      },
+      {
+        "title": "Image library",
+        "text": "High-resolution product renders, JPG · PNG.",
+        "size": "240 MB",
+        "cta": "Download archive"
+      },
+      {
+        "title": "POS materials",
+        "text": "Banners, flags, price tags, shelf talkers. PDF · AI · PSD.",
+        "size": "180 MB",
+        "cta": "Download archive"
+      },
+      {
+        "title": "Corporate presentation",
+        "text": "Krüger Company Presentation. PPTX · PDF · Keynote (RU/EN/DE).",
+        "size": "—",
+        "cta": "Download"
+      },
+      {
+        "title": "Video content",
+        "text": "Videos for social media. MP4 · 9:16, 1:1, 16:9. No Dasta logo — ready to publish.",
+        "size": "1.2 GB",
+        "cta": "Download archive"
+      }
+    ],
+    "ctaText": "Can't find the material you need?",
+    "ctaBtn": "Contact the marketing department"
+  },
+  "legal": {
+    "impressumTitle": "Impressum",
+    "privacyTitle": "Privacy Policy / Datenschutzerklärung",
+    "termsTitle": "Terms & Conditions",
+    "cookiesTitle": "Cookie Policy",
+    "draftNotice": "The full legal text is being prepared by the client's lawyer. This is a working template and must be replaced before the production launch."
+  },
+  "termsPage": {
+    "body": "Terms of use for the Krüger Motor Oil website — working template."
+  },
+  "privacyPage": {
+    "body1": "Krüger Motor Oil GmbH (hereinafter \"we\", \"us\") takes the protection of personal data seriously. This policy describes what data is collected on kruger-oil.de and how it is used.",
+    "body2": "The full Datenschutzerklärung in line with GDPR/DSGVO requirements is being prepared by our legal department and will be published before the production launch."
+  },
+  "cookiesPage": {
+    "body": "This website uses cookies to keep the interface working (language, cart, forms) and to collect anonymous analytics. A detailed text with cookie categories will be added once it has been agreed with our lawyer and the cookie banner is implemented in Phase 12."
+  },
+  "impressum": {
+    "repr": "Vertreten durch / Represented by",
+    "director": "[Director name]",
+    "contact": "Kontakt / Contact",
+    "register": "Registereintrag / Registration",
+    "vat": "Umsatzsteuer-ID / VAT",
+    "responsible": "Verantwortlich für den Inhalt / Responsible for content",
+    "responsibleName": "[Name]",
+    "dispute": "Streitschlichtung / Dispute resolution"
+  },
+  "errors": {
+    "404Title": "404 — Page not found",
+    "404Lead": "It looks like this page doesn't exist. It may have been moved, or you followed an outdated link.",
+    "404Btn1": "Go to homepage",
+    "404Btn2": "Go to catalogue",
+    "404Btn3": "Get in touch",
+    "500Title": "500 — Something broke on our side",
+    "500Lead": "We already know about the problem and are working on it. Please try refreshing the page in a few minutes. If the problem persists, email us at info@kruger-oil.de.",
+    "500Btn": "Go to homepage"
+  },
+  "search": {
+    "title": "Search the site",
+    "placeholder": "What are you looking for? For example: 5W-30, ATF, Mercedes",
+    "submit": "Search",
+    "quickLinks": "Quick links",
+    "typePrompt": "Enter a query to find products, news and pages.",
+    "resultsFor": "Results for",
+    "nothingFound": "Nothing found",
+    "nothingHint": "Check the spelling or try a different query.",
+    "groupProducts": "Products",
+    "groupNews": "News",
+    "groupPages": "Pages"
+  },
+  "products": {
+    "listingTitle": "Krüger product catalogue",
+    "breadcrumb": "Products",
+    "categoryFallback": "Products",
+    "listingLead": "150+ products. Filter by application, type and specification.",
+    "soonNotice": "The full catalogue with filters and product pages goes live in Phase 4. For now, popular items and segment navigation are available.",
+    "filters": "Filters",
+    "filterByApplication": "By application",
+    "filterByType": "By product type",
+    "filterByViscosity": "By viscosity",
+    "filterBySpec": "By specification",
+    "filterByVolume": "By pack size",
+    "resetFilters": "Reset filters",
+    "sortLabel": "Sort by",
+    "sortPopular": "Popular",
+    "sortNew": "Newest first",
+    "sortAZ": "A — Z",
+    "sortZA": "Z — A",
+    "viewGrid": "Grid",
+    "viewList": "List",
+    "found": "Found",
+    "products": "products",
+    "showFilters": "Filters",
+    "showProducts": "Show {n} products",
+    "paginationPrev": "Previous",
+    "paginationNext": "Next",
+    "paginationShowing": "Showing",
+    "emptyTitle": "Nothing found",
+    "emptyText": "Try changing the filters or browse all products.",
+    "moreDetails": "Learn more",
+    "listingHeroTitle": "Product catalogue",
+    "listingHeroLead": "More than 150 premium lubricants. Use the filters by application, viscosity and specification to find the right product.",
+    "detail": {
+      "sku": "Item number",
+      "keyBenefits": "Key benefits",
+      "availableVolumes": "Available pack sizes",
+      "requestPrice": "Request a price",
+      "requestPriceTitle": "Price request",
+      "downloadPDS": "Download PDS",
+      "downloadSDS": "Download SDS",
+      "tabDescription": "Description",
+      "tabApplication": "Application",
+      "tabSpecifications": "Specifications",
+      "tabProperties": "Properties",
+      "tabBenefits": "Benefits",
+      "engineTypes": "Engine types",
+      "notRecommended": "Not recommended for",
+      "intervals": "Recommended oil change intervals",
+      "compatible": "Compatible vehicles",
+      "compliesWith": "Complies with",
+      "oemApprovals": "OEM approvals",
+      "recommendedFor": "Recommended for",
+      "physicalProps": "Physical and chemical properties",
+      "param": "Parameter",
+      "value": "Value",
+      "method": "Test method",
+      "relatedTitle": "You may also be interested in",
+      "qtyLabel": "Order volume",
+      "qtyPh": "e.g. 200 L",
+      "compatibleFallback": "The full compatibility list is available in the PDS for this product.",
+      "specsPending": "Physical and chemical data is being finalised.",
+      "specParam": "Parameter",
+      "specValue": "Value",
+      "specMethod": "Test method"
+    },
+    "allProducts": "All products",
+    "all": "All",
+    "catalogHeading": "Product catalogue",
+    "requestPriceEyebrow": "Price request"
+  },
+  "advantages": {
+    "eyebrow": "WHY KRÜGER",
+    "title": "German quality in every litre",
+    "subtitle": "We create lubricants trusted by vehicle manufacturers and industrial plants around the world.",
+    "items": [
+      {
+        "title": "Made in Germany",
+        "text": "All products are manufactured at our plants in Stuttgart and Hamburg. Quality control at every stage — from base oil selection through to filling."
+      },
+      {
+        "title": "OEM approvals",
+        "text": "Mercedes-Benz, BMW, Volkswagen, Porsche, Audi, Ford, Volvo, MAN, Scania, Renault, Toyota, Hyundai — officially approved for these brands."
+      },
+      {
+        "title": "ISO 9001 / 14001 / 45001",
+        "text": "Production certified to international standards for quality, environmental safety and occupational health and safety."
+      },
+      {
+        "title": "150+ products",
+        "text": "A complete range for passenger cars, trucks, industry, agricultural machinery, construction and electric mobility."
+      },
+      {
+        "title": "R&D in Stuttgart",
+        "text": "Our own research and development centre. Continuous investment in new formulations, bench testing and OEM tests."
+      },
+      {
+        "title": "50+ countries of presence",
+        "text": "A distribution network across five continents. Reliable supply anywhere in the world with predictable lead times."
+      }
+    ]
+  },
+  "seo": {
+    "home": {
+      "title": "Krüger Motor Oil — premium engine oils engineered in Germany",
+      "description": "German manufacturer of engine, transmission and industrial oils. 150+ products, OEM approvals from 12 carmakers, supplied to 50+ countries."
+    },
+    "products": {
+      "title": "Krüger product catalogue — engine, hydraulic, ATF, EV Fluids",
+      "description": "150+ premium Krüger lubricants with filters by application, viscosity, API/ACEA specification and pack size. Download PDS/SDS."
+    },
+    "news": {
+      "title": "Krüger Motor Oil news",
+      "description": "Company news, technical guides and catalogue updates from Krüger."
+    },
+    "contact": {
+      "title": "Contact — Krüger Motor Oil",
+      "description": "Head office in Stuttgart, regional representatives across Central Asia and the CIS. Get in touch via our contact form."
+    },
+    "brand": {
+      "title": "Krüger brand portal — logos, guidelines, photo library, POS",
+      "description": "Logos, brand guidelines, photo library, POS materials, presentations and templates for Krüger partners and distributors."
+    },
+    "faq": {
+      "title": "FAQ — common questions about Krüger motor oils",
+      "description": "Short answers about Krüger products, OEM approvals, supply and service."
+    },
+    "services": {
+      "title": "Krüger Motor Oil services — selection, audit, training, supply",
+      "description": "Lubricant selection, technical audits, laboratory oil analysis, staff training and supply logistics."
+    },
+    "search": {
+      "title": "Site search — Krüger Motor Oil",
+      "description": "Find the right Krüger product by name, viscosity (5W-30, 0W-20), specification or application."
+    },
+    "pdsSds": {
+      "title": "PDS / SDS — Krüger technical documents",
+      "description": "Product Data Sheets and Safety Data Sheets for 40+ Krüger products. Search by name, article number or category."
+    },
+    "glance": {
+      "title": "About Krüger — manufacturing in Germany since 2017",
+      "description": "Krüger Motor Oil — premium lubricants from Stuttgart. R&D and production in Germany, supplied to 50+ countries."
+    },
+    "commitments": {
+      "title": "Our commitments — Krüger Motor Oil",
+      "description": "Six areas where Krüger keeps its word: to customers, partners, employees and the environment."
+    },
+    "visionMission": {
+      "title": "Vision and mission — Krüger Motor Oil",
+      "description": "Why we exist: the benchmark for lubricants across Europe and Central Asia."
+    },
+    "notFound": {
+      "title": "404 — Page not found | Krüger"
+    },
+    "serverError": {
+      "title": "500 — Server error | Krüger"
+    }
+  },
+  "redirect": {
+    "title": "Krüger Motor Oil — redirecting",
+    "link": "Go to “About us”"
+  }
+}

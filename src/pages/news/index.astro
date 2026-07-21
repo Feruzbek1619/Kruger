@@ -1,27 +1,26 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import NewsCard from '@/components/cards/NewsCard.astro'
-import { t } from '@/lib/i18n'
+import { getAllNews } from '@/lib/api'
+import { t, localePath } from '@/lib/i18n'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
-const all = await getCollection('news')
-const items = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const items = (await getAllNews(lang)).sort((a, b) => +new Date(b.date) - +new Date(a.date))
 ---
-<BaseLayout title="Новости Krüger Motor Oil" description="Новости компании, технические гиды и обновления каталога Krüger.">
+<BaseLayout title={t(lang, "seo.news.title")} description={t(lang, "seo.news.description")}>
   <PageHero
     title={t(lang, 'newsPage.title')}
     lead={t(lang, 'newsPage.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.news') }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'nav.news') }]}
   />
   <section class="bg-bg py-16 md:py-24">
     <div class="container-page">
       {items.length > 0 ? (
         <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((entry) => (
-            <li><NewsCard entry={entry} /></li>
+          {items.map((item) => (
+            <li><NewsCard item={item} /></li>
           ))}
         </ul>
       ) : (
@@ -29,8 +28,8 @@ const items = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
           <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-bg-soft text-text-muted mb-5">
             <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 5h18M3 12h18M3 19h12" stroke-linecap="round"/></svg>
           </div>
-          <p class="font-display text-xl md:text-2xl font-bold text-text mb-2">Пока без публикаций</p>
-          <p class="text-text-muted">Скоро здесь появятся новости компании и технические гиды.</p>
+          <p class="font-display text-xl md:text-2xl font-bold text-text mb-2">{t(lang, 'newsPage.emptyTitle')}</p>
+          <p class="text-text-muted">{t(lang, 'newsPage.emptySubtitle')}</p>
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import { onMounted, ref, watch } from 'vue'
 
 interface Item { label: string; href: string; children?: Item[] }
@@ -30,7 +31,7 @@ function toggleSection(key: string) {
     class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-text hover:bg-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     :aria-expanded="open"
     aria-controls="mobile-menu"
-    aria-label="Открыть меню"
+    :aria-label="ui('openMenu')"
     @click="open = true"
   >
     <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
@@ -45,14 +46,14 @@ function toggleSection(key: string) {
       v-if="open"
       id="mobile-menu"
       class="fixed top-0 right-0 z-modal h-full w-[88vw] max-w-sm bg-bg shadow-xl transform translate-x-0 motion-safe:animate-[slide-in-right_220ms_ease-out]"
-      aria-label="Мобильное меню"
+      :aria-label="ui('mobileMenu')"
     >
       <div class="flex items-center justify-between p-4 border-b border-border-soft">
         <span class="font-display text-lg font-bold">Krüger</span>
         <button
           type="button"
           class="h-10 w-10 inline-flex items-center justify-center rounded-md hover:bg-bg-soft"
-          aria-label="Закрыть меню"
+          :aria-label="ui('closeMenu')"
           @click="open = false"
         >
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg>

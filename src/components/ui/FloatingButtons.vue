@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import { onMounted, onUnmounted, ref } from 'vue'
 const mounted = ref(false)
 const menuOpen = ref(false)
@@ -24,10 +25,10 @@ onUnmounted(() => {
       class="fixed right-4 md:right-5 bottom-4 md:bottom-5 z-popover flex flex-col gap-2.5 transition-opacity duration-200"
       :class="menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'"
       style="bottom: max(1rem, env(safe-area-inset-bottom));"
-      aria-label="Связаться через мессенджер"
+      :aria-label="ui('messenger')"
     >
       <a
-        href="https://wa.me/49711123456789"
+        href="https://wa.me/4971112345678"
         target="_blank"
         rel="noopener"
         aria-label="WhatsApp"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ui } from '@/lib/uiStrings'
 import type { DialogContentEmits, DialogContentProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
@@ -47,7 +48,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
           class="absolute top-3 right-3 p-0.5 transition-colors rounded-md hover:bg-secondary"
         >
           <X class="w-4 h-4" />
-          <span class="sr-only">Закрыть</span>
+          <span class="sr-only">{{ ui('close') }}</span>
         </DialogClose>
       </DialogContent>
     </DialogOverlay>

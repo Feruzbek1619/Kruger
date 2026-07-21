@@ -3,20 +3,19 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import Card from '@/components/ui/Card.astro'
 import Icon from '@/components/ui/Icon.astro'
-import ru from '@/i18n/ru.json'
-import { t } from '@/lib/i18n'
+import { t, tRaw, localePath } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const items = ru.brand.items
+const items = tRaw<any[]>(lang, 'brand.items')
 ---
 <BaseLayout
-  title="Бренд-портал Krüger — логотипы, гайдлайн, фотобанк, POS"
-  description="Логотипы, бренд-гайдлайн, фотобанк, POS-материалы, презентации и видеоконтент — всё для эффективной работы с брендом Krüger."
+  title={t(lang, "seo.brand.title")}
+  description={t(lang, "seo.brand.description")}
 >
   <PageHero
     eyebrow={t(lang, 'brand.eyebrow')}
     title={t(lang, 'brand.title')}
     lead={t(lang, 'brand.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'brand.title') }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'brand.title') }]}
   />
   <section class="bg-bg py-16 md:py-24">
     <div class="container-page">
@@ -39,7 +38,7 @@ const items = ru.brand.items
       </ul>
       <div class="mt-12 text-center">
         <p class="text-text-muted mb-4">{t(lang, 'brand.ctaText')}</p>
-        <a href="/contact/" class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'brand.ctaBtn')}</a>
+        <a href={localePath(lang, "/contact/")} class="inline-flex h-12 px-7 items-center rounded-pill bg-bg text-text border border-border font-medium hover:bg-bg-muted transition-colors">{t(lang, 'brand.ctaBtn')}</a>
       </div>
     </div>
   </section>

@@ -1,29 +1,31 @@
 ---
-import { getCollection, render } from 'astro:content'
+import { marked } from 'marked'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import NewsCard from '@/components/cards/NewsCard.astro'
 import Icon from '@/components/ui/Icon.astro'
-import { t } from '@/lib/i18n'
+import { getAllNews, getNewsArticle } from '@/lib/api'
+import { t, localePath, dateLocale } from '@/lib/i18n'
 
 export async function getStaticPaths() {
-  const entries = await getCollection('news')
-  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }))
+  const items = await getAllNews()
+  return items.map((n) => ({ params: { slug: n.slug }, props: { slug: n.slug } }))
 }
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const { entry } = Astro.props as { entry: Awaited<ReturnType<typeof getCollection<'news'>>>[number] }
-const { Content } = await render(entry)
+const { slug } = Astro.props as { slug: string }
+const article = await getNewsArticle(slug, lang)
+const bodyHtml = await marked.parse(article.body || '')
 
-const all = await getCollection('news')
-const related = all.filter((e) => e.id !== entry.id).slice(0, 3)
-const date = entry.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+const all = await getAllNews(lang)
+const related = all.filter((n) => n.slug !== slug).slice(0, 3)
+const date = new Date(article.date).toLocaleDateString(dateLocale(lang), { day: 'numeric', month: 'long', year: 'numeric' })
 ---
-<BaseLayout title={`${entry.data.title} — Krüger`} description={entry.data.preview}>
+<BaseLayout title={`${article.title} — Krüger`} description={article.preview}>
   <PageHero
-    eyebrow={entry.data.tag}
-    title={entry.data.title}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.news'), href: '/news/' }, { label: entry.data.title }]}
+    eyebrow={article.tag}
+    title={article.title}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'nav.news'), href: localePath(lang, '/news/') }, { label: article.title }]}
   />
 
   <article class="bg-bg py-16 md:py-20">
@@ -31,14 +33,12 @@ const date = entry.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month
       <div class="flex items-center gap-4 text-sm text-text-muted mb-8">
         <time>{date}</time>
         <span aria-hidden="true">·</span>
-        <span>{entry.data.tag}</span>
+        <span>{article.tag}</span>
       </div>
-      <div class="prose-news">
-        <Content />
-      </div>
+      <div class="prose-news" set:html={bodyHtml} />
 
       <div class="mt-10 pt-8 border-t border-border-soft flex flex-wrap items-center justify-between gap-4">
-        <a href="/news/" class="inline-flex items-center gap-2 text-sm font-medium text-text hover:text-primary">
+        <a href={localePath(lang, "/news/")} class="inline-flex items-center gap-2 text-sm font-medium text-text hover:text-primary">
           <Icon name="arrowLeft" class="h-4 w-4" />
           {t(lang, 'common.back')}
         </a>
@@ -46,8 +46,8 @@ const date = entry.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month
           <span class="mr-2">{t(lang, 'common.share')}:</span>
           {[
             ['facebook',   `https://www.facebook.com/sharer/sharer.php?u=${Astro.url.href}`],
-            ['linkedin',   `https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(entry.data.title)}`],
-            ['telegramApp',`https://t.me/share/url?url=${Astro.url.href}&text=${encodeURIComponent(entry.data.title)}`],
+            ['linkedin',   `https://www.linkedin.com/shareArticle?mini=true&url=${Astro.url.href}&title=${encodeURIComponent(article.title)}`],
+            ['telegramApp',`https://t.me/share/url?url=${Astro.url.href}&text=${encodeURIComponent(article.title)}`],
           ].map(([name, url]) => (
             <a href={url} target="_blank" rel="noopener" aria-label={name} class="inline-flex h-9 w-9 items-center justify-center rounded-pill border border-border text-text hover:bg-primary hover:border-primary hover:text-text-inverse transition-colors">
               <Icon name={name} class="h-4 w-4" />
@@ -63,7 +63,7 @@ const date = entry.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month
       <div class="container-page">
         <h2 class="font-display text-2xl md:text-3xl font-bold mb-8">{t(lang, 'newsPage.related')}</h2>
         <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-3">
-          {related.map((e) => <li><NewsCard entry={e} /></li>)}
+          {related.map((n) => <li><NewsCard item={n} /></li>)}
         </ul>
       </div>
     </section>

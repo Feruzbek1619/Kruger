@@ -15,12 +15,16 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import SegmentStrip from '@/components/products/SegmentStrip.astro'
 import ProductCatalogShell from '@/components/products/ProductCatalogShell.vue'
-import { t } from '@/lib/i18n'
-import allProducts from '@/mocks/all-products.json'
-import segments from '@/mocks/segments.json'
-import categories from '@/mocks/categories.json'
+import { t, localePath } from '@/lib/i18n'
+import { getAllProducts, getSegments, getCategories } from '@/lib/api'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+
+// Данные каталога/справочники через API-слой: PUBLIC_USE_MOCKS=false переключит
+// на бэкенд без изменений компонентов. В mock-режиме — src/mocks/*.json.
+const allProducts = await getAllProducts(lang)
+const segments = await getSegments(lang)
+const categories = await getCategories(lang)
 
 const applicationOptions = (segments as { id: string; title: string }[]).map((s) => ({
   id: s.id,
@@ -60,25 +64,27 @@ const labels = {
 }
 ---
 <BaseLayout
-  title="Каталог продукции Krüger — моторные, гидравлические, ATF, EV Fluids"
-  description="150+ премиальных смазочных материалов Krüger с фильтрами по применению, вязкости, API/ACEA-спецификации и объёму упаковки. Скачать PDS/SDS."
+  title={t(lang, "seo.products.title")}
+  description={t(lang, "seo.products.description")}
 >
   <PageHero
     title={t(lang, 'products.listingHeroTitle')}
     lead={t(lang, 'products.listingHeroLead')}
     breadcrumbs={[
-      { label: t(lang, 'common.breadcrumbHome'), href: '/' },
-      { label: 'Каталог' },
+      { label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') },
+      { label: t(lang, 'nav.catalog') },
     ]}
   />
 
   <SegmentStrip />
 
   <ProductCatalogShell
+    lang={lang}
     client:idle
     products={allProducts as any}
     applicationOptions={applicationOptions}
     categoryLabels={categoryLabels}
+    catalogHeading={t(lang, 'products.catalogHeading')}
     labels={labels}
   />
 </BaseLayout>

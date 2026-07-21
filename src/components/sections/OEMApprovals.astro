@@ -1,20 +1,19 @@
 ---
-import { t } from '@/lib/i18n'
+import { t, localePath } from '@/lib/i18n'
 import Icon from '@/components/ui/Icon.astro'
-import oem from '@/mocks/oem.json'
-import type { OEMBrand } from '@/types'
+import { getOEMBrands } from '@/lib/api'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const brands = oem as OEMBrand[]
+const brands = await getOEMBrands(lang)
 ---
 <section class="bg-bg-soft py-16 md:py-24">
   <div class="container-page">
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
       <div class="flex items-center justify-center gap-3 mb-4">
         <span class="inline-block h-0.5 w-10 bg-primary" aria-hidden="true" />
-        <p class="text-[10px] md:text-xs font-bold tracking-[0.2em] text-primary uppercase">ОДОБРЕНО OEM</p>
+        <p class="text-eyebrow md:text-xs font-bold tracking-[0.2em] text-primary uppercase">{t(lang, 'oem.eyebrow')}</p>
         <span class="inline-block h-0.5 w-10 bg-primary" aria-hidden="true" />
       </div>
-      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
+      <h2 class="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
         {t(lang, 'oem.title')}
       </h2>
       <p class="mt-4 text-base md:text-lg text-text-muted">{t(lang, 'oem.subtitle')}</p>
@@ -34,7 +33,7 @@ const brands = oem as OEMBrand[]
         <p class="relative text-base md:text-lg leading-relaxed">{t(lang, 'oem.blockText')}</p>
         <p class="relative mt-4 text-base md:text-lg leading-relaxed opacity-90">{t(lang, 'oem.blockText2')}</p>
         <a
-          href="/about/glance/"
+          href={localePath(lang, "/about/glance/")}
           class="relative mt-7 inline-flex items-center gap-3 h-11 pl-5 pr-2 rounded-pill bg-text-inverse text-text font-semibold text-sm hover:bg-text-inverse/90 transition-colors"
         >
           <span>{t(lang, 'oem.cta')}</span>

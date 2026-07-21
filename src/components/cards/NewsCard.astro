@@ -10,6 +10,7 @@
 import type { CollectionEntry } from 'astro:content'
 import type { NewsItem } from '@/types'
 import Icon from '@/components/ui/Icon.astro'
+import { localePath, dateLocale } from '@/lib/i18n'
 
 type Props = { item: NewsItem; entry?: undefined } | { entry: CollectionEntry<'news'>; item?: undefined }
 
@@ -20,10 +21,12 @@ const title   = isEntry ? props.entry!.data.title   : props.item!.title
 const preview = isEntry ? props.entry!.data.preview  : props.item!.preview
 const tag     = isEntry ? props.entry!.data.tag      : props.item!.tag
 const image   = isEntry ? (props.entry!.data.image ?? '') : (props.item!.image ?? '')
-const href    = isEntry ? `/news/${props.entry!.id}/`    : `/news/${props.item!.slug}/`
+const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
+const href    = localePath(lang, isEntry ? `/news/${props.entry!.id}/` : `/news/${props.item!.slug}/`)
+const dateFmt = { day: 'numeric', month: 'long', year: 'numeric' } as const
 const date    = isEntry
-  ? props.entry!.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
-  : new Date(props.item!.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+  ? props.entry!.data.date.toLocaleDateString(dateLocale(lang), dateFmt)
+  : new Date(props.item!.date).toLocaleDateString(dateLocale(lang), dateFmt)
 ---
 <article class="group flex flex-col bg-bg rounded-xl overflow-hidden border border-border-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
   <a

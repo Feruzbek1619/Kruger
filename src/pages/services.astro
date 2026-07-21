@@ -3,22 +3,21 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import Card from '@/components/ui/Card.astro'
 import Icon from '@/components/ui/Icon.astro'
-import ru from '@/i18n/ru.json'
-import { t } from '@/lib/i18n'
+import { t, tRaw, localePath } from '@/lib/i18n'
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const items = ru.services.items
+const items = tRaw<any[]>(lang, 'services.items')
 // Семантика: подбор, аудит, лаб-анализ, обучение, маркетинг, поставки
 const icons = ['sliders', 'clipboardCheck', 'flask', 'graduation', 'megaphone', 'truck'] as const
 ---
 <BaseLayout
-  title="Услуги Krüger Motor Oil — подбор, аудит, обучение, поставки"
-  description="Подбор смазочных материалов, технический аудит, лабораторный анализ масел, обучение персонала, маркетинговая поддержка дилеров и корпоративные поставки."
+  title={t(lang, "seo.services.title")}
+  description={t(lang, "seo.services.description")}
 >
   <PageHero
     eyebrow={t(lang, 'services.eyebrow')}
     title={t(lang, 'services.title')}
     lead={t(lang, 'services.lead')}
-    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: '/' }, { label: t(lang, 'nav.services') }]}
+    breadcrumbs={[{ label: t(lang, 'common.breadcrumbHome'), href: localePath(lang, '/') }, { label: t(lang, 'nav.services') }]}
   />
 
   <section class="bg-bg py-16 md:py-24">
@@ -26,10 +25,10 @@ const icons = ['sliders', 'clipboardCheck', 'flask', 'graduation', 'megaphone', 
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-14">
         <div class="inline-flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
-          <p class="text-[10px] md:text-xs font-bold tracking-[0.22em] text-primary uppercase">ЧЕМ МЫ ЗАНИМАЕМСЯ</p>
+          <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'services.sectionEyebrow')}</p>
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
         </div>
-        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">Шесть направлений работы с дилерами и клиентами</h2>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">{t(lang, 'services.sectionTitle')}</h2>
       </div>
 
       <ul class="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -57,7 +56,7 @@ const icons = ['sliders', 'clipboardCheck', 'flask', 'graduation', 'megaphone', 
               <span
                 class="absolute -top-2 -right-2 font-display font-extrabold text-[6rem] leading-none select-none pointer-events-none"
                 style={i === 0
-                  ? '-webkit-text-stroke: 2px #F8CC0F; color: transparent; opacity: 0.22;'
+                  ? '-webkit-text-stroke: 2px var(--color-brand-yellow); color: transparent; opacity: 0.22;'
                   : '-webkit-text-stroke: 2px var(--color-primary); color: transparent; opacity: 0.14;'}
                 aria-hidden="true"
               >{String(i + 1).padStart(2, '0')}</span>
@@ -100,10 +99,10 @@ const icons = ['sliders', 'clipboardCheck', 'flask', 'graduation', 'megaphone', 
       aria-hidden="true"
     />
     <div class="relative container-page text-center max-w-2xl mx-auto">
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-4">Готовы обсудить сотрудничество?</h2>
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold tracking-tight mb-4">{t(lang, 'services.ctaTitle')}</h2>
       <p class="text-text-muted mb-6 text-base md:text-lg leading-relaxed">{t(lang, 'services.ctaText')}</p>
       <a
-        href="/contact/"
+        href={localePath(lang, "/contact/")}
         class="group inline-flex items-center gap-3 h-12 pl-7 pr-2 rounded-pill bg-primary text-text-inverse font-semibold hover:bg-primary-hover transition-colors"
       >
         <span>{t(lang, 'services.ctaBtn')}</span>
