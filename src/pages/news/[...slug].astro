@@ -1,5 +1,5 @@
 ---
-import { marked } from 'marked'
+import { renderMarkdown } from '@/lib/markdown'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PageHero from '@/components/sections/PageHero.astro'
 import NewsCard from '@/components/cards/NewsCard.astro'
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 const { slug } = Astro.props as { slug: string }
 const article = await getNewsArticle(slug, lang)
-const bodyHtml = await marked.parse(article.body || '')
+const bodyHtml = await renderMarkdown(article.body)
 
 const all = await getAllNews(lang)
 const related = all.filter((n) => n.slug !== slug).slice(0, 3)

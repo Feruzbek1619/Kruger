@@ -9,6 +9,7 @@ import ContactStrip from '@/components/sections/ContactStrip.astro'
 import FloatingButtons from '@/components/ui/FloatingButtons.vue'
 import Toast from '@/components/ui/Toast.vue'
 import { t } from '@/lib/i18n'
+import { safeJsonLd } from '@/lib/jsonld'
 
 interface Props {
   title?: string
@@ -120,8 +121,8 @@ const organizationSchema = {
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- JSON-LD Organization schema (every page) -->
-    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script type="application/ld+json" set:html={safeJsonLd(organizationSchema)} />
+    {jsonLd && <script type="application/ld+json" set:html={safeJsonLd(jsonLd)} />}
 
     <!-- Skeleton mode boot (client-side): ?skeleton=1 → data-skeleton="true" БЕЗ FOUC -->
     <script is:inline>

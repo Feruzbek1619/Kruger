@@ -5,6 +5,7 @@ import Accordion from '@/components/ui/Accordion.vue'
 import faqFull from '@/mocks/faq-full.json'
 import { getFAQ } from '@/lib/api'
 import { t, localePath } from '@/lib/i18n'
+import { safeJsonLd } from '@/lib/jsonld'
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 
@@ -56,5 +57,5 @@ const schema = {
       ))}
     </div>
   </section>
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script is:inline type="application/ld+json" set:html={safeJsonLd(schema)} />
 </BaseLayout>
