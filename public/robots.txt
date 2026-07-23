@@ -3,4 +3,4 @@ Allow: /
 Disallow: /styleguide/
 
 # Astro generates these via @astrojs/sitemap integration
-Sitemap: https://kruger-oil.de/sitemap-index.xml
+Sitemap: https://kruger-oil.com/sitemap-index.xml
