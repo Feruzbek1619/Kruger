@@ -20,6 +20,8 @@ const availableLangs = langs.filter((l) => l.available)
 function pick(code: string) {
   if (typeof window === 'undefined') return
   if (!langs.find((l) => l.code === code)?.available) return
+  // Явный выбор запоминается — автоопределение по языку браузера его не перебивает
+  try { localStorage.setItem('kruger-lang', code) } catch { /* private mode */ }
   const path = window.location.pathname.replace(/^\/(en|de)(?=\/|$)/, '') || '/'
   window.location.href = code === 'ru' ? path : `/${code}${path}`
 }

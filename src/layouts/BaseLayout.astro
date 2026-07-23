@@ -40,7 +40,7 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
 const pageTitle = title ?? t(lang, 'seo.home.title')
 const pageDescription = description ?? t(lang, 'seo.home.description')
 
-const siteUrl = 'https://kruger-oil.de'
+const siteUrl = 'https://kruger-oil.com'
 const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
 
@@ -91,6 +91,39 @@ const organizationSchema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#E51E25" />
+
+    <!-- Автовыбор языка: DE-браузер → /de/, RU/CIS → RU (корень), остальные → /en/.
+         Явный выбор из переключателя (localStorage kruger-lang) всегда приоритетнее.
+         Авторедирект — один раз за сессию; боты и вебдрайверы не редиректятся (SEO). -->
+    <script is:inline>
+      (function () {
+        try {
+          var path = window.location.pathname;
+          if (/^\/(en|de)(\/|$)/.test(path)) return;
+          if (navigator.webdriver || /bot|crawl|spider|lighthouse|preview/i.test(navigator.userAgent)) return;
+          var target = null;
+          var saved = localStorage.getItem('kruger-lang');
+          if (saved) {
+            if (saved === 'en' || saved === 'de') target = saved;
+          } else {
+            if (sessionStorage.getItem('kruger-lang-auto')) return;
+            sessionStorage.setItem('kruger-lang-auto', '1');
+            var map = { de: 'de', ru: 'ru', uz: 'ru', kk: 'ru', ky: 'ru', be: 'ru', uk: 'ru', tg: 'ru' };
+            var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+            var pick = 'en';
+            for (var i = 0; i < prefs.length; i++) {
+              var c = String(prefs[i]).slice(0, 2).toLowerCase();
+              if (map[c]) { pick = map[c]; break; }
+              if (c === 'en') break;
+            }
+            if (pick !== 'ru') target = pick;
+          }
+          if (target) {
+            window.location.replace('/' + target + path + window.location.search + window.location.hash);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />

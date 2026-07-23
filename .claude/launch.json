@@ -7,6 +7,13 @@
       "runtimeArgs": ["run", "dev"],
       "port": 4321,
       "cwd": "/Users/ustozferuz/Kruger"
+    },
+    {
+      "name": "kruger-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview"],
+      "port": 4321,
+      "cwd": "/Users/ustozferuz/Kruger"
     }
   ]
 }

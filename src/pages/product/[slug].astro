@@ -89,11 +89,13 @@ const productSchema = {
   name: product.name,
   sku: product.sku,
   description: product.shortDescription,
-  image: product.image ? `https://kruger-oil.de${product.image}` : undefined,
+  image: product.image
+    ? (product.image.startsWith('http') ? product.image : `https://kruger-oil.com${product.image}`)
+    : undefined,
   category: categoryTitle,
   brand: { '@type': 'Brand', name: 'Krüger Motor Oil' },
   manufacturer: { '@type': 'Organization', name: 'Krüger Motor Oil GmbH' },
-  url: `https://kruger-oil.de/product/${product.slug}/`,
+  url: `https://kruger-oil.com/product/${product.slug}/`,
   offers: {
     '@type': 'Offer',
     availability: 'https://schema.org/InStock',
