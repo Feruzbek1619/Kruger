@@ -90,18 +90,12 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
         isCompact ? 'w-28 sm:w-32' : isFeatured ? 'aspect-[5/4]' : 'aspect-[4/3]',
       ]"
     >
-      <!-- Watermark K mark (бренд-текстура) -->
-      <span
-        class="absolute -right-6 -top-6 font-display text-[12rem] font-extrabold text-text/[0.04] leading-none select-none pointer-events-none"
-        aria-hidden="true"
-      >K</span>
-
       <img
         v-if="product.image"
         :src="product.image"
         :alt="product.name"
         loading="lazy"
-        class="object-contain w-full h-full p-6 transition-transform duration-500 group-hover:scale-105"
+        class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
       />
 
       <!-- Realistic canister placeholder — different per category -->
