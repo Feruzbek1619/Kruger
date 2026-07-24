@@ -87,7 +87,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
     <div
       :class="[
         'relative bg-bg flex items-center justify-center overflow-hidden shrink-0',
-        isCompact ? 'w-28 sm:w-32' : isFeatured ? 'aspect-[5/4]' : 'aspect-[4/3]',
+        isCompact ? 'w-28 sm:w-32' : 'aspect-[4/5]',
       ]"
     >
       <img

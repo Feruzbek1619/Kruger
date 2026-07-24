@@ -31,11 +31,14 @@ const date    = isEntry
 <article class="group flex flex-col bg-bg rounded-xl overflow-hidden border border-border-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
   <a
     href={href}
-    class="relative block aspect-[16/10] bg-gradient-to-br from-bg-muted to-bg-soft overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    class="relative block aspect-[16/10] bg-bg-dark overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
   >
-    <!-- Fallback placeholder — виден если картинка не загрузилась -->
-    <span class="absolute inset-0 flex items-center justify-center font-display text-text-subtle text-sm uppercase tracking-wider select-none">
-      {tag}
+    <!-- Брендовая заглушка (когда нет изображения): тёмная плитка + красный акцент + тег -->
+    <span class="absolute inset-x-0 top-0 h-1 bg-primary" aria-hidden="true"></span>
+    <span class="absolute inset-0 flex items-center justify-center select-none">
+      <span class="px-3.5 py-1.5 rounded-pill border border-text-inverse/25 text-text-inverse/75 text-xs font-semibold uppercase tracking-[0.2em]">
+        {tag}
+      </span>
     </span>
     {image && (
       <img
