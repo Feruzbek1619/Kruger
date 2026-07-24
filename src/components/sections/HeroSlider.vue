@@ -129,13 +129,13 @@ onUnmounted(stopAuto)
     <!-- Bottom bar (counter + controls в одной строке, не пересекается с FloatingButtons) -->
     <div class="absolute bottom-5 md:bottom-10 left-0 right-0 z-10 pointer-events-none">
       <div class="container-page flex items-center justify-between gap-4">
-        <!-- Counter -->
-        <div class="flex items-center gap-3 font-mono text-xs md:text-sm pointer-events-auto">
+        <!-- Counter — тёмный scrim, чтобы контраст держался и над жёлтой фигурой (a11y AA) -->
+        <div class="flex items-center gap-3 font-mono text-xs md:text-sm pointer-events-auto bg-bg-dark/60 rounded-pill px-3 py-1.5 backdrop-blur-sm">
           <span class="font-bold text-brand-yellow">
             {{ String(idx + 1).padStart(2, '0') }}
           </span>
-          <span class="h-px w-6 md:w-8 bg-text-inverse/30" aria-hidden="true" />
-          <span class="text-text-inverse/60">
+          <span class="h-px w-6 md:w-8 bg-text-inverse/40" aria-hidden="true" />
+          <span class="text-text-inverse/85">
             {{ String(slides.length).padStart(2, '0') }}
           </span>
         </div>
