@@ -72,13 +72,21 @@ const slides = [
 ]
 
 const segments = await getSegments(lang)
-const tabsData = (await Promise.all(
+// Каждый сегмент со своими товарами. На главной сегменты без товаров НЕ показываем
+// (ни чипсами ProductsTabs, ни карточками MarketSegments) — фильтры /products/ это не трогает.
+const segmentsWithProducts = await Promise.all(
   segments.map(async (s) => ({
-    id: s.id,
-    label: s.title,
+    segment: s,
     items: await getProductsByApplication(s.id, lang),
   })),
-)) as { id: string; label: string; items: unknown[] }[]
+)
+const nonEmptySegments = segmentsWithProducts.filter((x) => x.items.length > 0)
+const activeSegments = nonEmptySegments.map((x) => x.segment)
+const tabsData = nonEmptySegments.map((x) => ({
+  id: x.segment.id,
+  label: x.segment.title,
+  items: x.items,
+})) as { id: string; label: string; items: unknown[] }[]
 
 const formLabels = {
   name: t(lang, 'questionForm.nameLabel'),
@@ -125,18 +133,20 @@ const formErrors = {
     eyebrow={t(lang, 'popular.eyebrow')}
   />
 
-  <MarketSegments />
+  <MarketSegments segments={activeSegments} />
 
-  <ProductsTabs
-    lang={lang}
-    client:visible
-    title={t(lang, 'tabs.title')}
-    groups={tabsData as any}
-    more={t(lang, 'popular.more')}
-    eyebrow={t(lang, 'popular.tabsEyebrow')}
-    allLabel={t(lang, 'products.allProducts')}
-    allShort={t(lang, 'products.all')}
-  />
+  {tabsData.length > 0 && (
+    <ProductsTabs
+      lang={lang}
+      client:visible
+      title={t(lang, 'tabs.title')}
+      groups={tabsData as any}
+      more={t(lang, 'popular.more')}
+      eyebrow={t(lang, 'popular.tabsEyebrow')}
+      allLabel={t(lang, 'products.allProducts')}
+      allShort={t(lang, 'products.all')}
+    />
+  )}
 
   <ProductRange />
 
