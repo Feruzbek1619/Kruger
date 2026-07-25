@@ -125,7 +125,7 @@ const productSchema = {
     <div class="container-page grid gap-10 lg:gap-12 lg:grid-cols-2 items-start">
       <ProductGallery
         client:visible
-        images={product.image ? [product.image] : []}
+        images={[product.image, ...(((product as any).gallery ?? []) as string[])].filter(Boolean) as string[]}
         alt={product.name}
         category={product.category}
         viscosity={(product as any).viscosity ?? ''}
