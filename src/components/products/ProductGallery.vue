@@ -54,23 +54,17 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
   <div class="flex flex-col gap-4">
     <!-- Main image / detailed canister placeholder -->
     <div
-      class="group relative aspect-square rounded-2xl overflow-hidden border border-border-soft bg-bg"
+      class="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border-soft bg-bg-dark"
       @touchstart.passive="onTouchStart"
       @touchend.passive="onTouchEnd"
     >
-      <!-- Watermark K -->
-      <span
-        class="absolute -right-10 -top-10 font-display text-[24rem] font-extrabold text-text/[0.04] leading-none select-none pointer-events-none"
-        aria-hidden="true"
-      >K</span>
-
       <Transition name="kr-gallery-fade" mode="out-in">
         <img
           v-if="images[current]"
           :key="current"
           :src="images[current]"
           :alt="alt"
-          class="relative object-contain w-full h-full p-10"
+          class="relative object-cover w-full h-full"
         />
       </Transition>
 
@@ -193,8 +187,8 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
       </li>
     </ul>
 
-    <!-- Empty thumbnails (placeholders с мини-канистрами) -->
-    <ul v-else class="grid grid-cols-4 gap-3">
+    <!-- Empty thumbnails — только когда изображения нет вовсе (placeholder-режим) -->
+    <ul v-else-if="images.length === 0" class="grid grid-cols-4 gap-3">
       <li v-for="i in 4" :key="i">
         <div class="aspect-square w-full bg-bg-soft rounded-md border border-border-soft flex items-center justify-center overflow-hidden">
           <svg viewBox="0 0 100 130" class="h-[60%] w-auto opacity-40" aria-hidden="true">
