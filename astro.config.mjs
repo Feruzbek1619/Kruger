@@ -5,12 +5,13 @@ import node from '@astrojs/node'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
-// Гибрид: маркетинговые страницы статичны (быстро, SEO), а контентные
-// (каталог/товар/новости) помечены `export const prerender = false` и
-// рендерятся вживую из API на каждый запрос — правки в админке видны сразу.
+// SSR: весь сайт рендерится на сервере из API на каждый запрос — правки в
+// админке (товары, новости, FAQ, карта, партнёры и т.д.) видны сразу, без пересборки.
+// host:true + port — чтобы standalone-сервер слушал 0.0.0.0:4321 (для Traefik) без env.
 export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),
+  server: { host: true, port: 4321 },
   site: 'https://kruger-oil.com',
   i18n: {
     defaultLocale: 'ru',
