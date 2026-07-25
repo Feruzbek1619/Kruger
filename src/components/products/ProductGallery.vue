@@ -54,7 +54,7 @@ const yellowFillStyle = { fill: 'var(--color-brand-yellow)' }
   <div class="flex flex-col gap-4">
     <!-- Main image / detailed canister placeholder -->
     <div
-      class="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border-soft bg-bg-dark"
+      class="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border-soft bg-bg-soft"
       @touchstart.passive="onTouchStart"
       @touchend.passive="onTouchEnd"
     >
