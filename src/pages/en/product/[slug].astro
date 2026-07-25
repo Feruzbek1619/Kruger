@@ -1,13 +1,6 @@
 ---
-// en-локаль: страницы товара. getStaticPaths свой, рендер — общая страница.
+// en-локаль: страница товара. SSR — рендер общей страницы (slug/локаль из запроса).
+export const prerender = false
 import Page from "../../product/[slug].astro"
-import { getAllProducts } from "@/lib/api"
-
-export async function getStaticPaths() {
-  const products = await getAllProducts()
-  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }))
-}
-
-const { product } = Astro.props
 ---
-<Page product={product} />
+<Page />

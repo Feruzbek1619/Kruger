@@ -7,14 +7,15 @@ import Icon from '@/components/ui/Icon.astro'
 import { getAllNews, getNewsArticle } from '@/lib/api'
 import { t, localePath, dateLocale } from '@/lib/i18n'
 
-export async function getStaticPaths() {
-  const items = await getAllNews()
-  return items.map((n) => ({ params: { slug: n.slug }, props: { slug: n.slug } }))
-}
+// SSR: новость рендерится вживую из API (правки в админке видны сразу).
+export const prerender = false
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-const { slug } = Astro.props as { slug: string }
+const slug = Astro.params.slug as string
 const article = await getNewsArticle(slug, lang)
+if (!article || !article.slug) {
+  return Astro.rewrite('/404')
+}
 const bodyHtml = await renderMarkdown(article.body)
 
 const all = await getAllNews(lang)

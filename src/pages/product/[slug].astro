@@ -12,21 +12,18 @@ import { t, localePath } from '@/lib/i18n'
 import { getAllProducts, getProductDetail, getCategories } from '@/lib/api'
 import type { Product } from '@/types'
 
-export async function getStaticPaths() {
-  // Страницы товаров — из API-слоя (mock-fallback = all-products.json).
-  // Раньше был union с products.json ради 26 «фантомных» slug главной; теперь
-  // и главная берёт товары из того же источника (бэка) — фантомов нет.
-  const products = await getAllProducts()
-  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }))
-}
+// SSR: товар рендерится вживую из API на каждый запрос (правки в админке видны сразу).
+export const prerender = false
 
 const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
-// getStaticPaths не знает локаль (Astro строит пути один раз), поэтому props
-// приходят на RU. Локализованные текстовые поля берём из detail-ответа API.
-const { product: baseProduct } = Astro.props as { product: Product }
+const slug = Astro.params.slug as string
 
-const details = (await getProductDetail(baseProduct.slug, lang)) as Record<string, any>
-const product = (details.slug ? { ...baseProduct, ...details } : baseProduct) as Product
+// Detail-ответ API содержит все поля товара (list + detail + gallery).
+const details = (await getProductDetail(slug, lang)) as Record<string, any>
+if (!details || !details.slug) {
+  return Astro.rewrite('/404')
+}
+const product = details as Product
 const fallback = (productDetails as any)._default
 
 const d = {

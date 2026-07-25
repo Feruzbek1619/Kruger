@@ -1,13 +1,6 @@
 ---
-// en-локаль: страница новости.
+// en-локаль: страница новости. SSR — рендер общей страницы (slug/локаль из запроса).
+export const prerender = false
 import Page from "../../news/[...slug].astro"
-import { getAllNews } from "@/lib/api"
-
-export async function getStaticPaths() {
-  const items = await getAllNews()
-  return items.map((n) => ({ params: { slug: n.slug }, props: { slug: n.slug } }))
-}
-
-const { slug } = Astro.props
 ---
-<Page slug={slug} />
+<Page />
