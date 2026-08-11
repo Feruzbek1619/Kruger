@@ -49,9 +49,9 @@ const formErrors = {
   />
 
   <section class="bg-bg py-16 md:py-24">
-    <div class="container-page grid gap-8 lg:grid-cols-12 lg:gap-10">
-      <!-- HQ — премиум-карточка с картой, 7 колонок -->
-      <div class="lg:col-span-7 kr-reveal">
+    <div class="container-page max-w-3xl mx-auto">
+      <!-- HQ — премиум-карточка с картой (Social media и Regional offices временно скрыты) -->
+      <div class="kr-reveal">
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block h-0.5 w-8 bg-primary" aria-hidden="true" />
           <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'contactPage.hqEyebrow')}</p>
@@ -93,27 +93,7 @@ const formErrors = {
         </Card>
       </div>
 
-      <!-- Соцсети — 5 колонок (блок «Regional offices» временно скрыт). -->
-      <div class="lg:col-span-5 kr-reveal">
-        <Card variant="default" padding="lg">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="inline-block h-0.5 w-6 bg-primary" aria-hidden="true" />
-            <p class="text-eyebrow md:text-xs font-bold tracking-[0.22em] text-primary uppercase">{t(lang, 'contactPage.socialEyebrow')}</p>
-          </div>
-          <h3 class="font-display text-base font-bold mb-4">{t(lang, 'contactPage.socialTitle')}</h3>
-          <div class="flex items-center gap-2.5">
-            {['facebook','instagram','youtube','linkedin'].map((s) => (
-              <a
-                href="#"
-                aria-label={s}
-                class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-bg-soft text-text border border-border-soft hover:bg-primary hover:text-text-inverse hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
-              >
-                <Icon name={s} size={18} />
-              </a>
-            ))}
-          </div>
-        </Card>
-      </div>
+      {/* Блок «Social media» с 4 иконками временно скрыт — вернём, когда появятся реальные ссылки. */}
     </div>
   </section>
 
