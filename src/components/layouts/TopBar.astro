@@ -18,7 +18,11 @@ const settings = await getSiteSettings(lang)
       <LanguageSwitcher client:idle current={lang} />
     </div>
     <div class="flex items-center gap-5">
-      {/* Немецкие телефон и email временно скрыты — плейсхолдеры до открытия HQ. */}
+      {/* Немецкий телефон временно скрыт — плейсхолдер до открытия HQ. Email оставляем. */}
+      <a href={`mailto:${t(lang, 'topbar.email')}`} class="hidden lg:inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Icon name="mail" class="h-4 w-4" />
+        <span>{t(lang, 'topbar.email')}</span>
+      </a>
       {settings.catalogUrl && (
         <a
           href={settings.catalogUrl}

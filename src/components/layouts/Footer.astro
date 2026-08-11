@@ -18,7 +18,20 @@ const lang = (Astro.currentLocale ?? 'ru') as 'ru' | 'en' | 'de'
       <p class="mt-7 text-sm leading-relaxed opacity-75 max-w-xs">
         {t(lang, 'footer.brandDescription')}
       </p>
-      {/* Соцсети временно скрыты — иконки без реальных ссылок. Вернём, когда появятся аккаунты. */}
+      <div class="mt-8">
+        <p class="text-eyebrow uppercase tracking-[0.2em] opacity-50 font-semibold mb-3">{t(lang, 'footer.social')}</p>
+        <div class="flex items-center gap-2">
+          {['facebook','instagram','youtube','linkedin'].map((s) => (
+            <a
+              href="#"
+              aria-label={s}
+              class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-text-inverse/15 hover:bg-brand-yellow hover:border-brand-yellow hover:text-text transition-colors"
+            >
+              <Icon name={s} class="h-4 w-4" />
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
 
     <!-- Main links -->
