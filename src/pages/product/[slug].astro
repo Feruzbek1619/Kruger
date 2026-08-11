@@ -46,6 +46,20 @@ const apiSpecs  = (product as any).apiSpec ?? []
 const aceaSpecs = (product as any).aceaSpec ?? []
 const compliesWith = [...apiSpecs, ...aceaSpecs]
 
+// Галерея = главное фото (обложка) + доп. фото. Дедуп по имени файла, чтобы
+// обложка не дублировалась, если её же залили и в галерею (products/X.jpg и
+// products/gallery/X.jpg — одно фото, но разные пути).
+const galleryBaseName = (u: string) => (u.split('?')[0].split('/').pop() ?? u).toLowerCase()
+const seenGalleryImages = new Set<string>()
+const galleryImages = [product.image, ...(((product as any).gallery ?? []) as string[])]
+  .filter(Boolean)
+  .filter((u) => {
+    const key = galleryBaseName(u as string)
+    if (seenGalleryImages.has(key)) return false
+    seenGalleryImages.add(key)
+    return true
+  }) as string[]
+
 // Иконки преимуществ — циклятся по списку d.benefits
 const benefitIcons = ['shield', 'spark', 'drop', 'thermo', 'cog', 'leaf'] as const
 
@@ -122,7 +136,7 @@ const productSchema = {
     <div class="container-page grid gap-10 lg:gap-12 lg:grid-cols-2 items-start">
       <ProductGallery
         client:visible
-        images={[product.image, ...(((product as any).gallery ?? []) as string[])].filter(Boolean) as string[]}
+        images={galleryImages}
         alt={product.name}
         category={product.category}
         viscosity={(product as any).viscosity ?? ''}
