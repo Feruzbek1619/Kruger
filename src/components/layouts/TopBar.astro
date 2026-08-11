@@ -18,14 +18,7 @@ const settings = await getSiteSettings(lang)
       <LanguageSwitcher client:idle current={lang} />
     </div>
     <div class="flex items-center gap-5">
-      <a href={`tel:${t(lang, 'topbar.phone').replace(/\s/g, '')}`} class="hidden sm:inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
-        <Icon name="phone" class="h-4 w-4" />
-        <span>{t(lang, 'topbar.phone')}</span>
-      </a>
-      <a href={`mailto:${t(lang, 'topbar.email')}`} class="hidden lg:inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
-        <Icon name="mail" class="h-4 w-4" />
-        <span>{t(lang, 'topbar.email')}</span>
-      </a>
+      {/* Немецкие телефон и email временно скрыты — плейсхолдеры до открытия HQ. */}
       {settings.catalogUrl && (
         <a
           href={settings.catalogUrl}
