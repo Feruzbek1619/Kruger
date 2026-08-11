@@ -2,7 +2,7 @@
   "topbar": {
     "address": "Leitzstraße 45, 70469 Stuttgart, Germany",
     "phone": "+49 711 12 34 56 78",
-    "email": "info@kruger-oil.de",
+    "email": "krugeroilcompany@gmail.com",
     "downloadCatalog": "Katalog herunterladen"
   },
   "nav": {
@@ -120,7 +120,7 @@
     "submit": "Absenden",
     "sending": "Wird gesendet …",
     "successToast": "Vielen Dank! Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
-    "errorToast": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an info@kruger-oil.de",
+    "errorToast": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an krugeroilcompany@gmail.com",
     "errors": {
       "name": "Bitte nennen Sie uns Ihren Namen",
       "emailRequired": "E-Mail ist erforderlich",
@@ -407,7 +407,7 @@
     "languageEn": "Englisch",
     "languageDe": "Deutsch",
     "noticeText": "Die Dokumente werden regelmäßig aktualisiert. Fehlt das gesuchte PDF in der Liste — schreiben Sie uns.",
-    "soonNotice": "Die vollständige Dokumentendatenbank steht mit der Anbindung des Backends zur Verfügung. Aktuell auf Anfrage unter info@kruger-oil.de."
+    "soonNotice": "Die vollständige Dokumentendatenbank steht mit der Anbindung des Backends zur Verfügung. Aktuell auf Anfrage unter krugeroilcompany@gmail.com."
   },
   "brand": {
     "eyebrow": "FÜR HÄNDLER UND PARTNER",
@@ -488,7 +488,7 @@
     "404Btn2": "Zum Katalog",
     "404Btn3": "Kontakt aufnehmen",
     "500Title": "500 — Bei uns ist etwas schiefgelaufen",
-    "500Lead": "Wir wissen bereits von dem Problem und arbeiten daran. Bitte laden Sie die Seite in einigen Minuten neu. Sollte das Problem bestehen bleiben — schreiben Sie an info@kruger-oil.de.",
+    "500Lead": "Wir wissen bereits von dem Problem und arbeiten daran. Bitte laden Sie die Seite in einigen Minuten neu. Sollte das Problem bestehen bleiben — schreiben Sie an krugeroilcompany@gmail.com.",
     "500Btn": "Zur Startseite"
   },
   "search": {

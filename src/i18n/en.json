@@ -2,7 +2,7 @@
   "topbar": {
     "address": "Leitzstraße 45, 70469 Stuttgart, Germany",
     "phone": "+49 711 12 34 56 78",
-    "email": "info@kruger-oil.de",
+    "email": "krugeroilcompany@gmail.com",
     "downloadCatalog": "Download catalogue"
   },
   "nav": {
@@ -120,7 +120,7 @@
     "submit": "Send",
     "sending": "Sending…",
     "successToast": "Thank you! We will get back to you within 24 hours.",
-    "errorToast": "Something went wrong. Please try again or email us at info@kruger-oil.de",
+    "errorToast": "Something went wrong. Please try again or email us at krugeroilcompany@gmail.com",
     "errors": {
       "name": "Please tell us your name",
       "emailRequired": "Email is required",
@@ -407,7 +407,7 @@
     "languageEn": "English",
     "languageDe": "Deutsch",
     "noticeText": "Documents are updated regularly. If the PDF you need isn't listed, get in touch.",
-    "soonNotice": "The full document library will go live together with the backend. For now, available on request at info@kruger-oil.de."
+    "soonNotice": "The full document library will go live together with the backend. For now, available on request at krugeroilcompany@gmail.com."
   },
   "brand": {
     "eyebrow": "FOR DEALERS AND PARTNERS",
@@ -488,7 +488,7 @@
     "404Btn2": "Go to catalogue",
     "404Btn3": "Get in touch",
     "500Title": "500 — Something broke on our side",
-    "500Lead": "We already know about the problem and are working on it. Please try refreshing the page in a few minutes. If the problem persists, email us at info@kruger-oil.de.",
+    "500Lead": "We already know about the problem and are working on it. Please try refreshing the page in a few minutes. If the problem persists, email us at krugeroilcompany@gmail.com.",
     "500Btn": "Go to homepage"
   },
   "search": {
