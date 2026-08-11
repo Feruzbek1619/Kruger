@@ -185,6 +185,14 @@ export interface PresenceData { highlightId: string; markers: PresenceMarker[] }
 export const getPresence = (lang?: string): Promise<PresenceData> =>
   apiGet('/presence/', presenceMock as PresenceData, lang)
 
+// ─── Site settings (общий каталог и т.д.) ─────────────────
+
+export interface SiteSettings { catalogUrl: string }
+
+/** Пустой fallback: фронт скроет кнопку «Скачать каталог», если catalogUrl пустой. */
+export const getSiteSettings = (lang?: string): Promise<SiteSettings> =>
+  apiGet('/settings/', { catalogUrl: '' } as SiteSettings, lang)
+
 // ─── Partners / OEM ────────────────────────────────────────
 
 export const getPartners = (lang?: string): Promise<Partner[]> =>
